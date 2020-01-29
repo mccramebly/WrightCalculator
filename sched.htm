@@ -1,0 +1,104 @@
+<html><body>
+<SCRIPT type="text/javascript" src="myfunctions.js"></script> 
+<script>
+var day=[] // day, group, index into roster
+var cross=[]
+var roster=[]
+var n = 0
+
+// ------------------------------------------------------------------
+function dday(d)
+{ theForm.solu.value+="\nDay "+(d+1)+":"
+  if (day[d].length==n)
+  { theForm.solu.value+=" Everyone has already been with everyone once."; return } 
+  for (var i=0; i<day[d].length; i++)
+  { theForm.solu.value+="\nGroup "+(i+1)+": "
+    for(var j=0; j<day[d][i].length; j++)
+    { theForm.solu.value+=roster[day[d][i][j]]+", "    }}}
+// ------------------------------------------------------------------
+function calc1(){
+work = theForm.input.value.replace (/,/g,";")
+if (slim(work.length)==0)
+{ theForm.input.value=" Abe Brown\n Bob Greene\n Cindy Yellow\n Dottie Blue\n Ernie Black\n Fonzie Winter\n Gerry Summer\n Helen Spring\n Ida Autumn"}
+else
+{ theForm.input.value = work
+  calc()}}
+// ------------------------------------------------------------------
+function calc(){
+work = theForm.input.value
+if (slim(work.length)==0)
+{ theForm.input.value="Brown, Abe\nGreene, Bob\nYellow, Cindy\nBlue, Dottie\nBlack, Ernie\nWinter, Fonzie\nSummer, Gerry\nSpring, Helen\nAutumn, Ida"
+  return}
+// work = work.replace (/(\d{9}\s*)?(.+),(.+?)\s+(Enroll|Dropp)ed\s*\w*\s*\d\d\/\d\d\/201\d.*/g, "$3 $2;")
+work = work.replace (/\d{9}\s*/g,"")
+work = work.replace (/(Enroll|Dropp)ed\s*\w*\s*\d\d\/\d\d\/201\d.*/g, "")
+work = work.replace (/(.+),(.+)\s*/g, "$2 $1;")
+work = work.replace (/\n/g,";")
+work = work.replace (/\s+/g," ")
+work = work.replace (/\s*\;\s*/g,";")
+work = work.replace (/^[;\s]*/,"")
+work = work.replace (/[;\s]*$/,"")
+work = work.replace (/([\w\s\.]*),([\w\s\.]*)/g,"$2 $1; ")
+work = work.split (";").sort().join("; ")
+work = work.replace (/\s*\;\s*/g,";")
+work = work.replace (/\;*$/,"")
+work = work.replace (/^\;*/,"")
+theForm.input.value = work
+roster = work.split(";")
+// initialize stuff
+n=roster.length // size of class
+s=theForm.sval.value // length of semester, number of class days
+p=theForm.gval.value // the size of each group
+m=Math.ceil ( n/p )// number of groups per day
+for (i=0;i<n;i++) cross[i]=[]; theForm.solu.value="There are "+n+" students"
+
+// do day one (d=0)
+d=0; day[d]=[]; for (i=0; i<m; i++) day[d][i]=[]
+g=0; for (r=0; r<n; r++) 
+{ for (i=0;i<day[d][g].length;i++)
+  { cross[r][day[d][g][i]]=d }
+  day[d][g].push(r); 
+  g=(g+1)%m}
+// do day two (d=1)
+d=1; day[d]=[]; for (i=0; i<m; i++) day[d][i]=[]
+g=0; for (r=0; r<n; r++) 
+{ for (i=0;i<day[d][g].length;i++)
+  { cross[r][day[d][g][i]]=d }
+  day[d][g].push(r); 
+  if (day[d][g].length>=day[0][g].length) g+=1}
+// do the rest
+while (d<s-1){
+g2=0
+d+=1; day[d]=[]; for (i=0; i<m; i++) day[d][i]=[]
+for (r=0; r<n; r++) 
+{ foundgroup=false
+  for (g1=0;g1<m;g1++)
+  { g = (g2+g1)%m 
+    foundmatch=false
+    for (i=0; i<day[d][g].length; i++)
+    { if (cross[r][day[d][g][i]]!=undefined) { foundmatch=true; break } }
+    if (foundmatch) continue; else { foundgroup=true; break } }
+  if (foundgroup) 
+  { for (i=0;i<day[d][g].length;i++)
+    { cross[r][day[d][g][i]]=d }
+    day[d][g].push(r); g2=g+1 } else {day[d][m]=[]; day[d][m].push(r); g2=0; m+=1}}}
+
+for (si=0;si<s;si++)
+{
+dday(si)
+}
+}
+</script>
+<!--  Jessica Choe 	jchoe@ccc.edu  -->
+<form name="theForm">
+<table border = 1 noshade bgcolor = 99CC66>
+<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
+<tr><td align=right>Wright Calc APP:  Create small groups from your class list. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td></tr>
+<tr><td>Step 1: Enter or copy/paste class roster:<br><textarea name = "input" rows = 3 cols = 80></textarea></td></tr>
+<tr><td>Step 2: How many students are in each group:<input type="text" name="gval" size=1 value="3"/> &nbsp; &nbsp; &nbsp; How many sessions are there:<input type="text" name="sval" size=1 value="4"/></td></tr>
+<tr><td>Step 3: Family Name, Given Name <input name="calcbut" Value="Click HERE" type="button" onClick="calc()"/>
+ First Name Last Name (no commas)<input name="calc1but" Value="Click HERE" type="button" onClick="calc1()"/>
+ 
+</td></tr>
+<tr><td><textarea name = "solu" cols=80 rows = 44></textarea></td></tr>
+</table></form></body></html>

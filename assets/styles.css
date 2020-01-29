@@ -1,0 +1,16 @@
+input{
+    background-color: white;
+}
+
+input:hover{
+    background-color: yellow;
+}
+
+body{
+    background-color: white;
+    font-family:Monospace;
+}
+
+table{
+    background-color: #99CC66;
+}

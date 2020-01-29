@@ -1,0 +1,65 @@
+<html><head><title>Continued fraction operations</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
+<body style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 750 );">
+<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<script>
+// ---------------------------------------------------*/
+function enter(evt) {
+var KEYcode = evt.keyCode;
+if(KEYcode == 13) {;return}
+if(KEYcode == 27) {;return}}
+// ---------------------------------------------------*/
+function cfr2rat(){
+document.theForm.input.value=''
+bb=document.theForm.cfracdata.value
+bl=bb.split('\n')
+for (l=0;l<bl.length;l++)
+{ b=bl[l]
+  b=b.replace(/;/g,',').replace(/[ \[\]]/g,'')
+  eval("C=["+b+"]")
+  repfrac=(C[C.length-1]=='.')
+  if (repfrac) C.pop()
+  n1=1; d1=0; n2=C[0]; d2=1;
+  do
+  { for (k=1;k<C.length;k++)
+    { n3=C[k]*n2+n1; d3=C[k]*d2+d1
+    n1=n2;n2=n3;d1=d2;d2=d3
+    }
+  } while (repfrac && Math.abs((n2/d2-n1/d1)/(n2/d2))>.0000000000001)
+  print(n3/d3)
+}
+}
+// ---------------------------------------------------*/
+function rat2cfr(){
+document.theForm.input.value=''
+bb=document.theForm.ratdata.value
+bl=bb.split('\n')
+for (l=0;l<bl.length;l++)
+{ b=cleanx(bl[l],true)
+  C=[]; C.push(floor(b))
+  print (b,C)
+}
+}
+// ---------------------------------------------------*/
+</script>
+<form name="theForm"><table border = 1 noshade bgcolor = 99CC66>
+<tr><td colspan=99 onClick="window.open('index.htm')" align='center' onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'"  tabindex="1">Continued fraction operations</td></tr><tr><td>
+<textarea name = "ratdata" rows = 9 cols = 80 onKeyUp="enter(event)">11/13
+11/13
+sqrt(3)+1
+√(21)</textarea>
+<br>rational numbers
+</td></tr><tr><td>
+<textarea name = "cfracdata" rows = 9 cols = 80 onKeyUp="enter(event)">[0;1,5,2]
+[0;1,5,1,1]
+[2;1,2,'.']
+[4; 1, 1, 2, 1, 1, 8, '.' ]</textarea>
+<br>continued fraction
+</td></tr><tr><td>
+<textarea name = "input" rows = 9 cols = 80 onKeyUp="enter(event)"></textarea>
+</td></tr><tr><td>
+<input name="rationalbut" Value="rat2cfrac" type="button" onClick="rat2cfr()"/>
+<input name="cfracbut" Value="cfrac2rat" type="button" onClick="cfr2rat()"/>
+</td></tr></table></form>
+</body></html>

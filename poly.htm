@@ -1,0 +1,114 @@
+<html><head><title>JS Polynomials</title></head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<link REL="SHORTCUT ICON" HREF="favicon.ico">
+<body  style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
+<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<script>
+var vars=[]
+var numerator=[]
+var denominator=[]
+var lastans=0
+var vertex=[]
+var point=[]
+var focus=[]
+var directrix
+var latus
+// ---------------------------------------------------
+function enter(evt) { 
+var charCode = evt.keyCode;
+// document.theForm.output.value += " "+charCode+"="+String.fromCharCode(charCode); return
+if (charCode == 13) {calc(); return}
+if (charCode == 187) {calc(); return}
+if (charCode == 27) {clere(); return};}
+// ---------------------------------------------------
+function putx(x) {
+//IE support
+if (document.selection) {
+document.theForm.input.focus();
+sel = document.selection.createRange();
+sel.text = x
+} else if (document.theForm.input.selectionStart || document.theForm.input.selectionStart == '0') 
+{ //MOZILLA/NETSCAPE support
+var startPos = document.theForm.input.selectionStart;
+var endPos = document.theForm.input.selectionEnd;
+var cursorPos = startPos + x.length;
+document.theForm.input.value = document.theForm.input.value.substring(0, startPos) + x + document.theForm.input.value.substring(endPos, document.theForm.input.value.length);
+document.theForm.input.selectionStart = document.theForm.input.value.length
+document.theForm.input.selectionEnd = document.theForm.input.value.length
+} else { document.theForm.input.value += x }
+document.theForm.input.focus()}
+// ---------------------------------------------------
+function clere() {
+document.theForm.input.value = "points ( , ), ( , ), ( , ), vertex ( , ), focus ( , ), directrix x = ( )                                                     function y = (  ,  ,  )  /  ( 1 )"
+putx("")}
+// ---------------------------------------------------
+function parabola(){
+}
+// ---------------------------------------------------
+function calc(evt) { 
+ex = document.theForm.input.value
+ex = ex.replace (/, *\)/g,")"); ex = ex.replace (/, *\)/g,")"); ex = ex.replace (/, *\)/g,")");
+ex = ex.replace (/\( *\)/g,""); 
+document.theForm.input.value = ex
+
+
+}
+</script>
+<form name="theForm">
+<table border = 1 noshade bgcolor = 99CC66>
+<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
+<tr><td>
+
+<table><tr><td>
+<input type="button" value="1" onClick="putx('1')"/>
+<input type="button" value="2" onClick="putx('2')"/>
+<input type="button" value="3" onClick="putx('3')"/>
+<input type="button" value="+" onClick="putx('+')"/>
+</td><td>|| </td><td>
+<A href="index.htm" target="_blank"><INPUT tabIndex=0 onclick="window.location='index.htm'" value=Main type=button name=menu></A> 
+<input style="background-color:khaki" name="calcbut" Value="=" type="button" onClick="calc()"/>
+<input name="fracbut" Value="Frac" type="button" onClick="tofrac()"/>
+<input name="clerebut" Value="Clear" type="button" onClick="clere()"/>
+&nbsp; Degrees<input name="degrees" type="checkbox" checked/>
+</td></tr><tr><td>
+<input type="button" value="4" onClick="putx('4')"/>
+<input type="button" value="5" onClick="putx('5')"/>
+<input type="button" value="6" onClick="putx('6')"/>
+<input type="button" value="-" onClick="putx('-')"/>
+</td><td>|| </td><td>
+<input type="button" value="Ans" onClick="putx(lastans)"/>
+<input type="button" value="x" onClick="putx('x')"/>
+<input type="button" value="P I" onClick="putx('π')"/>
+<input type="button" value="&deg;" onClick="putx('°')"/>
+<input type="button" value="&#8730;" onClick="putx('√(')"/>
+<input type="button" value="&#178;" onClick="putx('²')"/>
+</td></tr><tr><td>
+<input type="button" value="7" onClick="putx('7')"/>
+<input type="button" value="8" onClick="putx('8')"/>
+<input type="button" value="9" onClick="putx('9')"/>
+<input type="button" value="*" onClick="putx('*')"/>
+</td><td>|| </td><td>
+<input type="button" value="(" onClick="putx('(')"/>
+<input type="button" value=")" onClick="putx(')')"/>
+<input type="button" value="^" onClick="putx('^')"/>|| 
+<input type="button" value="cos" onClick="putx('cos(')"/>
+<input type="button" value="sin" onClick="putx('sin(')"/>
+<input type="button" value="tan" onClick="putx('tan(')"/>
+</td></tr><tr><td>
+<input type="button" value=" ." onClick="putx('.')"/>
+<input type="button" value="0" onClick="putx('0')"/>
+<input type="button" value="," onClick="putx(',')"/>
+<input type="button" value="/" onClick="putx('/')"/>
+</td><td>|| </td><td>
+<input type="button" value="exp" onClick="putx('exp(')"/>
+<input type="button" value="ln" onClick="putx('ln(')"/>|| 
+<input type="button" value="acos" onClick="putx('acos(')"/>
+<input type="button" value="asin" onClick="putx('asin(')"/>
+<input type="button" value="atan" onClick="putx('atan(')"/>
+</td></tr></table>
+</td></tr><tr><td colspan=2>
+<textarea name = "input" rows = 4 cols = 80 tabindex="1" onKeyUp="enter(event)">
+points ( , ), ( , ), ( , ), vertex ( , ), focus ( , ), directrix x = ( )                                                     function y = (  ,  ,  )  /  ( 1 )</textarea>
+<textarea name = "output" rows = 9 cols = 80 tabindex="2" onKeyUp="enter(event)"></textarea>
+</td></tr></table>
+</form></body></html>

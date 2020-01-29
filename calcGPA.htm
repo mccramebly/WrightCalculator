@@ -1,0 +1,46 @@
+<html><head><title>Calc GPA</title></head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+<link REL="SHORTCUT ICON" HREF="favicon.ico">
+<body style="font-family:Monospace" onLoad="self.focus();document.theForm.a.focus()">
+<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<script> 
+var x,y,z,c1,c2, doa=true
+// ---------------------------------------------------
+function enter(evt) { 
+var charCode = evt.keyCode;
+if (charCode == 13) {doa=!doa; calc(); return}
+if (charCode == 27) {clere(); return};}
+// ---------------------------------------------------
+function clere() {
+document.theForm.a.value=""
+document.theForm.b.value=""
+document.theForm.output1.value=""
+document.theForm.output2.value=""
+document.theForm.a.focus()}
+//-----------------------
+function calc() {
+a = Number(document.theForm.a.value)
+b = Number(document.theForm.b.value)
+document.theForm.output1.value=""
+document.theForm.output2.value=""
+for (x=1;x<22;x++)
+{ document.theForm.output1.value+=("  "+x).slice(-3)+"\n"
+  document.theForm.output2.value+= myround((a*b+x*4)/(a+x),2)+"\n"
+}
+if (doa) document.theForm.a.focus(); else document.theForm.b.focus() 
+}
+</script>
+<form name="theForm">
+<table border = 1 noshade bgcolor = 99CC66>
+<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
+<tr><td align=right>Wright Calc APP: Projected GPA &nbsp; &nbsp; </td></tr>
+<tr><td >If you have already taken<br>
+<input type="text" name="a" size=12 rows=1 tabindex="1" value="" onblur="doa=false; calc()" onKeyUp="enter(event)"/> credit hours
+</td></tr><tr><td align=right>in which you have a 
+<input type="text" name="b" size=12 rows=1 tabindex="2" value="" onblur="doa=true; calc()" onKeyUp="enter(event)"/> GPA
+</td></tr><tr><td align=center>
+<Table border=1 ><tr><td>then if you get an "A" in<br>this many additional<br>credit hours</td><td>Your GPA will be</td></tr>
+<tr><td align=right><textarea name = "output1" rows = 22 cols = 3></textarea>
+</td><td><textarea name = "output2" rows = 22 cols = 5></textarea>
+</td></tr></table>
+</td></tr></table></form></body></html>

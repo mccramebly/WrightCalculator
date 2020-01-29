@@ -1,0 +1,128 @@
+<html><link REL="SHORTCUT ICON" HREF="favicon.ico">
+<body>
+<!-- this is HTML -->
+<!-- <style type="text/css"> H3 { text-align: center; color: Purple } </style>
+<H3>Selected Javascript features - JZ Nadas - E190 Spring 2011</H3>
+<P>Use your browser's "View>>Page Source" function to see the Javascript program code that generates this output:</P>
+ -->
+<Table border=1><tr><th><Table WIDTH="100%"><tr align="left"><th><A href="index.htm" target="_blank"><img src="menu.bmp" alt="Main Menu" title="Main Menu" /></A></th><th align="right">Javascript command</th></tr></table></th><th align="right">Result</th></tr>
+<tr><td>
+document.write ("1. Hello world");
+<br> // simple output
+</td><td><script>document.write ("1. Hello world");</script></td></tr>
+<tr><td>
+document.write ("2. 2 + 3 = ",2+3);
+<br> // simple calculator
+</td><td><script>document.write ("2. 2 + 3 = ",2+3);</script></td></tr>
+<tr><td>
+document.write ("3. &radic;2 = ", Math.sqrt(2), "  also ",Math.SQRT2);
+<br> // square root
+</td><td><script>document.write ("3. &radic;2 = ", Math.sqrt(2), "  also ",Math.SQRT2)</script></td></tr>
+<tr><td>
+document.write ("4. 2"+"0.5".sup()+" = ", Math.pow(2,0.5));
+<br> // Powers
+</td><td><script>document.write ("4. 2"+"0.5".sup()+" = ", Math.pow(2,0.5))</script></td></tr>
+<tr><td>
+					var D2R = Math.PI/180; 
+<br>document.write ("5. Sin(60&deg;) = ", Math.sin(60*D2R));
+<br> // Trig functions
+</td><td><script>var D2R = Math.PI/180; document.write ("5. Sin(60&deg;) = ", Math.sin(60*D2R))</script></td></tr>
+<tr><td>
+document.write ("6. Log(2) = ", Math.log(2)/Math.log(10));
+<br> // Log is the natural log LN
+</td><td><script>document.write ("6. Log(2) = ", Math.log(2)/Math.log(10))</script></td></tr>
+<tr><td>
+var x = 3, y = 5; z = x + y; 
+<br>document.write ("7. x = ", x, "; y = ", y, "; z = x + y = ", z);
+<br> // variable assignment
+</td><td><script>var x = 3, y = 5; z = x + y; document.write ("7. x = ", x, "; y = ", y, "; z = x + y = ", z)</script></td></tr>
+<tr><td>
+document.write ("8. ");<br>  if (z>6) { document.write ("z is bigger than 6")} else {document.write ("It ain't")};
+<br> // if else
+</td><td><script>document.write ("8. ");if (z>6) { document.write ("z is bigger than 6")} else {document.write ("It ain't")}</script></td></tr>
+<tr><td>
+document.write ("9. x = ", x=2 );<br> while (x<6) {x = x+1; document.write ( ", ", x )}<br>  document.write ("&lt;br&gt;");
+<br> // while 
+</td><td><script>document.write ("9. x = ", x=2 ); while (x<6) {x = x+1; document.write ( ", ", x )}; </script></td></tr>
+<tr><td>
+document.write ("10. ")  for ( x = 2; x<=6; x++ )
+<br> // x++ is the same as x += 1 which is the same as x = x + 1<br>document.write ((x==2 ? "x = " : ", "), x ); document.write ("&lt;br&gt;"); 
+<br>// for</td><td><script>
+document.write ("10. "); for ( x = 2; x<=6; x++ ) document.write ((x==2 ? "x = " : ", "), x ); </script></td></tr>
+<tr><td>
+document.write ("11. x = ")
+<br>  for ( x = 2, document.write (x); x<6; document.write ( ", ", ++x));  document.write("&lt;br&gt;");
+</td><td><script>document.write ("11. x = "); for ( x = 2, document.write (x); x<6; document.write ( ", ", ++x));</script></td></tr>
+<tr><td>
+document.write ("12. ")
+<br>  var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+<br>  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+<br>  d = new Date(); year = String(d.getFullYear()); day = d.getDay(); month = d.getMonth();
+<br>  document.write("Today, ", month+1, "/", d.getDate(), "/", year.substr(2,2),", ");
+<br>  document.write(" is ", days[day], ", ",months[month]," ",d.getDate(),", ",year,"&lt;br&gt;");
+</td><td><script>document.write ("12. ");
+var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+d = new Date(); year = String(d.getFullYear()); day = d.getDay(); month = d.getMonth();
+document.write("Today, ", month+1, "/", d.getDate(), "/", year.substr(2,2),", ");
+document.write(" is ", days[day], ", ",months[month]," ",d.getDate(),", ",year,"<br>");
+</script></td></tr>
+<tr><td>
+document.write ("13. x = ", x=2 );
+<br> do {x = x+1; document.write ( ", ", x )} while (x<6); document.write ("&lt;br&gt;");
+<br> // do .. while 
+</td><td>
+<script> document.write ("13. x = ", x=2 ); do {x = x+1; document.write ( ", ", x )} while (x<6); document.write ("<br>"); // do .. while 
+</script>
+</td></tr></table>
+<!-- <H3>Cheat sheet</H3>
+<style type="text/css"> HL { background-color: red } </style>
+ --><TABLE CELLPADDING="5" CELLSPACING="5" WIDTH="100%" BGCOLOR=chartreuse>
+<tr><th> . . . . Operators . . . . </th><th> . . . . . . . .Properties . . . . . . . .</th><th colspan=2> . . . . . . . . . . . . Methods . . . . . . . . . . . .   </th></tr>
+<tr><td>Arithmetic<br>
+<HL> + </HL>&nbsp;<HL> = </HL>&nbsp;<HL>++</HL>&nbsp;<HL>+=</HL>&nbsp;<HL> - </HL>&nbsp;<HL>--</HL>&nbsp;<HL>-=</HL>&nbsp;<HL> / </HL>&nbsp;<HL>%</HL></td><td><HL>Math.E</HL><br>
+Euler's constant and the base of natural logarithms (approximately 2.7183)</td><td><HL>Math.abs ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+the absolute value of <b>a</b></td><td><HL>Math.floor ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+integer closest to and not greater than a</td></tr>
+<tr><td>Assignment<br>
+<HL> = </HL>&nbsp;<HL>+=</HL>&nbsp;<HL>-=</HL>&nbsp;<HL>*=</HL>&nbsp;<HL>/=</HL>&nbsp;<HL>%=</HL>&nbsp;<HL><<=</HL> <br>
+<HL>>>=</HL>&nbsp;<HL>>>>= &=</HL>&nbsp;<HL>^=</HL>&nbsp;<HL>|=</HL></td><td><HL>Math.LN10</HL><br>
+the natural logarithm of 10, (approximately 2.3026).</td><td><HL>Math.acos ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+arc cosine of <b>a</b></td><td><HL>Math.log ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+log of <b>a</b> base e</td></tr>
+<tr><td>String<br>
+<HL>+</HL></td><td><HL>Math.LN2</HL><br>
+the natural logarithm of 2, (approximately 0.6931).</td><td><HL>Math.asin ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+arc sine of <b>a</b></td><td><HL>Math.max ( </HL> <b>&nbsp;a</b> , <b>b</b> <HL>&nbsp;)&nbsp;</HL><br>
+the maximum of <b>a</b> and b</td></tr>
+<tr><td>Backslash<br>
+<HL>\'</HL>&nbsp;<HL>\"</HL>&nbsp;<HL>\\</HL>&nbsp;<HL>\b</HL>&nbsp;<HL>\f</HL>&nbsp;<HL>\n</HL>&nbsp;<HL>\r</HL>&nbsp;<HL>\t</HL></td><td><HL>Math.LOG10E</HL><br>
+the base 10 logarithm of E (approximately 0.4343)</td><td><HL>Math.atan ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+arc tangent of <b>a</b></td><td><HL>Math.min ( </HL> <b>&nbsp;a</b> , <b>b</b> <HL>&nbsp;)&nbsp;</HL><br>
+the minimum of <b>a</b> and <b>b</b></td></tr>
+<tr><td>Bitwise<br>
+<HL> & </HL>&nbsp;<HL> | </HL>&nbsp;<HL>^ (XOR)</HL>&nbsp;<HL> ~ </HL>&nbsp;<HL><<</HL>&nbsp;<HL>>></HL>&nbsp;<HL>>>></HL></td><td><HL>Math.LOG2E</HL><br>
+the base 2 logarithm of E (approximately 1.4427).</td><td><HL>Math.atan2 ( </HL> <b>&nbsp;a</b> , <b>b</b> <HL>&nbsp;)&nbsp;</HL><br>
+arc tangent of <b>a</b>/<b>b</b></td><td><HL>Math.pow ( </HL> <b>&nbsp;a</b> , <b>b</b> <HL>&nbsp;)&nbsp;</HL><br>
+<b>a</b> to the power <b>b</b></td></tr>
+<tr><td>Comparison<br>
+<HL> == </HL>&nbsp;<HL> != </HL>&nbsp;<HL> === </HL>&nbsp;<HL> !== </HL>&nbsp;<HL> > </HL>&nbsp;<HL> >= </HL>&nbsp;<HL> < </HL>&nbsp;<HL> <= </HL>&nbsp;</td><td><HL>Math.PI</HL><br>
+the ratio of the circumference of <b>a</b> circle to its diameter (approximately 3.1416)</td><td><HL>Math.ceil ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+integer closest to <b>a</b> and not less than <b>a</b></td><td><HL>Math.random( )</HL><br>
+pseudo random number in the range 0 to 1</td></tr>
+<tr><td>Logical<br>
+<HL> && </HL>&nbsp;<HL> || </HL>&nbsp;<HL> !&nbsp;</HL> </td><td><HL>Math.SQRT1_2</HL><br>
+the value of 1 divided by the square root of 2 (approximately 0.7071).</td><td><HL>Math.cos ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+cosine of <b>a</b></td><td><HL>Math.round ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+integer closest to a</td></tr>
+<tr><td></td><td><HL>Math.SQRT2</HL><br>
+the square root of 2 (approximately 1.4142)</td><td><HL>Math.exp ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+exp(<b>a</b>)= e^<b>a</b></td><td><HL>Math.sin ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+sine of <b>a</b></td></tr>
+<tr><td>Special<br>
+(a==b<HL> ? </HL> "is"<HL> : </HL> "ain't")</td><td>for (var i=0<HL> , </HL> j=0; i<3; i++<HL> , </HL> j++)</td><td><HL>Math.tan ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+tangent of <b>a</b></td><td><HL>Math.sqrt ( </HL> <b>&nbsp;a</b> <HL>&nbsp;)&nbsp;</HL><br>
+square root of <b>a</b></td></tr>
+</table>
+</body></html>
+<br>

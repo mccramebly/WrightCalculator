@@ -1,0 +1,646 @@
+<html><head><title>Graph Functions</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<link REL="SHORTCUT ICON" HREF="favicon.ico">
+<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+ 
+<script>
+// -------------------------------------------------------*/  
+function C2GX(X){ return GXD*(X-CXM)+GXM } // canvas coord to graph coord
+// -------------------------------------------------------*/  
+function G2CX(X){ var y=(X-GXM)/GXD+CXM; if (y>-999 && y<999) return y; else return 0  } 
+// -------------------------------------------------------*/  
+function C2GY(Y){ return GYD*(CYT-Y-CYM)+GYM }
+// -------------------------------------------------------*/  
+function G2CY(Y){ 
+var y=CYT-(Y-GYM)/GYD-CYM
+if (y<-500) return (-500)
+if (y>CYW+500) return (CYW+500)
+return y} 
+// -------------------------------------------------------*/  
+function leftfunc(){
+Dx=(GXT-GXF)/4; GXF=GXF-Dx; GXT=GXT-Dx
+plotfunction(0,true,false)}
+// -------------------------------------------------------*/  
+function rightfunc(){
+Dx=(GXT-GXF)/4; GXF=GXF+Dx; GXT=GXT+Dx
+plotfunction(0,true,false)}
+// -------------------------------------------------------*/  
+function upfunc(){
+Dy=(GYT-GYF)/4; GYF=GYF+Dy; GYT=GYT+Dy
+plotfunction(0,true,false)}
+// -------------------------------------------------------*/  
+function downfunc(){
+Dy=(GYT-GYF)/4; GYF=GYF-Dy; GYT=GYT-Dy
+plotfunction(0,true,false)}
+// -------------------------------------------------------*/  
+function backfunc(){if (GQstack.length>0)
+{GQ=GQstack.pop();GQ=GQstack.pop()
+GXF=GQ[0]; GXT=GQ[1]; GYF=GQ[2]; GYT=GQ[3];
+plotfunction(0,true,false)}}
+// -------------------------------------------------------*/  
+function recalc() {
+if (GYT==GYF || GXT==GXF) return
+GXM=(GXF+GXT)/2; GXD=(GXT-GXF)/CXD; GXW=(GXT-GXF)/2 
+GYM=(GYF+GYT)/2; GYD=(GYT-GYF)/CYD; GYW=(GYT-GYF)/2 
+mGXM=GXM; mGYM=GYM}
+// -------------------------------------------------------*/  
+function clrscr(){
+POIget=false; POIx=undefined; POIy=undefined; document.theForm.input.value=''
+GXF=-10; GXT=10; GYF=-10; GYT=10; 
+plotfunction(999,true, false); document.theForm.input.focus()
+}
+// -------------------------------------------------------*/  
+function t2pi(){
+GXF=-.01; 
+if (document.theForm.degrees[0].checked) GXT=360.01; 
+else if (document.theForm.degrees[1].checked) GXT=2*Math.PI+.01
+else if (document.theForm.degrees[2].checked) GXT = 2.01
+plotfunction(999,true,false)}
+// -------------------------------------------------------*/
+function chdim(xy,factor){
+recalc()
+if (xy&1){ GXF=GXM-factor*GXW; GXT=GXM+factor*GXW }
+if (xy&2){ GYF=GYM-factor*GYW; GYT=GYM+factor*GYW }
+plotfunction(999,true,false)}
+// -------------------------------------------------------*/
+function centerfunc(){with (Math){
+GXMO=GXM
+if (GXT==-GXF && GYT==-GYF)
+{ GXF=GXFO; GXT=GXTO; GYF=GYFO; GYT=GYTO} else
+{ GXFO=GXF; GXTO=GXT; GYFO=GYF; GYTO=GYT
+  GXT=(GXT-GXF)/2, GYT=(GYT-GYF)/2
+  while (GXTO>GXT || GXFO<-GXT || GYTO>GYT || GYFO<-GYT) {GXT*=2; GYT*=2} 
+  GXF = -GXT; GYF=-GYT}
+plotfunction(999,true,false)}}
+// -------------------------------------------------------*/
+function movetoxy(X,Y){with (Math){
+GXFO=GXF; GXTO=GXT; GYFO=GYF; GYTO=GYT
+GXM=(GXF+GXT)/2-X; GXF-=GXM; GXT-=GXM
+GYM=(GYF+GYT)/2-Y; GYF-=GYM; GYT-=GYM
+if (abs((GXF+GXT)/2-(GXFO+GXTO)/2)<GXD && abs((GYF+GYT)/2-(GYFO+GYTO)/2)<GYD) chdim(3,.1)
+else plotfunction(999,true,false)}}
+// -------------------------------------------------------*/  
+function scalefunc(){with (Math){
+GXFO=GXF; GXTO=GXT; GYFO=GYF; GYTO=GYT
+Dy=(GXT-GXF)/2 // scale y axis to match x axis
+GYM=(GYF+GYT)/2
+// if (y.length>0) {ysort=y.sort(function(a,b){return a-b}); GYM=ysort[Math.floor(ysort.length/2)]} 
+// else GYM=0
+GYF=GYM-Dy; GYT=GYM+Dy
+plotfunction(999,true,false)}}  
+// -------------------------------------------------------*/  
+function getexpr0(k){
+if (!isNaN(k)) expr0=expr0.slice(k)
+var i=(expr0).search(":")
+var j=expr0.slice(0,i)
+expr0=expr0.slice(i+1)
+return(j)}
+// -------------------------------------------------------*/  
+/* function grid(){DOgrid=!DOgrid; plotfunction(999,false,true)}
+// -------------------------------------------------------*/  
+function doaxis(){
+if (hadplot) return
+hadplot=true
+recalc()
+// x axis
+Mx=(GXT-GXF)/10; MxL=mylog(Mx); MxL1=Math.floor(MxL); Mx=round4(Math.pow(10,MxL-MxL1))
+if (Mx>5) Mx=10; else if (Mx>2) Mx=5; else if (Mx>1) Mx=2; else Mx=1
+Mx *= Math.pow(10,MxL1); FMx=Math.floor(GXF/Mx)*Mx
+GXTs=""+GXT; 
+if (GYF*GYT<=0){
+ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis
+ctx.moveTo(0,G2CY(0)); ctx.lineTo(1, G2CY(0)-1); 
+ctx.lineTo(CXD, G2CY(0)); ctx.stroke()
+ctx.font = "bold 12px Arial"; ctx.fillStyle = axis
+ctx.fillText(GXTs,CXD - 7*GXTs.length, G2CY(0)-border3); ctx.stroke()
+// x marks
+while ( FMx<=GXT) {
+  if (DOgrid){
+    ctx.beginPath(); ctx.lineWidth = 1; ctx.strokeStyle = axis;
+    ctx.moveTo(G2CX(FMx), 0); ctx.lineTo(G2CX(FMx), CYW)}
+  else {
+    ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis;
+    ctx.moveTo(G2CX(FMx), G2CY(0)+5); 
+    ctx.lineTo(G2CX(FMx), G2CY(0)-5); 
+    ctx.lineTo(G2CX(FMx)+1, G2CY(0)+5); 
+    ctx.lineTo(G2CX(FMx), G2CY(0)-5)}
+  ctx.font = "bold 12px Arial"; ctx.fillStyle = axis
+  ctx.fillText((""+myround(FMx)).slice(-6), G2CX(FMx)+border2, G2CY(0)+15)
+  ctx.stroke()
+  FMx+=Mx}}
+else{ 
+ctx.font = "bold 12px Arial"; ctx.fillStyle = axis
+ctx.fillText(GXTs,CXD - 7*GXTs.length, CXD-15); ctx.stroke()
+while ( FMx<=GXT) {
+  if (DOgrid){
+    ctx.beginPath(); ctx.lineWidth = 1; ctx.strokeStyle = axis;
+    ctx.moveTo(G2CX(FMx), 0); ctx.lineTo(G2CX(FMx), CYW)}
+  else {
+    ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis;
+    ctx.lineWidth = border; ctx.moveTo(G2CX(FMx), CYD); 
+    ctx.lineTo(G2CX(FMx), CYD-10); 
+    ctx.lineTo(G2CX(FMx)+1, CYD); 
+    ctx.lineTo(G2CX(FMx), CYD-10)}
+  ctx.font = "bold 12px Arial"; ctx.fillStyle = axis
+  ctx.fillText((""+myround(FMx)).slice(-6), G2CX(FMx)+border, CXD)
+  ctx.stroke()
+  FMx+=Mx}}
+// y axis
+My=(GYT-GYF)/10; MyL=mylog(My); MyL1=Math.floor(MyL); My=round4(Math.pow(10,MyL-MyL1))
+if (My>5) My=10; else if (My>2) My=5; else if (My>1) My=2; else My=1
+My *= Math.pow(10,MyL1); FMy=Math.floor(GYF/My)*My
+if (GXF*GXT<=0){
+ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis;
+ctx.moveTo(G2CX(0),0); ctx.lineTo(G2CX(0)+1, 1); 
+ctx.lineTo(G2CX(0),CYD); ctx.stroke()
+// y marks
+while ( FMy<=GYT) { if (G2CY(FMy)<(CYD-30)) {
+  if (DOgrid){ 
+    ctx.beginPath(); ctx.lineWidth = 1; ctx.strokeStyle = axis;
+    ctx.moveTo(0, G2CY(FMy)); ctx.lineTo(CXW, G2CY(FMy))}
+  else {
+    ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis
+    ctx.moveTo(G2CX(0)+border   ,G2CY(FMy)); 
+    ctx.lineTo(G2CX(0)+border+30,G2CY(FMy)) 
+    ctx.lineTo(G2CX(0)+border   ,G2CY(FMy))} 
+  ctx.font = "bold 12px Arial"; ctx.fillStyle = axis
+  ctx.fillText(" "+myround(FMy),G2CX(0)+5, G2CY(FMy))
+  ctx.stroke()}
+  FMy+=My}}
+else{
+while ( FMy<=GYT ) { if (G2CY(FMy)<(CYD-30)) {
+  // document.theForm.input.value+="//"+FMy+', '
+  if (DOgrid){ 
+    ctx.beginPath(); ctx.lineWidth = 1; ctx.strokeStyle = axis;
+    ctx.moveTo(0, G2CY(FMy)); ctx.lineTo(CXW, G2CY(FMy))}
+  else {
+    ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis
+    ctx.moveTo(border   ,G2CY(FMy)); 
+    ctx.lineTo(border+30,G2CY(FMy)) 
+    ctx.lineTo(border   ,G2CY(FMy))}
+  ctx.font = "bold 12px Arial"; ctx.fillStyle = axis
+  ctx.fillText(" "+myround(FMy),5, G2CY(FMy))
+  ctx.stroke()}
+  FMy+=My}}
+// origin
+ctx.beginPath();
+ctx.arc( G2CX(0),G2CY(0) , border2, 0, 2 * Math.PI, false);
+ctx.fillStyle = axis; ctx.fill()
+}
+// -------------------------------------------------------*/  
+function enter(evt){
+ var charCode = evt.keyCode;
+ if (charCode == 13) plotfunction(999,false,true)
+ if (charCode == 27) document.theForm.input.value=""};
+// --------------------------------------------*/
+function f(x){with (Math){
+X=x; 
+try {var Y=eval(fofx)} catch(err) {return 0}
+return Y}}
+// --------------------------------------------*/
+function pfx(x){with (Math){
+X=x; 
+try {var Y=eval(pfxofx)} catch(err) {return 0}
+return Y}}
+// --------------------------------------------*/
+function pfy(x){with (Math){
+X=x; 
+try {var Y=eval(pfyofx)} catch(err) {return 0}
+return Y}}
+// --------------------------------------------*/
+function plotpoint(Px,Py,Pz){
+ctx.beginPath()
+if (Pz==undefined){
+ ctx.arc(G2CX(Px),G2CY(Py), border2, 0, 2 * Math.PI, false)
+ ctx.fillStyle = color
+ ctx.fill()}
+else if(Pz<0){
+ ctx.strokeStyle = color;
+ ctx.arc(G2CX(Px), G2CY(Py), -Pz, 0, 2 * Math.PI, false); ctx.stroke()}  
+else if(((GYD*.9)<GXD)&&(GXD<(GYD*1.1))) 
+{ ctx.strokeStyle = color;
+  ctx.arc(G2CX(Px), G2CY(Py), Pz/GXD, 0, 2 * Math.PI, false); ctx.stroke()}}  
+// --------------------------------------------*/
+function plotfunction(todo,move,getnewx){with (Math){
+// move = we have been given values for GXF, GTX, GYF, GYT 
+// getnewx = process x: command  ( false says to skip it)
+degrees = document.theForm.degrees[0].checked
+colorI=0; didsteps=0; didany=false; if (todo!=0) dowhat=todo
+if (degrees) document.getElementById("degpisw").value="0-360"
+else if (document.theForm.degrees[1].checked) document.getElementById("degpisw").value=save2pi
+else if (document.theForm.degrees[2].checked) document.getElementById("degpisw").value="0 - 2"
+var expr = '\n'+document.theForm.input.value.replace (/\s+\n/g,"\n").replace (/\n+/g,"\n").replace (/^\n+/,"").replace (/\n*$/,"")+"\n"
+expr = expr.replace(/\[/g,"(").replace(/\]/g,")") 
+if (expr=="\n\n")
+{ if(!move) {document.theForm.input.value ="x:-12 to 14;y:-12 to 14\n8-x/1.1+sin(x) \ny= (x4 -34x2 +115)/11 \nf(x)=-(x+7)(x-8)/3 \n(3:12):3x/2+5sin(x)-13\n(-4,6.4),(4,-7),(7.5,-3),(10,-6)\n(-4,-6)(-4,-6,5)\n//polar:0:2pi:H+R*cos(x):K+R*sin(x):\npolar:0:2pi:-4+cos(x)*(3.5+sin(5x)):-6+sin(x)*(3.5+sin(5x))\ndy/dx:sin(x)+9;intgrl:sin(x)+1"; return}
+  expr = ''}
+hadplot=false; needY=true
+if (POIget) {POIx1= undefined; POIxn= undefined; POIshow=true } 
+ctx.fillStyle="#FFFFFF";ctx.fillRect(0,0,CXD,CYD)
+recalc()
+if (move)
+{ if (expr!='') ctx.fillStyle="#DDDDDD";ctx.fillRect(G2CX(GXFO),G2CY(GYFO),G2CX(GXTO)-G2CX(GXFO),G2CY(GYTO)-G2CY(GYFO))
+  needY=false}
+else {GXFO=GXF; GXTO=GXT; GYFO=GYF; GYTO=GYT}
+
+while ((ex1=expr.search(/[;\n ][xyu]:/i))>-1)
+{ ex2=expr.slice(ex1+2).search(/[;\n]/)+ex1+2
+  ex3=expr.slice(ex1).search(/:/)+ex1
+  units=expr.slice(ex3+1,ex2)
+  if (expr.charAt(ex3-1).toLowerCase()=='x') document.theForm.xrange.value=units
+  else if (expr.charAt(ex3-1).toLowerCase()=='y') document.theForm.yrange.value=units
+  else if (expr.charAt(ex3-1).toLowerCase()=='u')
+  { units=units.slice(0,3)
+    if (units='deg') document.theForm.degrees[0].checked=true
+    else if (units='rad') document.theForm.degrees[1].checked=true 
+    else if (units='pir') document.theForm.degrees[2].checked=true
+   }
+  if (ex1==0) expr=expr.slice(ex2); else expr=expr.slice(0,ex1-1)+expr.slice(ex2)}
+document.theForm.input.value = expr.slice(1)
+if (document.theForm.yrange.value.search(/ to /)>-1) expr="\ny:"+document.theForm.yrange.value+";"+expr
+if (document.theForm.xrange.value.search(/ to /)>-1) expr="\nx:"+document.theForm.xrange.value+";"+expr
+// expr=expr.replace(/[\n;]+/g,"\n") 
+while (expr.length>0)
+{ exprbr= expr.search(/[\n;]/); if (exprbr==-1) exprbr=expr.length;
+  newcolor=expr[exprbr]=='\n'
+  expr0 = expr.slice(0,exprbr); expr=expr.slice(exprbr+1)
+  if ((expr1s=expr0.search(/\/\//))>-1) expr0=expr0.slice(0,expr1s)
+  if (slim(expr0).length==0) continue 
+  // look for x/y ranges
+  if (expr0.search(/ to /)>-1)
+  { if (hadplot) continue
+    expr0=expr0.replace(/^\s*/,"")
+    expr1s=expr0.search(/:/);
+    expr1e=expr0.search(/ to /);
+    if (expr0.slice(0,1).toLowerCase()=="x"&&getnewx)
+    { GXF=eval(expr0.slice(expr1s+1,expr1e))
+      GXT=eval(expr0.slice(expr1e+4))
+      GXD=(GXT-GXF)/CXD 
+      getnewx=false}
+    else if (expr0.slice(0,1).toLowerCase()=="y"&&needY)
+    { GYF=eval(expr0.slice(expr1s+1,expr1e))
+      GYT=eval(expr0.slice(expr1e+4))
+      GYD=(GYT-GYF)/CYD 
+      needY=false}
+      continue }
+  
+  // set color = color 
+  if (expr0.search(/\{/)>2)
+  { expr01=expr0.search(/\{/); expr02=expr0.search(/\}/); if (expr02==-1) expr02=expr0.length
+    color=expr0.slice(expr01+1,expr02); expr0=expr0.slice(0,expr01)}
+  else {color = colors[colorI]; if(newcolor) colorI=(colorI+1)%colors.length}
+  didsteps++
+  if (dowhat<0)
+  { if (-dowhat!=didsteps) continue }
+  else if (dowhat<didsteps) return 
+  didany=true
+
+  if ((expr0.search(/\(.*,/)>-1)&&(expr0.search(/[a-z]\s*\(.*,/g)==-1)){
+  // connect points with straight lines   (x,y,radius)
+  savepoints=[]; doaxis()
+  while (expr0.search(/,/)>-1)
+  { expr0=expr0.replace(/[^\(]*\(/,"") // get rid of anything before the parenthesis
+    expr1e=expr0.search(/[,]/);
+    expr2e=expr1e+1; expr2ec=0; expr3e=0
+    while (expr2e<expr0.length)
+    { if (expr0.charAt(expr2e)==',') {expr3e=expr2e; expr2e++; expr2ec=0; continue}
+      if (expr0.charAt(expr2e)=='(') expr2ec++
+      else if (expr0.charAt(expr2e)==')')
+         { if (expr2ec>0) expr2ec--
+           else break }
+      expr2e++ }  // skip over matching set of parentheses
+    if (expr3e>0) { try 
+    {Px=eval(cleanx(expr0.slice(0,expr1e))); 
+     Py=eval(cleanx(expr0.slice(expr1e+1,expr3e))); 
+     Pz=eval(cleanx(expr0.slice(expr3e+1,expr2e)))} 
+    catch(err){expr0=expr0.slice(expr2e+1); continue}     
+    if (needY)
+    { if (Py<GYF || savepoints.length==0) GYF=Py
+      if (Py>GYT || savepoints.length==0) GYT=Py }
+    if (getnewx)
+    { if (Px<GXF || savepoints.length==0) GXF=Px
+      if (Px>GXT || savepoints.length==0) GXT=Px }
+    savepoints.push([Px,Py,Pz]); expr0=expr0.slice(expr2e+1)}
+    else { try 
+    {Px=eval(cleanx(expr0.slice(0,expr1e))); Py=eval(cleanx(expr0.slice(expr1e+1,expr2e)))} 
+    catch(err){expr0=expr0.slice(expr2e+1); continue}     
+    if (needY)
+    { if (Py<GYF || savepoints.length==0) GYF=Py
+      if (Py>GYT || savepoints.length==0) GYT=Py }
+    if (getnewx)
+    { if (Px<GXF || savepoints.length==0) GXF=Px
+      if (Px>GXT || savepoints.length==0) GXT=Px }
+    savepoints.push([Px,Py]); expr0=expr0.slice(expr2e+1)}}
+    
+  if (needY && (GYT!=GYF)) {GYD=(GYT-GYF)/CYD; needY=false}
+  if (getnewx) {GXD=(GXT-GXF)/CXD ;getnewx=false} 
+  recalc() // just in case
+  ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 6
+  ctx.moveTo(G2CX(savepoints[0][0]),G2CY(savepoints[0][1]))
+  for (i=1; i<savepoints.length; i++)
+  { ctx.lineTo(G2CX(savepoints[i][0]),G2CY(savepoints[i][1])) }
+  ctx.stroke(); 
+
+  if (POIget)
+  { for (j=1; j<savepoints.length; j++)
+    { P1=savepoints[j]; P2=savepoints[j-1]
+      if (P1[1]*P2[1]<0)
+      { POIx0 = P2[0]-P2[1]*(P2[0]-P1[0])/(P2[1]-P1[1])
+      // in x-y range and cross POIx0 axis 
+        if ((POIx1==undefined) || (POIx0<POIx1))
+        { if ((POIx1!=undefined) && (((POIxn==undefined)||(POIx1<POIxn))&&((POIx==undefined)||(POIx<POIx1))))
+          { POIxn=POIx1; POIyn=0}
+          POIx1=POIx0; POIy1=0}
+        else if ((POIx0>POIx1) && (POIx!=undefined) && (POIx0>POIx) && ((POIxn==undefined) || (POIx0<POIxn)))
+        { POIxn=POIx0; POIyn=0 }
+  } } }
+  storeAsY=y.length==0 
+  while (savepoints.length>0) 
+  { Pxy=savepoints.pop(); plotpoint(Pxy[0],Pxy[1],Pxy[2]); 
+    if (storeAsY) y.push(Pxy[1])}
+  continue }
+
+  
+  pwF=GXF; pwT=GXT // piecewise functions
+  expr0=slim(expr0)
+  if ((expr0.search(/\):/))>=0 && expr0[0]=="(")
+  { pwF=Number(getexpr0(1)); pwT=Number(getexpr0().slice(0,-1)) } 
+  pxy= getexpr0()[0]
+  dydx = pxy=="D"
+  iydx = pxy=="I"
+  pxy =  pxy=="P"
+  if(pxy)
+  { expr0+=":";
+    pxF=cleanx(getexpr0(),true)
+    pxT=cleanx(getexpr0(),true)
+    pfxofx=cleanx(getexpr0())
+    pfyofx=cleanx(getexpr0())
+  } else 
+  { fofx= cleanx(expr0)
+	  if (fofx.search(/=/)>0)
+	  { if(fofx.slice(0,2)=="X=")
+	    { xvalue=eval(cleanx(fofx.slice(2)))
+	      if (GXF<=xvalue && xvalue<GXT)
+	      { ctx.beginPath(); ctx.lineWidth = 4; ctx.strokeStyle = color;
+	        ctx.moveTo(G2CX(xvalue),0); ctx.lineTo(G2CX(xvalue)+1, 1); 
+	        ctx.lineTo(G2CX(xvalue),CYD); ctx.stroke()}
+	      continue}
+	    else fofx=fofx.slice(fofx.search(/=/)+1)}
+	  if (fofx.length==0) continue}
+  
+  // draw graphs
+  if (fofx.search(/X/)==-1) 
+  { var re = new RegExp( "[A-ZΘ]",'g');
+    if (fofx.search(re)>=0) fofx=fofx.replace(re,'X')}
+  if (pxy)
+  { for(i=0; i<CXD1; i++)
+    { X = pxF+i*(pxT-pxF)/CXD
+      x[i] = pfx(X)
+      y[i] = pfy(X)
+    }    
+  } else {
+  newton = expr0.slice(expr0.search(/[:=]/)+1)
+  for (i=0;i<CXD1;i++)
+  { x[i]=i*GXD+GXF; y[i]=f(x[i])
+    if (i>0) if (y[i-1]!=0 && y[i]*y[i-1]<=0) newton += "; "+ x[i]
+    if (y[i]>GYT&&!needY) y[i]=GYT
+    if (y[i]<GYF&&!needY) y[i]=GYF
+    if (isNaN(y[i])) 
+       y[i]=GYF-1
+    if (dydx && i>0) y[i-1]=(y[i]-y[i-1])/GXD
+    if (iydx){
+      if (i>1){
+        if (i==2) y[0]= y[0]*GXD
+        y[i-1]=y[i-2]+y[i-1]*GXD}}}
+  if (dydx) y[CXD]=y[CXD-1]
+  if (iydx) y[CXD]=y[CXD-1]+y[CXD-1]*GXD
+  if (needY){
+    GYF=y[0]; GYT=GYF
+    for (i=1;i<CXD1;i++){
+      if (y[i]<GYF) 
+        {GYF=y[i]; GYFi=i}
+      if (y[i]>GYT) 
+        {GYT=y[i]; GYTi=i}
+    }
+    if (GYT<=GYF) {GYT=GYF+5; GYF-=5}
+    GYD=(GYT-GYF)/CYD; GYF-=GYD; GYT+=GYD; needY=false} }
+  recalc(); doaxis()
+  if (POIget)
+  { for (i=2; i<CXD; i++)
+    { if (GYF<=y[i]&&y[i]<=GYT&&( (y[i-1]<y[i]&&y[i]>y[i+1]) ||(y[i-2]==y[i-1]&&y[i-1]<y[i]&&y[i]>y[i+1]) ||(y[i-1]>y[i]&&y[i]<y[i+1]) ||(y[i-2]==y[i-1]&&y[i-1]>y[i]&&y[i]<y[i+1]) ||(y[i]*y[i-1]<=0&&y[i-1]!=0)))
+      { // in x-y range and ( max or min or cross x axis )
+        if (POIx==undefined)
+        { if (POIx1==undefined) {POIx1=x[i]; POIy1= y[i]}
+          else if (x[i]<POIx1) {POIx1=x[i]; POIy1= y[i]}
+        } else if (x[i]<POIx)
+        { if (POIx1==undefined) {POIx1=x[i]; POIy1= y[i]}
+          else if (x[i]<POIx1) {POIx1=x[i]; POIy1= y[i]}
+        } else if (x[i]>POIx)
+        { if (POIxn==undefined) {POIxn=x[i]; POIyn= y[i]}
+          else if (x[i]<POIxn) {POIxn=x[i]; POIyn= y[i]}
+        }
+  } } }
+  // graph curve
+  ctx.beginPath(); ctx.lineWidth = 4; ctx.strokeStyle = color
+  // piecewise definitions
+  if (GXF<pwF && pwF<GXT)
+  { ctx.beginPath(); ctx.lineWidth = 4; ctx.strokeStyle = color;
+    ctx.moveTo(G2CX(pwF),0); ctx.lineTo(G2CX(pwF)+1, 1); 
+    ctx.lineTo(G2CX(pwF),CYD); ctx.stroke()}
+  if (GXF<pwT && pwT<GXT)
+  { ctx.beginPath(); ctx.lineWidth = 4; ctx.strokeStyle = color;
+    ctx.moveTo(G2CX(pwT),0); ctx.lineTo(G2CX(pwT)+1, 1); 
+    ctx.lineTo(G2CX(pwT),CYD); ctx.stroke()}
+  xi=0; while (x[xi]<pwF) xi++
+  ctx.moveTo(G2CX(x[xi]), G2CY(y[xi]))
+  for (xi++; xi<CXD1; xi++) 
+  { if (x[xi]>pwT) break
+    if (y[xi]>=GYF && y[xi-1]>=GYF && ((y[xi]>GYF && y[xi]<GYT) || (y[xi-1]>GYF && y[xi-1]<GYT)))
+      ctx.lineTo(G2CX(x[xi]), G2CY(y[xi]))
+    else 
+      ctx.moveTo(G2CX(x[xi]), G2CY(y[xi]))}
+  ctx.stroke()
+}
+if (!didany) dowhat=0
+if (POIget)
+{ if (POIxn!=undefined){ POIx=POIxn; POIy=POIyn } // next POIget
+  else if (POIx1!=undefined) { POIx=POIx1; POIy=POIy1 } // first POI
+  POIget=false }
+if (POIshow){
+  color='pink'; plotpoint(POIx,POIy,-5)
+  POIshow=false}
+
+color=axis; doaxis(); color=axis; plotpoint(mGXM,mGYM)
+GQstack.push([GXF,GXT,GYF,GYT])
+if (!move) {GXFO=GXF; GXTO=GXT; GYFO=GYF; GYTO=GYT}
+document.theForm.middlex.value= GXM 
+document.theForm.middley.value= GYM
+document.theForm.xrange.value=GXF+" to "+GXT
+document.theForm.yrange.value=GYF+" to "+GYT
+/*
+ document.theForm.input.value+="-------\n"+GXD+"; "+CXD+"; "+(GXD*CXD)
+ document.theForm.input.value+="-------\n"+y[0]+"; "+y[1]+"; "+y[CXD-1]
+ document.theForm.input.value+="-------\n"+GXD+"; "+CXD+"; "+(GXD*CXD)
+*/ 
+}}
+// --------------------------------------------*/
+function donewton() {
+plotfunction(999,false,true)
+window.open('newton.htm?' +newton) 
+}
+// --------------------------------------------*/
+function url(){
+urlline = 'http://faculty.ccc.edu/jnadas/js/graphs.htm?x:'
+urlline+= 'x:'+GXF+' to '+GXT+';y:'+GYF+' to '+GYT+';'
+urlline+= document.theForm.input.value.replace(/\n/g,";")
+urlline=encodeURI(urlline)
+/*
+ document.theForm.middle.value=urlline
+document.theForm.middle.focus()
+document.getElementById('urlid').select()
+*/
+return (urlline)
+}
+// --------------------------------------------*/
+function saveem(){
+var xxx= 'x:'+document.theForm.xrange.value+'\ny:'+document.theForm.yrange.value+'\n'+document.theForm.input.value
+val1=escape(xxx.replace(/\n/g,"<br>").replace(/;/g,"<sc>"))
+localStorage.setItem('graphdata',val1)
+savestuff('jsdata');document.theForm.input.focus()
+}// --------------------------------------------*/
+function tiny(){
+window.open('http://tinyurl.com/create.php?source=indexpage&url='+url())
+}
+// --------------------------------------------*/
+function POIcenter(){
+if (document.theForm.input.value==''){
+  document.theForm.input.value='x:-10 to 10;y:-10 to 10\n(x-2)(x-3)(x+4){blue}\n'
+  plotfunction(true, false)
+  return}
+if (POIx==undefined){POIget=true; plotfunction(false,false)}
+if (POIx!=undefined){
+  if (Math.abs(GXM-POIx)<GXD && Math.abs(GYM-POIy)<GYD) {
+    POIx=POIx-2*GXD; POIget=true; plotfunction(false,false)} 
+    POIshow=true; movetoxy(POIx,POIy)}
+}
+</script>
+</head><body  style="font-family:Monospace" onLoad="self.focus(); document.theForm.input.focus();">
+<form name="theForm"><table id='theTable' border = 1 noshade bgcolor = 99CC66>
+<tr><td valign=top>
+<TABLE>
+<tr><td>x-range: 
+<input name="xinbut" value="in" onclick="chdim(1,0.5)" type="button">
+<input name="xoutbut" value="out" onclick="chdim(1,2)" type="button">
+<input id=degpisw name="x2pi" value=" 0-2&pi; " onclick="t2pi()" type="button"><br>units: 
+ deg:<input name="degrees" type="radio" title="degrees" onClick="plotfunction(0,false,true)"/>
+ rad:<input name="degrees" type="radio" title="radians" checked onClick="plotfunction(0,false,true)"/>
+ pirad:<input name="degrees" type="radio" title="piradians" onClick="plotfunction(0,false,true)"/>
+</td></tr><tr><td>
+<input name="xrange" size=39 value=""/>
+</td></tr><tr><td>y-range: 
+<input name="yinbut" value="in" onclick="chdim(2,0.5)" type="button">
+<input name="youtbut" value="out" onclick="chdim(2,2)" type="button">
+<input name="ymaxbut" value="max-Y" onclick="document.theForm.yrange.value='';plotfunction(999,false,false)" type="button">
+</td></tr><tr><td>
+<input name="yrange" size=39 value=""/></td></tr></table></td>
+<td rowspan=11><canvas id="theCanvas" width="501" height="501"></canvas></td></tr><tr><td>
+<input name="plot" value="plot" onclick="plotfunction(999,false,true)" type="button">
+<input name="savebut" Value="Save" type="button" onClick="saveem()"/>
+<input name="loadbut" Value="Load" type="button" onClick="loadstuff(true,'jsdata');plotfunction(999,false,true); document.theForm.input.focus()"/>
+<input name="clearbut" Value="Clear" type="button" onClick="clrscr()" />
+<input name="newbut" type="button" value = "Newton" onClick="donewton()" tabindex="8" />
+<!-- <input name="gridbut" value="grid" onclick="grid()" type="button">
+<input name="tinybut" value="tiny" onclick="tiny()" type="button">-->
+<A href="index.htm"><img src="menu.bmp" alt="Main Menu" title="Main Menu" onClick="window.open(url())"/></A>
+<br>
+<textarea name = "input" rows = 14 cols = 40 onKeyUp="enter(event)"></textarea><br>
+<table><tr><td>Move: 
+<input name="leftbut" value="left" onclick="leftfunc()" type="button">
+<input name="rightbut" value="right" onclick="rightfunc()" type="button">
+<input name="upbut" value="up" onclick="upfunc()" type="button">
+<input name="downbut" value="down" onclick="downfunc()" type="button">
+<input name="backbut" value="back" onclick="backfunc()" type="button"><br>
+</td></tr><tr><td>Change: 
+<input name="inbut" value="in" onclick="chdim(3,.5)" type="button">
+<input name="outbut" value="out" onclick="chdim(3,2)" type="button">
+<input name="centerbut" value="origin" onclick="centerfunc()" type="button">
+<input name="scalebut" value="scale" onclick="document.theForm.yrange.value='';scalefunc()" type="button">
+</td></tr><tr><td>P.O.I. <input name="poibut" value="Find" onclick="POIget=true;plotfunction(999,false,false)" type="button"> 
+<input name="centerbut" value="center" onclick="POIcenter()" type="button"><br>Plot: 
+<input name="plot1" value="first" onclick="plotfunction(1,false,true)" type="button">
+<input name="plot2" value="next" onclick="plotfunction(-(Math.abs(dowhat)+1),false,true)" type="button">
+<input name="plot3" value="more" onclick="plotfunction(Math.abs(dowhat)+1,false,true)" type="button">
+</td></tr>
+<tr><td>Center:  (x,y)<br>(<input id='middlex' cols=14 name="middlex"/>,
+<input id='middley' cols=14 name="middley"/>)</td></tr></table>
+</td></tr></table></form>
+<script>
+// -------------------------------------------------------*/  
+function getPosition(event){ 
+var x = new Number();
+var y = new Number() 
+
+/* if (event.x != undefined && event.y != undefined)
+{ x = event.x; y = event.y;}
+else // Firefox method to get the position
+*/
+{ var rect = cID.getBoundingClientRect();
+  x = Math.floor(event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft - rect.left)
+  y = Math.floor(event.clientY + document.body.scrollTop + document.documentElement.scrollTop - rect.top)}
+  // x -= cID.offsetLeft+tID.offsetLeft; y -= cID.offsetTop+tID.offsetTop; 
+  
+if (!(x<0 || y<0 || x>CXD || y>CYD ))
+{ 
+ // document.theForm.debug.value+=event.clientX +", "+ document.body.scrollLeft +", "+ document.documentElement.scrollLeft +", "+ rect.left +", "+ cID.offsetLeft+", "+tID.offsetLeft+"="+x+", "+ C2GX(x)+"\n"
+
+  if (Math.abs(CXD/2-x)<5 && Math.abs(CYD/2-y)<5) chdim(3,0.5)
+  else 
+  { GXM = C2GX(x); Dx=(GXT-GXF)/2; GXF=GXM-Dx; GXT=GXM+Dx
+    GYM = C2GY(y); Dy=(GYT-GYF)/2; GYF=GYM-Dy; GYT=GYM+Dy
+    mGXM=GXM; mGYM=GYM
+    plotfunction(999,true,false)}}}
+// ------------*/main
+loadstuff(true,'graphdata')
+var cID=document.getElementById("theCanvas")
+var tID=document.getElementById("theTable")
+cID.addEventListener("mousedown", getPosition, false);
+var ctx=cID.getContext("2d") 
+cID.f = function () { return false; } // ie
+cID.onmousedown = function () { return false; } // mozilla
+// Canvas variables.
+CXW=cID.width; CXM=(CXW-1)/2; CXD=CXW-1; CXD1=CXD+1
+CYW=cID.height; CYM=(CYW-1)/2; CYD=CYW-1; CYT=CYD-1 // needed to flip graph 
+// Graph variables
+GXF = -10; GXT = 10
+GXM=(GXF+GXT)/2; GXD=(GXT-GXF)/CXD; GXW=(GXT-GXF)/2 // Math.floor(1000*(GXT-GXF)/(CXD))/1000
+GYF = -10; GYT = 10
+GYM=(GYF+GYT)/2; GYD=(GYT-GYF)/CYD; GYW=(GYT-GYF)/2 // Math.floor(1000*(GYT-GYF)/(CYD))/1000
+mGXM=undefined
+POIget=false; POIshow=false; POIx=undefined; POIy=undefined
+GXFO=GXF; GXTO=GXT; GYFO=GYF; GYTO=GYT
+GQstack=[]
+DOgrid=true
+
+// COLORS
+axis = "black"
+colors = ['red','green','blue','orange','cyan','purple','chartreuse','deeppink','teal','RoyalBlue','OliveDrab','Navy','Magenta','DarkCyan','Aqua','Brown']
+colorI = 0; dowhat = 999
+
+// radians and other settings 
+save2pi=document.getElementById("degpisw").value
+hadplot=false; border=2; border2=border+border; border3=border2+border 
+
+// function work space
+var fofx="", urlline=''
+x=[];y=[]
+// --------------------------------------------*/
+ls=decodeURIComponent(location.search)
+if (ls.search(/\?/)==0){
+ lsd=ls.slice(1).split("&")
+ for (i=0;i<3;i++) if (lsd[i]==undefined) lsd[i]=""
+ document.theForm.input.value=lsd[0]
+ document.theForm.xrange.value=lsd[1]
+ document.theForm.yrange.value=lsd[2]
+ for (i=3;i<lsd.length;i++) document.theForm.input.value += '\n'+lsd[i]}
+if (document.theForm.input.value.replace (/\s/g,"")!='') {plotfunction(999,false,true)}
+</script></body></html>

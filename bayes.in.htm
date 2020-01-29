@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Bayes Theorem</title>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
+<body  style="font-family:Monospace" onLoad="self.focus();document.ss.venn2.focus();" >
+<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<form name='ss'>
+<table id='theTable' border = 1 noshade bgcolor = 99CC66>
+<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Bayes Theorem</td></tr>
+<tr><td align=left>
+<table id='theTable' border = 0 noshade bgcolor = 99CC66><tr><td align=left>
+Event A:</td><td><input type='text' name='venn2' size=12 tabindex="1" value="A" /></td></tr><tr><td>
+Event B:</td><td><input type='text' name='venn1' size=12 tabindex="2" value="B" /></td></tr><tr><td>
+P(B):   </td><td><input type='text' name='cell' size=5 value=" " tabindex="3"></td></tr><tr><td>
+P(A|B): </td><td><input type='text' name='cell' size=5 value=" " tabindex="4"></td></tr><tr><td>
+P(A|~B):</td><td><input type='text' name='cell' size=5 value=" " tabindex="5"></td></tr><tr><td>
+</td></tr><tr><td>
+</td><td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;P(B)*P(A|B)</td></tr><tr><td>
+P(B|A) =  </td><td>-----------------------------</td></tr><tr><td>
+</td><td>  &nbsp;P(B)*P(A|B) + P(~B)*P(A|~B)</td></tr><tr><td>
+P(B|A) =</td><td><input type='text' name='answer' size=15 value=" " onfocus='calc()' tabindex="-1"></td></tr><tr><td>
+</td></tr><tr><td>
+</td></tr><tr><td>
+</td></tr><tr><td>
+<input name="calcbut" type="button" value = "Calculate" onClick="calc()" tabindex="6"/></td><td>
+<input type="button" value="a/b" id="frac" onClick="swfrac(true)" title="output format" tabindex="7" style="background-color:turquoise"/>
+<input name="showbut" type="button" value = "Show Venn" onClick="show()" tabindex="8"/></td><td>
+</td></tr><tr><td>
+<input id='clearallid' name="clear" type="button" value = "Clear ALL" onClick="window.open('bayes.in.htm','_self')" tabindex="9"/></td><td>
+<input name="demobut" type="button" value = "DEMO" onClick="demo()" tabindex="10"/><br>
+</td></tr></table></td></tr></table></form>
+<script>
+frac=3; clearcount=0
+CU=String.fromCharCode(8746) // cup = union
+CA=String.fromCharCode(8745) // cap = intersection
+// --------------------------
+function demo(){
+if (document.ss.venn2.value=="Accident" && document.ss.venn1.value=="Error")
+{document.ss.venn2.value="On Time"
+ document.ss.venn1.value="Catch early bus"
+ document.ss.cell[0].value=".30"
+ document.ss.cell[1].value=".90"
+ document.ss.cell[2].value=".40"}
+else
+{document.ss.venn2.value="Accident"
+ document.ss.venn1.value="Error"
+ document.ss.cell[0].value="0.1"
+ document.ss.cell[1].value="0.3"
+ document.ss.cell[2].value="0.2"}
+calc()}
+// -------------------------
+function validate(xx1) { with(Math) {
+xx = (''+xx1).replace('%','/100')
+try {n= eval(cleanx(xx))} catch (err) { n="NO" }
+if (typeof n == 'number' && !isNaN(n - n)) return n
+return ' '}}
+// -------------------------
+function calc(xx1) { with(Math) {
+if (frac>4){frac=1;swfrac()}
+pb = validate(document.ss.cell[0].value)
+pnb = my(1-pb,0)
+pab = validate(document.ss.cell[1].value)
+panb = validate(document.ss.cell[2].value)
+papb=my(pb*pab,0)
+pnapb=my(pb-papb,0)
+papnb=my(pnb*panb,0)
+pnapnb=my(pnb-papnb,0)
+document.ss.answer.value = my((pb*pab)/(pb*pab+(1-pb)*panb))
+}}
+// -------------------------
+function show(){ with(Math) {
+calc()
+callthis='bayes.htm?'+document.ss.venn2.value+'&'+document.ss.venn1.value+'&'+papb+'&'+papnb+'&'+pnapb+'&'+pnapnb
+window.open(callthis)
+}}
+// --------------------------
+</script>
+</body></html>

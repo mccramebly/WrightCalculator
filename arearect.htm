@@ -1,0 +1,126 @@
+<html><head><title>Area of Rectangle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link REL="SHORTCUT ICON" HREF="favicon.ico">
+<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<script type="text/javascript">
+// ------------------------------------
+function enter(evt)
+{ var charCode= evt.keyCode;
+  if (charCode== 27) resett();
+};
+// ------------------------------------
+function round2(x) { xx= ""+(Math.round(x*100)/100)
+if (xx.search(/\./)==-1) {xx=xx+".00"} else if (xx.charAt(xx.length-2)==".") {xx=xx+"0"}
+return (xx)};
+// ------------------------------------
+function cols(x,i)
+{ var xi= "                                        "+x;
+  return (xi.substr(xi.length-i))}
+// ------------------------------------
+function resett () {
+document.theForm.flength.value=0
+document.theForm.fwidth.value=0
+document.theForm.farea.value=0
+document.theForm.input.value=saveinput
+document.theForm.flength.select()}
+// ------------------------------------
+function sample () {
+document.theForm.flength.value=3
+document.theForm.fwidth.value=5
+document.theForm.farea.value=30
+document.theForm.blength.focus()}
+// ------------------------------------
+function doarea () {
+vlength=cleanx(document.theForm.flength.value, true, false)
+vwidth=cleanx(document.theForm.fwidth.value, true, false)
+document.theForm.farea.value=myround(vlength*vwidth/factors[document.theForm.linch.value]/factors[document.theForm.winch.value]*factors[document.theForm.ainch.value]*factors[document.theForm.ainch.value],fracval[frac])
+document.theForm.input.value=saveinput+stars+'\nAREA = LENGTH × WIDTH = '+vlength+" "+units[document.theForm.linch.value]+' × '+vwidth+" "+units[document.theForm.winch.value]+' = '+document.theForm.farea.value+" square "+units[document.theForm.ainch.value]
+document.theForm.flength.select()}
+// ------------------------------------
+function dolength () {
+vwidth=cleanx(document.theForm.fwidth.value, true, false)
+varea=cleanx(document.theForm.farea.value, true, false)
+document.theForm.flength.value=myround(varea/vwidth/factors[document.theForm.ainch.value]/factors[document.theForm.ainch.value]*factors[document.theForm.winch.value]*factors[document.theForm.linch.value],fracval[frac])
+document.theForm.input.value=saveinput+stars+'\nLENGTH = AREA ÷ WIDTH = '+varea+" square "+units[document.theForm.ainch.value]+' ÷ '+vwidth+" "+units[document.theForm.winch.value]+' = '+document.theForm.flength.value+" "+units[document.theForm.linch.value]
+document.theForm.flength.select()}
+// ------------------------------------
+function dowidth () {
+vlength=cleanx(document.theForm.flength.value, true, false)
+varea=cleanx(document.theForm.farea.value, true, false)
+document.theForm.fwidth.value=myround(varea/vlength/factors[document.theForm.ainch.value]/factors[document.theForm.ainch.value]*factors[document.theForm.winch.value]*factors[document.theForm.linch.value],fracval[frac])
+document.theForm.input.value=saveinput+stars+'\nWIDTH = AREA ÷ LENGTH = '+varea+" square "+units[document.theForm.ainch.value]+' ÷ '+vlength+" "+units[document.theForm.linch.value]+' = '+document.theForm.fwidth.value+" "+units[document.theForm.winch.value]
+document.theForm.flength.select()}
+// ------------------------------------
+</script>
+<link REL="SHORTCUT ICON" HREF="favicon.ico">
+</head>
+
+<body style="font-family:sans-serif;">
+<form name="theForm">
+<table  border= 1 noshade bgcolor= 99CC66><tr><td>
+<table width=100%><tr><th onClick="window.open('index.htm','')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'" width=70% align=left> &nbsp; &nbsp; &nbsp; &nbsp;
+Area of Rectangle</th><th><input type="button" name="breset" value= "Reset" onClick="resett()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onfocus="this.style.backgroundColor='yellow'" onblur="this.style.backgroundColor='white'">
+<input type="button" name="bsample" value= "Examples" onClick="sample()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onfocus="this.style.backgroundColor='yellow'" onblur="this.style.backgroundColor='white'">
+<input type="button" value="8 place" id="frac" onClick="swfrac(true,4)" title="output format" style="background-color:turquoise"/>
+</th></tr></table></td></tr><tr><td>
+<table width=100%><tr><td align=right>
+<input type="button" name="blength" value= "Length" onClick="dolength()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onfocus="this.style.backgroundColor='yellow'" onblur="this.style.backgroundColor='white'" tabindex=4></td><td><input type="text"  name= "flength" size= 10 value="" tabindex=1>
+<input name="linch" type="radio" title="linch" checked onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="0"/>inches
+<input name="linch" type="radio" title="linch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="1" />feet
+<input name="linch" type="radio" title="linch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="2" />miles
+<input name="linch" type="radio" title="linch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="3" />meters
+<input name="linch" type="radio" title="linch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="4" />km
+</td></tr><tr><td align=right>
+<input type="button" name="bwidth" value= "Width" onClick="dowidth()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onfocus="this.style.backgroundColor='yellow'" onblur="this.style.backgroundColor='white'" tabindex=5> </td><td><input type="text"  name= "fwidth" size= 10 value="" tabindex=2>
+<input name="winch" type="radio" title="winch" checked onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="0"/>inches
+<input name="winch" type="radio" title="winch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="1" />feet
+<input name="winch" type="radio" title="winch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="2" />miles
+<input name="winch" type="radio" title="winch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="3" />meters
+<input name="winch" type="radio" title="winch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="4" />km
+</td></tr><tr><td align=right>
+<input type="button" name="barea" value= "Area" onClick="doarea()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onfocus="this.style.backgroundColor='yellow'" onblur="this.style.backgroundColor='white'" tabindex=6> </td><td><input type="text"  name= "farea" size= 10 value="" tabindex=3>
+<input name="ainch" type="radio" title="ainch" checked onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="0"/>inches
+<input name="ainch" type="radio" title="ainch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="1" />feet
+<input name="ainch" type="radio" title="ainch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="2" />miles
+<input name="ainch" type="radio" title="ainch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="3" />meters
+<input name="ainch" type="radio" title="ainch" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" value="4" />km
+</td></tr></table></td></tr><tr><td><table><tr><td colspan=2>
+<textarea name= "input" rows= 25 cols= 90>
+The formula for calculating the AREA of a rectangle is LENGTH times WIDTH
+Using Algebra you can get equivalent formulas for calculating the LENGTH or WIDTH
+In other words, if you know two of the three values, you can calculate the third value.
+
+The three variables usually used for these calculations are:
+  A= representing the AREA of the rectangle
+  L= representing the LENGTH of the rectangle
+  W= representing the WIDTH of the rectangle
+You can calculate any of these values from the others by using the three formulas:
+  A= L × W
+  L= A ÷ W
+  W= A ÷ L
+
+To use this app all you have to do is to put values into the boxes, select your units of measure and click on the button for the value you want to calculate.
+</textarea></td></tr></table></table>
+</form>
+<script type="text/javascript">
+vlength=0
+vwidth=0
+varea=0
+units=["inches","feet","miles","meters","km"]
+factors=["63360","5280","1","1609.344","1.609344"]
+zeta= String.fromCharCode(951)
+alpha= String.fromCharCode(945)
+Sigma= String.fromCharCode(931);
+sigma= String.fromCharCode(963);
+mu= String.fromCharCode(956);
+divide= String.fromCharCode(247)
+radical= String.fromCharCode(8730)
+P2= String.fromCharCode(178); //squared
+document.theForm.flength.value=0
+document.theForm.fwidth.value=0
+document.theForm.farea.value=0
+document.theForm.flength.select()
+saveinput=document.theForm.input.value
+stars = '\n*******************************************************************************\nand you get:\n'
+</script>
+</body></html>

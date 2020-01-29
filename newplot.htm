@@ -1,0 +1,307 @@
+<html><head><title>plot function graph</title></head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" /> 
+<link REL="SHORTCUT ICON" HREF="favicon.ico">
+<body  style="font-family:Monospace" onLoad="self.focus(); document.theForm.input.focus();">
+<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<form name="theForm">
+<table border = 1 noshade bgcolor = 99CC66>
+<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
+<tr><td><canvas id="StoG" width="505" height="505"></canvas></td><td valign=top>
+
+<input name="plot" value="plot" onclick="plotfunction(false)" type="button">
+<input name="savebut" Value="Save" type="button" onClick="savestuff();document.theForm.input.focus()"/>
+<input name="clearbut" Value="Clear" type="button" onClick="document.theForm.input.value=''; document.theForm.input.focus()"/>
+<input name="loadbut" Value="Load" type="button" onClick=" savenow=document.theForm.input.value; loadstuff(); document.theForm.input.value= savenow+document.theForm.input.value; plotfunction(false); document.theForm.input.focus()"/><br>
+<textarea name = "input" rows = 11 cols = 40 onKeyUp="enter(event)">
+y=x^4-10x^2+9[red]
+f(x)=-8(x+1)(x-4)[blue]
+12x+20+5sin(5x)[orange]
+(-2,18)(1,18)(1,-9)(-2,-9)
+</textarea><br>
+<input name="leftbut" value="left" onclick="leftfunc()" type="button">
+<input name="rightbut" value="right" onclick="rightfunc()" type="button">
+<input name="upbut" value="up" onclick="upfunc()" type="button">
+<input name="downbut" value="down" onclick="downfunc()" type="button"><br>
+<input name="inbut" value="in" onclick="infunc()" type="button">
+<input name="outbut" value="out" onclick="outfunc()" type="button">
+<input name="centerbut" value="center" onclick="centerfunc()" type="button"><br>
+<textarea rows=11 cols=40 name="debug"></textarea> 
+</td></tr>
+</table></form>
+<script>
+axis = "black"
+curvecolors = ["0000f0","00f000","00f0f0","f00000","f000f0","f0f000","f0f0f0"]
+linecolor = 'ff00ff'
+degrees = false
+var approx = String.fromCharCode(8776)
+var fofx=""
+border=2; Fx=-5; Tx=5; Fy=-100; Ty=200; mxi=500; myi=500
+Cx=(Fx+Tx)/2; Cy=(Fy+Ty)/2
+OFx=Fx; OTx=Tx; OFy=Fy; OTy=Ty
+dx=(Tx-Fx)/(mxi-1); dy=(Ty-Fy)/(myi-1); 
+By=Fy-border*dy; Bx=Fx-border*dx; flip=myi+2*border+1; needY=true
+x=[];y=[]
+// -------------------------------------------------------  
+function X2x(X){ var x = border+(X-Bx)/dx
+   return x}
+// -------------------------------------------------------  
+function Y2y(Y){ var y = flip-(border+(Y-By)/dy)
+   return y}
+// -------------------------------------------------------  
+function leftfunc(){
+Dx=(Tx-Fx)/2; Fx=Fx-Dx; Tx=Tx-Dx
+plotfunction(true)}
+// -------------------------------------------------------  
+function rightfunc(){
+Dx=(Tx-Fx)/2; Fx=Fx+Dx; Tx=Tx+Dx
+plotfunction(true)}
+// -------------------------------------------------------  
+function upfunc(){
+Dy=(Ty-Fy)/2; Fy=Fy+Dy; Ty=Ty+Dy
+plotfunction(true)}
+// -------------------------------------------------------  
+function downfunc(){
+Dy=(Ty-Fy)/2; Fy=Fy-Dy; Ty=Ty-Dy
+plotfunction(true)}
+// -------------------------------------------------------  
+function infunc(){
+Dx=(Tx-Fx)/4; Fx=Fx+Dx; Tx=Tx-Dx
+Dy=(Ty-Fy)/4; Fy=Fy+Dy; Ty=Ty-Dy
+plotfunction(true)}
+// -------------------------------------------------------  
+function outfunc(){
+Dx=(Tx-Fx)/2; Fx=Fx-Dx; Tx=Tx+Dx
+Dy=(Ty-Fy)/2; Fy=Fy-Dy; Ty=Ty+Dy
+plotfunction(true)}
+// -------------------------------------------------------  
+function centerfunc(){with (Math){
+Tx=max(abs(Tx),abs(Fx)); Fx=-Tx
+Ty=max(abs(Ty),abs(Fy)); Fy=-Ty
+plotfunction(true)}}
+// -------------------------------------------------------  
+function getPosition(event){ 
+var x = new Number();
+var y = new Number();
+var canvas = document.getElementById("StoG");
+if (event.x != undefined && event.y != undefined)
+{ x = event.x; y = event.y;}
+else // Firefox method to get the position
+{ x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+  y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;}
+x -= canvas.offsetLeft; y -= canvas.offsetTop;
+Xx = Fx+dx*(x-border); Yy = Fy+dy*(flip-(y-border))
+Dx=(Tx-Fx)/2; Dy=(Ty-Fy)/2;
+Fx=Xx-Dx; Fy=Yy-Dy
+Tx=Xx+Dx; Ty=Yy+Dy
+plotfunction(true)}
+// -------------------------------------------------------  
+function doaxis(){
+hadgraph=true
+dx=(Tx-Fx)/(mxi-1)
+dy=(Ty-Fy)/(myi-1)
+By=Fy-border*dy; Bx=Fx-border*dx; flip=myi+2*border+1
+// x axis
+if (Fy*Ty<0){
+ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis
+ctx.moveTo(2, flip-((0-By)/dy+border)); ctx.lineTo(1, flip-((0-By)/dy+border)); 
+ctx.lineTo(mxi+border+1, flip-((0-By)/dy+border)); ctx.stroke()
+
+// x marks
+Mx=Math.floor(dx*mxi/10) 
+if (Mx==0) Mx=Math.floor(dx*mxi/5)
+if (Mx==0) Mx=Math.floor(dx*mxi/2)
+if (Mx==0) Mx=Math.floor(dx*mxi)
+FMx=Math.floor(Fx/Mx)*Mx
+while ( FMx<=Tx) {
+  ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis;
+  ctx.moveTo((FMx-Bx)/dx+border, flip-((5*dy-By)/dy+border)); 
+  ctx.lineTo((FMx-Bx)/dx+border, flip-((5*dy-By)/dy+border)-2); 
+  ctx.lineTo((FMx-Bx)/dx+border, flip-((5*dy-By)/dy+border)); 
+  ctx.lineTo((FMx-Bx)/dx+border, flip-((-5*dy-By)/dy+border)) 
+  ctx.font = "bold 16px Arial"; ctx.fillStyle = axis
+  ctx.fillText(""+FMx, (FMx-Bx)/dx+border, flip-((-10*dy-By)/dy+border)+10)
+  ctx.stroke()
+  FMx+=Mx}}
+else{ 
+if (Mx==0) Mx=Math.floor(dx*mxi)
+FMx=Math.floor(Fx/Mx)*Mx
+while ( FMx<=Tx) {
+  ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis;
+  ctx.moveTo((FMx-Bx)/dx+border, flip-( 5+border)); 
+  ctx.lineTo((FMx-Bx)/dx+border, flip-( 5+border)-2); 
+  ctx.lineTo((FMx-Bx)/dx+border, flip-( 5+border)); 
+  ctx.lineTo((FMx-Bx)/dx+border, flip-( -5+border)) 
+  ctx.font = "bold 16px Arial"; ctx.fillStyle = axis
+  ctx.fillText(""+FMx, (FMx-Bx)/dx+border, flip-10)
+  ctx.stroke()
+  FMx+=Mx}}
+
+// y axis
+if (Fx*Tx<0){
+ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis;
+ctx.moveTo((0-Bx)/dx+border, 2); ctx.lineTo((0-Bx)/dx+border, 1); 
+ctx.lineTo((0-Bx)/dx+border, myi+border+1); ctx.stroke()
+// y marks
+My=Math.floor(dy*myi/10) 
+if (My==0) My=Math.floor(dy*myi/5)
+if (My==0) My=Math.floor(dy*myi/2)
+if (My==0) My=Math.floor(dy*myi)
+FMy=Math.floor(Fy/My)*My
+while ( FMy<=Ty) {
+  // document.theForm.input.value+="//"+FMy+', '
+  ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis;
+  ctx.moveTo((-5*dx-Bx)/dx+border   ,flip-((FMy-By)/dy+border)); 
+  ctx.lineTo((-5*dx-Bx)/dx+border+40,flip-((FMy-By)/dy+border)) 
+  ctx.lineTo((-5*dx-Bx)/dx+border   ,flip-((FMy-By)/dy+border)) 
+  ctx.font = "bold 16px Arial"; ctx.fillStyle = axis
+  ctx.fillText(" "+FMy,(5*dx-Bx)/dx+border, flip-((FMy-By)/dy+border))
+  ctx.stroke()
+  FMy+=My}}
+else{
+My=Math.floor(dy*myi/10) 
+if (My==0) My=Math.floor(dy*myi/5)
+if (My==0) My=Math.floor(dy*myi/2)
+if (My==0) My=Math.floor(dy*myi)
+FMy=Math.floor(Fy/My)*My
+while ( FMy<=Ty) {
+  // document.theForm.input.value+="//"+FMy+', '
+  ctx.beginPath(); ctx.lineWidth = border; ctx.strokeStyle = axis;
+  ctx.moveTo(5+border   ,flip-((FMy-By)/dy+border)); 
+  ctx.lineTo(5+border+40,flip-((FMy-By)/dy+border)) 
+  ctx.lineTo(-5+border   ,flip-((FMy-By)/dy+border)) 
+  ctx.font = "bold 16px Arial"; ctx.fillStyle = axis
+  ctx.fillText(" "+FMy,5+border, flip-((FMy-By)/dy+border))
+  ctx.stroke()
+  FMy+=My}
+}
+
+// origin
+ctx.beginPath();
+ctx.arc( (0-Bx)/dx+border, flip-(border+(0-By)/dy) , 2, 0, 2 * Math.PI, false);
+ctx.fillStyle = axis; ctx.fill()
+}
+// -------------------------------------------------------  
+function enter(evt)
+{ var charCode = evt.keyCode;
+  if (charCode == 13) plotfunction(true);
+  if (charCode == 27) document.theForm.input.value="";
+};
+// --------------------------------------------
+function f(x){with (Math){
+X=x; 
+return  (eval(fofx))}}
+// --------------------------------------------
+function plotpoint(Px,Py){
+ctx.beginPath()
+  ctx.arc(X2x(Px),Y2y(Py), 2*border, 0, 2 * Math.PI, false)
+ctx.fillStyle = linecolor
+ctx.fill()}
+// --------------------------------------------
+function plotfunction(move){with (Math){
+hadgraph=false; needY=true;
+curvei = 0
+ctx.fillStyle="#FFFFFF";ctx.fillRect(0,0,mxi+10,myi+10)
+if (move) 
+{ dx=(Tx-Fx)/(mxi-1); dy=(Ty-Fy)/(myi-1);
+  By=Fy-border*dy; Bx=Fx-border*dx
+  // document.theForm.debug.value=""
+  // document.theForm.debug.value+="\n"
+  ctx.fillStyle="#EEEEEE";ctx.fillRect(X2x(OFx),Y2y(OTy),X2x(OTx)-X2x(OFx),Y2y(OFy)-Y2y(OTy));
+  needY=false; doaxis()}
+else {OFx=Fx; OTx=Tx; OFy=Fy; OTy=Ty}
+
+var expr = document.theForm.input.value.replace(/\/\/.*/g,"").replace(/\s+\n/g,"\n").replace(/\n*$/,"").replace(/\n\n/g,"\n").replace(/^\s*\n*/g,"").replace(/;/g,"\n") // remove 
+document.theForm.input.value = expr+"\n"
+
+while (expr.length>0)
+{ exprbr= expr.search(/\n/); if (exprbr==-1) exprbr=expr.length;
+  expr0 = expr.slice(0,exprbr); expr=expr.slice(exprbr+1)
+  
+  // look for x/y ranges
+  if (expr0.search(/ to /)>-1)
+  { if (hadgraph) continue
+    expr0=expr0.replace(/^\s*/,"")
+    expr1s=expr0.search(/[:=]/);
+    expr1e=expr0.search(/ to /);
+    if (expr0.slice(0,1).toLowerCase()=="x")
+    { Fx=eval(expr0.slice(expr1s+1,expr1e))
+      Tx=eval(expr0.slice(expr1e+4))
+      dx=(Tx-Fx)/(mxi-1)}
+    else if (expr0.slice(0,1).toLowerCase()=="y")
+    { Fy=eval(expr0.slice(expr1s+1,expr1e))
+      Ty=eval(expr0.slice(expr1e+4))
+      dy=(Ty-Fy)/(myi-1)
+      needY=false}
+      continue }
+  
+  // set curvecolor = color 
+  if (expr0.search(/\[/)>-1)
+  { expr01=expr0.search(/\[/); expr02=expr0.search(/\]/); if (expr02==-1) expr02=expr0.length
+    curvecolor=expr0.slice(expr01+1,expr02); expr0=expr0.slice(0,expr01)}
+  else {curvecolor = curvecolors[curvei]; curvei++}
+  
+  fofx= cleanx(expr0)
+  if (fofx.search(/=/)>0) fofx=fofx.slice(fofx.search(/=/)+1)
+  if (fofx.length==0) continue
+  
+  if (expr0.search(/,/)==-1)
+  { // calc points 
+    if (fofx.search(/x/i)==-1)
+    { plotpoint(eval(fofx),0); continue }
+    if (needY) {Fy=f(Fx); Ty=Fy}
+    for (i=0;i<mxi;i++)
+    { x[i]=i*dx+Fx; y[i]=f(x[i])
+      if (needY)
+      { if (y[i]<Fy) Fy=y[i]
+        if (y[i]>Ty) Ty=y[i]}}
+    dy=(Ty-Fy)/(myi-1); needY=false
+    By=Fy-border*dy; Bx=Fx-border*dx; flip=myi+2*border
+    if (!hadgraph) doaxis()
+    
+    // graph points
+    ctx.beginPath(); ctx.lineWidth = 2; ctx.strokeStyle = curvecolor;
+    ctx.moveTo(border+(x[0]-Bx)/dx, flip-border-(y[0]-By)/dy)
+    for (i=1; i<mxi; i++) ctx.lineTo(border+(x[i]-Bx)/dx, flip-border-(y[i]-By)/dy) 
+    ctx.stroke()
+    continue}
+
+  // connect points with straight lines
+  if (!hadgraph) doaxis()
+  needy=false; first=true; ctx.beginPath()
+  savepoints=[]
+  while (expr0.search(/,/)>-1)
+  { expr0=expr0.replace(/[^\(]*\(/,"")
+    expr1e=expr0.search(/[,]/);
+    expr2e=expr1e+1;expr2ec=0
+    while (expr2e<expr0.length)
+    { if (expr0.charAt(expr2e)=='(') expr2ec++
+      else if (expr0.charAt(expr2e)==')')
+         { if (expr2ec>0) expr2ec--
+           else break }
+      expr2e++ }
+    Px=eval(expr0.slice(0,expr1e)); Py=eval(expr0.slice(expr1e+1,expr2e))
+    savepoints.push([Px,Py])
+    if (first) 
+    { first=false; firstx=Px; firsty=Py
+      ctx.moveTo(border+1+(Px-Bx)/dx, flip-border+1-(Py-By)/dy)}
+    ctx.strokeStyle = linecolor; ctx.lineWidth = 2
+    ctx.lineTo(border+(Px-Bx)/dx, flip-border-(Py-By)/dy)
+    expr0=expr0.slice(expr2e+1)}
+  ctx.lineTo(border+(firstx-Bx)/dx, flip-border-(firsty-By)/dy) 
+  ctx.stroke(); 
+  while (savepoints.length>0)
+  { Pxy=savepoints.pop(); plotpoint(Pxy[0],Pxy[1])}}
+  
+if (!hadgraph) doaxis()
+document.theForm.debug.value+="\n("+(Fx+Tx)/2+", "+(Fy+Ty)/2+")"
+}}
+// ------------main--------------------
+var c=document.getElementById("StoG")
+c.addEventListener("mousedown", getPosition, false);
+var ctx=c.getContext("2d") 
+c.onselectstart = function () { return false; } // ie
+c.onmousedown = function () { return false; } // mozilla
+plotfunction()
+</script>
+
+</body></html>
