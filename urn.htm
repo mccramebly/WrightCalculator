@@ -1,0 +1,29 @@
+<html><head><title>Polya's Urn</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
+<body style="font-family:Monospace" onLoad="self.focus();window.resizeTo( 950, 750 );">
+<table><tr><td><a href="probability.htm" alt="wrightcalc.htm" title="wrightcalc.htm"><img src="urn.jpg" alt="Polya's Urn" title="Polya's Urn" width="250" height="250"/></a></td>
+<td>
+Example of Polya's Urn<br>The Urn contains B=6 blue balls and W=9 that are not Blue.<br>Q1. How many ways can you pick P=8 balls?<br>
+Q2. What is the expected number of blue balls per pick.<br>Expected number is the same as the average. <br><br>
+Solution:<br>On any pick you could have X=0,1,2,3,4,5, or 6 blue balls<br> and with them you would have 8,7,6,5,4,3, or 2 white balls.<br>
+The number of ways you can pick X blue balls is<br>N(X) = nCr(B,X) * nCr(W,P-X)<br>
+So for example N(2) = 15 * 84 = 1260<br>when you add all these up you get a total of 9+216+1260+2520+1890+504+36 = 6435 ways<br>If you add up the number of blue balls for each way, you get 20592<br>and the average number of blue balls per pick = 20592/6435 = 3.2</td>
+<td><table border=0 style="float: right; display: inline-block;"><tr></tr>
+<tr><td align=right>
+</td></tr></table></td>
+</tr></table>
+<br>Analysis:<br>
+&nbsp;&nbsp;X&nbsp;&nbsp;&nbsp;not&nbsp;X&nbsp;&nbsp;N(X)&nbsp;&nbsp;X*N(X)&nbsp;&nbsp;&nbsp;&nbsp;P(X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X*P(X)&nbsp;&nbsp;&nbsp;&nbsp;ΣN(X)&nbsp;&nbsp;&nbsp;ΣP(X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1-ΣP(X)<br>
+-----&nbsp;-----&nbsp;------&nbsp;------&nbsp;----------&nbsp;----------&nbsp;------&nbsp;----------&nbsp;----------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;0.0013986&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;0.0013986&nbsp;&nbsp;0.9986014<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;216&nbsp;&nbsp;&nbsp;&nbsp;216&nbsp;0.03356643&nbsp;0.03356643&nbsp;&nbsp;&nbsp;&nbsp;225&nbsp;0.03496503&nbsp;0.96503497<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;1260&nbsp;&nbsp;&nbsp;2520&nbsp;&nbsp;0.1958042&nbsp;0.39160839&nbsp;&nbsp;&nbsp;1485&nbsp;0.23076923&nbsp;0.76923077<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;2520&nbsp;&nbsp;&nbsp;7560&nbsp;0.39160839&nbsp;1.17482517&nbsp;&nbsp;&nbsp;4005&nbsp;0.62237762&nbsp;0.37762238<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;1890&nbsp;&nbsp;&nbsp;7560&nbsp;0.29370629&nbsp;1.17482517&nbsp;&nbsp;&nbsp;5895&nbsp;0.91608392&nbsp;0.08391608<br>
+&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;504&nbsp;&nbsp;&nbsp;2520&nbsp;0.07832168&nbsp;0.39160839&nbsp;&nbsp;&nbsp;6399&nbsp;0.99440559&nbsp;0.00559441<br>
+&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;&nbsp;&nbsp;216&nbsp;0.00559441&nbsp;0.03356643&nbsp;&nbsp;&nbsp;6435&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;------&nbsp;------&nbsp;----------&nbsp;----------&nbsp;expected&nbsp;value<br>
+totals:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6435&nbsp;&nbsp;20592&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2&nbsp;=&nbsp;20592/6435<br>
+<br>
+</body></html>
