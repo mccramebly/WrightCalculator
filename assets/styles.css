@@ -14,3 +14,30 @@ body{
 table{
     background-color: #99CC66;
 }
+
+/*---multiset / box bullshit--*/
+
+.red {
+    color:white;
+    background:red;
+}
+
+.green {
+    color:white;
+    background:green;
+}
+
+.blue {
+    color:white;
+    background:blue;
+}
+
+.purple {
+    color:white;
+    background:purple;
+}
+
+.red, .green, .blue, .purple {
+    padding:0 5px;
+    margin:2px;
+}
