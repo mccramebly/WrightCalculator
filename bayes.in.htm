@@ -1,34 +1,35 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>Bayes Theorem</title>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
-<link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body  style="font-family:Monospace" onLoad="self.focus();document.ss.venn2.focus();" >
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
-<form name='ss'>
-<table id='theTable' border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Bayes Theorem</td></tr>
-<tr><td align=left>
-<table id='theTable' border = 0 noshade bgcolor = 99CC66><tr><td align=left>
-Event A:</td><td><input type='text' name='venn2' size=12 tabindex="1" value="A" /></td></tr><tr><td>
-Event B:</td><td><input type='text' name='venn1' size=12 tabindex="2" value="B" /></td></tr><tr><td>
-P(B):   </td><td><input type='text' name='cell' size=5 value=" " tabindex="3"></td></tr><tr><td>
-P(A|B): </td><td><input type='text' name='cell' size=5 value=" " tabindex="4"></td></tr><tr><td>
-P(A|~B):</td><td><input type='text' name='cell' size=5 value=" " tabindex="5"></td></tr><tr><td>
-</td></tr><tr><td>
-</td><td> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;P(B)*P(A|B)</td></tr><tr><td>
-P(B|A) =  </td><td>-----------------------------</td></tr><tr><td>
-</td><td>  &nbsp;P(B)*P(A|B) + P(~B)*P(A|~B)</td></tr><tr><td>
-P(B|A) =</td><td><input type='text' name='answer' size=15 value=" " onfocus='calc()' tabindex="-1"></td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-<input name="calcbut" type="button" value = "Calculate" onClick="calc()" tabindex="6"/></td><td>
-<input type="button" value="a/b" id="frac" onClick="swfrac(true)" title="output format" tabindex="7" style="background-color:turquoise"/>
-<input name="showbut" type="button" value = "Show Venn" onClick="show()" tabindex="8"/></td><td>
-</td></tr><tr><td>
-<input id='clearallid' name="clear" type="button" value = "Clear ALL" onClick="window.open('bayes.in.htm','_self')" tabindex="9"/></td><td>
-<input name="demobut" type="button" value = "DEMO" onClick="demo()" tabindex="10"/><br>
-</td></tr></table></td></tr></table></form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bayes Theorem</title>
+    <meta charset="utf-8">
+    <link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body onLoad="self.focus();document.ss.venn2.focus();" >
+    <script src="myfunctions.js"></script>
+    <form name='ss'>
+        <h1>Bayes Theorem</h1>
+
+        <p>Event A:<input type='text' name='venn2' size=12 tabindex="1" value="A" /></p>
+        <p>Event B:<input type='text' name='venn1' size=12 tabindex="2" value="B" /></p>
+        <p>P(B):   <input type='text' name='cell' size=5 value=" " tabindex="3"></p>
+        <p>P(A|B): <input type='text' name='cell' size=5 value=" " tabindex="4"></p>
+        <p>P(A|~B):<input type='text' name='cell' size=5 value=" " tabindex="5"></p>
+        <center>
+        <p>P(B)*P(A|B)</p>
+        <p>P(B|A) =  -----------------------------</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;P(B)*P(A|B) + P(~B)*P(A|~B)</p>
+            </center>
+        <p>P(B|A) =<input type='text' name='answer' size=15 value=" " onfocus='calc()' tabindex="-1"></p>
+        <p>
+            <input name="calcbut" type="button" value = "Calculate" onClick="calc()" tabindex="6">
+            <input type="button" value="a/b" id="frac" onClick="swfrac(true)" title="output format" tabindex="7">
+            <input name="showbut" type="button" value = "Show Venn" onClick="show()" tabindex="8">
+            <input id='clearallid' name="clear" type="button" value = "Clear ALL" onClick="window.open('bayes.in.htm','_self')" tabindex="9">
+            <input name="demobut" type="button" value = "DEMO" onClick="demo()" tabindex="10">
+        </p>
+</form>
 <script>
 frac=3; clearcount=0
 CU=String.fromCharCode(8746) // cup = union
@@ -75,4 +76,5 @@ window.open(callthis)
 }}
 // --------------------------
 </script>
-</body></html>
+</body>
+</html>
