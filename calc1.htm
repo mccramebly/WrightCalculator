@@ -1,19 +1,18 @@
 <html>
-    <head><title>Scientific Calculator</title>
-        <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
-        <link REL="SHORTCUT ICON" HREF="favicon.ico">
-        <link rel="stylesheet" type="text/css" href="assets/styles.css">
-    </head>
+<head>
+    <title>Scientific Calculator</title>
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+    <link rel="SHORTCUT ICON" href="favicon.ico">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="statfns.js"></script>
+    <script src="myfunctions1.js"></script>
+    <script src="matrix.js"></script>
+</head>
 <body>
-<script type="text/javascript" src="statfns.js"></script>
-<script type="text/javascript" src="myfunctions1.js"></script>
-<script type="text/javascript" src="matrix.js"></script>
 
+    <h1>Scientific Calculator</h1>
     <form name="theForm">
-    <table border = 1 noshade>
-        <tr>
-            <td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Scientific calculator</td>
-        </tr>
+    <table>
         <tr>
             <td>
                 <table>
@@ -31,7 +30,7 @@
                     <td>|</td>
                         
                     <td>
-                    <input name="calcbut" Value="Calc" type="button" style="background-color:yellow" onClick="if(!document.theForm.isphone.checked)putx('\n');calc(true);" title="calculate"/>
+                    <input name="calcbut" Value="Calc" type="button" onClick="if(!document.theForm.isphone.checked)putx('\n');calc(true);" title="calculate"/>
                         
                     <input name="clerebut" Value="Clear" type="button" onClick="clere()" title="clear screen"/>
                     
@@ -49,7 +48,7 @@
                     
                     <input type="button" value="Answers" id="qna" onClick="calc(wasnotqna)" title="show Answers Only"/>
                     
-                    <input type="button" style="background-color:turquoise" value="8 place" id="frac" onClick="swfrac(true,7,!wasnotqna)" title="output format"/>
+                    <input type="button" value="8 place" id="frac" onClick="swfrac(true,7,!wasnotqna)" title="output format"/>
                     </td>
                     
                     <td>|</td>
@@ -81,7 +80,6 @@
 <input type="button" value="gcfsum" onClick="putx('gcfsum(')" title='gcf = sum'/>
 <input type="button" value="prime" onClick="putx('prime(')" title='prime factors'/>
 <input type="button" value="rand" onClick="putx('rand(')" title="() 0-1, integers: (a) 0-a, (a,b) a-b">
-<!--<input type="button" value="round" onClick="putx('myround(')"/>-->
 <input type="button" value="base" onClick="putx('base(')" title="(number,base)"/>
 <input type="button" value="sod" onClick="putx('sod(')" title="(sum of digits)"/>
 </td><td>|</td><td>Rad <input name="degrees" type="radio" title="radians" onClick="calc(!wasnotqna);"/>
@@ -105,7 +103,7 @@
 <input type="button" value="nPr" onClick="putx('nPr(')" title='Permutations'/>
 <input type="button" value="DO" onClick="putx('DO: ')" title='native javascript'/>
 </td><td>|</td><td>
-<input type="button" style="background-color:turquoise" value="a/b" id="dofrac"onClick="frac23(3)" title="fractions"/>
+<input type="button" value="a/b" id="dofrac"onClick="frac23(3)" title="fractions"/>
 </td></tr><tr><td>
 <input type="button" value=" ." onClick="putx('.')"/>
 <input type="button" value="0" onClick="putx('0')"/>
@@ -124,7 +122,7 @@
 <input type="button" value="yval" onClick="putx('yval(')" title="y(x)"/>
 <input type="button" value="hppow" onClick="putx('hppow(')" title="hppow(a,b)=a^b"/>
 </td><td>|</td><td>
-<input type="button" style="background-color:turquoise" value="4 place" id="do4pl" onClick="frac23(2)" title="4 decimals"/>
+<input type="button" value="4 place" id="do4pl" onClick="frac23(2)" title="4 decimals"/>
 </td></tr><tr><td colspan=3>
 <input type="button" name="Varxx" value="a" onClick="putx(document.theForm.Varxx[0].value)"/>
 <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,0)"/>
@@ -388,4 +386,6 @@ if (dovar>=0){
 //
 calc(wasnotqna);clere();document.theForm.Varxxval[0].value=12
 // --------------------------------------------*/
-</script></body></html>
+</script>
+</body>
+</html>
