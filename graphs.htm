@@ -1,9 +1,15 @@
-<html><head><title>Graph Functions</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link REL="SHORTCUT ICON" HREF="favicon.ico"></head><body  style="font-family:Monospace" onLoad="self.focus(); document.theForm.input.focus();">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
-<SCRIPT type="text/javascript" src="statfns.js"></script>
-<script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Graph Functions</title>
+    <meta charset="utf-8">
+    <script src="myfunctions.js"></script>
+    <script src="statfns.js"></script>
+    <link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body onLoad="self.focus(); document.theForm.input.focus();">
+    <script>
 // -------------------------------------------------------*/
 function C2GX(X){ return GXD*(X-CXM)+GXM } // canvas coord to graph coord
 // -------------------------------------------------------*/
@@ -689,65 +695,112 @@ if (POIx!=undefined){
   }
 }// --------------------------------------------*/
 </script>
-<form name="theForm"><table id='theTable' border= 1 noshade bgcolor= 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Graph Functions</td></tr>
-<tr><td valign=top>
-<TABLE>
-<tr><td>x-range:
-<input name="xinbut" value="in" onclick="chdim(1,0.5)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="xoutbut" value="out" onclick="chdim(1,1.2599210498948732)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="xoutbut" value="2 X" onclick="chdim(1,2)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input id=degpisw name="x2pi" value=" 0-2&pi; " onclick="t2pi()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="xpos" value=">0" onclick="xpositive=!xpositive; chdim(1,0); if(xpositive) this.style.backgroundColor='lightblue'; else this.style.backgroundColor='white'" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="if(xpositive) this.style.backgroundColor='lightblue'; else this.style.backgroundColor='white'" style="background-color:white"/><br>
-units:
- deg:<input name="degrees" type="radio" title="degrees" onClick="plot(999,false,true)"/>
- rad:<input name="degrees" type="radio" title="radians" checked onClick="plot(999,false,true)"/>
- pirad:<input name="degrees" type="radio" title="piradians" onClick="plot(999,false,true)"/>
-</td></tr><tr><td>
-<input name="xrange" size=35 value="" onKeyUp="enter(event)"/>
-</td></tr><tr><td>y-range:
-<input name="yinbut" value="in" onclick="chdim(2,0.5)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white"/>
-<input name="youtbut" value="out" onclick="chdim(2,1.2599210498948732)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white"/>
-<input name="youtbut" value="2 X" onclick="chdim(2,2)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white"/>
-<input name="ymaxbut" value="max-Y" onclick="ymax()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white" title="range of y values for the first function"/>
-<input name="ypos" value=">0" onclick="ypositive=!ypositive; chdim(2,0); if(ypositive) this.style.backgroundColor='lightblue'; else this.style.backgroundColor='white'" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="if(ypositive) this.style.backgroundColor='lightblue'; else this.style.backgroundColor='white'" style="background-color:white"/>
-</td></tr><tr><td>
-<input name="yrange" size=35 value="" onKeyUp="enter(event)"/></td></tr></table></td>
-<td rowspan=11><canvas id="theCanvas" width="501" height="501"></canvas></td></tr><tr><td>
-<textarea name= "input" rows= 14 cols= 37 onKeyUp="enter(event)"></textarea><br>
-<table><tr><td>Plot:
-<input name="plot0" value="All" onclick="plot(999,false,true)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="plot1" value="first" onclick="plot(-1,false,true)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="plot2" value="next" onclick="plot(-(Math.abs(dowhat)+1),false,true)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="plot3" value="more" onclick="plot(Math.abs(dowhat)+1,false,true)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="newbut" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white" value= "Newton" onClick="donewton()" />
-</td></tr><tr><td>Move:
-<input name="leftbut" value="left" onclick="xpositive=false; leftfunc()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="rightbut" value="right" onclick="xpositive=false; rightfunc()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="upbut" value="up" onclick="ypositive=false; upfunc()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="downbut" value="down" onclick="ypositive=false; downfunc()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="backbut" value="back" onclick="backfunc()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white"><br>
-</td></tr><tr><td>Change:
-<input name="inbut" value="in" onclick="chdim(3,.5)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="outbut" value="out" onclick="chdim(3,1.2599210498948732)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="outbut" value="2 X" onclick="chdim(3,2)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="centerbut" value="origin" onclick="xpositive=false; ypositive=false; centerfunc()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="scalebut" value="scale" onclick="document.theForm.yrange.value='';scalefunc()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-</td></tr><tr><td>Other:
-<input name="savebut" Value="Save" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white" onClick="saveem(); document.theForm.input.focus()"/>
-<input name="loadbut" Value="Load" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white" onClick="loadstuff(true,'jsdata');plot(999,false,true); document.theForm.input.focus()"/>
-<input name="clearbut" Value="Clear" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white" onClick="clrscr()" />
-<input name="sambut" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white" value= "Samples" onClick="sample()" />
-</td></tr><tr><td>P.O.I.
-<input name="poibut1" value="1st" onclick="POIget1=true;plot(999,false,false)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="poibutn" value="Next" onclick="POIgetn=true;plot(999,false,false)" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
-<input name="centerbut" value="center" onclick="POIcenter()" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white">
- || <input name="loadsbut" Value="reScale" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" style="background-color:white" onClick="loadscale()"/>
-</td></tr><tr><td>
-<input id='lastpointx' size=35 name='lastpoint'/>
-</td></tr></table>
-</td></tr></table></form>
-<script>
+    <h1>Graph Functions</h1>
+    <form name="theForm">
+        <table id='theTable'>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>x-range:
+                                <input name="xinbut" value="in" onclick="chdim(1,0.5)" type="button">
+                                <input name="xoutbut" value="out" onclick="chdim(1,1.2599210498948732)" type="button">
+                                <input name="xoutbut" value="2 X" onclick="chdim(1,2)" type="button">
+                                <input id="degpisw" name="x2pi" value=" 0-2&pi; " onclick="t2pi()" type="button">
+                                <!--not sure whether to leave this if style?-->
+                                <input name="xpos" value=">0" onclick="xpositive=!xpositive; chdim(1,0); if(xpositive) this.style.backgroundColor='lightblue'; else this.style.backgroundColor='white'" type="button">
+                                <br>
+                                units:
+                                deg:<input name="degrees" type="radio" title="degrees" onClick="plot(999,false,true)"/>
+                                rad:<input name="degrees" type="radio" title="radians" checked onClick="plot(999,false,true)"/>
+                                pirad:<input name="degrees" type="radio" title="piradians" onClick="plot(999,false,true)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input name="xrange" size=35 value="" onKeyUp="enter(event)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>y-range:
+                                <input name="yinbut" value="in" onclick="chdim(2,0.5)" type="button">
+                                <input name="youtbut" value="out" onclick="chdim(2,1.2599210498948732)" type="button">
+                                <input name="youtbut" value="2 X" onclick="chdim(2,2)" type="button">
+                                <input name="ymaxbut" value="max-Y" onclick="ymax()" type="button" title="range of y values for the first function">
+                                <input name="ypos" value=">0" onclick="ypositive=!ypositive; chdim(2,0); if(ypositive) this.style.backgroundColor='lightblue'; else this.style.backgroundColor='white'" type="button">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input name="yrange" size=35 value="" onKeyUp="enter(event)">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td rowspan=10>
+                    <canvas id="theCanvas" width="501" height="501"></canvas>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="input" rows=14 cols=37 onKeyUp="enter(event)"></textarea>
+                    <br>
+                    <table>
+                        <tr>
+                            <td>Plot:
+                                <input name="plot0" value="All" onclick="plot(999,false,true)" type="button">
+                                <input name="plot1" value="first" onclick="plot(-1,false,true)" type="button">
+                                <input name="plot2" value="next" onclick="plot(-(Math.abs(dowhat)+1),false,true)" type="button">
+                                <input name="plot3" value="more" onclick="plot(Math.abs(dowhat)+1,false,true)" type="button">
+                                <input name="newbut" type="button" value="Newton" onClick="donewton()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Move:
+                                <input name="leftbut" value="left" onclick="xpositive=false; leftfunc()" type="button">
+                                <input name="rightbut" value="right" onclick="xpositive=false; rightfunc()" type="button">
+                                <input name="upbut" value="up" onclick="ypositive=false; upfunc()" type="button">
+                                <input name="downbut" value="down" onclick="ypositive=false; downfunc()" type="button">
+                                <input name="backbut" value="back" onclick="backfunc()" type="button">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Change:
+                                <input name="inbut" value="in" onclick="chdim(3,.5)" type="button">
+                                <input name="outbut" value="out" onclick="chdim(3,1.2599210498948732)" type="button">
+                                <input name="outbut" value="2 X" onclick="chdim(3,2)" type="button">
+                                <input name="centerbut" value="origin" onclick="xpositive=false; ypositive=false; centerfunc()" type="button">
+                                <input name="scalebut" value="scale" onclick="document.theForm.yrange.value='';scalefunc()" type="button">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Other:
+                                <input name="savebut" Value="Save" type="button" onClick="saveem(); document.theForm.input.focus()">
+                                <input name="loadbut" Value="Load" type="button" onClick="loadstuff(true,'jsdata');plot(999,false,true); document.theForm.input.focus()">
+                                <input name="clearbut" Value="Clear" type="button" onClick="clrscr()">
+                                <input name="sambut" type="button" value= "Samples" onClick="sample()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P.O.I.
+                                <input name="poibut1" value="1st" onclick="POIget1=true;plot(999,false,false)" type="button">
+                                <input name="poibutn" value="Next" onclick="POIgetn=true;plot(999,false,false)" type="button">
+                                <input name="centerbut" value="center" onclick="POIcenter()" type="button">
+                                || 
+                                <input name="loadsbut" Value="reScale" type="button" onClick="loadscale()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id='lastpointx' size=35 name='lastpoint'/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
 // -------------------------------------------------------*/
 function loadscale() {
 document.theForm.input.value = unescape(localStorage.getItem('graphscale')).replace(/<br>/g,"\n").replace(/<sc>/g,";").replace(/<nl>/g,String.fromCharCode(10))+'\n'+document.theForm.input.value
@@ -838,4 +891,6 @@ if (ls.search(/\?/)==0){
  if (lsd[2]==' ')lsd[2]='-10 to 10'; document.theForm.yrange.value=lsd[2]
  for (i=3;i<lsd.length;i++) document.theForm.input.value += '\n'+lsd[i]}
 plot(999,false,true)
-</script></body></html>
+</script>
+</body>
+</html>
