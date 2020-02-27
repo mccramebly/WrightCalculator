@@ -1,8 +1,11 @@
-
 <!-- saved from url=(0045)http://faculty.ccc.edu/jnadas/js/generate.htm -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>generate sample space</title>
-<script type="text/javascript" src="myfunctions.js"></script>
-<script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Generate Sample Space</title>
+    <script src="myfunctions.js"></script>
+    <script>
 list= []; ddPV=[]; ddT=[]; ddPVn=0; Nval=0; Rval=0; qRval=0; frac=3; oldNval=Nval; oldRval=Rval; dd=[]; listall=[]
 mu= String.fromCharCode(956);
 qwhat=2; what=2; whatt=['','nPr','nCr','Words','powerset','Binomial']
@@ -391,64 +394,87 @@ function doqNval()
   data= document.theForm.input.value.replace(/ /g,",").replace(/\n/g,",").replace(/[,;]+/g,",").replace(/^,/,"").replace(/,$/,"").replace(/\n*$/,"");
     document.theForm.qRval.focus()}
 </script>
-<link rel="SHORTCUT ICON" href="http://faculty.ccc.edu/jnadas/js/favicon.ico"></head>
-<body onload="self.focus();document.theForm.Nval.focus();window.resizeTo( 800, 800 );" style="font-family:sans-serif; ">
+    <link rel="SHORTCUT ICON" href="favicon.ico">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body onload="self.focus();document.theForm.Nval.focus();window.resizeTo( 800, 800 );">
 <form name="theForm">
-<table border="1" noshade="" bgcolor="99CC66">
-<tbody><tr><td style="background-color:lightblue" onclick="window.open(&#39;http://wrightcalc.com&#39;)" onmouseover="this.style.backgroundColor=&#39;red&#39;" onmouseout="this.style.backgroundColor=&#39;lightblue&#39;">generate sample space
-</td><td>
- &nbsp; n=<input type="text" name="Nval" size="1" tabindex="1" onkeyup="enter1(event)">
- &nbsp; r=<input type="text" name="Rval" size="1" tabindex="2/">
- &nbsp; <input name="calc1" type="button" value="Clear" style="background-color:yellow" onclick="document.theForm.Nval.value=&#39;&#39;;document.theForm.Rval.value=&#39;&#39;">
- </td><td>
-  letters<input type="radio" name="Nvalt" checked="" onclick="document.theForm.input.value='';doInput()">
-  digits<input type="radio" name="Nvalt" onclick="document.theForm.input.value='';doInput()">
-<!--  list<INPUT TYPE="radio" name="Nvalt" onClick="doInput()"/> -->
- </td>
-
-<!-- &nbsp; <input name="calcm1" type="button" value= "Keep" onClick="howmany=document.theForm.dhowmany.value"/>
- &nbsp; <input name="calcm2" type="button" value= "clear" onClick="document.theForm.dhowmany.value=1;howmany=1"/>
- &nbsp; <input type='text' name='dhowmany' value='1' size=1 style="background-color:white" disabled></td> -->
-<!-- <td> &nbsp; &nbsp; <input name="clear" type="button" value= "Clear Output" onClick="document.theForm.output.value=''"/> </td>-->
-<!--  &nbsp; &nbsp; <input name="clabut" Value="Clear" type="button" onClick="cla()"/> Everything -->
-</tr><tr><td colspan="2">
-<textarea name="input" rows="1" cols="52" onkeyup="enter2(event)"></textarea>
- &nbsp; <input name="calc1" type="button" value="Clear" style="background-color:yellow" onclick="document.theForm.input.value=&#39;&#39;">
-</td><td> &nbsp; option<input type="text" name="extra" size="1" value="1">
- &nbsp; ,'s <input name="commas" type="checkbox"></td></tr><tr><td colspan="3">
- &nbsp; nPr<input type="radio" name="rad1" onclick="what=1" value="nPr">
- &nbsp; nCr<input type="radio" name="rad1" onclick="what=2" value="nCr" checked="">
- &nbsp; words<input type="radio" name="rad1" onclick="what=3" value="All">
- &nbsp; Powset<input type="radio" name="rad1" onclick="what=4" value="Pwr">
- &nbsp; Binomial Coeff<input type="radio" name="rad1" onclick="what=5" value="Pwr">
- &nbsp; <input name="clear" type="button" value="Do it" style="background-color:yellow" onclick="calc(false)">
- &nbsp; <input name="calc2" type="button" style="background-color:yellow" value="List All " onclick="calc(true)">
- &nbsp; <input name="calc1" type="button" value="Clear" style="background-color:yellow" onclick="document.theForm.output.value=&#39;&#39;;calc(false)">
- </td></tr><tr><td style="background-color:lightblue" onclick="window.open(&#39;http://wrightcalc.com&#39;)" onmouseover="this.style.backgroundColor=&#39;red&#39;" onmouseout="this.style.backgroundColor=&#39;lightblue&#39;">second space</td><td>
- &nbsp; Plus<input type="radio" name="qop">
- &nbsp; Minus<input type="radio" name="qop">
- &nbsp; Times<input type="radio" name="qop" checked="">
- </td><td>
- &nbsp; r=<input type="text" name="qRval" size="1/">
- &nbsp; <input name="calc1" type="button" value="Clear" style="background-color:yellow" onclick="document.theForm.qRval.value=&#39;&#39;">
- </td></tr><tr><td colspan="3">
- &nbsp; nPr<input type="radio" name="qrad1" onclick="qwhat=1" value="nPr">
- &nbsp; nCr<input type="radio" name="qrad1" onclick="qwhat=2" value="nCr" checked="">
- &nbsp; words<input type="radio" name="qrad1" onclick="qwhat=3" value="All">
- &nbsp; Powset<input type="radio" name="qrad1" onclick="qwhat=4" value="Pwr">
- &nbsp; Binomial Coeff<input type="radio" name="qrad1" onclick="qwhat=5" value="Pwr">
- &nbsp; <input name="clear" type="button" value="Do it" style="background-color:yellow" onclick="qcalc(false)">
- &nbsp; <input name="calc2" type="button" style="background-color:yellow" value="List All " onclick="qcalc(true)">
- &nbsp; <input name="calc1" type="button" value="Clear" style="background-color:yellow" onclick="document.theForm.output.value=&#39;&#39;">
- </td></tr><tr><td style="background-color: lightblue;" colspan="3" align="center" onclick="window.open(&#39;http://wrightcalc.com&#39;)" onmouseover="this.style.backgroundColor=&#39;red&#39;" onmouseout="this.style.backgroundColor=&#39;lightblue&#39;">advanced functions</td></tr><tr><td colspan="3">
-P(X) = <textarea name="inputP" rows="1" cols="60"></textarea>
- <input name="uniform" value="uniform" type="button" onclick="uniprob()">
-  &nbsp; <input type="button" value="a/b" id="frac" onclick="swfrac(true,7)" title="output format" style="background-color:turquoise">
-<br>regex to exclude <textarea name="regxn" rows="1" cols="65"></textarea>
-<br>regex to include &nbsp;<textarea name="regxy" rows="1" cols="65"></textarea><br>
-starts with 3 or ends with 4 or 5: (^3|4$|5$)
-</td></tr>
-<tr><td colspan="3"><textarea name="output" rows="25" cols="85">Advanced options:
+<table>
+<tbody>
+    <tr>
+        <td onclick="window.open('index.htm');" class="lightblue">Generate Sample Space</td>
+        <td>
+         &nbsp; n=<input type="text" name="Nval" size="1" tabindex="1" onkeyup="enter1(event)">
+         &nbsp; r=<input type="text" name="Rval" size="1" tabindex="2">
+         &nbsp; <input name="calc1" type="button" value="Clear"  onclick="document.theForm.Nval.value=&#39;&#39;;document.theForm.Rval.value=&#39;&#39;">
+        </td>
+        <td>
+            letters<input type="radio" name="Nvalt" checked="" onclick="document.theForm.input.value='';doInput()">
+            digits<input type="radio" name="Nvalt" onclick="document.theForm.input.value='';doInput()">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <textarea name="input" rows="1" cols="52" onkeyup="enter2(event)"></textarea>
+            &nbsp; <input name="calc1" type="button" value="Clear" onclick="document.theForm.input.value=&#39;&#39;">
+        </td>
+        <td> 
+            &nbsp; option<input type="text" name="extra" size="1" value="1">
+            &nbsp; ,'s <input name="commas" type="checkbox">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            &nbsp; nPr<input type="radio" name="rad1" onclick="what=1" value="nPr">
+            &nbsp; nCr<input type="radio" name="rad1" onclick="what=2" value="nCr" checked="">
+            &nbsp; words<input type="radio" name="rad1" onclick="what=3" value="All">
+            &nbsp; Powset<input type="radio" name="rad1" onclick="what=4" value="Pwr">
+            &nbsp; Binomial Coeff<input type="radio" name="rad1" onclick="what=5" value="Pwr">
+            &nbsp; <input name="clear" type="button" value="Do it" onclick="calc(false)">
+            &nbsp; <input name="calc2" type="button" value="List All " onclick="calc(true)">
+            &nbsp; <input name="calc1" type="button" value="Clear" onclick="document.theForm.output.value=&#39;&#39;;calc(false)">
+        </td>
+    </tr>
+    <tr>
+        <td onclick="window.open('index.htm');" class="lightblue">second space</td>
+        <td>
+            &nbsp; Plus<input type="radio" name="qop">
+            &nbsp; Minus<input type="radio" name="qop">
+            &nbsp; Times<input type="radio" name="qop" checked="">
+        </td>
+        <td>
+            &nbsp; r=<input type="text" name="qRval" size="1">
+            &nbsp; <input name="calc1" type="button" value="Clear" onclick="document.theForm.qRval.value=&#39;&#39;">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            &nbsp; nPr<input type="radio" name="qrad1" onclick="qwhat=1" value="nPr">
+            &nbsp; nCr<input type="radio" name="qrad1" onclick="qwhat=2" value="nCr" checked="">
+            &nbsp; words<input type="radio" name="qrad1" onclick="qwhat=3" value="All">
+            &nbsp; Powset<input type="radio" name="qrad1" onclick="qwhat=4" value="Pwr">
+            &nbsp; Binomial Coeff<input type="radio" name="qrad1" onclick="qwhat=5" value="Pwr">
+            &nbsp; <input name="clear" type="button" value="Do it" onclick="qcalc(false)">
+            &nbsp; <input name="calc2" type="button" value="List All " onclick="qcalc(true)">
+            &nbsp; <input name="calc1" type="button" value="Clear" onclick="document.theForm.output.value=&#39;&#39;">
+        </td>
+    </tr>
+    <tr>
+        <td onclick="window.open('index.htm');" class="lightblue" colspan="3">Advanced Functions</td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            P(X) = <textarea name="inputP" rows="1" cols="60"></textarea>
+            <input name="uniform" value="uniform" type="button" onclick="uniprob()">
+            &nbsp; <input type="button" value="a/b" id="frac" onclick="swfrac(true,7)" title="output format">
+            <br>regex to exclude <textarea name="regxn" rows="1" cols="65"></textarea>
+            <br>regex to include &nbsp;<textarea name="regxy" rows="1" cols="65"></textarea><br>
+            starts with 3 or ends with 4 or 5: (^3|4$|5$)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <textarea name="output" rows="25" cols="85">Advanced options:
 1 - remove duplicate strings
 2 - remove anything with adjacent repeats
 3 - remove anything with adjacent consecutive numbers
@@ -457,12 +483,13 @@ starts with 3 or ends with 4 or 5: (^3|4$|5$)
 6 - count how many are in original position
 
 Two letter words are the same as the product table on these letters.
-
-
-</textarea>
-</td></tr></tbody></table>
-</form>
-<script>
+            </textarea>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+    </form>
+    <script>
 ls=decodeURIComponent(location.search)
 if (ls.search(/\?/)==0){
  lsd=ls.slice(1).split("&")
@@ -474,4 +501,6 @@ if (ls.search(/\?/)==0){
  }
  calc()
 }
-</script></body></html>
+</script>
+</body>
+</html>
