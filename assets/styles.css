@@ -41,3 +41,10 @@ table{
     padding:0 5px;
     margin:2px;
 }
+
+/*-- generate sample space --*/
+
+.lightblue {
+    background:lightblue;
+    text-align:center;
+}
