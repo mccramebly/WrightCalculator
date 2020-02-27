@@ -1,9 +1,12 @@
-<html><head><title>Graph Functions</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-<link REL="SHORTCUT ICON" HREF="favicon.ico">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
- 
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Graph Functions</title>
+    <meta charset="utf-8"> 
+    <link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="myfunctions.js"></script>
+    <script>
 // -------------------------------------------------------*/  
 function C2GX(X){ return GXD*(X-CXM)+GXM } // canvas coord to graph coord
 // -------------------------------------------------------*/  
@@ -524,56 +527,101 @@ if (POIx!=undefined){
     POIshow=true; movetoxy(POIx,POIy)}
 }
 </script>
-</head><body  style="font-family:Monospace" onLoad="self.focus(); document.theForm.input.focus();">
-<form name="theForm"><table id='theTable' border = 1 noshade bgcolor = 99CC66>
-<tr><td valign=top>
-<TABLE>
-<tr><td>x-range: 
-<input name="xinbut" value="in" onclick="chdim(1,0.5)" type="button">
-<input name="xoutbut" value="out" onclick="chdim(1,2)" type="button">
-<input id=degpisw name="x2pi" value=" 0-2&pi; " onclick="t2pi()" type="button"><br>units: 
- deg:<input name="degrees" type="radio" title="degrees" onClick="plotfunction(0,false,true)"/>
- rad:<input name="degrees" type="radio" title="radians" checked onClick="plotfunction(0,false,true)"/>
- pirad:<input name="degrees" type="radio" title="piradians" onClick="plotfunction(0,false,true)"/>
-</td></tr><tr><td>
-<input name="xrange" size=39 value=""/>
-</td></tr><tr><td>y-range: 
-<input name="yinbut" value="in" onclick="chdim(2,0.5)" type="button">
-<input name="youtbut" value="out" onclick="chdim(2,2)" type="button">
-<input name="ymaxbut" value="max-Y" onclick="document.theForm.yrange.value='';plotfunction(999,false,false)" type="button">
-</td></tr><tr><td>
-<input name="yrange" size=39 value=""/></td></tr></table></td>
-<td rowspan=11><canvas id="theCanvas" width="501" height="501"></canvas></td></tr><tr><td>
-<input name="plot" value="plot" onclick="plotfunction(999,false,true)" type="button">
-<input name="savebut" Value="Save" type="button" onClick="saveem()"/>
-<input name="loadbut" Value="Load" type="button" onClick="loadstuff(true,'jsdata');plotfunction(999,false,true); document.theForm.input.focus()"/>
-<input name="clearbut" Value="Clear" type="button" onClick="clrscr()" />
-<input name="newbut" type="button" value = "Newton" onClick="donewton()" tabindex="8" />
-<!-- <input name="gridbut" value="grid" onclick="grid()" type="button">
-<input name="tinybut" value="tiny" onclick="tiny()" type="button">-->
-<A href="index.htm"><img src="menu.bmp" alt="Main Menu" title="Main Menu" onClick="window.open(url())"/></A>
-<br>
-<textarea name = "input" rows = 14 cols = 40 onKeyUp="enter(event)"></textarea><br>
-<table><tr><td>Move: 
-<input name="leftbut" value="left" onclick="leftfunc()" type="button">
-<input name="rightbut" value="right" onclick="rightfunc()" type="button">
-<input name="upbut" value="up" onclick="upfunc()" type="button">
-<input name="downbut" value="down" onclick="downfunc()" type="button">
-<input name="backbut" value="back" onclick="backfunc()" type="button"><br>
-</td></tr><tr><td>Change: 
-<input name="inbut" value="in" onclick="chdim(3,.5)" type="button">
-<input name="outbut" value="out" onclick="chdim(3,2)" type="button">
-<input name="centerbut" value="origin" onclick="centerfunc()" type="button">
-<input name="scalebut" value="scale" onclick="document.theForm.yrange.value='';scalefunc()" type="button">
-</td></tr><tr><td>P.O.I. <input name="poibut" value="Find" onclick="POIget=true;plotfunction(999,false,false)" type="button"> 
-<input name="centerbut" value="center" onclick="POIcenter()" type="button"><br>Plot: 
-<input name="plot1" value="first" onclick="plotfunction(1,false,true)" type="button">
-<input name="plot2" value="next" onclick="plotfunction(-(Math.abs(dowhat)+1),false,true)" type="button">
-<input name="plot3" value="more" onclick="plotfunction(Math.abs(dowhat)+1,false,true)" type="button">
-</td></tr>
-<tr><td>Center:  (x,y)<br>(<input id='middlex' cols=14 name="middlex"/>,
-<input id='middley' cols=14 name="middley"/>)</td></tr></table>
-</td></tr></table></form>
+</head>
+<body onLoad="self.focus(); document.theForm.input.focus();">
+    <form name="theForm">
+        <table id='theTable'>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>x-range: 
+                                <input name="xinbut" value="in" onclick="chdim(1,0.5)" type="button">
+                                <input name="xoutbut" value="out" onclick="chdim(1,2)" type="button">
+                                <input id=degpisw name="x2pi" value=" 0-2&pi; " onclick="t2pi()" type="button">
+                                <br>
+                                units:
+                                deg:<input name="degrees" type="radio" title="degrees" onClick="plotfunction(0,false,true)">
+                                rad:<input name="degrees" type="radio" title="radians" checked onClick="plotfunction(0,false,true)">
+                                pirad:<input name="degrees" type="radio" title="piradians" onClick="plotfunction(0,false,true)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input name="xrange" size=39 value=""/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>y-range: 
+                                <input name="yinbut" value="in" onclick="chdim(2,0.5)" type="button">
+                                <input name="youtbut" value="out" onclick="chdim(2,2)" type="button">
+                                <input name="ymaxbut" value="max-Y" onclick="document.theForm.yrange.value='';plotfunction(999,false,false)" type="button">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input name="yrange" size=39 value="">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td rowspan=11>
+                    <canvas id="theCanvas" width="501" height="501">
+                    </canvas>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input name="plot" value="plot" onclick="plotfunction(999,false,true)" type="button">
+                    <input name="savebut" Value="Save" type="button" onClick="saveem()">
+                    <input name="loadbut" Value="Load" type="button" onClick="loadstuff(true,'jsdata');plotfunction(999,false,true); document.theForm.input.focus()">
+                    <input name="clearbut" Value="Clear" type="button" onClick="clrscr()">
+                    <input name="newbut" type="button" value = "Newton" onClick="donewton()" tabindex="8" />
+                    <a href="index.htm"><img src="menu.bmp" alt="Main Menu" title="Main Menu" onClick="window.open(url())"/></a>
+                    <br>
+                    <textarea name = "input" rows = 14 cols = 40 onKeyUp="enter(event)"></textarea><br>
+                    <table>
+                        <tr>
+                            <td>Move: 
+                                <input name="leftbut" value="left" onclick="leftfunc()" type="button">
+                                <input name="rightbut" value="right" onclick="rightfunc()" type="button">
+                                <input name="upbut" value="up" onclick="upfunc()" type="button">
+                                <input name="downbut" value="down" onclick="downfunc()" type="button">
+                                <input name="backbut" value="back" onclick="backfunc()" type="button">
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Change: 
+                                <input name="inbut" value="in" onclick="chdim(3,.5)" type="button">
+                                <input name="outbut" value="out" onclick="chdim(3,2)" type="button">
+                                <input name="centerbut" value="origin" onclick="centerfunc()" type="button">
+                                <input name="scalebut" value="scale" onclick="document.theForm.yrange.value='';scalefunc()" type="button">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P.O.I. 
+                                <input name="poibut" value="Find" onclick="POIget=true;plotfunction(999,false,false)" type="button"> 
+                                <input name="centerbut" value="center" onclick="POIcenter()" type="button">
+                                <br>
+                                Plot: 
+                                <input name="plot1" value="first" onclick="plotfunction(1,false,true)" type="button">
+                                <input name="plot2" value="next" onclick="plotfunction(-(Math.abs(dowhat)+1),false,true)" type="button">
+                                <input name="plot3" value="more" onclick="plotfunction(Math.abs(dowhat)+1,false,true)" type="button">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Center:  (x,y)
+                                <br>
+                                (<input id='middlex' size=14 name="middlex"/>,
+                                <input id='middley' size=14 name="middley"/>)
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </form>
 <script>
 // -------------------------------------------------------*/  
 function getPosition(event){ 
@@ -643,4 +691,6 @@ if (ls.search(/\?/)==0){
  document.theForm.yrange.value=lsd[2]
  for (i=3;i<lsd.length;i++) document.theForm.input.value += '\n'+lsd[i]}
 if (document.theForm.input.value.replace (/\s/g,"")!='') {plotfunction(999,false,true)}
-</script></body></html>
+</script>
+</body>
+</html>
