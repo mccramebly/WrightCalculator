@@ -1,646 +1,648 @@
-<html><head><title>edit text</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
-<script>
-// ---------------------------------------------------*/
-function getlocalstore(add){  // add = false  --> clear screen
-menucode=0; localstore=document.theForm.jsdata.value;
-if (slim(localstore.length)==0)
-{ localstore='jsdata'; document.theForm.jsdata.value='jsdata'}
-loadstuff(add, localstore); document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function putlocalstore(){
-menucode=0; localstore=document.theForm.jsdata.value;
-if (slim(localstore.length)==0)
-{ localstore='jsdata'; document.theForm.jsdata.value='jsdata'}
-savestuff(localstore); document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function menu(mc){ // menui is the item to be displayed, -1 for the table of contents
-if (mc==undefined) mc=menucode
-if (menucode!=mc) menui=-1; menucode = mc
-localstore=''; document.theForm.input.value = ""
-switch (mc) { // pointer to menu and cookie
-case 1: menuprogs=lprogs; document.theForm.jsdata.value='logic'; break;
-case 2: menuprogs=pyprogs; document.theForm.jsdata.value='python'; break;
-case 3: menuprogs=jsprogs; document.theForm.jsdata.value='ijs'; break;
-case 4: menuprogs=cprogs; document.theForm.jsdata.value='calc'; break;
-case 5: menuprogs=mprogs; document.theForm.jsdata.value='math'; break;
-case 6: menuprogs=sprogs; document.theForm.jsdata.value='simplify'; break;
-case 7: menuprogs=gprogs; document.theForm.jsdata.value='graphdata'; break;
-case 8: menuprogs=vprogs; document.theForm.jsdata.value=''; break;
-case 9: menuprogs=stprogs; document.theForm.jsdata.value=''; break;
-/* case 10: menuprogs=tprogs; document.theForm.jsdata.value=''; break; */
-default: document.theForm.input.value = ''; document.theForm.input.focus(); return
-}
-if (menui<0) // start a new menu
-{ for (var i=0;i<menuprogs.length;i++)
-  { var menuprog=menuprogs[i]; if (i>0) print(i+') ','')
-    var j=menuprog.search(/\n/)
-    if (j>-1) print(menuprog.slice(0,j)); else print(menuprog)}
-  menui=0}
-else if (menui<menuprogs.length) // print next menu item
-{ print(menuprogs[menui]); menui++}
-/* else if (mc==10)
-{ mc=8; menuprogs=vprogs; menui=0; menucode=mc
-  print(menuprogs[menui]); menui++
-}
-  else if (mc==8)
-{ mc=10; menuprogs=tprogs; menui=-1; menucode=mc
-  menu(mc)
-} */
-else // done with menu, clear screen
-{ menui=-1; document.theForm.input.value = ''}
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function clere(){
-if (document.theForm.input.value != "")
-{ thiswas.push(document.theForm.input.value)
-  document.theForm.input.value = ""
-  menucode=0; menui=-1}
-localstore=''; document.theForm.jsdata.value=''
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function back(){
-if (menucode>0) // we are stepping through a menu
-{ menui-=2
-  localstore=''; document.theForm.input.value = ""
-  menu(menucode)}}
-// ---------------------------------------------------*/
-function enter(evt) {
-var KEYcode = evt.keyCode; document.theForm.input.focus()
-if (KEYcode == 13)
-{ if (menucode == 0) return
-  if (menui==0) //  menu is on screen
-  { document.theForm.input.value=document.theForm.input.value.replace(/\n*$/,'')
-    menux=document.theForm.input.value.lastIndexOf('\n')
-    menui= ~~ document.theForm.input.value.slice(menux+1)}
-  menu(menucode)
-  return}
-if(KEYcode == 18 && yesjsrun)
-  jsrun()  // alt key
-if(KEYcode == 27) clere() };
-// ---------------------------------------------------*/
-function push(confr,conto){
-now=document.theForm.input.value.replace(/\n\n/g,"\n  \n").replace(/\n\n/g,"\n  \n")
-while (now[0]=="\n")now=now.slice(1)
-while (now[now.length-1]=="\n")now=now.slice(0,now.length-1)
-nowl= now.split(/\n/)
-thiswas.push(now)
-savefr.push(confr)
-saveto.push(conto)
-document.theForm.convfr.value=""
-document.theForm.convto.value=""}
-// ---------------------------------------------------*/
-function doit(confr,conto){
-confr = confr.replace(/\\n/g,"\n") // covert the characters \n to the character \n
-conto = conto.replace(/\\n/g,"\n") // covert the characters \n to the character \n
-var re = new RegExp( confr, "g")
-push(confr,conto)
-for (i=0;i<nowl.length;i++) nowl[i] = nowl[i].replace( re, conto)
-document.theForm.input.value=nowl.join("\n")
-now=document.theForm.input.value; document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function doitall(confr,conto){
-confr = confr.replace(/\\n/g,"\n") // covert the characters \n to the character \n
-conto = conto.replace(/\\n/g,"\n") // covert the characters \n to the character \n
-var re = new RegExp( confr, "g")
-push(confr,conto); now=now.replace( re, conto )
-document.theForm.input.value=now; document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function dolist(){with (Math){
-frarray = document.theForm.convfrlist.value.split(",")
-toarray = document.theForm.convtolist.value.split(",")
-for (var i=0;i<min(toarray.length,frarray.length); i++) doit(frarray[i],toarray[i])
-var x=document.theForm.convfrlist.value
-document.theForm.convfrlist.value=document.theForm.convtolist.value
-document.theForm.convtolist.value=x}}
-// ---------------------------------------------------*/
-function dodo(){
-doitall(document.theForm.convfr.value,document.theForm.convto.value)
-document.theForm.convfr.value=""
-document.theForm.convto.value=""}
-// ---------------------------------------------------*/
-function undo(){
-if (thiswas.length>0)
-{ document.theForm.input.value=thiswas.pop()
-  document.theForm.convfr.value=savefr.pop()
-  document.theForm.convto.value=saveto.pop()}
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function repeat(){
-if (thiswas.length>0)
-{ document.theForm.convfr.value=savefr.pop()
-  document.theForm.convto.value=saveto.pop()
-  dodo()}
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function lis(){push("","")
-if (now.length==0) {print('converts values to comma separated list: \n 7 13 21 15 61 13 131 17 81 19 15 26 27 \n'); return}
-if ((xx1=now.lastIndexOf(":"))>-1) now=now.slice(xx1+1)
-now=now.replace(/\w*[a-z]\w*=/,'').replace(/^\n*/,'').replace(/"/g,"").replace(/'/g,"").replace(/[^\w\.]/g,",") .replace(/,+/g,",") .replace(/^,/,"") .replace(/,$/,"")
-document.theForm.input.value=now}
-// ---------------------------------------------------*/
-function lis1(){push("","")
-if (now.length==0) {print('generates sorted list:\n 7 13 21 15 61 13 131 17 81 19 15 26 27 \n'); return}
-
-if (now.slice(0,3)=='m=['){ now=(now+'\n').slice(0,now.search('\\n')); eval(now); m.sort(); now = "";
-for (i=0; i<m.length; i++) now +=m[i]+"\n"
-document.theForm.input.value=now; document.theForm.input.focus()
-return}
-
-lis(); eval('p=['+now.replace(/(\w*[a-z]\w*)/gi,'"$1"')+']')
-if (now.search(/[a-z]/)>-1) document.theForm.input.value = p.sort()
-else document.theForm.input.value = p.sort(function(a, b){return a-b})           }
-// ---------------------------------------------------*/
-function lis2(){push("","")
-if (now.length==0){print('eliminates duplicates from list:\n  7 13 21 15 61 13 131 17 81 19 15 26 27 \n'); return}
-p=[]; lis1()
-for (i=1; i<p.length; i++)
-{while (p[i]==p[i-1])
- { p.splice(i-1,1); if (i>=p.length) break }
-document.theForm.input.value = p
-document.theForm.input.focus()}}
-// ---------------------------------------------------*/
-function lis0(){push("","")
-if (now.length==0) {print('creates an array:\n 7 13 21 15 61 13 131 17 81 19 15 26 27 \n'); return}
-lis();document.theForm.input.value= 'm=['+now.replace(/(\w*[a-z]\w*)/gi,'"$1"') +']\n'
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function lis3(){push("","")
-if (now.length==0) {print('converts xy values to n by two array:\n0, 1\n1, 0\n2, 5\n3, 16'); return}
-if ((xx1=now.lastIndexOf(":"))>-1) now=now.slice(xx1+1)
-if (now.search(/\[\[/)>-1) return
-document.theForm.input.value= now.replace(/[^\w\.\-]/g,",")
-doit(",+",",")
-document.theForm.input.value='m=['+document.theForm.input.value.replace(/^,/,"").replace(/,$/,"").replace(/([^\,]*),([^\,]*)(,*)/g,"[$1,$2]$3").replace(/(\w*[a-z]\w*)/gi,'"$1"')+']'+"\nmprint(m)"
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function lis4(){push("","")
-if (now.length==0) {print('converts values to n by m array:\n1\n2 3\n4 5 6\n7 8 9 10\n'); return}
-if ((xx1=now.lastIndexOf(":"))>-1) now=now.slice(xx1+1)
-if (now.search(/\[\[/)>-1) return
-now="[["+now.replace(/\w*[a-z]\w*=/,'').replace(/\n/g,"],[")+"]]"
-now=now .replace(/[^\[\]\w\.\]\[\-\+]/g,",") .replace(/,+/g,",") .replace(/,*\[\],*/g,',') .replace(/\[\,+/g,"[") .replace(/\,+\]/g,"]").replace(/(\w*[a-z]\w*)/gi,'"$1"')
-document.theForm.input.value="m="+now.replace(/^,/,"").replace(/,$/,"")+"\nmprint(m)"
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function lis56(sortit){push("","")
-if (now.length==0)
-   { print('convert lines to an array or sort them:\nCleveland OH\nBoston MA\nPittsburgh PA\nLos Angeles CA\nSt Louis IL\n'); return ''}
-now = "";
-for (i=0; i<nowl.length; i++) {now += (now.length>0?',':'')+'"'+nowl[i].replace(/"/g,"'")+'"'}
-document.theForm.input.value="m=["+now+"];"+(sortit?" m.sort();":"")+"for (i=0;i<m.length;i++) {print(m[i]); write(m[i])}"
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function lis7(){push("","")
-if (now.length==0) {print('remove first column of table:\n x   N(x)    P(x)\n--- ----- ---------\n  0     1 0.0000404\n  1    10 0.0007074\n  2    45 0.0055713\n  3   120 0.0259997\n  4   210 0.0796241\n  5   252 0.1672106\n  6   210 0.2438488\n  7   120 0.2438488\n  8    45 0.1600257\n  9    10 0.0622322\n 10     1 0.0108906\n--- ----- ---------\nall  1024 1.0000000\n'); return}
-nblines=false
-for (i=0; i<nowl.length; i++)
-{ nowl[i]=nowl[i].replace(/^\s*/,''); if (nowl[i]==nowl[i].replace(/^\S+\s+/,'')) nowl[i]=''; else {nblines=true; nowl[i]=nowl[i].replace(/^\S+\s/,'')}}
-document.theForm.input.value=(nblines?nowl.join("\n"):'');  document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function lis8(){push("","")
-if (now.length==0) {print('remove last column of table:\n x   N(x)    P(x)\n--- ----- ---------\n  0     1 0.0000404\n  1    10 0.0007074\n  2    45 0.0055713\n  3   120 0.0259997\n  4   210 0.0796241\n  5   252 0.1672106\n  6   210 0.2438488\n  7   120 0.2438488\n  8    45 0.1600257\n  9    10 0.0622322\n 10     1 0.0108906\n--- ----- ---------\nall  1024 1.0000000\n'); return}
-nblines=false
-for (i=0; i<nowl.length; i++)
-{ nowl[i]=nowl[i].replace(/ *$/,''); if (nowl[i]==nowl[i].replace(/\s+\S+$/,'')) nowl[i]=''; else {nblines=true; nowl[i]=nowl[i].replace(/\s+\S+$/,'')}}
-document.theForm.input.value=(nblines?nowl.join("\n"):'');  document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function csv(){push("","")
-if (now.length==0) {print('converts list of values into CSV format file:\nitem\nquantity\n\nbread&butter\n5\n\nblood, sweat & tears\n3'); return}
-if ((xx1=now.lastIndexOf(":"))>-1) now=now.slice(xx1+1)
-now = '\n'+now.replace(/\t/g,"").replace(/\\[a-z]/g,"")+'\n'
-now = now.replace(/\n +/g,"\n").replace(/ +\n/g,"\n")
-now = now.replace(/\n\n\n/g,"\n\n").replace(/\n\n\n/g,"\n\n").replace(/\n/g,"\n\n").replace(/\n([^\n]*[a-z][^\n]*)\n/gi,'\n"$1"\n')
-now = now.replace(/\n\n/g,"\n").replace(/\n*$/g,"").replace(/^\n*/,"")
-document.theForm.input.value = now.replace(/\n\n/g,"\t").replace(/\n/g,",").replace(/\t/g,"\n"); document.theForm.input.focus()}
-// insert blank column 2 for 3 col data    replace(/^("[^"]*",)("[^"]*","[^"]*")$/g,'$1"",$2')
-// ---------------------------------------------------*/
-function Lagr(){lis3(); push("","")
-if (now.slice(0,21)=='converts xy values to') {
-document.theForm.input.value = 'generates the LaGrange Polynomial from an'+now.slice(21)
-return}
-eval('pp='+now.slice(now.search(/=/)+1,now.search(']]')+2))
-document.theForm.input.value=''
-xx=''
-xlow=pp[0][0];xhi=xlow
-ylow=pp[0][1];yhi=ylow
-for(i=0;i<pp.length;i++) {
- xx+='('+pp[i][0]+','+pp[i][1]+',-4);'
- if (xlow>pp[i][0]) xlow=pp[i][0]
- if (xhi<pp[i][0]) xhi=pp[i][0]
- if (ylow>pp[i][1]) ylow=pp[i][1]
- if (yhi<pp[i][1]) yhi=pp[i][1]}
-xborder=(xhi-xlow)/10; xhi=xhi+xborder; xlow=xlow-xborder
-yborder=(yhi-ylow)/10; yhi=yhi+yborder; ylow=ylow-yborder
-x1=''
-for(i=0;i<pp.length;i++) {
-  x1+=(pp[i][1]>=0?'+':'')+pp[i][1]
-  for(j=0;j<pp.length;j++) {
-    if (i!=j) x1+='*(x-('+pp[j][0]+'))/'+eval(pp[i][0]-pp[j][0])}}
-x2 = 'x: '+xlow+' to '+xhi+'\ny: '+ylow+' to '+yhi+'\n'+x1+'\n'+xx
-print ('\Now you can press Clear and either load the "solve" cookie and call "solve" to see the reduced polynomial, or load the "graph" cookie and call "graph" to see the graph.')
-savestuff('simplify','simplified polynomial:\n'+x1); savestuff('graphdata', x2)
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function thou(){
-push('','')
-now=now.replace(/(\d),(\d)/g,"$1$2")
-now=now.replace(/\$(\d)/g,"$1")
-document.theForm.input.value=now; document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function xdiv(){push("","")
-doit("([a-z])/(\\d+)","1/$2 $1")}
-// ---------------------------------------------------*/
-function pdiv(){push("","")
-doit("over|divided *by","/")
-doit(" *\\/ *",")/(")
-doit("(\\w*\\))* *(.*)\\)\\/\\(([^\\n]*)","$1 ($2)/($3)")
-for (i=1;i<nowl.length-1;i++) {
-  if (nowl[i].replace(/^\s*-+\s*$/,'over')=='over'){
-    nowl[i-1]='('+nowl[i-1]+')/('+nowl[i+1]+')'
-    nowl.splice(i,2)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Regular Expression Text Editor</title>
+    <meta charset="utf-8">
+    <link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body onLoad="self.focus();document.theForm.input.focus();">
+    <script src="myfunctions.js"></script>
+    <script>
+    // ---------------------------------------------------*/
+    function getlocalstore(add){  // add = false  --> clear screen
+    menucode=0; localstore=document.theForm.jsdata.value;
+    if (slim(localstore.length)==0)
+    { localstore='jsdata'; document.theForm.jsdata.value='jsdata'}
+    loadstuff(add, localstore); document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function putlocalstore(){
+    menucode=0; localstore=document.theForm.jsdata.value;
+    if (slim(localstore.length)==0)
+    { localstore='jsdata'; document.theForm.jsdata.value='jsdata'}
+    savestuff(localstore); document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function menu(mc){ // menui is the item to be displayed, -1 for the table of contents
+    if (mc==undefined) mc=menucode
+    if (menucode!=mc) menui=-1; menucode = mc
+    localstore=''; document.theForm.input.value = ""
+    switch (mc) { // pointer to menu and cookie
+    case 1: menuprogs=lprogs; document.theForm.jsdata.value='logic'; break;
+    case 2: menuprogs=pyprogs; document.theForm.jsdata.value='python'; break;
+    case 3: menuprogs=jsprogs; document.theForm.jsdata.value='ijs'; break;
+    case 4: menuprogs=cprogs; document.theForm.jsdata.value='calc'; break;
+    case 5: menuprogs=mprogs; document.theForm.jsdata.value='math'; break;
+    case 6: menuprogs=sprogs; document.theForm.jsdata.value='simplify'; break;
+    case 7: menuprogs=gprogs; document.theForm.jsdata.value='graphdata'; break;
+    case 8: menuprogs=vprogs; document.theForm.jsdata.value=''; break;
+    case 9: menuprogs=stprogs; document.theForm.jsdata.value=''; break;
+    /* case 10: menuprogs=tprogs; document.theForm.jsdata.value=''; break; */
+    default: document.theForm.input.value = ''; document.theForm.input.focus(); return
+    }
+    if (menui<0) // start a new menu
+    { for (var i=0;i<menuprogs.length;i++)
+      { var menuprog=menuprogs[i]; if (i>0) print(i+') ','')
+        var j=menuprog.search(/\n/)
+        if (j>-1) print(menuprog.slice(0,j)); else print(menuprog)}
+      menui=0}
+    else if (menui<menuprogs.length) // print next menu item
+    { print(menuprogs[menui]); menui++}
+    /* else if (mc==10)
+    { mc=8; menuprogs=vprogs; menui=0; menucode=mc
+      print(menuprogs[menui]); menui++
+    }
+      else if (mc==8)
+    { mc=10; menuprogs=tprogs; menui=-1; menucode=mc
+      menu(mc)
+    } */
+    else // done with menu, clear screen
+    { menui=-1; document.theForm.input.value = ''}
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function clere(){
+    if (document.theForm.input.value != "")
+    { thiswas.push(document.theForm.input.value)
+      document.theForm.input.value = ""
+      menucode=0; menui=-1}
+    localstore=''; document.theForm.jsdata.value=''
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function back(){
+    if (menucode>0) // we are stepping through a menu
+    { menui-=2
+      localstore=''; document.theForm.input.value = ""
+      menu(menucode)}}
+    // ---------------------------------------------------*/
+    function enter(evt) {
+    var KEYcode = evt.keyCode; document.theForm.input.focus()
+    if (KEYcode == 13)
+    { if (menucode == 0) return
+      if (menui==0) //  menu is on screen
+      { document.theForm.input.value=document.theForm.input.value.replace(/\n*$/,'')
+        menux=document.theForm.input.value.lastIndexOf('\n')
+        menui= ~~ document.theForm.input.value.slice(menux+1)}
+      menu(menucode)
+      return}
+    if(KEYcode == 18 && yesjsrun)
+      jsrun()  // alt key
+    if(KEYcode == 27) clere() };
+    // ---------------------------------------------------*/
+    function push(confr,conto){
+    now=document.theForm.input.value.replace(/\n\n/g,"\n  \n").replace(/\n\n/g,"\n  \n")
+    while (now[0]=="\n")now=now.slice(1)
+    while (now[now.length-1]=="\n")now=now.slice(0,now.length-1)
+    nowl= now.split(/\n/)
+    thiswas.push(now)
+    savefr.push(confr)
+    saveto.push(conto)
+    document.theForm.convfr.value=""
+    document.theForm.convto.value=""}
+    // ---------------------------------------------------*/
+    function doit(confr,conto){
+    confr = confr.replace(/\\n/g,"\n") // covert the characters \n to the character \n
+    conto = conto.replace(/\\n/g,"\n") // covert the characters \n to the character \n
+    var re = new RegExp( confr, "g")
+    push(confr,conto)
+    for (i=0;i<nowl.length;i++) nowl[i] = nowl[i].replace( re, conto)
     document.theForm.input.value=nowl.join("\n")
-    document.theForm.input.focus()
-}}}
-// ---------------------------------------------------*/
-function comment(){
-doit(" .*:"," ")}
-// ---------------------------------------------------*/
-function probno(){
-doit("^(\\w+)\\.(?!\\d)","$1) ")
-doit("^(\\w+)-","$1) ")
-doit("^(\\w+)\\)[) ]*","$1) ")}
-// ---------------------------------------------------*/
-function conv(){
-confr=document.theForm.convfr.value;
-conto=document.theForm.convto.value.replace(/\\n/g,"\n")
-if (confr.length>0) {
-push("","")
-conx=savefr.length
-savefr.push(confr); saveto.push(conto)
-var re = new RegExp( confr, "g")
-now = now.replace( re, conto)
-document.theForm.input.value = now
-document.theForm.convfr.value=""
-document.theForm.convto.value=""
-}
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function notag(){push("","")
-if (now.length==0){
-document.theForm.input.value = "this button eliminates HTML tags to make text more human readable:\n<big>Hello</big> <div> silly people <p class=\"story-body-text story-content\" data-para-count=\"331\" data-total-count=\"331\"> from me on <a href=\"http://www.nytimes.com/topic/company/ebay-inc?inline=nyt-org\" title=\"More information about eBay Inc.\" class=\"meta-org\">eBay</a>"
-document.theForm.input.focus; return}
-now=now.replace(/\<script\>.+?\<\/script>/g,"")
-now=now.replace(/&quot;/g,'"').replace(/&nbsp;/g," ").replace(/&#8212;/g,"--").replace(/&#8220;/g,"“").replace(/&#8221;/g,"”").replace(/&#8217;/g,"’")
-now=now.replace(/&#\d*;/g,"...").replace(/&\w+;/g,"---")
-now=now.replace(/<!--.*-->/g,"").replace(/<p>/g,"\n").replace(/<\/p>/g,"")
-now=now.replace(/\<style[^<]*\<\/style[^>]*>/g,"")
-now=now.replace(/\<[^\>]*>/g,"")
-now=now.replace(/\n(\s*\n)+/g,"\n")
-document.theForm.input.value = now; document.theForm.input.focus()
-}
-// ---------------------------------------------------*/
-function parse(){push("","")
-if (now.length==0){
-document.theForm.input.value = "The Regular Expression Editor can clean up text so you can submit it to calculators. For example, to  get the answers to the following problems click on Parse.\n1. 3x^2 +7x +2 divided by x+2\n2. solve 2a+3b=y for b\n3. w equals $10,018 plus $23.40\n4. 4x*(x+2)^2\n5. 2.5% of $8,500.23\n6. what is 2 times 3\n"
-document.theForm.input.focus; return}
-probno(); pdiv(); comment();
-now = now.replace(/what number */ig,"x ").replace(/what */ig,"x ").replace(/%/g,"/100 ").replace(/ *of */ig,"*").replace(/ *percent */ig,"/100 ").replace(/ *plus */ig,"+").replace(/ *minus */ig,"-").replace(/ *times */ig,"*").replace(/ *equals* */ig,"=").replace(/ *is */ig,"=").replace(/solve */ig,"")
-document.theForm.input.value = now; thou()
-now = now.replace(/[a-z][a-z\,\.\:]+/ig,";").replace(/\?/g,"").replace(/(; *)+/g,";").replace(/;*\n *;*/g,"\n").replace(/^ *;/,"").replace(/; *$/,"").replace(/\n\n*/g,"\n").replace(/^\n/,"").replace(/\$(\d)/g,"$1").replace(/\+\;/g,'').replace(/\+(\d\))\+/g,'\n$1 ')
-now=now.replace(/([^); ]) ([^); ])/g,"$1+$2").replace(/\+$/,"")
-now=now.replace(/\+\++/g,"+")
-document.theForm.input.value = now; document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function cleantext(){push("","")
-if (now.length==0){
-  document.theForm.input.value = "Look for stuff that appears to be formulas like the ones below and get rid of everything else\nl=2\nw=3\na=l*w\n"
-  return}
-doit("one","1")
-doit("two","2")
-doit("three","3")
-doit("plus","+")
-doit("minus","-")
-doit("times","*")
-doit("divided","/")
-doit("hundred","00")
-doit("thousand","000")
-doit("million","000000")
-doit("billion","000000000")
-doit(" ","")
-doit("[a-z,A-Z][a-z,A-Z]+"," ")
-push('',''); document.theForm.input.value = now.replace(/^\s+/g,"").replace(/\n\s+/g,"\n").replace(/\s+\n/g,"\n").replace(/[ \t]+/g," ")
-}
-// ---------------------------------------------------*/
-function snl(){push("","")
-if (now.length==0){
-document.theForm.input.value = "convert stem and leaf data to list format:\n3 | 3 3 6 9\n4 | 0 7 8\n5 | 1 1 1\n16 |2 3 3\n27 | 0 7"
-return}
-if (now.search(/\|/)<0){
-if (now.search(/{/)>-1)
-{ nowl=''; now=now.replace(/ /ig,'')
-  while (now.length>0)
-  { while (now[0]==',') now=now.slice(1)
-    nownum=''
-    while (now.search(/\d/)==0) {nownum+=now[0]; now=now.slice(1)}
-    if (now[0]=="{")
-    { nowfreq=''; now=now.slice(1)
-      while (now[0]!="}") {nowfreq+=now[0]; now=now.slice(1)}
-      now=now.slice(1); nowfreq=Number(nowfreq)}
-      else nowfreq=1
-    while (nowfreq>0) {nowfreq--; nowl = nowl +nownum+','}}
-  now = nowl}
-now=now.replace(/.*:/g,'')
-now=now.replace(/[^\w]/g,",").replace(/,+/g,',').replace(/^ */,'').replace(/^,/,'')
-eval ( 'p = ['+now+']' ); p.sort(function(a, b){return a-b})
-ppp1 = ''; now=''; pppl=p[0].toString().length-1; ppps=p[p.length-1].toString().length
-if (pppl<1)pppl=1; if (ppps<2)ppps=2
-for (i=0; i<p.length; i++)
-{ pp = p[i].toString()
-  while (pp.length<ppps) pp=' '+pp
-  pp1 = pp.slice(0,-pppl); pp2=pp.slice(-pppl)
-  if (pp1!=ppp1) {now+='\n'+pp1+' |'; ppp1=pp1}
-  now+= ' '+pp2}
-document.theForm.input.value = now+'\n'
-} else {
-now=""
-for (i=0;i<nowl.length;i++)
-{ nowli=nowl[i].replace(/\|/g,":")
-  nowli1=nowli.search(/:/)
-  nowlis=(nowli.slice(0,nowli1)).replace(/ /g,"")
-  nowlil=(" "+nowli.slice(nowli1+1)+" ").replace(/  +/g," ")
-  nowlil=nowlil.slice(1,nowlil.length-1)
-  nowlill=nowlil.split(/ /)
-  while (nowlill.length>0) {nowlilll=nowlill.shift(); if (nowlilll.length>0) now+=","+nowlis+nowlilll}}
-document.theForm.input.value = now.replace(/,,+/g,",").slice(1); document.theForm.input.focus()}}
-// ---------------------------------------------------*/
-function lineno(){push("","")
-if (now.length==0){document.theForm.input.value = "Puts a line number on each line."; return}
-for (i=0;i<nowl.length;i++) nowl[i] = (i+1)+") "+nowl[i]
-document.theForm.input.value = nowl.join("\n"); document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function cnf(){push("","")
-document.theForm.input.focus()
-if (document.theForm.input.value == ""){
-  print('Converts a truth table to conjunctive normal form (CNF):\np q r s -->  (p⇒q)∧(q⇒r)∧(r⇒s)\nT T T T --> T\nT T T F --> F\nT T F T --> F\nT T F F --> F\nT F T T --> F\nT F T F --> F\nT F F T --> F\nT F F F --> F\nF T T T --> T\nF T T F --> F\nF T F T --> F\nF T F F --> F\nF F T T --> T\nF F T F --> F\nF F F T --> T\nF F F F --> T\n' )
-  document.theForm.input.focus()
-  return}
-xx=document.theForm.input.value.split(/\n/); yy=[]; zz=''
-for (xxi=0; xxi<xx.length; xxi++){
-  xxx=xx[xxi].replace(/\s/g,'')
-  if ((yyi=xxx.indexOf("-->"))==-1) continue
-  if (zz.length==0) {zz=xxx.slice(0,yyi); continue}
-  if (xxx.charAt(xxx.length-1)=="F") continue
-  yyy='('
-  for (j=0;j<zz.length;j++){
-    if(xxx.charAt(j)=="F") yyy+='¬'
-    yyy+=zz.charAt(j)+'∧'
-  }
-  yy.push(yyy.slice(0,yyy.length-1)+')')
-}
-document.theForm.input.value+= ':'+yy.join('∨')+'\n'; document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function trytoload(localstore){
-document.theForm.jsdata.value=localstore
-if (document.theForm.input.value.length==0) loadstuff(false, localstore)
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function logic() {push("","")
-if (now.length==0 || (menucode!=1 && menui==0)||(menucode==8)) {menui=-1; menu(1); return}
-if (menucode==1 && document.theForm.input.value.search(/:/)==-1) {menu(); return}
-localstore='logic'
-xx=document.theForm.input.value+'\n'
-xx1=xx.lastIndexOf(":");
-if(xx1<0) xx2=0; else xx2=xx.slice(0,xx1).lastIndexOf("\n")
-savestuff(localstore,slim(xx.slice(xx2)))
-runcomm='truth.htm?&'
-localstore=''
-document.theForm.input.focus()
-window.open(runcomm)}
-// ---------------------------------------------------*/
-function disc() {push("","")
-runcomm='discrete.htm'
-localstore=''
-document.theForm.input.focus()
-window.open(runcomm)}
-// ---------------------------------------------------*/
-function python(){push("","")
-if (now.length==0 || (menucode!=2 && menui==0)||(menucode==8)) {menui=-1; menu(2); return}
-if (menui==0 ) {menu(); return}
-savestuff('python')
-nowl[nowl.length]="#"
-nowm=[]; nowmi=-1; longstring=false
-for (i=0; i<nowl.length;i++){
-  if (nowl[i].search(/'''/)>-1){
-    nowl[i]=nowl[i].replace(/'''/,'"')
-    if (longstring){
-      if (nowl[i].search(/'''/)>-1){
-        nowl[i]=nowl[i].replace(/'''/,'"')}
-      else{
-        longstring=false}
-      nowm[nowmi]+="\\n"+nowl[i]}
-    else{
-      nowm[++nowmi]=nowl[i]; longstring=true}}
-  else{
-    if (longstring){
-      nowm[nowmi]+="\\n"+nowl[i]}
-    else{
-      if (slim(nowl[i]).length>0) nowm[++nowmi]=nowl[i]}}}
-now= nowm.join("\n")
-tabone='    '; braceone=""
-for (i=1; i<7; i++){
-  tabtwo=''; braceone=braceone+"}"; bracetwo=braceone
-  while (tabtwo.length<tabone.length){
-    var re = new RegExp('(\n'+tabone+'[^ ].+)(\n'+tabtwo+'[^ ])', "g")
-    now=now.replace(re,"$1"+bracetwo+"$2")
-    tabtwo=tabtwo+'    '; bracetwo=bracetwo.slice(1)}
-  tabone=tabone+'    '}
-document.theForm.input.value = now
-doit("import.*","")
-doit("time\\.sleep.*","")
-doit("random\\.randint\\(","rand(")
-doit("str\\(","(")
-doit("if ","if ("); doit("while ","while (")
-doit('def (.*):','function $1{')
-doit(":",") {"); doit('"',"'")
-doit("else *\\)","else")
-doit('True','true'); doit('False','false')
-doit("#","//"); doit(' and ',' && '); doit(' or ',' || '); doit(' not ',' ! ')
-doit("\\)\\(","),("); doit('\\),\\(','],['); doit('\\(([^)\\]]*])','[[$1'); doit('(\\[[^)\\]]*)\\)','$1]]')
-document.theForm.input.value=document.theForm.input.value.replace(/\n\s*\n/g,'\n').replace(/\n\s*\n/g,'\n')
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function jsrun(){push('','')
-yesjsrun=true
-if (now.length==0 || (menucode!=3 && menui==0)||(menucode==8)) {menui=-1; menu(3); return}
-if (menui==0 ) {menu(); return}
-document.theForm.jsdata.value = 'ijs'
-localstore = 'ijs'
-savestuff(localstore);
-runcomm='ijs.htm?run&'+localstore
-window.open(runcomm)
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function calc(){push('','')
-if (now.length==0 || (menucode!=4 && menui==0)||(menucode==8)) {menui=-1; menu(4); return}
-if (menui==0 ) {menu(); return}
-document.theForm.input.value=now.replace(/ +(\d)/g,"+$1")
-localstore='calc'
-savestuff(localstore)
-runcomm='calc.htm?&'
-localstore=''
-document.theForm.input.focus()
-window.open(runcomm)
-}
-// ---------------------------------------------------*/
-function math(){ with(Math) {push("","")
-if (now.length==0 || (menucode!=5 && menui==0)||(menucode==8)) {menui=-1; menu(5); return}
-if (menui==0 ) {menu(); return}
-savestuff('math'); menucode=0; menui=-1
-xhed=''; xcod1=''; xcod2=''; xpri=''; xwri=''; xinit=''; xxif1=''; xxif2=''
-xx0=''; xx0x='' // can only have one array
-xx1=now.lastIndexOf(":"); if (xx1>-1) now=now.slice(xx1+1)
-xx1=now.split(/\n/)
-pnoregex=new RegExp('^ *(\\d+|\\w)(\\)|\\. )')
+    now=document.theForm.input.value; document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function doitall(confr,conto){
+    confr = confr.replace(/\\n/g,"\n") // covert the characters \n to the character \n
+    conto = conto.replace(/\\n/g,"\n") // covert the characters \n to the character \n
+    var re = new RegExp( confr, "g")
+    push(confr,conto); now=now.replace( re, conto )
+    document.theForm.input.value=now; document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function dolist(){with (Math){
+    frarray = document.theForm.convfrlist.value.split(",")
+    toarray = document.theForm.convtolist.value.split(",")
+    for (var i=0;i<min(toarray.length,frarray.length); i++) doit(frarray[i],toarray[i])
+    var x=document.theForm.convfrlist.value
+    document.theForm.convfrlist.value=document.theForm.convtolist.value
+    document.theForm.convtolist.value=x}}
+    // ---------------------------------------------------*/
+    function dodo(){
+    doitall(document.theForm.convfr.value,document.theForm.convto.value)
+    document.theForm.convfr.value=""
+    document.theForm.convto.value=""}
+    // ---------------------------------------------------*/
+    function undo(){
+    if (thiswas.length>0)
+    { document.theForm.input.value=thiswas.pop()
+      document.theForm.convfr.value=savefr.pop()
+      document.theForm.convto.value=saveto.pop()}
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function repeat(){
+    if (thiswas.length>0)
+    { document.theForm.convfr.value=savefr.pop()
+      document.theForm.convto.value=saveto.pop()
+      dodo()}
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function lis(){push("","")
+    if (now.length==0) {print('converts values to comma separated list: \n 7 13 21 15 61 13 131 17 81 19 15 26 27 \n'); return}
+    if ((xx1=now.lastIndexOf(":"))>-1) now=now.slice(xx1+1)
+    now=now.replace(/\w*[a-z]\w*=/,'').replace(/^\n*/,'').replace(/"/g,"").replace(/'/g,"").replace(/[^\w\.]/g,",") .replace(/,+/g,",") .replace(/^,/,"") .replace(/,$/,"")
+    document.theForm.input.value=now}
+    // ---------------------------------------------------*/
+    function lis1(){push("","")
+    if (now.length==0) {print('generates sorted list:\n 7 13 21 15 61 13 131 17 81 19 15 26 27 \n'); return}
 
-for (xx1i=0; xx1i<xx1.length; xx1i++)
-{ xx1x=xx1[xx1i]
-  if (xx0=='' && (xx1xii=xx1x.search(/\[.*\]/))>0) // line is an array
-  { xx0x=xx1x[0].toUpperCase()
-    xx0=xx1x.slice(xx1xii)
-    xcod1+='pp='+xx0+'; '
-    xhed+=(xhed==''?'':", ")+xx0x.toLowerCase()
-    xpri+=(xpri==''?'':", ")+'my('+xx0x+')'
-    xwri+=(xwri==''?'':"+', '+")+xx0x
-    continue}
-  if (xx1x.search(/\/\//)>-1) continue // comment
-  if (xx1x.search(pnoregex)==0) // line has a problem number
-  { // xpri='\n'+xx1x.match(pnoregex)[0]
-    xx1x=xx1x.replace(pnoregex,"")}
-  xx2=xx1x.split(/;/)
-  for (xx2i=0; xx2i<xx2.length; xx2i++) // each statement
-  { xx2x=xx2[xx2i]
-    xxx2=slim(cleanx(xx2x))
-    if (xxx2=='') continue
-    if (xxx2.search(/<|>|==|!=/)>0)
-    { xxif1='if('+xxx2+'){\n';xxif2+='}'}
-    else if (xxx2.search(/print/)<0)
-    { if (xxx2.search(/=/)>=0 && xxx2.search(/=.*[A-Z]/)<0)
-      { xcod1+= xxx2+'; '}
-      else
-      { xcod2+= xxx2+'; '
-        xhed+=(xhed==''?'':", ")+xx2x.toLowerCase()
-        if (xxx2.search(/=/)>0) xxx2=xxx2.replace(/=.*/,'')
-        xpri+=(xpri==''?'':", ")+'my('+xxx2+')'
-        xwri+=(xwri==''?'':"+', '+")+xxx2
-} } } }
-xcod2+=xxif1+'print(%xxxx%); writeln(%xxx1%)'+xxif2+'\n'
-var xxvars=xcod2.match(/[A-Z]/g)
-if (xxvars==null) {xxvars=[]}; xxvars=xxvars.sort().reverse()
-var xxvarsi=0; while (xxvarsi<xxvars.length)
-{ xxvar = xxvars[xxvarsi]
-  var reg=new RegExp(xxvar+' *= *(?![=\[])','i')
-  if (now.search(reg)>-1 || eval('typeof('+xxvar+')')!='undefined' || xxvars[xxvarsi]==xxvars[xxvarsi-1])
-  { if (xxvars[xxvarsi]!=xxvars[xxvarsi-1] && xxvars[xxvarsi]!=xxvars[xxvarsi+1]) xinit += xxvar.toUpperCase()+'=0;'; xxvars.splice(xxvarsi,1)} else xxvarsi++}
-for (xxvarsi=0; xxvarsi<xxvars.length; xxvarsi++)
-{ xxvar = xxvars[xxvarsi].toUpperCase()
-  if (xx0x==xxvar)
-  { xcod2 = '\nLoop'+xxvarsi+': for (ppi in pp) {'+xxvar+'=pp[ppi];' +xcod2 +'}'; xx0=''; continue}
-  xcod2 = 'Loop'+xxvarsi+': for ('+xxvar+'=0;'+xxvar+'<10;'+xxvar +'++) {' +xcod2 +'}'
-  xpri='my('+xxvar.toUpperCase()+')'+(xpri==''?'':", ")+xpri
-  xwri=xxvar.toUpperCase()+(xwri==''?'':"+', '+")+xwri
-  xhed=xxvar.toLowerCase()+(xhed==''?'':", ")+xhed}
-xxx='/* '+document.theForm.input.value+'*/\nprint(swfrac(2));'
-xxx+= xinit+'\n'
-if (xcod1!='') xxx+= 'print("'+xcod1.replace(/\n/g,'; ').toLowerCase()+'");\n'+xcod1+';\n'
-if (xhed!='') xxx+= 'print("'+xhed+'");\n'
-if (xx0x!='') xxx+='print("'+xx0x+'=["+pp+"]");\n'
-xxx+=xcod2
-document.theForm.input.value = xxx.replace(/%xxxx%/,xpri).replace(/%xxx1%/,xwri)
-document.theForm.input.focus()}}
-// ---------------------------------------------------*/
-function solve(){push('','')
-if (now.length==0 || (menucode!=6 && menui==0)||(menucode==8)) {menui=-1; menu(6); return}
-if (menui==0 ) {menu(); return}
-localstore='simplify'
-savestuff(localstore)
-runcomm='simplify.htm?&'
-localstore=''
-window.open(runcomm)
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function dograph(){push("","")
-if (now.length==0 || (menucode!=7 && menui==0)||(menucode==8)) {menui=-1; menu(7); return}
-if (menui==0 ) {menu(); return}
-doit("θ","x")
-if (now.search(/[a-z]x/)>0) doit('x','(x)')
-savestuff('graphdata'); window.open('graphs.htm')
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function vocab() {
-if (menucode==8){
-switch (menui) {
-case 2: mc=1; break; // logic
-case 5: mc=9; break; // stats
-case 8: mc=10; break; // tutors
-default: document.theForm.input.value = ''; document.theForm.input.focus(); return
-}
-menui=0; menu(mc)
-} else {menui=-1; menu(8)}
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-function dostats(){push("","")
-if (now.length==0 || (menucode!=9 && menui==0)) {menui=-1; menu(9); return}
-if (menui==0 ) {menu(); return}
-if (now.search(/:/)<0)
-{ if (now.search(/{/)>=0) {now=now.replace(/(\d),/g,'$1{1},'); window.open('regress.htm?&&&&'+now); return}
-  if (now.search(/y:/)>0 || now.search(/yf:/)>0) window.open('regress.htm?'+now)
-  else window.open('stats.htm?'+now)
-  document.theForm.input.focus(); return}
-s=['','','','','','','','']
-for (i=0;i<nowl.length;i++){
-  if ((j=nowl[i].search(/:/))>0)
-  { k=0;
-  if(nowl[i].slice(0,j)=='y') k=1
-  else if(nowl[i].slice(0,j)=='f') k=2
-  else if(nowl[i].slice(0,j)=='xy') k=3
-  else if(nowl[i].slice(0,j)=='xf') k=4
-  else if(nowl[i].slice(0,j)=='xyf') k=5
-  else if(nowl[i].slice(0,j)=='o') k=6
-  else if(nowl[i].slice(0,j)=='w') k=7
-  s[k]+=(s[k].length>0?' ':'')+nowl[i].slice(j+1)}}
-if ((s[0]+s[1]+s[2]+s[3]+s[4]+s[5]+s[6]+s[7]).length>0)
-  if (now.search(/y:/)>0 || now.search(/yf:/)>0) window.open('regress.htm?'+s[0]+'&'+s[1]+'&'+s[2]+'&'+s[3]+'&'+s[4]+'&'+s[5]+'&'+s[6]+'&'+s[7])
-  else window.open('stats.htm?'+s[0]+'&'+s[2]+'&'+s[4]+'&'+s[6]+'&'+s[7])
-document.theForm.input.focus()}
-// ---------------------------------------------------*/
-</script>
-<form name="theForm">
-<table border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">
-Regular Expression text editor</td></tr><tr><td align='center'>
-Math118:
-<input name="vocabbut" Value="vocab" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="vocab()" title="Some math words you should know"/>
-<input name="logbut" Value="logic" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="logic()" title="calls truth table for logic"/>
-<input name="calcbut"  Value="calc" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="calc()" title="saves screen to cookie and starts calculator"/>
-<input name="discbut"  Value="probab" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="disc()" title="calls discrete probability module"/>
-<input name="statsbut" Value="stats" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="dostats()" title="send screen to statistics module"/>
-Go:
-<input name="nextbut" Value="next" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="menu()" title="subsequent menu item"/>
-<input name="backbut" Value="back" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="back()" title="previous menu item"/>
-<!--<input name="editbut" Value="edit" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="menucode=0;menui=-1;yesjsrun=true" title="exit menu"/>-->
-<input name="clerebut" Value="Clear" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="clere()" title="clears screen (ESC)"/>
-Other:
-<input name="solvbut"  Value="simplify" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="solve()" title="saves screen to cookie and starts algebra"/>
-<input name="graphbut" Value="graph" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="dograph()" title="send screen to grapher"/>
-<input name="pybut" value="python" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="python()" title="converts python to js"/>
-<input name="mathbut" Value="math" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="math()" title="converts math to js"/>
-<input name="jsrunbut"  Value="J/S" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="jsrun()" title="start java console"/>
-</td></tr>
-<tr><td colspan=2><textarea name = "input" rows = 25 cols = 110 onKeyUp="enter(event)">
+    if (now.slice(0,3)=='m=['){ now=(now+'\n').slice(0,now.search('\\n')); eval(now); m.sort(); now = "";
+    for (i=0; i<m.length; i++) now +=m[i]+"\n"
+    document.theForm.input.value=now; document.theForm.input.focus()
+    return}
+
+    lis(); eval('p=['+now.replace(/(\w*[a-z]\w*)/gi,'"$1"')+']')
+    if (now.search(/[a-z]/)>-1) document.theForm.input.value = p.sort()
+    else document.theForm.input.value = p.sort(function(a, b){return a-b})           }
+    // ---------------------------------------------------*/
+    function lis2(){push("","")
+    if (now.length==0){print('eliminates duplicates from list:\n  7 13 21 15 61 13 131 17 81 19 15 26 27 \n'); return}
+    p=[]; lis1()
+    for (i=1; i<p.length; i++)
+    {while (p[i]==p[i-1])
+     { p.splice(i-1,1); if (i>=p.length) break }
+    document.theForm.input.value = p
+    document.theForm.input.focus()}}
+    // ---------------------------------------------------*/
+    function lis0(){push("","")
+    if (now.length==0) {print('creates an array:\n 7 13 21 15 61 13 131 17 81 19 15 26 27 \n'); return}
+    lis();document.theForm.input.value= 'm=['+now.replace(/(\w*[a-z]\w*)/gi,'"$1"') +']\n'
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function lis3(){push("","")
+    if (now.length==0) {print('converts xy values to n by two array:\n0, 1\n1, 0\n2, 5\n3, 16'); return}
+    if ((xx1=now.lastIndexOf(":"))>-1) now=now.slice(xx1+1)
+    if (now.search(/\[\[/)>-1) return
+    document.theForm.input.value= now.replace(/[^\w\.\-]/g,",")
+    doit(",+",",")
+    document.theForm.input.value='m=['+document.theForm.input.value.replace(/^,/,"").replace(/,$/,"").replace(/([^\,]*),([^\,]*)(,*)/g,"[$1,$2]$3").replace(/(\w*[a-z]\w*)/gi,'"$1"')+']'+"\nmprint(m)"
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function lis4(){push("","")
+    if (now.length==0) {print('converts values to n by m array:\n1\n2 3\n4 5 6\n7 8 9 10\n'); return}
+    if ((xx1=now.lastIndexOf(":"))>-1) now=now.slice(xx1+1)
+    if (now.search(/\[\[/)>-1) return
+    now="[["+now.replace(/\w*[a-z]\w*=/,'').replace(/\n/g,"],[")+"]]"
+    now=now .replace(/[^\[\]\w\.\]\[\-\+]/g,",") .replace(/,+/g,",") .replace(/,*\[\],*/g,',') .replace(/\[\,+/g,"[") .replace(/\,+\]/g,"]").replace(/(\w*[a-z]\w*)/gi,'"$1"')
+    document.theForm.input.value="m="+now.replace(/^,/,"").replace(/,$/,"")+"\nmprint(m)"
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function lis56(sortit){push("","")
+    if (now.length==0)
+       { print('convert lines to an array or sort them:\nCleveland OH\nBoston MA\nPittsburgh PA\nLos Angeles CA\nSt Louis IL\n'); return ''}
+    now = "";
+    for (i=0; i<nowl.length; i++) {now += (now.length>0?',':'')+'"'+nowl[i].replace(/"/g,"'")+'"'}
+    document.theForm.input.value="m=["+now+"];"+(sortit?" m.sort();":"")+"for (i=0;i<m.length;i++) {print(m[i]); write(m[i])}"
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function lis7(){push("","")
+    if (now.length==0) {print('remove first column of table:\n x   N(x)    P(x)\n--- ----- ---------\n  0     1 0.0000404\n  1    10 0.0007074\n  2    45 0.0055713\n  3   120 0.0259997\n  4   210 0.0796241\n  5   252 0.1672106\n  6   210 0.2438488\n  7   120 0.2438488\n  8    45 0.1600257\n  9    10 0.0622322\n 10     1 0.0108906\n--- ----- ---------\nall  1024 1.0000000\n'); return}
+    nblines=false
+    for (i=0; i<nowl.length; i++)
+    { nowl[i]=nowl[i].replace(/^\s*/,''); if (nowl[i]==nowl[i].replace(/^\S+\s+/,'')) nowl[i]=''; else {nblines=true; nowl[i]=nowl[i].replace(/^\S+\s/,'')}}
+    document.theForm.input.value=(nblines?nowl.join("\n"):'');  document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function lis8(){push("","")
+    if (now.length==0) {print('remove last column of table:\n x   N(x)    P(x)\n--- ----- ---------\n  0     1 0.0000404\n  1    10 0.0007074\n  2    45 0.0055713\n  3   120 0.0259997\n  4   210 0.0796241\n  5   252 0.1672106\n  6   210 0.2438488\n  7   120 0.2438488\n  8    45 0.1600257\n  9    10 0.0622322\n 10     1 0.0108906\n--- ----- ---------\nall  1024 1.0000000\n'); return}
+    nblines=false
+    for (i=0; i<nowl.length; i++)
+    { nowl[i]=nowl[i].replace(/ *$/,''); if (nowl[i]==nowl[i].replace(/\s+\S+$/,'')) nowl[i]=''; else {nblines=true; nowl[i]=nowl[i].replace(/\s+\S+$/,'')}}
+    document.theForm.input.value=(nblines?nowl.join("\n"):'');  document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function csv(){push("","")
+    if (now.length==0) {print('converts list of values into CSV format file:\nitem\nquantity\n\nbread&butter\n5\n\nblood, sweat & tears\n3'); return}
+    if ((xx1=now.lastIndexOf(":"))>-1) now=now.slice(xx1+1)
+    now = '\n'+now.replace(/\t/g,"").replace(/\\[a-z]/g,"")+'\n'
+    now = now.replace(/\n +/g,"\n").replace(/ +\n/g,"\n")
+    now = now.replace(/\n\n\n/g,"\n\n").replace(/\n\n\n/g,"\n\n").replace(/\n/g,"\n\n").replace(/\n([^\n]*[a-z][^\n]*)\n/gi,'\n"$1"\n')
+    now = now.replace(/\n\n/g,"\n").replace(/\n*$/g,"").replace(/^\n*/,"")
+    document.theForm.input.value = now.replace(/\n\n/g,"\t").replace(/\n/g,",").replace(/\t/g,"\n"); document.theForm.input.focus()}
+    // insert blank column 2 for 3 col data    replace(/^("[^"]*",)("[^"]*","[^"]*")$/g,'$1"",$2')
+    // ---------------------------------------------------*/
+    function Lagr(){lis3(); push("","")
+    if (now.slice(0,21)=='converts xy values to') {
+    document.theForm.input.value = 'generates the LaGrange Polynomial from an'+now.slice(21)
+    return}
+    eval('pp='+now.slice(now.search(/=/)+1,now.search(']]')+2))
+    document.theForm.input.value=''
+    xx=''
+    xlow=pp[0][0];xhi=xlow
+    ylow=pp[0][1];yhi=ylow
+    for(i=0;i<pp.length;i++) {
+     xx+='('+pp[i][0]+','+pp[i][1]+',-4);'
+     if (xlow>pp[i][0]) xlow=pp[i][0]
+     if (xhi<pp[i][0]) xhi=pp[i][0]
+     if (ylow>pp[i][1]) ylow=pp[i][1]
+     if (yhi<pp[i][1]) yhi=pp[i][1]}
+    xborder=(xhi-xlow)/10; xhi=xhi+xborder; xlow=xlow-xborder
+    yborder=(yhi-ylow)/10; yhi=yhi+yborder; ylow=ylow-yborder
+    x1=''
+    for(i=0;i<pp.length;i++) {
+      x1+=(pp[i][1]>=0?'+':'')+pp[i][1]
+      for(j=0;j<pp.length;j++) {
+        if (i!=j) x1+='*(x-('+pp[j][0]+'))/'+eval(pp[i][0]-pp[j][0])}}
+    x2 = 'x: '+xlow+' to '+xhi+'\ny: '+ylow+' to '+yhi+'\n'+x1+'\n'+xx
+    print ('\Now you can press Clear and either load the "solve" cookie and call "solve" to see the reduced polynomial, or load the "graph" cookie and call "graph" to see the graph.')
+    savestuff('simplify','simplified polynomial:\n'+x1); savestuff('graphdata', x2)
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function thou(){
+    push('','')
+    now=now.replace(/(\d),(\d)/g,"$1$2")
+    now=now.replace(/\$(\d)/g,"$1")
+    document.theForm.input.value=now; document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function xdiv(){push("","")
+    doit("([a-z])/(\\d+)","1/$2 $1")}
+    // ---------------------------------------------------*/
+    function pdiv(){push("","")
+    doit("over|divided *by","/")
+    doit(" *\\/ *",")/(")
+    doit("(\\w*\\))* *(.*)\\)\\/\\(([^\\n]*)","$1 ($2)/($3)")
+    for (i=1;i<nowl.length-1;i++) {
+      if (nowl[i].replace(/^\s*-+\s*$/,'over')=='over'){
+        nowl[i-1]='('+nowl[i-1]+')/('+nowl[i+1]+')'
+        nowl.splice(i,2)
+        document.theForm.input.value=nowl.join("\n")
+        document.theForm.input.focus()
+    }}}
+    // ---------------------------------------------------*/
+    function comment(){
+    doit(" .*:"," ")}
+    // ---------------------------------------------------*/
+    function probno(){
+    doit("^(\\w+)\\.(?!\\d)","$1) ")
+    doit("^(\\w+)-","$1) ")
+    doit("^(\\w+)\\)[) ]*","$1) ")}
+    // ---------------------------------------------------*/
+    function conv(){
+    confr=document.theForm.convfr.value;
+    conto=document.theForm.convto.value.replace(/\\n/g,"\n")
+    if (confr.length>0) {
+    push("","")
+    conx=savefr.length
+    savefr.push(confr); saveto.push(conto)
+    var re = new RegExp( confr, "g")
+    now = now.replace( re, conto)
+    document.theForm.input.value = now
+    document.theForm.convfr.value=""
+    document.theForm.convto.value=""
+    }
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function notag(){push("","")
+    if (now.length==0){
+    document.theForm.input.value = "this button eliminates HTML tags to make text more human readable:\n<big>Hello</big> <div> silly people <p class=\"story-body-text story-content\" data-para-count=\"331\" data-total-count=\"331\"> from me on <a href=\"http://www.nytimes.com/topic/company/ebay-inc?inline=nyt-org\" title=\"More information about eBay Inc.\" class=\"meta-org\">eBay</a>"
+    document.theForm.input.focus; return}
+    now=now.replace(/\<script\>.+?\<\/script>/g,"")
+    now=now.replace(/&quot;/g,'"').replace(/&nbsp;/g," ").replace(/&#8212;/g,"--").replace(/&#8220;/g,"“").replace(/&#8221;/g,"”").replace(/&#8217;/g,"’")
+    now=now.replace(/&#\d*;/g,"...").replace(/&\w+;/g,"---")
+    now=now.replace(/<!--.*-->/g,"").replace(/<p>/g,"\n").replace(/<\/p>/g,"")
+    now=now.replace(/\<style[^<]*\<\/style[^>]*>/g,"")
+    now=now.replace(/\<[^\>]*>/g,"")
+    now=now.replace(/\n(\s*\n)+/g,"\n")
+    document.theForm.input.value = now; document.theForm.input.focus()
+    }
+    // ---------------------------------------------------*/
+    function parse(){push("","")
+    if (now.length==0){
+    document.theForm.input.value = "The Regular Expression Editor can clean up text so you can submit it to calculators. For example, to  get the answers to the following problems click on Parse.\n1. 3x^2 +7x +2 divided by x+2\n2. solve 2a+3b=y for b\n3. w equals $10,018 plus $23.40\n4. 4x*(x+2)^2\n5. 2.5% of $8,500.23\n6. what is 2 times 3\n"
+    document.theForm.input.focus; return}
+    probno(); pdiv(); comment();
+    now = now.replace(/what number */ig,"x ").replace(/what */ig,"x ").replace(/%/g,"/100 ").replace(/ *of */ig,"*").replace(/ *percent */ig,"/100 ").replace(/ *plus */ig,"+").replace(/ *minus */ig,"-").replace(/ *times */ig,"*").replace(/ *equals* */ig,"=").replace(/ *is */ig,"=").replace(/solve */ig,"")
+    document.theForm.input.value = now; thou()
+    now = now.replace(/[a-z][a-z\,\.\:]+/ig,";").replace(/\?/g,"").replace(/(; *)+/g,";").replace(/;*\n *;*/g,"\n").replace(/^ *;/,"").replace(/; *$/,"").replace(/\n\n*/g,"\n").replace(/^\n/,"").replace(/\$(\d)/g,"$1").replace(/\+\;/g,'').replace(/\+(\d\))\+/g,'\n$1 ')
+    now=now.replace(/([^); ]) ([^); ])/g,"$1+$2").replace(/\+$/,"")
+    now=now.replace(/\+\++/g,"+")
+    document.theForm.input.value = now; document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function cleantext(){push("","")
+    if (now.length==0){
+      document.theForm.input.value = "Look for stuff that appears to be formulas like the ones below and get rid of everything else\nl=2\nw=3\na=l*w\n"
+      return}
+    doit("one","1")
+    doit("two","2")
+    doit("three","3")
+    doit("plus","+")
+    doit("minus","-")
+    doit("times","*")
+    doit("divided","/")
+    doit("hundred","00")
+    doit("thousand","000")
+    doit("million","000000")
+    doit("billion","000000000")
+    doit(" ","")
+    doit("[a-z,A-Z][a-z,A-Z]+"," ")
+    push('',''); document.theForm.input.value = now.replace(/^\s+/g,"").replace(/\n\s+/g,"\n").replace(/\s+\n/g,"\n").replace(/[ \t]+/g," ")
+    }
+    // ---------------------------------------------------*/
+    function snl(){push("","")
+    if (now.length==0){
+    document.theForm.input.value = "convert stem and leaf data to list format:\n3 | 3 3 6 9\n4 | 0 7 8\n5 | 1 1 1\n16 |2 3 3\n27 | 0 7"
+    return}
+    if (now.search(/\|/)<0){
+    if (now.search(/{/)>-1)
+    { nowl=''; now=now.replace(/ /ig,'')
+      while (now.length>0)
+      { while (now[0]==',') now=now.slice(1)
+        nownum=''
+        while (now.search(/\d/)==0) {nownum+=now[0]; now=now.slice(1)}
+        if (now[0]=="{")
+        { nowfreq=''; now=now.slice(1)
+          while (now[0]!="}") {nowfreq+=now[0]; now=now.slice(1)}
+          now=now.slice(1); nowfreq=Number(nowfreq)}
+          else nowfreq=1
+        while (nowfreq>0) {nowfreq--; nowl = nowl +nownum+','}}
+      now = nowl}
+    now=now.replace(/.*:/g,'')
+    now=now.replace(/[^\w]/g,",").replace(/,+/g,',').replace(/^ */,'').replace(/^,/,'')
+    eval ( 'p = ['+now+']' ); p.sort(function(a, b){return a-b})
+    ppp1 = ''; now=''; pppl=p[0].toString().length-1; ppps=p[p.length-1].toString().length
+    if (pppl<1)pppl=1; if (ppps<2)ppps=2
+    for (i=0; i<p.length; i++)
+    { pp = p[i].toString()
+      while (pp.length<ppps) pp=' '+pp
+      pp1 = pp.slice(0,-pppl); pp2=pp.slice(-pppl)
+      if (pp1!=ppp1) {now+='\n'+pp1+' |'; ppp1=pp1}
+      now+= ' '+pp2}
+    document.theForm.input.value = now+'\n'
+    } else {
+    now=""
+    for (i=0;i<nowl.length;i++)
+    { nowli=nowl[i].replace(/\|/g,":")
+      nowli1=nowli.search(/:/)
+      nowlis=(nowli.slice(0,nowli1)).replace(/ /g,"")
+      nowlil=(" "+nowli.slice(nowli1+1)+" ").replace(/  +/g," ")
+      nowlil=nowlil.slice(1,nowlil.length-1)
+      nowlill=nowlil.split(/ /)
+      while (nowlill.length>0) {nowlilll=nowlill.shift(); if (nowlilll.length>0) now+=","+nowlis+nowlilll}}
+    document.theForm.input.value = now.replace(/,,+/g,",").slice(1); document.theForm.input.focus()}}
+    // ---------------------------------------------------*/
+    function lineno(){push("","")
+    if (now.length==0){document.theForm.input.value = "Puts a line number on each line."; return}
+    for (i=0;i<nowl.length;i++) nowl[i] = (i+1)+") "+nowl[i]
+    document.theForm.input.value = nowl.join("\n"); document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function cnf(){push("","")
+    document.theForm.input.focus()
+    if (document.theForm.input.value == ""){
+      print('Converts a truth table to conjunctive normal form (CNF):\np q r s -->  (p⇒q)∧(q⇒r)∧(r⇒s)\nT T T T --> T\nT T T F --> F\nT T F T --> F\nT T F F --> F\nT F T T --> F\nT F T F --> F\nT F F T --> F\nT F F F --> F\nF T T T --> T\nF T T F --> F\nF T F T --> F\nF T F F --> F\nF F T T --> T\nF F T F --> F\nF F F T --> T\nF F F F --> T\n' )
+      document.theForm.input.focus()
+      return}
+    xx=document.theForm.input.value.split(/\n/); yy=[]; zz=''
+    for (xxi=0; xxi<xx.length; xxi++){
+      xxx=xx[xxi].replace(/\s/g,'')
+      if ((yyi=xxx.indexOf("-->"))==-1) continue
+      if (zz.length==0) {zz=xxx.slice(0,yyi); continue}
+      if (xxx.charAt(xxx.length-1)=="F") continue
+      yyy='('
+      for (j=0;j<zz.length;j++){
+        if(xxx.charAt(j)=="F") yyy+='¬'
+        yyy+=zz.charAt(j)+'∧'
+      }
+      yy.push(yyy.slice(0,yyy.length-1)+')')
+    }
+    document.theForm.input.value+= ':'+yy.join('∨')+'\n'; document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function trytoload(localstore){
+    document.theForm.jsdata.value=localstore
+    if (document.theForm.input.value.length==0) loadstuff(false, localstore)
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function logic() {push("","")
+    if (now.length==0 || (menucode!=1 && menui==0)||(menucode==8)) {menui=-1; menu(1); return}
+    if (menucode==1 && document.theForm.input.value.search(/:/)==-1) {menu(); return}
+    localstore='logic'
+    xx=document.theForm.input.value+'\n'
+    xx1=xx.lastIndexOf(":");
+    if(xx1<0) xx2=0; else xx2=xx.slice(0,xx1).lastIndexOf("\n")
+    savestuff(localstore,slim(xx.slice(xx2)))
+    runcomm='truth.htm?&'
+    localstore=''
+    document.theForm.input.focus()
+    window.open(runcomm)}
+    // ---------------------------------------------------*/
+    function disc() {push("","")
+    runcomm='discrete.htm'
+    localstore=''
+    document.theForm.input.focus()
+    window.open(runcomm)}
+    // ---------------------------------------------------*/
+    function python(){push("","")
+    if (now.length==0 || (menucode!=2 && menui==0)||(menucode==8)) {menui=-1; menu(2); return}
+    if (menui==0 ) {menu(); return}
+    savestuff('python')
+    nowl[nowl.length]="#"
+    nowm=[]; nowmi=-1; longstring=false
+    for (i=0; i<nowl.length;i++){
+      if (nowl[i].search(/'''/)>-1){
+        nowl[i]=nowl[i].replace(/'''/,'"')
+        if (longstring){
+          if (nowl[i].search(/'''/)>-1){
+            nowl[i]=nowl[i].replace(/'''/,'"')}
+          else{
+            longstring=false}
+          nowm[nowmi]+="\\n"+nowl[i]}
+        else{
+          nowm[++nowmi]=nowl[i]; longstring=true}}
+      else{
+        if (longstring){
+          nowm[nowmi]+="\\n"+nowl[i]}
+        else{
+          if (slim(nowl[i]).length>0) nowm[++nowmi]=nowl[i]}}}
+    now= nowm.join("\n")
+    tabone='    '; braceone=""
+    for (i=1; i<7; i++){
+      tabtwo=''; braceone=braceone+"}"; bracetwo=braceone
+      while (tabtwo.length<tabone.length){
+        var re = new RegExp('(\n'+tabone+'[^ ].+)(\n'+tabtwo+'[^ ])', "g")
+        now=now.replace(re,"$1"+bracetwo+"$2")
+        tabtwo=tabtwo+'    '; bracetwo=bracetwo.slice(1)}
+      tabone=tabone+'    '}
+    document.theForm.input.value = now
+    doit("import.*","")
+    doit("time\\.sleep.*","")
+    doit("random\\.randint\\(","rand(")
+    doit("str\\(","(")
+    doit("if ","if ("); doit("while ","while (")
+    doit('def (.*):','function $1{')
+    doit(":",") {"); doit('"',"'")
+    doit("else *\\)","else")
+    doit('True','true'); doit('False','false')
+    doit("#","//"); doit(' and ',' && '); doit(' or ',' || '); doit(' not ',' ! ')
+    doit("\\)\\(","),("); doit('\\),\\(','],['); doit('\\(([^)\\]]*])','[[$1'); doit('(\\[[^)\\]]*)\\)','$1]]')
+    document.theForm.input.value=document.theForm.input.value.replace(/\n\s*\n/g,'\n').replace(/\n\s*\n/g,'\n')
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function jsrun(){push('','')
+    yesjsrun=true
+    if (now.length==0 || (menucode!=3 && menui==0)||(menucode==8)) {menui=-1; menu(3); return}
+    if (menui==0 ) {menu(); return}
+    document.theForm.jsdata.value = 'ijs'
+    localstore = 'ijs'
+    savestuff(localstore);
+    runcomm='ijs.htm?run&'+localstore
+    window.open(runcomm)
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function calc(){push('','')
+    if (now.length==0 || (menucode!=4 && menui==0)||(menucode==8)) {menui=-1; menu(4); return}
+    if (menui==0 ) {menu(); return}
+    document.theForm.input.value=now.replace(/ +(\d)/g,"+$1")
+    localstore='calc'
+    savestuff(localstore)
+    runcomm='calc.htm?&'
+    localstore=''
+    document.theForm.input.focus()
+    window.open(runcomm)
+    }
+    // ---------------------------------------------------*/
+    function math(){ with(Math) {push("","")
+    if (now.length==0 || (menucode!=5 && menui==0)||(menucode==8)) {menui=-1; menu(5); return}
+    if (menui==0 ) {menu(); return}
+    savestuff('math'); menucode=0; menui=-1
+    xhed=''; xcod1=''; xcod2=''; xpri=''; xwri=''; xinit=''; xxif1=''; xxif2=''
+    xx0=''; xx0x='' // can only have one array
+    xx1=now.lastIndexOf(":"); if (xx1>-1) now=now.slice(xx1+1)
+    xx1=now.split(/\n/)
+    pnoregex=new RegExp('^ *(\\d+|\\w)(\\)|\\. )')
+
+    for (xx1i=0; xx1i<xx1.length; xx1i++)
+    { xx1x=xx1[xx1i]
+      if (xx0=='' && (xx1xii=xx1x.search(/\[.*\]/))>0) // line is an array
+      { xx0x=xx1x[0].toUpperCase()
+        xx0=xx1x.slice(xx1xii)
+        xcod1+='pp='+xx0+'; '
+        xhed+=(xhed==''?'':", ")+xx0x.toLowerCase()
+        xpri+=(xpri==''?'':", ")+'my('+xx0x+')'
+        xwri+=(xwri==''?'':"+', '+")+xx0x
+        continue}
+      if (xx1x.search(/\/\//)>-1) continue // comment
+      if (xx1x.search(pnoregex)==0) // line has a problem number
+      { // xpri='\n'+xx1x.match(pnoregex)[0]
+        xx1x=xx1x.replace(pnoregex,"")}
+      xx2=xx1x.split(/;/)
+      for (xx2i=0; xx2i<xx2.length; xx2i++) // each statement
+      { xx2x=xx2[xx2i]
+        xxx2=slim(cleanx(xx2x))
+        if (xxx2=='') continue
+        if (xxx2.search(/<|>|==|!=/)>0)
+        { xxif1='if('+xxx2+'){\n';xxif2+='}'}
+        else if (xxx2.search(/print/)<0)
+        { if (xxx2.search(/=/)>=0 && xxx2.search(/=.*[A-Z]/)<0)
+          { xcod1+= xxx2+'; '}
+          else
+          { xcod2+= xxx2+'; '
+            xhed+=(xhed==''?'':", ")+xx2x.toLowerCase()
+            if (xxx2.search(/=/)>0) xxx2=xxx2.replace(/=.*/,'')
+            xpri+=(xpri==''?'':", ")+'my('+xxx2+')'
+            xwri+=(xwri==''?'':"+', '+")+xxx2
+    } } } }
+    xcod2+=xxif1+'print(%xxxx%); writeln(%xxx1%)'+xxif2+'\n'
+    var xxvars=xcod2.match(/[A-Z]/g)
+    if (xxvars==null) {xxvars=[]}; xxvars=xxvars.sort().reverse()
+    var xxvarsi=0; while (xxvarsi<xxvars.length)
+    { xxvar = xxvars[xxvarsi]
+      var reg=new RegExp(xxvar+' *= *(?![=\[])','i')
+      if (now.search(reg)>-1 || eval('typeof('+xxvar+')')!='undefined' || xxvars[xxvarsi]==xxvars[xxvarsi-1])
+      { if (xxvars[xxvarsi]!=xxvars[xxvarsi-1] && xxvars[xxvarsi]!=xxvars[xxvarsi+1]) xinit += xxvar.toUpperCase()+'=0;'; xxvars.splice(xxvarsi,1)} else xxvarsi++}
+    for (xxvarsi=0; xxvarsi<xxvars.length; xxvarsi++)
+    { xxvar = xxvars[xxvarsi].toUpperCase()
+      if (xx0x==xxvar)
+      { xcod2 = '\nLoop'+xxvarsi+': for (ppi in pp) {'+xxvar+'=pp[ppi];' +xcod2 +'}'; xx0=''; continue}
+      xcod2 = 'Loop'+xxvarsi+': for ('+xxvar+'=0;'+xxvar+'<10;'+xxvar +'++) {' +xcod2 +'}'
+      xpri='my('+xxvar.toUpperCase()+')'+(xpri==''?'':", ")+xpri
+      xwri=xxvar.toUpperCase()+(xwri==''?'':"+', '+")+xwri
+      xhed=xxvar.toLowerCase()+(xhed==''?'':", ")+xhed}
+    xxx='/* '+document.theForm.input.value+'*/\nprint(swfrac(2));'
+    xxx+= xinit+'\n'
+    if (xcod1!='') xxx+= 'print("'+xcod1.replace(/\n/g,'; ').toLowerCase()+'");\n'+xcod1+';\n'
+    if (xhed!='') xxx+= 'print("'+xhed+'");\n'
+    if (xx0x!='') xxx+='print("'+xx0x+'=["+pp+"]");\n'
+    xxx+=xcod2
+    document.theForm.input.value = xxx.replace(/%xxxx%/,xpri).replace(/%xxx1%/,xwri)
+    document.theForm.input.focus()}}
+    // ---------------------------------------------------*/
+    function solve(){push('','')
+    if (now.length==0 || (menucode!=6 && menui==0)||(menucode==8)) {menui=-1; menu(6); return}
+    if (menui==0 ) {menu(); return}
+    localstore='simplify'
+    savestuff(localstore)
+    runcomm='simplify.htm?&'
+    localstore=''
+    window.open(runcomm)
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function dograph(){push("","")
+    if (now.length==0 || (menucode!=7 && menui==0)||(menucode==8)) {menui=-1; menu(7); return}
+    if (menui==0 ) {menu(); return}
+    doit("θ","x")
+    if (now.search(/[a-z]x/)>0) doit('x','(x)')
+    savestuff('graphdata'); window.open('graphs.htm')
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function vocab() {
+    if (menucode==8){
+    switch (menui) {
+    case 2: mc=1; break; // logic
+    case 5: mc=9; break; // stats
+    case 8: mc=10; break; // tutors
+    default: document.theForm.input.value = ''; document.theForm.input.focus(); return
+    }
+    menui=0; menu(mc)
+    } else {menui=-1; menu(8)}
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    function dostats(){push("","")
+    if (now.length==0 || (menucode!=9 && menui==0)) {menui=-1; menu(9); return}
+    if (menui==0 ) {menu(); return}
+    if (now.search(/:/)<0)
+    { if (now.search(/{/)>=0) {now=now.replace(/(\d),/g,'$1{1},'); window.open('regress.htm?&&&&'+now); return}
+      if (now.search(/y:/)>0 || now.search(/yf:/)>0) window.open('regress.htm?'+now)
+      else window.open('stats.htm?'+now)
+      document.theForm.input.focus(); return}
+    s=['','','','','','','','']
+    for (i=0;i<nowl.length;i++){
+      if ((j=nowl[i].search(/:/))>0)
+      { k=0;
+      if(nowl[i].slice(0,j)=='y') k=1
+      else if(nowl[i].slice(0,j)=='f') k=2
+      else if(nowl[i].slice(0,j)=='xy') k=3
+      else if(nowl[i].slice(0,j)=='xf') k=4
+      else if(nowl[i].slice(0,j)=='xyf') k=5
+      else if(nowl[i].slice(0,j)=='o') k=6
+      else if(nowl[i].slice(0,j)=='w') k=7
+      s[k]+=(s[k].length>0?' ':'')+nowl[i].slice(j+1)}}
+    if ((s[0]+s[1]+s[2]+s[3]+s[4]+s[5]+s[6]+s[7]).length>0)
+      if (now.search(/y:/)>0 || now.search(/yf:/)>0) window.open('regress.htm?'+s[0]+'&'+s[1]+'&'+s[2]+'&'+s[3]+'&'+s[4]+'&'+s[5]+'&'+s[6]+'&'+s[7])
+      else window.open('stats.htm?'+s[0]+'&'+s[2]+'&'+s[4]+'&'+s[6]+'&'+s[7])
+    document.theForm.input.focus()}
+    // ---------------------------------------------------*/
+    </script>
+    <h1>Regular Expression Text Editor</h1>
+    <form name="theForm">
+        <p>Math118:
+        <input name="vocabbut" Value="vocab" type="button"  onClick="vocab()" title="Some math words you should know"/>
+        <input name="logbut" Value="logic" type="button" onClick="logic()" title="calls truth table for logic"/>
+        <input name="calcbut"  Value="calc" type="button" onClick="calc()" title="saves screen to cookie and starts calculator"/>
+        <input name="discbut"  Value="probab" type="button" onClick="disc()" title="calls discrete probability module"/>
+        <input name="statsbut" Value="stats" type="button" onClick="dostats()" title="send screen to statistics module"/>
+        Go:
+        <input name="nextbut" Value="next" type="button" onClick="menu()" title="subsequent menu item"/>
+        <input name="backbut" Value="back" type="button" onClick="back()" title="previous menu item"/>
+        <input name="clerebut" Value="Clear" type="button" onClick="clere()" title="clears screen (ESC)"/>
+        Other:
+        <input name="solvbut"  Value="simplify" type="button" onClick="solve()" title="saves screen to cookie and starts algebra"/>
+        <input name="graphbut" Value="graph" type="button" onClick="dograph()" title="send screen to grapher"/>
+        <input name="pybut" value="python" type="button" onClick="python()" title="converts python to js"/>
+        <input name="mathbut" Value="math" type="button" onClick="math()" title="converts math to js"/>
+        <input name="jsrunbut"  Value="J/S" type="button" onClick="jsrun()" title="start java console"/>
+        </p>
+        <textarea name = "input" rows = 25 cols = 110 onKeyUp="enter(event)">
 The Regular Expression Text Editor is sort of like MicroSoft's Notepad on steroids.
 I use it to write programs and to clean up text before I pass it on to one of the calculators.
 You can use the buttons on top to use or to read about my calculators.
@@ -659,66 +661,65 @@ The buttons on the bottom are for:
  a call to the JavaScript regular expression based .replace method
    [see the Guide button for more information].
 The last line is for converting logical variables that are other than p,q,r,s,t.
-</textarea></td></tr><tr><td>
-Cookies:
-<input name="savebut" Value="Save" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="putlocalstore()" title="saves screen as cookie"/>
-<input name="loadbut" Value="Load" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="getlocalstore(false)" title="loads screen from cookie"/>
-<input name="addbut" Value="Add" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="getlocalstore(true)" title="adds cookie to end of screen"/>
-<input type="text" name="jsdata" value='' size=5 rows=1 title="name of cookie"/>
-<br>
-<input name="IJSbut" Value="IJS" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('ijs')">
-<input name="pythonbut" Value="python" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('python')">
-<input name="logicbut" Value="logic" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('logic')">
-<input name="mathbut" Value="math" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('math')">
-<input name="JSdatabut" Value="jsdata" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('jsdata')">
-<input name="datainbut" Value="In" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('dataIn')">
-<input name="data1INbut" Value="1In" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('data1In')">
-<input name="dataOutbut" Value="Out" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('dataOut')">
-<input name="simplifybut" Value="simplify" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('simplify')">
-<input name="calcbut" Value="calc" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('calc')">
-<input name="graphdatabut" Value="graph" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('graphdata')">
-
-<br>Regex:
-<input name="probnobut" Value="#. to #)" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="probno()" title="converts problem number"/>
-<input name="thoubut" Value="$0,000" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="thou()" title="converts currency to number"/>
-<input name="pdivbut" Value="( )/( )" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="pdiv()" title="replaces 'divided by' with symbols"/>
-<input name="xdivbut" Value="x/2" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="xdiv()" title="converts x/2 to 1/2x"/>
-<input name="linenobut" Value="Line #" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lineno()" title="puts line number on each line"/>
-<input name="lisbut" Value="cs list" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis()" title="generates comma separated list"/>
-<input name="lis1but" Value="sort" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis1()" title="generates sorted list"/>
-<input name="lis2but" Value="reduce" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis2()" title="generates reduced sorted list"/>
-<input name="lis5but" Value="create line array" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis56(false)" title="n by 1 array of lines"/>
-<input name="lis6but" Value="sort line array" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis56(true)" title="sort n by 1 array"/>
-
-<br>Special:
-<input name="snlbut" Value="stem/leaf" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="snl()" title="converts stem & leaf to values"/>
-<input name="notagbut" Value="notag" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="notag()" title="erase HTML tags"/>
-<input name="cleanbut" Value="parse" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="parse()" title="cleans up math problems"/>
-<input name="clean2but" Value="clean" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="cleantext()" title="gets rid of text"/>
-<!-- <input name="cnfbut" Value="cnf" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="cnf()" title="truth table to CNF"/>  -->
-<input name="lagrbut" Value="Lagrange" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="Lagr()" title="generates LaGrange Polynomial from (x,y)"/>
-<input name="lis0but" Value="array" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis0()" title="generates 1-D array"/>
-<input name="lis3but" Value="n by 2" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis3()" title="generates x,y array"/>
-<input name="csvbut" Value="csv" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="csv()" title="generates CSV file"/>
-<input name="lis4but" Value="n by m" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis4()" title="generates 2-D array"/>
-<input name="lis7but" Value="-1st" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis7()" title="remove first column"/>
-<input name="lis8but" Value="-mth" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis8()" title="remove last column"/>
-
-<br>Replace:
-<input type="text" name="convfr" size=20 rows=1 tabindex="1" title="regex expression to be converted"/> with:
-<input type="text" name="convto" size=20 rows=1 tabindex="2" title="output of conversion"/>
-<input name="doitbut" Value="do" type="button" tabindex="3"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="dodo()" title="perform regex conversion"/>
-<input name="undobut" Value="Undo" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="undo()" title="undo regex conversion"/>
-<input name="repbut" Value="Repeat" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="repeat()" title="repeat last regex conversion"/>
-<input name="guidebut"  Value="Guide" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp')" title="load regex guide"/>
-<br>from:
-<input type="text" name="convfrlist" size=30 rows=1 tabindex="4" title="regex expression list to be converted"/> to:
-<input type="text" name="convtolist" size=30 rows=1 tabindex="5" title="output of conversion" value='p,q,r,s,t'/>
-<input name="doitbut" Value="do" type="button" tabindex="6"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="dolist()" title="apply list of changes"/>
-</td></tr>
-</table>
-</form>
-<script>
+        </textarea>
+        <p>
+            Cookies:
+            <input name="savebut" Value="Save" type="button" onClick="putlocalstore()" title="saves screen as cookie"/>
+            <input name="loadbut" Value="Load" type="button" onClick="getlocalstore(false)" title="loads screen from cookie"/>
+            <input name="addbut" Value="Add" type="button" onClick="getlocalstore(true)" title="adds cookie to end of screen"/>
+            <input type="text" name="jsdata" value='' size=5 rows=1 title="name of cookie"/>
+            <br>
+            <input name="IJSbut" Value="IJS" type="button" onClick="trytoload('ijs')">
+            <input name="pythonbut" Value="python" type="button" onClick="trytoload('python')">
+            <input name="logicbut" Value="logic" type="button" onClick="trytoload('logic')">
+            <input name="mathbut" Value="math" type="button"   onClick="trytoload('math')">
+            <input name="JSdatabut" Value="jsdata" type="button" onClick="trytoload('jsdata')">
+            <input name="datainbut" Value="In" type="button" onClick="trytoload('dataIn')">
+            <input name="data1INbut" Value="1In" type="button" onClick="trytoload('data1In')">
+            <input name="dataOutbut" Value="Out" type="button" onClick="trytoload('dataOut')">
+            <input name="simplifybut" Value="simplify" type="button" onClick="trytoload('simplify')">
+            <input name="calcbut" Value="calc" type="button" onClick="trytoload('calc')">
+            <input name="graphdatabut" Value="graph" type="button" onClick="trytoload('graphdata')">
+            <br>
+            Regex:
+            <input name="probnobut" Value="#. to #)" type="button" onClick="probno()" title="converts problem number"/>
+            <input name="thoubut" Value="$0,000" type="button" onClick="thou()" title="converts currency to number"/>
+            <input name="pdivbut" Value="( )/( )" type="button" onClick="pdiv()" title="replaces 'divided by' with symbols"/>
+            <input name="xdivbut" Value="x/2" type="button" onClick="xdiv()" title="converts x/2 to 1/2x"/>
+            <input name="linenobut" Value="Line #" type="button" onClick="lineno()" title="puts line number on each line"/>
+            <input name="lisbut" Value="cs list" type="button" onClick="lis()" title="generates comma separated list"/>
+            <input name="lis1but" Value="sort" type="button" onClick="lis1()" title="generates sorted list"/>
+            <input name="lis2but" Value="reduce" type="button" onClick="lis2()" title="generates reduced sorted list"/>
+            <input name="lis5but" Value="create line array" type="button" onClick="lis56(false)" title="n by 1 array of lines"/>
+            <input name="lis6but" Value="sort line array" type="button" onClick="lis56(true)" title="sort n by 1 array"/>
+            <br>
+            Special:
+            <input name="snlbut" Value="stem/leaf" type="button" onClick="snl()" title="converts stem & leaf to values"/>
+            <input name="notagbut" Value="notag" type="button" onClick="notag()" title="erase HTML tags"/>
+            <input name="cleanbut" Value="parse" type="button" onClick="parse()" title="cleans up math problems"/>
+            <input name="clean2but" Value="clean" type="button" onClick="cleantext()" title="gets rid of text"/>
+            <input name="lagrbut" Value="Lagrange" type="button" onClick="Lagr()" title="generates LaGrange Polynomial from (x,y)"/>
+            <input name="lis0but" Value="array" type="button" onClick="lis0()" title="generates 1-D array"/>
+            <input name="lis3but" Value="n by 2" type="button" onClick="lis3()" title="generates x,y array"/>
+            <input name="csvbut" Value="csv" type="button" onClick="csv()" title="generates CSV file"/>
+            <input name="lis4but" Value="n by m" type="button" onClick="lis4()" title="generates 2-D array"/>
+            <input name="lis7but" Value="-1st" type="button" onClick="lis7()" title="remove first column"/>
+            <input name="lis8but" Value="-mth" type="button" onClick="lis8()" title="remove last column"/>
+            <br>
+            Replace:
+            <input type="text" name="convfr" size=20 rows=1 tabindex="1" title="regex expression to be converted"/> with: <input type="text" name="convto" size=20 rows=1 tabindex="2" title="output of conversion"/>
+            <input name="doitbut" Value="Do" type="button" tabindex="3" onClick="dodo()" title="perform regex conversion"/>
+            <input name="undobut" Value="Undo" type="button" onClick="undo()" title="undo regex conversion"/>
+            <input name="repbut" Value="Repeat" type="button" onClick="repeat()" title="repeat last regex conversion"/>
+            <input name="guidebut"  Value="Guide" type="button" onClick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp')" title="load regex guide"/>
+            <br>
+            from:
+            <input type="text" name="convfrlist" size=30 rows=1 tabindex="4" title="regex expression list to be converted"/> to:
+            <input type="text" name="convtolist" size=30 rows=1 tabindex="5" title="output of conversion" value='p,q,r,s,t'/>
+            <input name="doitbut" Value="do" type="button" tabindex="6" onClick="dolist()" title="apply list of changes"/>
+        </p>
+    </form>
+    <script>
 scup=String.fromCharCode(8744); scap=String.fromCharCode(8743)
 var thiswas=[], savefr=[], saveto=[], now="", nowl=[], confr="", conto=""
 var lprogs = []; lprogsI=0; llist=true
@@ -840,4 +841,6 @@ stprogs.push("Text book chapter: Describing Data\n http://www.opentextbookstore.
 sigma= String.fromCharCode(963)
 ls=decodeURIComponent(location.search)
 if (ls.search(/\?/)==0) {document.theForm.input.value=""; trytoload(ls.slice(1)); menucode=3; menui=-1}
-</script></body></html>
+</script>
+</body>
+</html>
