@@ -1,8 +1,8 @@
 <html><head><title>logic calculator</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<body onLoad="self.focus();document.theForm.input.focus();">
+<script type="text/javascript" src="myfunctions.js"></script>
 <!--
 1. statements into document.theForm.indata.value
 2. Show truth table: table(): calls logic(): eval(jsrun)
@@ -239,14 +239,14 @@ document.theForm.input.value+= ':'+yy.join('∨')+'\n'; document.theForm.input.f
 // ---------------------------------------------------*/
 </script>
 <form name="theForm">
-<table border = 1 noshade bgcolor = 99CC66>
-<tr><td onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'"  align='center'>statements / arguments </td><td align='center'><input name="clearbut" Value="Clear All" type="button" onClick="clere()" title="Clear"/>
+<table>
+<tr><td onClick="window.open('index.htm')">statements / arguments </td><td align='center'><input name="clearbut" Value="Clear All" type="button" onClick="clere()" title="Clear"/>
 </td></tr>
 <tr><td colspan=2><textarea name = "indata" rows = 10 cols = "90" onKeyUp="enter(event,0)"></textarea>
 </td></tr><tr><td align='center'>
 <input name="tablebut" Value="Show Truth Table" type="button" onClick="table()" title="Table"/>
 </td><td align='center'><input name="jsbut" Value="Pass JS to Editor" type="button" onClick="editjs()" title="DoJS"/>
-<input name="cnfbut" Value="cnf" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="cnf()" title="truth table to CNF"/>
+<input name="cnfbut" Value="cnf" type="button" onClick="cnf()" title="truth table to CNF"/>
 <input name="showbut" Value="again" type="button" onClick="show(-1)" title="back/repeat"/>
 <input name="showbut" Value="next" type="button" onClick="show(1)" title="forward"/>
 </td></tr><tr><td colspan=2><textarea name = "input" rows = 25 cols = 90 onKeyUp="enter(event,1)"></textarea>
