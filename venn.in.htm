@@ -1,12 +1,12 @@
-<head><head><!DOCTYPE HTML>
+<html lang="en"><head><!DOCTYPE HTML>
 <title>Venn Diagram Input</title>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body  style="font-family:Monospace" onget="self.focus()" >
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<body onget="self.focus()" >
+<script type="text/javascript" src="myfunctions.js"></script>
 <form name='theForm'>
-<table border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Input data for Venn Diagram</td></tr>
+<table>
+<tr><td colspan=99 onClick="window.open('index.htm')">Input data for Venn Diagram</td></tr>
 <tr><td align='center'>
 <input name="clearbut" type="button" value = "Clear ALL" onClick="clearall(); get()"/> . . <input name="clear" type="button" value = "only A,B no C" onClick="onlyabnotc()"/></td><td align='center'>
 <input name="demobut" type="button" value = "CALC" onClick="demo()"/>
@@ -45,7 +45,7 @@ Either A&cup;B:<input type='text' name='va_b' size=5 value="" onblur='get()' tab
 ONLY TWO:<input type='text' name='v2' size=5 value="" onblur='get()' tabindex="21"><br>
 EVERYONE:<input type='text' name='vabcx' size=5 value="" onblur='get()' tabindex='24'>
 </td></tr>
-<tr><td  colspan=3><textarea name = "input" rows = 22 cols = 60/></textarea></td></tr>
+<tr><td  colspan=3><textarea name = "input" rows = 22 cols = 60></textarea></td></tr>
 <!-- <tr><td  colspan=3 align=left><canvas id="theCanvas" width="500" height="400"></canvas></td></tr> -->
 </table></form>
 <script type="text/javascript">
