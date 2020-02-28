@@ -1,8 +1,8 @@
 <html><head><title>JS Polynomials</title></head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
-<body  style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
+<script type="text/javascript" src="myfunctions.js"></script>
 <script>
 var vars=[]
 var numerator=[]
@@ -55,7 +55,7 @@ document.theForm.input.value = ex
 }
 </script>
 <form name="theForm">
-<table border = 1 noshade bgcolor = 99CC66>
+<table border = 1>
 <tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
 <tr><td>
 
@@ -65,8 +65,8 @@ document.theForm.input.value = ex
 <input type="button" value="3" onClick="putx('3')"/>
 <input type="button" value="+" onClick="putx('+')"/>
 </td><td>|| </td><td>
-<A href="index.htm" target="_blank"><INPUT tabIndex=0 onclick="window.location='index.htm'" value=Main type=button name=menu></A> 
-<input style="background-color:khaki" name="calcbut" Value="=" type="button" onClick="calc()"/>
+<a href="index.htm" target="_blank"><input tabIndex=0 onclick="window.location='index.htm'" value=Main type=button name=menu></a> 
+<input name="calcbut" Value="=" type="button" onClick="calc()"/>
 <input name="fracbut" Value="Frac" type="button" onClick="tofrac()"/>
 <input name="clerebut" Value="Clear" type="button" onClick="clere()"/>
 &nbsp; Degrees<input name="degrees" type="checkbox" checked/>
