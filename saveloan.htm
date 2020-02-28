@@ -1,7 +1,7 @@
 <html><head><title>Savings/Loan</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<script type="text/javascript" src="myfunctions.js"></script>
 <script type="text/javascript">
 // ------------------------------------
 function enter(evt)
@@ -283,16 +283,16 @@ function xFcalc(){document.theForm.Fval.value=document.theForm.Sval.value*Math.p
 </script>
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
 </head>
-<body style="font-family:sans-serif;">
+<body>
 <form name="theForm">
-<table  border= 1 noshade bgcolor= 99CC66>
+<table  border= 1>
 <tr><td><table>
-<tr><th align=center onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Simple Interest </th><th id="hfld4" onclick="sw364()" style="background-color:yellow" >365</th><th align=center>days per year</th><th align=center>
+<tr><th align=center onClick="window.open('index.htm')">Simple Interest </th><th id="hfld4" onclick="sw364()" >365</th><th align=center>days per year</th><th align=center>
  </th><th align=center>Annual</th>
 <th align=center></th><th align=center>
-<input type="button" name="sinta" value= "Reset" onClick="resett()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'">
-<input type="button" name="sintb" value= "Calculate" onClick="simple()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'"></th></tr>
-<tr><th>Period: From</th><th id="hfld3" onclick="swperiod()" style="background-color:yellow" >days</th><th>To</th><th>Principle</th><th>% Rate</th>
+<input type="button" name="sinta" value= "Reset" onClick="resett()">
+<input type="button" name="sintb" value= "Calculate" onClick="simple()"></th></tr>
+<tr><th>Period: From</th><th id="hfld3" onclick="swperiod()" >days</th><th>To</th><th>Principle</th><th>% Rate</th>
 <th>Interest</th><th>Total</th></tr><tr><td>
 <input type="text"  name= "fdate" size= 14 value="" tabindex="11"></td><td>
 <input type="text"  name= "ndays" size= 4 value="" tabindex="12"></td><td>
@@ -303,41 +303,41 @@ function xFcalc(){document.theForm.Fval.value=document.theForm.Sval.value*Math.p
 <input type="text"  name= "stotl" size= 10 value="" tabindex="17"></td></tr>
 </table></td></tr><tr><td>
 <table width="100%" border=1><tr>
-<td align=center onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">
+<td align=center onClick="window.open('index.htm')">
 <b> Exponential Growth </b></td><td>F = S*r^t
-<input name="s" type="button" value= "S" onClick="xScalc()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" >
+<input name="s" type="button" value= "S" onClick="xScalc()">
 <input type="text" name= "Sval" size= 10 value="" tabindex="18">
-<input name="r" type="button" value= "r" onClick="xrcalc()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" >
+<input name="r" type="button" value= "r" onClick="xrcalc()">
 <input type="text" name= "rval" size= 10 value="" tabindex="19">
-<input name="t" type="button" value= "t" onClick="xtcalc()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" >
+<input name="t" type="button" value= "t" onClick="xtcalc()">
 <input type="text" name= "tval" size= 10 value="" tabindex="20">
-<input name="f" type="button" value= "F" onClick="xFcalc()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" >
+<input name="f" type="button" value= "F" onClick="xFcalc()">
 <input type="text" name= "Fval" size= 10 value="" tabindex="21">
 </td></tr>
 </table></td></tr><tr><td>
-<table width="100%" border=1><tr><td align=center onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'"><b> Compound interest </b></td><td align=left>
-<input type="button" name="sclearb" value= "Clear" onClick="cla()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'">
-<input type="button" name="scontb" value= "Continue" onClick="continu()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'">
-<input type="button" name="bsample" value= "Example" onClick="sample()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'">
+<table width="100%" border=1><tr><td align=center onClick="window.open('index.htm')"><b> Compound interest </b></td><td align=left>
+<input type="button" name="sclearb" value= "Clear" onClick="cla()">
+<input type="button" name="scontb" value= "Continue" onClick="continu()">
+<input type="button" name="bsample" value= "Example" onClick="sample()">
 &nbsp; &nbsp; Show:
 <input type="checkbox" name="prtot" /> prior totals
 <input type="checkbox" name="allr" /> all rows
 </td></tr><tr><td>
-<input name="cirate" type="button" value= "Calc" onClick="dirate()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" >
+<input name="cirate" type="button" value= "Calc" onClick="dirate()">
 <input type="text"  name= "irate" size= 5 value="" tabindex="1">% Annual Interest Rate<br>
-<input name="cyears" type="button" value= "Calc" onClick="dyears()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'">
+<input name="cyears" type="button" value= "Calc" onClick="dyears()">
 <input type="text"  name= "nypdval" size= 2 value="" tabindex="2">
 <input name="nypd" type="radio" title="nypd" checked/> Years
 <input name="nypd" type="radio" title="nypd"/> Periods<br>
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <input type="text"  name= "perper" size= 3 value="12" tabindex="3"> Periods per year (0= cont.)<br>
 </td><td>
-<input name="csbal" type="button" value= "Calc" onClick="dsbal()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" >
+<input name="csbal" type="button" value= "Calc" onClick="dsbal()">
   <input type="text"  name= "startbal" size= 12 value="" tabindex="4"> Starting Balance / Present Value<br>
-<input name="cpayment" type="button" value= "Calc" onClick="dpayment()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" >
+<input name="cpayment" type="button" value= "Calc" onClick="dpayment()">
   <input type="text"  name= "perpay" size= 12 value="" tabindex="5"> Periodic payment
   <input type="checkbox" name="payendv" onClick="dohead()" checked/> at end<br>
-<input name="cebal" type="button" value= "Calc" onClick="debal()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" >
+<input name="cebal" type="button" value= "Calc" onClick="debal()">
   <input type="text"  name= "finalbal" size= 12 value="" tabindex="6"> Final Balance / Future Value<br>
 </td></tr></table>
 <table border=1 align=left><tr><th> &nbsp; Year / Period &nbsp; </th><th> &nbsp; Initial &nbsp; Amount &nbsp; </th><th id="hfld1"> &nbsp; &nbsp; Payment
