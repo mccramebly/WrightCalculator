@@ -1,9 +1,9 @@
-<html><head><title>Vedic Multiply</title></head>
+<!doctype html><html lang="en"><head><title>Vedic Multiply</title></head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
-<body style="font-family:Monospace" onLoad="self.focus();document.theForm.a.focus()">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
-<SCRIPT type="text/javascript" src="matrix.js"></script>
+<body onLoad="self.focus();document.theForm.a.focus()">
+<script type="text/javascript" src="myfunctions.js"></script>
+<script type="text/javascript" src="matrix.js"></script>
 <script>
 var x,y,z,c1,c2, a=''
 fillerchar=String.fromCharCode(183)
@@ -78,8 +78,8 @@ for (x=2*L-2;x>=0; x--)
 while (ccc.length<25) ccc="."+ccc; document.theForm.output.value +="\n  A."+ccc
 }
 </script>
-<form name="theForm"><table width=90 border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">
+<form name="theForm"><table width=90 border = 1>
+<tr><td colspan=99 onClick="window.open('index.htm')">
 </td></tr>
 <tr><td > Multiply:
 <input type="text" name="a" size=30 rows=1 tabindex=1 value=""/> by
