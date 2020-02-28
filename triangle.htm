@@ -1,0 +1,720 @@
+<html><head><title>Triangle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
+<body  style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
+<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<script>
+var calcoption='0';
+var PIdeg = 180/Math.PI;
+var PIadj = PIdeg
+var side = []; var angle =[]; var vname=[]
+var dict=[] // dict ['a'] is subscript into v
+var v=[[],[],[]] // name.toUpperCase(), side, angle
+var xv = new Array(5); var yv = new Array(5);  var zv = new Array(5);
+var xmv = new Array(5); var ymv = new Array(5);
+var xa = new Array(3); var ya = new Array(3);
+var xm = new Array(3); var ym = new Array(3);
+var xi = new Array(3); var yi = new Array(3);
+var x6=0; var y6=0 // any center
+var x6=0; var y6=0 // any center
+var x6=0; var y6=0 // any center
+var x6=0; var y6=0 // any center
+var x8=0; var y8=0; var Radius8=0// circum center
+var x9=0; var y9=0; var Radius9=0// incenter
+var graphit=false
+var isphone=false
+var graphdata=''
+var eucenter=""
+// var MIADSCO=['COO','MID','SSS','SSA','SAS','ASA','AAS','ADD','ASS','SAA']
+var expr = ""
+var vrep = 0
+var trinum=0
+
+degchar = "°"; pichar = "π"; mordchar= "º"
+var degrees = true
+var dim3 = false
+// ----------------------------------*/
+function enter(evt)
+{ var charCode = evt.keyCode;
+  if (charCode == 13) {cla1(); calc();}
+  if (charCode == 27) cla();
+};
+// ----------------------------------*/
+function putx(x) {
+//IE support
+if(document.selection) {
+document.theForm.input.focus();
+sel = document.selection.createRange();
+sel.text = x
+} else if(document.theForm.input.selectionStart || document.theForm.input.selectionStart == '0')
+{ //MOZILLA/NETSCAPE support
+var startPos = document.theForm.input.selectionStart;
+var endPos = document.theForm.input.selectionEnd;
+if (isphone)
+{ startPos = length;
+  endPos = document.theForm.input.value.length }
+var cursorPos = startPos + x.length;
+document.theForm.input.value = document.theForm.input.value.substring(0, startPos) + x + document.theForm.input.value.substring(endPos, document.theForm.input.value.length);
+document.theForm.input.selectionStart = document.theForm.input.value.length
+document.theForm.input.selectionEnd = document.theForm.input.value.length
+} else { document.theForm.input.value += x }
+document.theForm.input.focus()}
+// ----------------------------------*/
+function center(x) {
+document.theForm.output.value += " ("
+var y1 = yv[0]; var y2=yv[1]; var y3=yv[2];
+var x1; var x2; var x3; var aa=side[0]; var bb = side[1]; var cc = side[2];
+if      (y1==y2) { x1=xv[2]; y1=yv[2]; x2=xv[1]; x3=xv[0]; y3=yv[0];
+                   aa = side[2]; cc = side[0];}
+else if (y1==y3) { x1=xv[1]; y1=yv[1]; x2=xv[0]; y2=yv[0]; x3=xv[2];
+                   aa = side[1]; bb = side[0];}
+else             { x1=xv[0]; x2=xv[1]; x3=xv[2];};
+var pp = aa + bb + cc;
+var r2 = (aa + bb - cc) * (aa - bb + cc) * (-aa + bb + cc);
+if      (x==0) { // Euler Line
+ x6 = (x1 + x2 + x3) / 3; y6 = (y1 + y2 + y3) / 3;
+ x4 = x3; y4 = y3; x5 = x2; y5 = y2;
+ m4 = (x1 - x2) / (y2 - y1); b4 = y4 - m4 * x4;
+ m5 = (x1 - x3) / (y3 - y1); b5 = y5 - m5 * x5;
+ x7 = (b5 - b4) / (m4 - m5); y7 = m4 * x7 + b4;
+ if (x6==x7) { eucenter = " x =" + my((x6)); }
+ else if (y6 == y7) { eucenter = " y =" + my(y6); }
+ else {
+  m7 = (y7 - y6) / (x7 - x6); b7 = y7 - m7 * x7
+  eucenter = "y = "+xterm(true,m7,1,true) +xterm(false,b7,0,true)}
+ document.theForm.output.value += eucenter +") "}
+else if (x==1) { // centroid
+ x61= (xv[0]+xv[1]+xv[2])/3; y61=(yv[0]+yv[1]+yv[2])/3
+ document.theForm.output.value += my(x61)+", "+my(y61) +") "}
+else if (x==2) { // circumcenter
+ x4 = (x1 + x2) / 2; y4 = (y1 + y2) / 2;
+ x5 = (x1 + x3) / 2; y5 = (y1 + y3) / 2;
+ m4 = (x1 - x2) / (y2 - y1);
+ m5 = (x1 - x3) / (y3 - y1);
+ b4 = y4 - m4 * x4; b5 = y5 - m5 * x5;
+ x8 = (b5 - b4) / (m4 - m5); y8 = m4 * x8 + b4;
+ document.theForm.output.value += my(x8)+", "+my(y8) +") "
+ Radius8 = my((side[0]*side[1]*side[2]) / Math.sqrt( pp*r2 ))
+ document.theForm.output.value += "  Radius is "+Radius8}
+else if (x==3) { // orthocenter
+ x4 = x3;  y4 = y3;  x5 = x2;  y5 = y2
+ m4 = (x1 - x2) / (y2 - y1);  b4 = y4 - m4 * x4
+ m5 = (x1 - x3) / (y3 - y1);  b5 = y5 - m5 * x5
+ x63 = (b5 - b4) / (m4 - m5);  y63 = m4 * x63 + b4
+ document.theForm.output.value += my(x63)+", "+my(y63) +") "}
+else if (x==4) { // incenter
+ x9 = (aa * x1 + bb * x2 + cc * x3) / pp;
+ y9 = (aa * y1 + bb * y2 + cc * y3) / pp;
+ document.theForm.output.value += my(x9)+", "+my(y9) +") "
+ Radius9 = my(Math.sqrt(r2 / pp) / 2)
+ document.theForm.output.value += "  Radius is "+Radius9}
+document.theForm.output.value += "\n"}
+// ----------------------------------*/
+function cla ()
+{ document.theForm.input.value = '';document.theForm.input.focus()
+  document.theForm.output.value= saveOutput};
+// ----------------------------------*/
+function cla1 ()
+{ document.theForm.output.value= ''
+  graphdata=""};
+// ----------------------------------*/
+function cla2 ()
+{ if (document.theForm.output.value== saveOutput) document.theForm.output.value= ''}
+// ----------------------------------*/
+function altitude(i) {
+ var A; var B; var C; var D; var E; var F; var X; var Y; var XY;
+ A=xv[i+2]-xv[i+1]; B=yv[i+2]-yv[i+1]; C=A*xv[i]  +B*yv[i];
+ D=yv[i+1]-yv[i+2]; E=xv[i+2]-xv[i+1]; F=D*xv[i+1]+E*yv[i+1];
+ XY = B*D-A*E; x6 = (B*F-E*C)/XY; y6=(C*D-A*F)/XY;
+ twopoints (xv[i],yv[i],x6,y6,-1,undefined,undefined, vname[i])}
+// ----------------------------------*/
+function doline(x3,y3,m,n){
+var C = m*x3-n*y3; var G = lcd(m,n); G=lcd(1/G,C); var M=m*G; var N=n*G; C*=G
+G = gcf(N,C); G = Math.abs(gcf(M,G)); if ((M<0)||(M==0 && N>0)) G*=-1
+return coeff(true, M/G,"x",true)+coeff(M==0,-N/G,"y",true)+" ="+coeff(true,C/G,"",true)}
+// ----------------------------------*/
+function perpbi(x1,y1,x2,y2){
+x6=(x1+x2)/2; y6=(y1+y2)/2; var M=(y2-y1); var N=(x2-x1)
+document.theForm.output.value += doline(x6,y6,-N,M) + " is ⊥ to" +doline(x6,y6,M,N)
+document.theForm.output.value += " at"+onepoint(x6,y6) +"\n"}
+// ----------------------------------*/
+function lcd(a,b){
+var a1=""+myround(a,true); if (a1.search(/\//)<0) a1=1; else a1=a1.slice(a1.search(/\//)+1)
+var b1=""+myround(b,true); if (b1.search(/\//)<0) b1=1; else b1=b1.slice(b1.search(/\//)+1)
+return lcm(a1,b1)}
+// ----------------------------------*/
+function onepoint(x1,y1,z1,w1)
+{ if (w1!=undefined) return " ("+my(x1)+","+my(y1) +(z1!=undefined&&(z1!=0||dim3)?","+z1:",0")+',     '+w1+") "
+  else return " ("+my(x1)+","+my(y1) +(z1!=undefined&&(z1!=0||dim3)?","+z1:"")+") "
+}
+// ----------------------------------*/
+function twopoints(x1,y1,x2,y2,prto,x3,y3,n1,n2) { with(Math) {
+ if (n1==undefined) n1=''; if (n2==undefined) n2=''
+ if (prto) {document.theForm.output.value += "The distance from "}
+ document.theForm.output.value += n1+onepoint(x1,y1,zv[0])
+ if (prto)
+ { document.theForm.output.value += "to "+n2+onepoint(x2,y2,zv[1])+"is "+ my(Math.sqrt( Math.pow(x1-x2,2) +Math.pow(y1-y2,2) +Math.pow(zv[0]-zv[1],2) ))+"\non "; }
+ else
+ { vv1 = atan2(y1,x1); vv2=(450 - vv1*180/PI)%360; vv3=myround(sqrt(y1*y1+x1*x1),4)
+   // if (vrep==0) document.theForm.output.value += myround(x1,4)+", "+myround(y1,4)+")\n"
+   if (vrep==1) document.theForm.output.value += " = ( "+vv3+", "+myround(vv2,4) +"°)\n"
+   if (vrep==3) document.theForm.output.value += " = ( "+vv3+", "+myround(vv1/PI,true)+"π)\n"
+   document.theForm.output.value += "\n"
+   return}
+ var a1; var b1; var c1; var aa1; var bb1; var cc1; var lineex;
+ a1=y1-y2; b1=x2-x1; c1=x2*y1-y2*x1;
+ a2=lcd(a1,b1); a2=lcd(1/a2,c1); a1*=a2; b1*=a2; c1*=a2
+ if (b1!=0 || c1!=0) a2=gcf(b1,c1); else a2=a1;
+ a2=gcf(a1,a2); if (a1<0) a2=-a2;
+ a1=a1/a2; b1=b1/a2; c1=c1/a2;
+ if (c1==0) { if (a1==0) b1=1; else if (b1==0) a1=1}
+ if (a1==0) { if (b1<0) { b1/=-1; c1/=-1 } }
+ if (x3==undefined) { var sign = "=" }
+ else { var sign = (a1*x3+b1*y3>c1?">":"<") }
+ lineex = coeff(true, a1,"x",true)+coeff(a1==0, b1,"y",true) + sign + coeff(1, c1, "",true);
+ if (my(b1)!=0 && my(a1)!=0)
+ { if (x3!=undefined) { sign = (y3>(-a1/b1)*x3+c1/b1?">":"<") }
+   lineex += "; slope/intercept form: y " + sign + coeff(1,-a1/b1,"x ",true)+coeff(0,c1/b1,"",true)}
+ document.theForm.output.value += lineex+ "\n";
+ return(-1);
+}}
+// ----------------------------------*/
+ function calc1 () { with(Math) {
+  p2 = (side[0]+side[1]+side[2]); anglchar=(degrees?"°":"")
+  // heron: p2/=2; area = sqrt( p2 * (p2 - side[0]) * (p2 - side[1]) * (p2 - side[2]));
+  if (calcoption<2)
+  { document.theForm.output.value += "Vertices: " +onepoint(xv[0],yv[0],zv[0]) +onepoint(xv[1],yv[1],zv[1]) +onepoint(xv[2],yv[2],zv[2])+"\n";}
+  document.theForm.output.value += " sides ("+vname.toString().toLowerCase()+"): "+my(side[0])+", "+my(side[1])+", "+my(side[2])+"\n";
+  // document.theForm.output.value += " and: "+my(side[3])+", "+my(side[4])+"\n";
+  document.theForm.output.value += "angles ("+vname.toString()+"): "+my(angle[0])+anglchar+", "+my(angle[1])+anglchar+", "+my(angle[2])+anglchar+" "
+  if(!degrees) document.theForm.output.value += "\nor "+myround(angle[0]/PI,true)+pichar+", "+myround(angle[1]/PI,true)+pichar+", "+myround(angle[2]/PI,true)+pichar+" "
+  LA = max(angle[0],angle[1],angle[2]); if (!degrees) LA*=PIdeg
+  if (abs((angle[0]-angle[1])*(angle[0]-angle[2])*(angle[1]-angle[2]))>0.0001)
+  { isos = " scalene"} else { isos = (abs(LA-60)<0.0001)?" equilateral":" isosceles"}
+  tritype = ((abs(LA-90)<.00001)?"a right": "an "+((LA>90)?"obtuse": (abs(LA-60)<0.0001)?"":"acute"))
+  document.theForm.output.value += " is "+tritype+isos+" triangle\n";
+  if (document.theForm.area.checked) document.theForm.output.value += " area: 0.5*sin(A)*b*c="+ my(.5*sind(angle[0])*side[1]*side[2])+ "  perimeter: "+ my(p2) + "\n";
+  if (dim3)
+  { xv[1]=0; yv[1]=0; zv[0]=0
+    xv[2]=side[0]; yv[2]=0; zv[1]=0
+    xv[0]=side[2]*cos(angle[1]/PIadj); yv[0]=side[2]*sin(angle[1]/PIadj); zv[2]=0
+    for (i=0;i<3;i++) { xv[i+3]=xv[i]; yv[i+3]=yv[i] }}
+  if (calcoption>1 || dim3)
+    if(document.theForm.altitudes.checked ||document.theForm.bisectors.checked ||document.theForm.centers.checked ||document.theForm.incenter.checked ||document.theForm.medians.checked ||document.theForm.sides.checked ||graphit)
+      document.theForm.output.value += "(x,y) Vertices: "+vname[0]+onepoint(xv[0],yv[0])+', '+vname[1] +onepoint(xv[1],yv[1])+', '+vname[2]+onepoint(xv[2],yv[2])+"\n"
+  if (graphit)
+  { graphdata+= "\n"+onepoint(xv[0],yv[0],0,vname[0]) +onepoint(xv[1],yv[1],0,vname[1]) +onepoint(xv[2],yv[2],0,vname[2])+onepoint(xv[0],yv[0])+";" }
+  for (i=0;i<3;i++) { xm[i]=(xv[i+1]+xv[i+2])/2; ym[i]=(yv[i+1]+yv[i+2])/2;}
+if ( document.theForm.centers.checked || document.theForm.medians.checked)
+{ document.theForm.output.value += "centroid of gravity (median): "; center(1)
+  if (graphit) graphdata+=onepoint(x61,y61,-3)+";"}
+if ( document.theForm.centers.checked || document.theForm.bisectors.checked)
+{ document.theForm.output.value += "circumcenter (Perp. Bisect.): "; center(2)
+  if (graphit) graphdata+=onepoint(x8,y8,-3)+";"}
+if ( document.theForm.centers.checked || document.theForm.altitudes.checked)
+{ document.theForm.output.value += "     orthocenter (altitudes): "; center(3)
+  if (graphit) graphdata+=onepoint(x63,y63,-3)+";"}
+if ( document.theForm.centers.checked)
+{ document.theForm.output.value += "                  Euler Line: "; center(0)
+  if (graphit) graphdata+=eucenter+";"}
+if ( document.theForm.centers.checked || document.theForm.incenter.checked )
+{ document.theForm.output.value += "  incenter (angle bisectors): "; center(4)
+  if (graphit) graphdata+=onepoint(x9,y9)+";"}
+if ( document.theForm.sides.checked )
+{ document.theForm.output.value += "Sides:\n";
+ for (i=1;i<4;i++) twopoints ( xv[i], yv[i], xv[i+1], yv[i+1],-1, xv[i+2], yv[i+2],vname[i%3],vname[(i+1)%3] )
+ document.theForm.output.value += "\n"; }
+if (graphit) graphdata+="\n"
+
+if ( document.theForm.medians.checked ) {
+ document.theForm.output.value += "Medians: "
+ for (i=0;i<3;i++) document.theForm.output.value += onepoint(xm[i],ym[i])
+ document.theForm.output.value += "\n"
+ for (i=0;i<3;i++)
+ { twopoints ( xv[i], yv[i], xm[i], ym[i],-1,undefined,undefined,vname[i] );
+   if (graphit) graphdata+=onepoint(xm[i],ym[i])+onepoint(xv[i],yv[i])+";" }
+ document.theForm.output.value += "\n";graphdata+="\n"; }
+
+if ( document.theForm.bisectors.checked ) {
+ document.theForm.output.value += "Perpendicular Bisectors:\n";
+  for (i=0;i<3;i++)
+  { perpbi( xv[i], yv[i], xv[i+1], yv[i+1],vname[i],vname[(i+1)%3] )
+    if (graphit) graphdata+=onepoint(2*x6-x8,2*y6-y8)+onepoint(x8,y8)+"); "}
+ if (graphit) graphdata+=" ("+ x8+","+y8 +","+Radius8+"); "
+ document.theForm.output.value += "\n";graphdata+="\n" }
+ 
+if ( document.theForm.altitudes.checked ) {
+ document.theForm.output.value += "Altitudes:\n";
+ for (i=0;i<3;i++)
+ { altitude (i);
+   if (graphit) graphdata+=onepoint(xv[i],yv[i])+onepoint(x6,y6,-3)+onepoint(x63,y63)+";"}
+   document.theForm.output.value += "\n";graphdata+="\n" }
+ 
+if ( document.theForm.incenter.checked ) {
+ document.theForm.output.value += "Angle Bisectors:\n"
+ for (i=0;i<3;i++)
+ { twopoints ( xv[i], yv[i], x9, y9, -1,undefined,undefined, vname[i] );
+   if (graphit) graphdata+=onepoint(x9,y9)+onepoint(xv[i],yv[i])+";"}
+ if (graphit) graphdata+=" ("+ x9+","+y9 +","+Radius9+"); "
+ document.theForm.output.value += "\n"; }
+ 
+if (graphit) graphdata+="\n"
+} }
+// ----------------------------------*/
+function putpoint (xn,yn,zn){ with(Math){
+graphdata += onepoint(xn,yn,zn) // +";"
+document.theForm.output.value += "("
+x1 = atan2(yn,xn); x2=(450 - x1*180/PI)%360; x3=my(sqrt(yn*yn+xn*xn))
+if (vrep==0) document.theForm.output.value += my(xn)+", "+my(yn)+")"
+else if (vrep==1) document.theForm.output.value += x3+", "+my(x2) +"°)"
+else if (vrep==2){
+  document.theForm.output.value += x3+", "
+  if (yn>0){
+    document.theForm.output.value += "N"
+    if (xn>0){
+      document.theForm.output.value += my(x2) +"E°)"
+    } else {
+      document.theForm.output.value += my(360-x2) +"W°)"
+  } } else {
+    document.theForm.output.value += "S"
+    if (xn>0){
+      document.theForm.output.value += my(180-x2) +"E°)"
+    } else {
+      document.theForm.output.value += my(x2-180) +"W°)"
+  } }
+}
+else document.theForm.output.value += x3+", "+my(x1/PI)+"π)=("+x3+", "+my(x1)+")" //  vrep = 3
+}}
+// ----------------------------------*/
+function getpoint (){ with(Math){
+R=1 // radian indicator
+var point=[]; var p1 = expr.search(/\(/); if (p1<0) return point
+expr=expr.slice(p1+1); p1=0; var p2=0 // find matching parenthesis
+do{
+ if (expr.charAt(p1)=="(")p2++
+ if (expr.charAt(p1)==")"){
+  if (p2==0){
+   break}
+  p2--}
+ p1++} while (p1<expr.length)
+var xyz=expr.slice(0,p1);expr=expr.slice(p1+1)
+point = xyz.split(',')
+if (point[1]=="E") point[1]="90°"
+if (point[1]=="W") point[1]="270°"
+if (point[1]=="N") point[1]="0°"
+if (point[1]=="S") point[1]="180°"
+var pd=(point[1].search(/°/)>-1)
+var pr=(point[1].search(/R/)>-1)||(point[1].search(/π/)>-1)
+point[1]=point[1].replace(/([NS])([EW])/i,"$145$2")
+if (point[1].search(/[NS].*[EW]/i)>-1){
+  if(point[1].search(/S/i)>-1) azi1=180; else azi1=-360
+  azi2=/[NS](.*?)°*[EW]/i
+  azi3=Number(azi2.exec(point[1])[1])
+  if(point[1].search(/E/i)>-1) azi1-=azi3; else azi1+=azi3
+  pd=true; point[1]=""+(abs(azi1)%360)}
+for (i=0;i<point.length&&i<3;i++) point[i]=cleanx(point[i],true)
+while (point.length<2) point.push(0)
+if (pd){
+ p1=point[0]; p2=(90-point[1])*PI/180
+ point[0]=p1*cos(p2); point[1]=p1*sin(p2)}
+else if (pr){
+ p1=point[0]; p2=point[1]
+ point[0]=p1*cos(p2); point[1]=p1*sin(p2)}
+return point}}
+// ----------------------------------*/
+function calc0 (exprno, exprd) { with(Math) {
+angle=[0,0,0]
+side=[0,0,0]
+zv=[0,0,0]
+expr = exprd.replace(/^\s+/,'').replace(/\s+$/,'').replace(/\s\s+/g,'a'); if (expr.length==0) return
+if ((expr.search(/\(/)!=0) && (calcoption<'2'||calcoption=='7')) calcoption='2'
+document.theForm.output.value += exprno +expr+": "
+
+if (calcoption=='7'){
+ // document.theForm.output.value += exprd
+ xn=0; yn=0; // expr=expr.replace(/\)[^\)\(]*\(/g,")+(")
+ while (expr.search(/\(/)>-1){
+  subtract = (expr.search(/^[^(]*-\s*\(/)>-1?-1:1)
+  var pp=getpoint(); x0=subtract*pp[0]; y0=subtract*pp[1]
+  graphdata+= onepoint(xn,yn)
+  xn+=x0; yn+=y0}
+ putpoint(xn,yn,-4); graphdata+='; '
+ return}
+ 
+if (calcoption<'2'){
+ v=[]; vname=["A","B","C"]
+ while (expr.search(/\(/)>-1) v.push(getpoint());
+ if (v.length==1){
+  x1=v[0][0]; y1=v[0][1]
+  mv = cleanx(expr.replace (/[^.\/\+\-\*0-9]/g,""),true);
+  if (isNaN(mv)){
+   document.theForm.output.value += exprd
+   putpoint(x1,y1); return}
+  else {v.push([x1+1,y1+mv])}}
+ if (v.length==2){
+  if (v[0].length>2){
+   var d2=0
+   for (i=0;i<v[0].length; i++){
+    d1=v[1][i]-v[0][i]; d2+= d1*d1}
+   document.theForm.output.value += "The distance from ("+v[0]+") to ("+v[1]+") is "
+    + my(Math.sqrt(d2)) +"\n"
+   return }
+  x1=v[0][0]; y1=v[0][1]; x2=v[1][0]; y2=v[1][1]
+  twopoints(x1,y1,x2,y2,true);
+  graphdata+= onepoint(x1,y1)+onepoint(x2,y2)+";"
+  var x3=(x1+x2)/2; var y3=(y1+y2)/2; var M=(y2-y1)/2; var N=(x2-x1)/2; mv=M/N
+  a1=y1-y2; b1=x2-x1; c1=x2*y1-y2*x1;
+  if (M==0) {y0=y1; x0=NaN}
+  else if (N==0) {y0=NaN; x0=x1}
+  else { x0=c1/a1; y0=c1/b1}
+  document.theForm.output.value += "x intercept: "+myround(x0,true)+"; "
+  document.theForm.output.value += "y intercept: "+myround(y0,true)+"; "
+  document.theForm.output.value += "slope: "+myround(mv,true)+"\n"
+  document.theForm.output.value += doline(x3,y3,-N,M) + " is ⊥ to" +doline(x3,y3,M,N) +" at "
+  document.theForm.output.value += "midpoint: ("+myround(x3,true)+", "+myround(y3,true)+");\n"
+  return}
+ // if (v.length>=3) ...
+ 
+ for (i=0; i<3; i++){xv[i]=v[i][0]; yv[i]=v[i][1]; zv[i]=v[i][2]; vname[i]=v[i][3]; if (zv[i]==undefined) zv[i]=0}
+ if (calcoption=='1'){ // Mid
+  xmv=[]; ymv=[]
+  for (i=0;i<3;i++) { xmv[i]=xv[i]; ymv[i]=yv[i];xmv[i+3]=xv[i]; ymv[i+3]=yv[i]}
+  for (i=0;i<3;i++) { xv[i]=xmv[i+1]+xmv[i+2]-xmv[i]; yv[i]=ymv[i+1]+ymv[i+2]-ymv[i]}}
+ dim3 = (zv[0]!=0)||(zv[1]!=0)||(zv[2]!=0)
+ for (i=0;i<4;i++) { xv[i+3]=xv[i]; yv[i+3]=yv[i]; zv[i+3]=zv[i] };
+ for (i=0;i<5;i++) { side[i] = sqrt ( pow((xv[i+1]-xv[i+2]),2) + pow((yv[i+1]-yv[i+2]),2) + pow((zv[i+1]-zv[i+2]),2)); }
+ for (i=0;i<3;i++) { angle[i] = PIadj*acos((pow(side[i+1],2)+pow(side[i+2],2)-pow(side[i],2))/(2*side[i+1]*side[i+2])) }
+ calc1(); return
+ }
+ 
+degrees = !document.theForm.rad2[3].checked
+if (expr.search(/°/)>-1) degrees=true
+else if(expr.search(/π/)>-1) degrees=false
+if (degrees) {PIadj = PIdeg} else {PIadj = 1}
+expr=expr.replace(/([a-z]) *([\d.])/ig,"$1=$2")
+expr=expr.replace(/([a-z]) *=/ig,", $1=")
+if (expr.search(/[:=]/)>-1)
+{ // expr=expr.replace(/ /g,"") a=3 1/2
+  v = [[,0,0],[,0,0],[,0,0]];   nextv =0; var dict=[]
+  while(expr.search(/[:=]/)>-1)
+  { iv= expr.search(/[:=]/)
+    if (iv<1) {expr=expr.slice(iv+1);continue}
+    ivvar = expr.substr(iv-1,1); ivvarU=ivvar.toUpperCase()
+    expr=expr.slice(iv+1)
+    iv= (expr+",").search(/[;,]/)
+    ivval=cleanx(expr.slice(0,iv),true)
+    expr=expr.slice(iv+1)
+    if (dict[ivvarU]==undefined)
+    { dict[ivvarU]=nextv
+      if (nextv>2) break
+      v[nextv++][0]=ivvarU}
+    ivd = dict[ivvarU]
+    if (ivvarU==ivvar) v[ivd][2]=ivval; else v[ivd][1]=ivval}
+  do
+  { v=v.sort();
+    if (v[0][0]!=undefined) break
+    if (v[1][0]!=undefined && v[1][0].charCodeAt(0)+2==v[2][0].charCodeAt(0))
+      v[0][0]=String.fromCharCode(v[1][0].charCodeAt(0)+1)
+    else if(v[2][0]=="C")
+      v[0][0]="A"
+    else
+      v[0][0]=String.fromCharCode(v[2][0].charCodeAt(0)+1)
+    } while (true)
+  sasflag=0
+  for (i=0;i<3;i++) { vname[i] = v[i][0]; side[i]=v[i][1]; angle[i]=v[i][2]; sasflag+=side[i]*angle[i] }
+  countsides = (side[0]!=0)+(side[1]!=0)+(side[2]!=0)
+  
+  if (countsides==2)
+  { if (sasflag==0)
+    { document.theForm.output.value += "sas: Cosine Law: b² = a² + c² - 2ac cos(B) \n"
+      countsides=4
+      for (i=0;i<3;i++)
+      { if (side[i]==0)
+        { side[i]= sqrt(side[(i+1)%3]*side[(i+1)%3]+side[(i+2)%3]*side[(i+2)%3]-2*side[(i+1)%3]*side[(i+2)%3]*cos(angle[i]/PIadj))}}}
+    else
+    { document.theForm.output.value += "ssa: Sine Law: Sin(A)/a = Sin(B)/b \n"
+      for (i=0;i<3;i++)
+      { if (side[i]*angle[i]!=0) { firstangle=i; ratio = sin(angle[i]/PIadj)/side[i]}
+        else if (side[i]!=0) missingangle=i }
+      totangle=0
+      for (i=0;i<3;i++)
+      { if (side[i]*ratio>1) { document.theForm.output.value += "  Invalid triangle"; return}
+        if (angle[i]==0) angle[i] = asin(side[i]*ratio)*PIadj
+        totangle+=angle[i]}
+      for (i=0;i<3;i++) if (angle[i]==0)
+      { angle[i]= (degrees?180:PI) - totangle}
+      for (i=0;i<3;i++) if (side[i]==0 && angle[i]!=0) {missingside=i;side[i]=sin(angle[i]/PIadj)/ratio}
+      
+      calc2()
+      
+      
+      if (abs(angle[missingangle]/PIadj-PI/2)>.001)
+      { angle[missingangle] = (degrees?180:PI) - angle[missingangle]
+        angle[missingside] = (degrees?180:PI) - angle[firstangle] - angle[missingangle]
+        if (angle[missingside]>0)
+        { side[missingside] = sin(angle[missingside]/PIadj)/ratio
+          document.theForm.output.value += "\n  *** Second solution:\n";
+          trinum--
+          calc2()}}
+      return
+  } }
+  
+  if (countsides>2)
+  { p2 = (side[0]+side[1]+side[2]) / 2;
+    area = p2 * (p2 - side[0]) * (p2 - side[1]) * (p2 - side[2]);
+    if (area <= 0) { document.theForm.output.value += "  Invalid triangle"; return}
+    if (countsides==3)document.theForm.output.value += "sss: Cosine Law: b² = a² + c² - 2ac cos(B) \n";
+    for (i=0;i<3;i++)
+    { angle[i] = PIadj*acos((pow(side[(i+1)%3],2)+pow(side[(i+2)%3],2)-pow(side[i],2))/(2*side[(i+1)%3]*side[(i+2)%3])) }
+    }
+  else if (countsides==1)
+  { thirdangle = (degrees?180:PI) - angle[0] - angle[1] - angle[2]
+    document.theForm.output.value += "asa: Sine Law: Sin(A)/a = Sin(B)/b \n"
+    for (i=0;i<3;i++) if (angle[i]==0) angle[i]= thirdangle
+    for (i=0;i<3;i++) if (side[i]>0) ratio = sin(angle[i]/PIadj)/side[i]
+    for (i=0;i<3;i++) side[i] = sin(angle[i]/PIadj)/ratio
+    }
+  else
+  { document.theForm.output.value += "\n"+v[0]+"  ::  "+v[1]+"  ::  "+v[2]+"\n"
+    return}
+  calc2()
+  return
+}
+
+while (expr.search(/ [a-z.<:= ]{2,} /ig)>-1) expr = expr.replace (/ [a-z.<:= ]{2,} /ig,",")
+expr = expr.replace(/,+/g,","); expr = expr.replace(/ +/g," ")
+
+vname=["A","B","C"]
+data = expr.split(",")
+i=0; while (i<data.length)
+{ data[i] = cleanx(data[i],true) // eval(data[i]);
+  if ( isNaN(data[i]))
+  { data.splice(i,1) } else { i++ } }
+while (data.length>2)
+{ if (calcoption=='2') {
+    document.theForm.output.value += "sss: Cosine Law: b² = a² + c² - 2ac cos(B) \n";
+    for (i=0;i<3;i++) side[i] = data[i] //  Number(eval());
+    p2 = (side[0]+side[1]+side[2]) / 2;
+    area = p2 * (p2 - side[0]) * (p2 - side[1]) * (p2 - side[2]);
+    if (area <= 0) { document.theForm.output.value += "  Invalid triangle"; return}
+    for (i=0;i<3;i++) { angle[i] = PIadj*acos((pow(side[(i+1)%3],2)+pow(side[(i+2)%3],2)-pow(side[i],2))/(2*side[(i+1)%3]*side[(i+2)%3])) }}
+  else if (calcoption=='3') {
+    document.theForm.output.value += "ssa: Sine Law: Sin(A)/a = Sin(B)/b \n";
+    side[2]=data[0]; side[0]=data[1]; angle[2] = data[2];
+    ratio = sin(angle[2]/PIadj)/side[2];
+    if ((side[0] * ratio)>1) { document.theForm.output.value += "  Invalid triangle"; return}
+    angle[0] = asin(side[0] * ratio)*PIadj; angle[1] = (degrees?180:PI) - angle[0] - angle[2];
+    side[1] =  sin(angle[1]/PIadj)/ratio;}
+  else if (calcoption=='4') {
+    document.theForm.output.value += "sas: Cosine Law: b² = a² + c² - 2ac cos(B) \n";
+    side[0]=data[0]; angle[2]=data[1]; side[1]=data[2];
+    side[2]=sqrt(side[0]*side[0]+side[1]*side[1]-2*side[0]*side[1]*cos(angle[2]/PIadj));
+    /*ratio = sin(angle[2]/PIadj)/side[2];angle[1] = asin(side[1] * ratio)*PIadj;angle[0] = asin(side[0] * ratio)*PIadj;*/
+    angle[0] = acos((side[0]*side[0] - side[1]*side[1] - side[2]*side[2])/(-2*side[1]*side[2])) *PIadj
+    angle[1] = (degrees?180:PI) - angle[2] - angle[0]
+    }
+  else if (calcoption=='5') {
+    document.theForm.output.value += "asa: Sine Law: Sin(A)/a = Sin(B)/b \n";
+    angle[0] = data[0]; side[2] = data[1]; angle[1] = data[2];
+    angle[2] = (degrees?180:PI) - angle[0] - angle[1]; ratio = sin(angle[2]/PIadj)/side[2];
+    side[0] = sin(angle[0]/PIadj)/ratio; side[1] = sin(angle[1]/PIadj)/ratio;}
+  else if (calcoption=='6') {
+    document.theForm.output.value += "aas: Sine Law: Sin(A)/a = Sin(B)/b \n";
+    angle[0] = data[0]; angle[1] = data[1]; side[0] = data[2];
+    angle[2] = (degrees?180:PI) - angle[0] - angle[1]; ratio = sin(angle[0]/PIadj)/side[0];
+    side[1] = sin(angle[1]/PIadj)/ratio; side[2] = sin(angle[2]/PIadj)/ratio;}
+  else if (calcoption=='9') {
+    document.theForm.output.value += "saa: Sine Law: Sin(A)/a = Sin(B)/b \n";
+    angle[0] = data[2]; angle[1] = data[1]; side[0] = data[0];
+    angle[2] = (degrees?180:PI) - angle[0] - angle[1]; ratio = sin(angle[0]/PIadj)/side[0];
+    side[1] = sin(angle[1]/PIadj)/ratio; side[2] = sin(angle[2]/PIadj)/ratio;}
+  else if (calcoption=='8') {
+    document.theForm.output.value += "ass: Sine Law: Sin(A)/a = Sin(B)/b \n";
+    side[2]=data[2]; side[0]=data[1]; angle[2] = data[0];
+    ratio = sin(angle[2]/PIadj)/side[2];
+    if ((side[0] * ratio)>1) { document.theForm.output.value += "  Invalid triangle"; return}
+    angle[0] = asin(side[0] * ratio)*PIadj; angle[1] = (degrees?180:PI) - angle[0] - angle[2];
+    side[1] =  sin(angle[1]/PIadj)/ratio;}
+    
+  calc2()
+  
+  if (calcoption=='3'||calcoption=='8'){
+    angle[0] = (degrees?180:PI) - angle[0]; angle[1] = (degrees?180:PI) - angle[0] - angle[2];
+    if (angle[1]>0) {
+      side[1] =  sin(angle[1]/PIadj)/ratio;
+      document.theForm.output.value += "\n  *** Second solution:\n";
+      trinum--
+      calc2()
+  } }
+  data.splice(0,3) }
+} };
+// ----------------------------------*/
+function calc2 () { with(Math) {  // have all three sides and angles, go for it
+if (calcoption!='2' && calcoption!='3' && calcoption!='8')
+{ sorted=true;
+  both=[]; for (i=0;i<3;i++) both.push([angle[i],side[i],vname[i],i])
+  both.sort(function(a, b){return a[0]-b[0]})
+  for (i=0;i<3;i++) {angle[2-i]=both[i][0]; side[2-i]=both[i][1]; vname[2-i]=both[i][2]}}
+else sorted=false
+xv[0]=trinum+side[1]*cos(angle[2]/PIadj); yv[0]=trinum+side[1]*sin(angle[2]/PIadj); zv[0]=trinum
+xv[1]=trinum+side[0]; yv[1]=trinum; zv[1]=trinum
+xv[2]=trinum; yv[2]=trinum; zv[2]=trinum
+for (i=0;i<3;i++) { xv[i+3]=xv[i]; yv[i+3]=yv[i] }
+trinum++
+calc1()
+if (sorted) {for (i=0;i<3;i++) {j=both[i][3]; angle[j]=both[j][0]; side[j]=both[j][1]; vname[j]=both[j][2]}}
+} }
+// ----------------------------------*/
+function calc(){
+if (frac>3) swfrac(0)
+trinum=0 // count triangles and shift the display
+probs = document.theForm.input.value.replace(/^\s+/,"")
+probs=probs.replace(/\n\s+/g,"\n").replace(/\n\n+/g,"\n")
+if (probs.length==0) probs = "sss: 3,4,5"
+document.theForm.input.value=probs
+// ----------------------------------------------------------------------------------
+
+probs=probs.replace(/degrees/ig,degchar).replace(/º/ig,degchar).replace(/pi/ig,pichar).replace(/and /ig,",").replace(/is/ig,":").replace(/[ \t]+/g," ")
+proba = probs.split(/[\n]/);
+
+for (i=0; i<document.theForm.rad2.length; i++)
+  if (document.theForm.rad2[i].checked){
+    vrep=i; break}
+
+while (proba.length){
+ calcoption='0'
+ probno=""; prob=proba.shift(); probt = prob.match(/[ A-Z]{3,}:/i)
+ if (probt!=null){
+  var re = new RegExp(probt[0])
+  probt=probt[0].toUpperCase().slice(0,3)
+  if(probt=='SSS') calcoption='2'
+  else if(probt=='SSA') calcoption='3'
+  else if(probt=='SAS') calcoption='4'
+  else if(probt=='ASA') calcoption='5'
+  else if(probt=='AAS') calcoption='6'
+  else if(probt=='ADD') calcoption='7'
+  else if(probt=='ASS') calcoption='8'
+  else if(probt=='SAA') calcoption='9'
+  else if(probt=='MID') calcoption='1'
+  prob=prob.replace(re,"")}
+ else{
+  // prob=prob.replace(/([a-z]\s*[=:][0-9.]+\s)/gi,'$1,')
+ }
+ if (prob.search(/\/\//)>-1) prob=prob.slice(0,prob.search(/\/\//)) // comments
+ if (prob.search(/^ *(\d+|\w)(\)|\. )/)==0){
+  probno=prob.match(/^\s*(\d+|\w)(\)|\. )/)[0]+" " ;prob=prob.replace(/^ *(\d+|\w)(\)|\. )/,"")}
+ if (prob.search(/.*\([^)]+\,.*\)/)>-1){
+  if (calcoption!='7'&& calcoption!='1'){ calcoption='0'}}
+ else { if (calcoption<'2') calcoption='2'}
+ if (calcoption<'2'){
+  prob = prob.replace(/\)[^\(\)]*\(/g,")("); prob = prob.replace(/^[^(]+/,"")}
+ probs = probs.replace(/[a-z \.\,]{5,}/gi,"")
+ if (prob.length>1){
+  calc0(probno, prob); document.theForm.output.value += "- - - - - - \n"}}
+
+if (graphit)
+{xv1=graphdata.match(/\([^,)]+,[^,)]+/g).sort(function(a,b){return Number(a.slice(1,a.search(',')))-Number(b.slice(1,b.search(',')))})
+ graphxl=Number(xv1[0].slice(1,xv1[0].search(',')))
+ graphxh=xv1.pop(); graphxh=Number(graphxh.slice(1,graphxh.search(',')))
+ graphxm=(graphxl+graphxh)/2; graphxr=graphxh-graphxl
+ for (ii=0;ii<xv1.length;ii++) xv1[ii]=xv1[ii].slice(xv1[ii].search(','))
+ xv1=xv1.sort(function(a,b){return Number(a.slice(1))-Number(b.slice(1))})
+ graphyl=Number(xv1[0].slice(1)); graphyh=Number(xv1.pop().slice(1))
+ graphym=(graphyl+graphyh)/2; graphyr=graphyh-graphyl
+ graphr2 = Math.max(graphxr,graphyr)/2+1
+ val1="x:" +(graphxm-graphr2) +" to " +(graphxm+graphr2) +";y:"  +(graphym-graphr2) +" to " +(graphym+graphr2) +";" +graphdata
+ val1=escape(val1.replace(/\n/g,"<nl>").replace(/;/g,"<sc>"))
+ localStorage.setItem("graphdata",val1)
+ window.open("graphs.htm") }
+ // ?x:" +(graphxm-graphr2) +" to " +(graphxm+graphr2) +";y:"  +(graphym-graphr2) +" to " +(graphym+graphr2) +";" +graphdata)}
+ graphit=false; document.theForm.input.focus()}
+</script>
+<form name="theForm">
+<table  border = 1 noshade bgcolor = 99CC66>
+<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">triangles & vectors</td></tr>
+<tr><td><textarea name = "input" rows = 3 cols = 72 tabindex="1" onKeyUp="enter(event)"></textarea><br>
+<input type="button" name="exec" value = 'sss:' onclick="putx('sss:')"/>
+<input type="button" name="exec" value = 'ssa:' onclick="putx('ssa:')"/>
+<input type="button" name="exec" value = 'sas:' onclick="putx('sas:')"/>
+<input type="button" name="exec" value = 'ass:' onclick="putx('ass:')"/>
+<input type="button" name="exec" value = 'saa:' onclick="putx('saa:')"/>
+<input type="button" name="exec" value = 'asa:' onclick="putx('asa:')"/>
+<input type="button" name="exec" value = 'aas:' onclick="putx('aas:')"/>
+<input type="button" name="exec" value = 'add:' onclick="putx('add:')"/>
+<input type="button" name="exec" value = 'poi:' onclick="putx('poi:')"/>
+<input type="button" name="exec" value = 'mid:' onclick="putx('mid:')"/>
+<input type="button" name="exec" value = 'lin:' onclick="putx('lin:')"/>
+<br>
+<input type="button" name="exec" value = 'a:' onclick="putx('a:')"/>
+<input type="button" name="exec" value = 'b:' onclick="putx('b:')"/>
+<input type="button" name="exec" value = 'c:' onclick="putx('c:')"/>
+<input type="button" name="exec" value = 'A:' onclick="putx('A:')"/>
+<input type="button" name="exec" value = 'B:' onclick="putx('B:')"/>
+<input type="button" name="exec" value = 'C:' onclick="putx('C:')"/>
+<input type="button" name="exec" value = '(' onclick="putx('(')"/>
+<input type="button" name="exec" value = ',' onclick="putx(',')"/>
+<input type="button" name="exec" value = ')' onclick="putx(')')"/>
+<input type="button" name="exec" value = 'π)' onclick="putx('π)')"/>
+<input type="button" name="exec" value = '°)' onclick="putx('°)')"/>
+</td></tr><tr><td>
+<input type="button" name="exec" value = "Clear/Execute" onClick="cla1();calc()"/>
+<input type="button" name="exec" value = "Execute" onClick="cla2(); calc()"/>
+<input type="button" name="exec" value = "Clear input" onClick="cla()"/>
+<input type="button" name="exec" value = "Clear output" onClick="document.theForm.output.value= saveOutput"/>
+<input type="button" name="savebut" Value="Save" onClick="savestuff(); document.theForm.input.focus()"/>
+<input type="button" name="loadbut" Value="Load" onClick="loadstuff(); document.theForm.input.focus()"/>
+<input type="button" name="exec" value = "Graph" onClick="cla1();graphit=true;calc()"/>
+
+<br>
+Show<INPUT type=checkbox name=centers>centers
+<INPUT type=checkbox name=sides>sides
+<INPUT type=checkbox name=medians>medians
+<INPUT type=checkbox name=altitudes>altitudes
+<INPUT type=checkbox name=bisectors>bisectors
+<INPUT type=checkbox name=incenter>incenter
+<INPUT type=checkbox name=area>area<br>
+Output<INPUT TYPE="radio" name="rad2" value="0" />(x,y)
+<INPUT TYPE="radio" name="rad2" value="1" checked/>Azimuth°
+<INPUT TYPE="radio" name="rad2" value="2" />Compass
+<INPUT TYPE="radio" name="rad2" value="3" />Radians
+<input type="button" value="4 place" id="frac" onClick="cla1();swfrac(true)" title="output format" style="background-color:turquoise"/>
+<!-- rotate? -->
+</td></tr>
+<tr><td><textarea name = "output" rows = 30 cols = 72 tabindex=0>Triangles:
+  poi: (1,0,,D)(-5,-3,,E)(-5,0,,Z)     // coordinate points (DEZ)
+  mid: (1.5,0),(0,2),(1.5,2) // midpoints
+  sss: 3,4,5
+  a:3,b:4,c:5
+  saa: 3,53.13°,36.87°
+  b:4,B:53.13°,A:36.87°
+  asa: 36.87°,5,53.13°
+  A:36.87°,c:5,B:53.13°
+  aas: 36.87°,53.13°,3
+  A:36.87°,B:53.13°,a:3
+  sas: 3,90°, 4
+  a:3, C:90°, b:4
+  ssa: 3, 4, 36.8699°
+  c:3, b=4, C:36.8699°
+  ass: 36.8699°, 4, 3
+  C:36.8699°, b:4, c:3
+
+lines:
+  (3,4) 4/3         // point slope
+  (0,0) (3,4)       // two points
+add vectors:
+  (3,4)             // (x,y) co-ord
+  (5,36.8699°)      // (distance, Azimuth heading)
+  (5,N36.8699°E)    // (distance, compass heading)
+  (5,0.2951672π)    // (ρ, θ) polar co-ord
+  (5,0.92729511R)   // (ρ, θ) polar co-ord radians
+  (3,4)+(4,180°)+(-3,0π)</textarea>
+</td></tr></table>
+</form>
+<script>
+saveOutput=document.theForm.output.value
+frac=2
+ls=decodeURIComponent(location.search)
+if (ls.search(/\?/)==0){
+ document.theForm.input.value = ls.slice(1).split("&")[0]
+ cla1();calc()}
+</script></body></html>

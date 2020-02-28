@@ -1,0 +1,39 @@
+<html><body>
+Look at the code on this page.
+<p>It is the kind of code you should NEVER NEVER write.</p>
+<TABLE BORDER="1" CELLPADDING="5" CELLSPACING="5" BGCOLOR="#DDFFFF" width="100%"><tr BGCOLOR="#DDFFFF" align="left" valign="top"><td align="left" valign="top" width=100% nowrap colspan="1" rowspan="1" bgcolor="FFFFFF">
+<pre>
+&lt;html>&lt;body>&lt;script type="text/javascript">
+x=1; h=.0000001
+a=x; b=a; c=2; m = ",  "; p='&lt;br>'
+while (Math.abs(b)>h)
+{b*=-x*x/c++/c++; a+=b
+ if (c>99) break }
+document.write (p,c/2,m," a=",a,m," b=",b)
+document.write(p,'sine(x)= '+Math.sin(x)) // how close is a to the Sine of x?
+
+x=0; y=0; c=1; n=100000
+while (c&lt;n)
+{x += 1/c; y += 1/(n-c++)}
+document.write (p,x,m,y,m,x==y) // is x equal to y? why?
+&lt;/script>&lt;/body>&lt;/html>
+</pre></td></tr></table>
+<p>Can you figure out how you get this output from that code?</p>
+<TABLE BORDER="1" CELLPADDING="5" CELLSPACING="5" BGCOLOR="#DDFFFF" width="100%"><tr BGCOLOR="#DDFFFF" align="left" valign="top"><td align="left" valign="top" width=X nowrap colspan="1" rowspan="1" bgcolor="FFFFFF">
+<script type="text/javascript">
+x=1; h=.0000001
+a=x; b=a; c=2; m = ",  "; p="<br>"
+while (Math.abs(b)>h)
+{b*=-x*x/c++/c++; a+=b
+ if (c>99) break }
+document.write (p,c/2,m," a=",a,m," b=",b)
+document.write(p,'sine(x)= '+Math.sin(x)) // how close is a to the Sine of x?
+
+x=0; y=0; c=1; n=100000
+while (c<n)
+{x += 1/c; y += 1/(n-c++)}
+document.write (p,x,m,y,m,x==y) // is x equal to y? why?
+</script>
+</td></tr></table>
+<p style="text-align: right;"><A href="" target="_blank"></A></p>
+</body></html>

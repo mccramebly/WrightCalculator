@@ -1,0 +1,167 @@
+<html><head><!DOCTYPE HTML>
+<title>Venn Diagram</title>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
+<body  style="font-family:Monospace" onLoad="self.focus()" >
+<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<form name='ss'>
+<table border = 1 noshade bgcolor = 99CC66>
+<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Venn Diagram</td></tr>
+<tr><td align=center><input name="clear" type="button" value = "Clear ALL" onClick="window.open('venn.htm','_self')"/></td><td align=center><input name="demobut" type="button" value = "DEMO" onClick="demo()"/> &nbsp; </td>
+<td align=center><input name="pcntbut" type="button" value = "PCNT" onClick="pcnt()"/> &nbsp; </td></tr>
+<tr><td align=center>
+A:<input type='text' name='nA' size=15 tabindex="1" value="A" onblur='legend()'></td><td align=center>
+B:<input type='text' name='nB' size=15 tabindex="2" value="B" onblur='legend()'></td><td align=center>
+C:<input type='text' name='nC' size=15 tabindex="3" value="C" onblur='legend()'></td></tr><tr>
+<td valign=top align=right>
+Only A:<input type='text' name='a' size=5 tabindex="4" value="" onblur='legend()'><br>
+Only A & C: <input type='text' name='ac' size=5 tabindex="7" value="" onblur='legend()'>&nbsp;</td>
+<td valign=top align=right>
+Only A & B: <input type='text' name='ab' size=5 tabindex="5" value="" onblur='legend()'><br>
+All three: <input type='text' name='abc' size=5 tabindex="8" value="" onblur='legend()'><br>
+Only C:<input type='text' name='c' size=5 tabindex="10" value="" onblur='legend()'>&nbsp;</td>
+<td valign=top align=right>
+Only B:<input type='text' name='b' size=5 tabindex="6" value="" onblur='legend()'><br>
+Only B & C: <input type='text' name='bc' size=5 tabindex="9" value="" onblur='legend()'><br>
+None: <input type='text' name='x' size=5 tabindex="11" value="" onblur='legend()'>&nbsp;
+</td></tr><tr><td id='sum1'></td><td id='sum2'></td><td id='sum3'></td></tr><tr>
+<td  colspan=3 align=left><canvas id="theCanvas" width="500" height="400"></canvas></td></tr></table></form>
+<script>
+/*
+<td>EVERYONE:   x+a+b+c+ab+ac+bc+abc= 85
+<br>NONE:       x= 2
+<br>a:          a+ab+ac+abc= 46
+<br>b:          b+ab+bc+abc= 50
+<br>c:          c+ac+bc+abc= 34
+</td><td>a and b:    ab+abc= 17
+<br>a and c:    ac+abc= 15
+<br>b and c:    bc+abc= 22
+<br>ONLY ONE:   a+b+c= 43
+<br>ONLY TWO:   ab+ac+bc= 33
+</td><td>a or c:     a+c+ab+ac+bc+abc= 65
+<br>a or b:     a+b+ab+ac+bc+abc= 79
+<br>b or c:     b+c+ab+ac+bc+abc= 62
+<br>AT LEAST 2: ab+ac+bc+abc= 40
+<br>ALL 3:      abc= 7
+
+*/
+ispcnt=false
+CU=String.fromCharCode(8746) // cup = union
+CA=String.fromCharCode(8745) // cap = intersection
+cc=[]
+var cID=document.getElementById("theCanvas")
+var ctx=cID.getContext("2d")
+cID.onselectstart = function () { return false; } // ie
+cID.onmousedown = function () { return false; } // mozilla
+// Canvas variables.
+CXW=cID.width; CXM=(CXW-1)/2; CXD=CXW-5   // 2 pixel border around graph area
+CYW=cID.height; CYM=(CYW-1)/2; CYD=CYW-5; CYT=CYW-1 // needed to flip graph
+legend()
+document.ss.nA.select()
+// --------------------------
+function legend(){ with(Math) {
+a = Number( document.ss.a.value)
+b = Number( document.ss.b.value)
+c = Number( document.ss.c.value)
+ab = Number( document.ss.ab.value)
+bc = Number( document.ss.bc.value)
+ac = Number( document.ss.ac.value)
+abc = Number( document.ss.abc.value)
+x = Number( document.ss.x.value)
+if (ispcnt) U = (x+a+b+c+ab+ac+bc+abc); else U=1
+
+
+if (ispcnt)Q=4; else Q=0
+document.getElementById("sum1").innerHTML=
+document.ss.nA.value+": "+my((a+ab+ac+abc)/U,Q)+
+"<br>Only "+document.ss.nA.value+": "+my((a)/U,Q)+
+"<br>Only "+document.ss.nA.value+"&cap;"+document.ss.nB.value+": "+my((ab)/U,Q)+
+"<br>"+document.ss.nA.value+"&cap;"+document.ss.nB.value+": "+my((ab+abc)/U,Q)+
+"<br>"+document.ss.nA.value+"&cup;"+document.ss.nB.value+": "+my((a+b+ab+ac+bc+abc)/U,Q)+
+"<br>NONE: "+my((x)/U,Q)+
+"<br>ALL THREE: "+my((abc)/U,Q)
+
+document.getElementById("sum2").innerHTML=""+
+document.ss.nB.value+": "+my((b+ab+bc+abc)/U,Q)+
+"<br>Only "+document.ss.nB.value+": "+my((b)/U,Q)+
+"<br>Only "+document.ss.nB.value+"&cap;"+document.ss.nC.value+": "+my((bc)/U,Q)+
+"<br>"+document.ss.nB.value+"&cap;"+document.ss.nC.value+": "+my((bc+abc)/U,Q)+
+"<br>"+document.ss.nB.value+"&cup;"+document.ss.nC.value+": "+my((b+c+ab+ac+bc+abc)/U,Q)+
+"<br>ONLY ONE: "+my((a+b+c)/U,Q)+
+"<br>AT LEAST TWO: "+my((ab+ac+bc+abc)/U,Q)
+
+document.getElementById("sum3").innerHTML=
+document.ss.nC.value+": "+my((c+ac+bc+abc)/U,Q)+
+"<br>Only "+document.ss.nC.value+": "+my((c)/U,Q)+
+"<br>Only "+document.ss.nA.value+"&cap;"+document.ss.nC.value+": "+my((ac)/U,Q)+
+"<br>"+document.ss.nA.value+"&cap;"+document.ss.nC.value+": "+my((ac+abc)/U,Q)+
+"<br>"+document.ss.nA.value+"&cup;"+document.ss.nC.value+": "+my((a+c+ab+ac+bc+abc)/U,Q)+
+"<br>ONLY TWO: "+my((ab+ac+bc)/U,Q)+
+"<br>EVERYONE: "+my((x+a+b+c+ab+ac+bc+abc)/U,Q)
+
+ctx.fillStyle="#FFFFFF";ctx.fillRect(0,0,CXW,CYW)
+ctx.strokeStyle = 'red'
+ctx.beginPath(); ctx.arc(300,140,100, 0  , 2 * PI, false); ctx.stroke()
+ctx.strokeStyle = 'blue'
+ctx.beginPath(); ctx.arc(180,140,100, 0  , 2 * PI, false); ctx.stroke()
+ctx.strokeStyle = 'green'
+ctx.beginPath(); ctx.arc(240,250,100, 0  , 2 * PI, false); ctx.stroke()
+ctx.font = "bold 13px Arial"; ctx.fillStyle = 'black'
+ctx.fillText(document.ss.nA.value, 40, 20)
+ctx.fillText(document.ss.nB.value, 360, 20)
+ctx.fillText(document.ss.nC.value, 20, 330)
+ctx.fillText(document.ss.a.value, 140, 140)
+ctx.fillText(document.ss.b.value, 320, 140)
+ctx.fillText(document.ss.c.value, 230, 300)
+ctx.fillText(document.ss.ab.value, 230, 140)
+ctx.fillText(document.ss.ac.value, 190, 200)
+ctx.fillText(document.ss.bc.value, 270, 200)
+ctx.fillText(document.ss.abc.value, 230, 180)
+ctx.fillText('none: '+document.ss.x.value, 400, 330)
+}}
+// --------------------------
+function pcnt(){
+ispcnt=!ispcnt
+if (ispcnt) document.ss.pcntbut.value="Counts"; else document.ss.pcntbut.value="PCNT"
+legend()
+}
+// --------------------------
+function demo(){
+//Solution: a = 21; ab = 10; abc = 7; ac = 15; b = 18; bc = 8; c = 4; x = 2;
+//a:comedy  , b:drama   , c:science fiction   :
+// ?comedy;drama;sciencefiction;21;10;7;15;18;8;4;2;
+document.ss.nA.value = 'Comedy'
+document.ss.nB.value = 'Drama'
+document.ss.nC.value = 'Sci Fi'
+document.ss.a.value = 21
+document.ss.ab.value = 10
+document.ss.abc.value = 7
+document.ss.ac.value = 15
+document.ss.b.value = 18
+document.ss.bc.value = 8
+document.ss.c.value = 4
+document.ss.x.value = 2
+legend()
+}
+
+
+// --------program starts here------------------
+
+ls=decodeURIComponent(location.search)
+if (ls.search(/\?/)==0) {
+  ls=ls.slice(1).split("&").join(';').split(";")
+document.ss.nA.value = ls[0]
+document.ss.nB.value = ls[1]
+document.ss.nC.value = ls[2]
+document.ss.a.value = ls[3]
+document.ss.ab.value = ls[4]
+document.ss.b.value = ls[5]
+document.ss.ac.value = ls[6]
+document.ss.abc.value = ls[7]
+document.ss.bc.value = ls[8]
+document.ss.c.value = ls[9]
+document.ss.x.value = ls[10]
+legend()
+}
+</script>
+</body></html>
