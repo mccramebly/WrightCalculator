@@ -57,6 +57,7 @@ a.nohov:link {text-decoration:none;color:black;}
 a.nohov:hover, a.nohov:active {color:white;background:red;}
 
 /*-- index styles, for to make things not break entirely --*/
+
 #menu table {
     background:#DDFFFF;
     font-family:serif;
@@ -67,6 +68,13 @@ a.nohov:hover, a.nohov:active {color:white;background:red;}
 .deco {
     text-align:center;
     background:#AADDDD;
+    width:15px;
+}
+
+.deco ul {
+    list-style-type: none;
+    margin:0;
+    padding:5px;
 }
 
 .column {
