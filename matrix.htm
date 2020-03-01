@@ -1,7 +1,7 @@
 <html><head>
 <meta http-equiv="content-type" content="text/html" charset="UTF-8"><title>Matrix operations</title>
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
-<SCRIPT type="text/javascript" src="matrix.js"></script>
+<script type="text/javascript" src="myfunctions.js"></script>
+<script type="text/javascript" src="matrix.js"></script>
 <script type="text/javascript">
 var saveA=[]
 var saveB=[]
@@ -275,19 +275,19 @@ document.theForm.inputline.focus()
 }
 </script>
 <link rel="SHORTCUT ICON" href="favicon.ico"></head>
-<body onload="self.focus();window.resizeTo( 800, 800 );" style="font-family: sans-serif;">
+<body onload="self.focus();window.resizeTo( 800, 800 );">
 <p>
 </p><form name="theForm">
-<table noshade="" bgcolor="99CC66" border="0"><tbody>
-<tr><td onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Matrix Math
-</td><td style="text-align: right">
+<table><tbody>
+<tr><td onClick="window.open('index.htm')">Matrix Math
+</td><td>
 <input name="clearbutt" value="Clear All" onclick="clere()" type="button" title="Clear">
 <input name="cleapbutt" value="Clear Prog" onclick="clerp()" type="button" title="Clear Program">
 <input name="cleadbutt" value="Clear Data" onclick="clerd()" type="button" title="Clear Data">
-<input name="calcbutt" value="Calc" onclick="dosam=false; calc()" type="button" title="Perform commands" style="background-color:yellow">
+<input name="calcbutt" value="Calc" onclick="dosam=false; calc()" type="button" title="Perform commands">
 <input name="mpopbutt" value="undo" onclick="mrestore()" type="button" title="restore prior data">
-<input type="button" value="8 place" id="frac" onClick="swfrac('',4)" title="output format" style="background-color:turquoise"/>
-</td><td style="text-align: right">Sample routines:  <input name="sampbutt" value="Run Next" onclick="dosam=true; samp()" type="button" title="Sample commands">
+<input type="button" value="8 place" id="frac" onClick="swfrac('',4)" title="output format"/>
+</td><td>Sample routines:  <input name="sampbutt" value="Run Next" onclick="dosam=true; samp()" type="button" title="Sample commands">
 </td></tr>
 <tr><td colspan=3><textarea name="inputline" rows="5" cols="102" onkeyup="enter(event)"></textarea>
 </td></tr><tr><td valign="top" colspan=3>
@@ -304,23 +304,23 @@ Functions: <input name="Maddbutt" value="Madd" onclick="putx('Madd(')" type="but
 <!-- <input name="Mcramerbutt" value="cramer" onclick="putx('Mcramer(')" type="button" title="build cramer matrix">
 <input name="mpowerbutt" value="mpow" onclick="putx('mpow(')" type="button" title="build matrix for least squares polynomial calc"> -->
 <br>
-<input name="MAbutt" value="A" onclick="putx('A')" type="button" title="A" style="padding:3px 0px">
+<input name="MAbutt" value="A" onclick="putx('A')" type="button" title="A" >
 <textarea name="inputA" id="inputA" rows="6" cols="22"></textarea>
-<input name="MBbutt" value="B" onclick="putx('B')" type="button" title="B" style="padding:3px 0px">
+<input name="MBbutt" value="B" onclick="putx('B')" type="button" title="B" >
 <textarea name="inputB" id="inputB" rows="6" cols="22"></textarea>
-<input name="MCbutt" value="C" onclick="putx('C')" type="button" title="C" style="padding:3px 0px">
+<input name="MCbutt" value="C" onclick="putx('C')" type="button" title="C" >
 <textarea name="inputC" id="inputC" rows="6" cols="22"></textarea>
-<input name="MDbutt" value="D" onclick="putx('D')" type="button" title="D" style="padding:3px 0px">
+<input name="MDbutt" value="D" onclick="putx('D')" type="button" title="D" >
 <textarea name="inputD" id="inputD" rows="6" cols="22"></textarea><br>
-<input name="MEbutt" value="E" onclick="putx('E')" type="button" title="E" style="padding:3px 0px">
+<input name="MEbutt" value="E" onclick="putx('E')" type="button" title="E" >
 <textarea name="inputE" id="inputE" rows="6" cols="22"></textarea>
-<input name="MFbutt" value="F" onclick="putx('F')" type="button" title="F" style="padding:3px 0px">
+<input name="MFbutt" value="F" onclick="putx('F')" type="button" title="F" >
 <textarea name="inputF" id="inputF" rows="6" cols="22"></textarea>
-<input name="MGbutt" value="G" onclick="putx('G')" type="button" title="G" style="padding:3px 0px">
+<input name="MGbutt" value="G" onclick="putx('G')" type="button" title="G" >
 <textarea name="inputG" id="inputG" rows="6" cols="22"></textarea>
-<input name="MHbutt" value="H" onclick="putx('H')" type="button" title="H" style="padding:3px 0px">
+<input name="MHbutt" value="H" onclick="putx('H')" type="button" title="H" >
 <textarea name="inputH" id="inputH" rows="6" cols="22"></textarea><br>
-<input name="MIbutt" value=" I " onclick="putx('I')" type="button" title="I" style="padding:3px 0px">
+<input name="MIbutt" value=" I " onclick="putx('I')" type="button" title="I" >
 <textarea name="inputI" id="inputI" rows="2" cols="100"></textarea>
 </td></tr></tbody></table>
 </form>

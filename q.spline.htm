@@ -1,9 +1,9 @@
 <html><head><title>quadratic spline</title>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
-</head><body  style="font-family:Monospace" onLoad="self.focus(); document.theForm.input.focus(); window.resizeTo( 750, 450 );">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
-<SCRIPT type="text/javascript" src="matrix.js"></script>
+</head><body onLoad="self.focus(); document.theForm.input.focus(); window.resizeTo( 750, 450 );">
+<script type="text/javascript" src="myfunctions.js"></script>
+<script type="text/javascript" src="matrix.js"></script>
 <script>
 degrees = false
 graphdata = ''
@@ -81,10 +81,10 @@ document.theForm.x.focus();
 </script><link REL="SHORTCUT ICON" HREF="favicon.ico">
 <p>
 <form name="theForm">
-<table  border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index2.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'"></td></tr>
+<table  border = 1>
+<tr><td colspan=99 onClick="window.open('index2.htm')"></td></tr>
 <tr><td>
-<TABLE><tr><td>Spline interpolate these points:<br>
+<table><tr><td>Spline interpolate these points:<br>
 <textarea name = "input" rows = 3 cols = 115 tabindex="1"></textarea>
 <br>
 and Find fx) for x= <input type="text"  name = "x" size = 10 value="" tabindex="2">
@@ -96,7 +96,7 @@ and Find fx) for x= <input type="text"  name = "x" size = 10 value="" tabindex="
 <input name="graphbut" Value="graph" type="button" onClick="calc1();window.open('graphs.htm')" title="send screen to grapher"/>
 <input type="button" value="8 place" id="frac" onClick="swfrac(true)" title="output format"/>
 </td></tr></table></td></tr>
-<tr><td><TABLE><tr><td>
+<tr><td><table><tr><td>
 </td></tr><tr><td>
 <textarea name = "output" id='result' rows = 12 cols = 115 tabindex="1"></textarea>
 </td></tr></table></td></tr></table>

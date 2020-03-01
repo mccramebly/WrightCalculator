@@ -1,12 +1,12 @@
-<html><head><!DOCTYPE HTML>
+<html lang="en"><head><!DOCTYPE HTML>
 <title>Venn Diagram</title>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body  style="font-family:Monospace" onLoad="self.focus()" >
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<body onLoad="self.focus()" >
+<script type="text/javascript" src="myfunctions.js"></script>
 <form name='ss'>
-<table border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Venn Diagram</td></tr>
+<table border = 1>
+<tr><td colspan=99 onClick="window.open('index.htm')">Venn Diagram</td></tr>
 <tr><td align=center><input name="clear" type="button" value = "Clear ALL" onClick="window.open('venn.htm','_self')"/></td><td align=center><input name="demobut" type="button" value = "DEMO" onClick="demo()"/> &nbsp; </td>
 <td align=center><input name="pcntbut" type="button" value = "PCNT" onClick="pcnt()"/> &nbsp; </td></tr>
 <tr><td align=center>
@@ -27,24 +27,8 @@ None: <input type='text' name='x' size=5 tabindex="11" value="" onblur='legend()
 </td></tr><tr><td id='sum1'></td><td id='sum2'></td><td id='sum3'></td></tr><tr>
 <td  colspan=3 align=left><canvas id="theCanvas" width="500" height="400"></canvas></td></tr></table></form>
 <script>
-/*
-<td>EVERYONE:   x+a+b+c+ab+ac+bc+abc= 85
-<br>NONE:       x= 2
-<br>a:          a+ab+ac+abc= 46
-<br>b:          b+ab+bc+abc= 50
-<br>c:          c+ac+bc+abc= 34
-</td><td>a and b:    ab+abc= 17
-<br>a and c:    ac+abc= 15
-<br>b and c:    bc+abc= 22
-<br>ONLY ONE:   a+b+c= 43
-<br>ONLY TWO:   ab+ac+bc= 33
-</td><td>a or c:     a+c+ab+ac+bc+abc= 65
-<br>a or b:     a+b+ab+ac+bc+abc= 79
-<br>b or c:     b+c+ab+ac+bc+abc= 62
-<br>AT LEAST 2: ab+ac+bc+abc= 40
-<br>ALL 3:      abc= 7
 
-*/
+    
 ispcnt=false
 CU=String.fromCharCode(8746) // cup = union
 CA=String.fromCharCode(8745) // cap = intersection

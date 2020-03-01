@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html><head><title>2-Var Stats & Regression</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
-<SCRIPT type="text/javascript" src="matrix.js"></script>
-<SCRIPT type="text/javascript" src="statfns.js"></script>
+<script type="text/javascript" src="myfunctions.js"></script>
+<script type="text/javascript" src="matrix.js"></script>
+<script type="text/javascript" src="statfns.js"></script>
 <script type="text/javascript">
 probmean=0
 probsdev=0
@@ -459,9 +459,9 @@ document.theForm.output.focus() }}
 </script>
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
 </head>
-<body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 800, 800 );" style="font-family:sans-serif; ">
-<form name="theForm"><table  border= 1 noshade bgcolor= 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">2 Var Statistics & Regression</td></tr>
+<body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 800, 800 );">
+<form name="theForm"><table  border= 1>
+<tr><td colspan=99 onClick="window.open('index.htm')">2 Var Statistics & Regression</td></tr>
 <tr><td><textarea name= "input" rows= 4 cols= 80 tabindex="1" onKeyUp="enter(event)">
 x:  \y:  \f:  \xy:  \xf:  \xyf:  \o: 1 \u:  \v:  \w:  \x=  \y=  \\
 
@@ -477,26 +477,26 @@ x:  \y:  \f:  \xy:  \xf:  \xyf:  \o: 1 \u:  \v:  \w:  \x=  \y=  \\
 </td></tr>
 <tr><td>
 <!-- <input name="clear" type="button" value= "Clear" onClick="cla()" tabindex="2" /> -->
-<input name="calc1" type="button" value= "Calc" onClick="calc()" tabindex="3" style="background-color:yellow"/>
-<!-- <input name="prob" type="button" value= "Prob" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="calc(); callprob()" tabindex="" title="probability calculations" /> -->
-<input name="frq" type="button" value= "graph" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="grph=1; calc(); window.open('graphs.htm')" tabindex="" title="Line Graph" />
-<!-- <input name="bar" type="button" value= "Hist" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="grph=2; calc(); window.open('graphs.htm')" tabindex="" title="Bar Graph" />
-<!-- <input name="box" type="button" value= "Box" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="grph=3; calc(); if(!two) window.open('graphs.htm')" tabindex=""  title="Box & whiskers chart"/>
-<input name="pie" type="button" value= "Pie" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="grph=4; calc(); if(!two) window.open('graphs.htm')" tabindex=""  title="Pie Chart"/>
-<input type=checkbox name="stemleaf" title='stem & leaf' onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="calc()"/>
+<input name="calc1" type="button" value= "Calc" onClick="calc()" tabindex="3">
+<!-- <input name="prob" type="button" value= "Prob" onClick="calc(); callprob()" tabindex="" title="probability calculations" /> -->
+<input name="frq" type="button" value= "graph" onClick="grph=1; calc(); window.open('graphs.htm')" tabindex="" title="Line Graph" />
+<!-- <input name="bar" type="button" value= "Hist" onClick="grph=2; calc(); window.open('graphs.htm')" tabindex="" title="Bar Graph" />
+<!-- <input name="box" type="button" value= "Box" onClick="grph=3; calc(); if(!two) window.open('graphs.htm')" tabindex=""  title="Box & whiskers chart"/>
+<input name="pie" type="button" value= "Pie" onClick="grph=4; calc(); if(!two) window.open('graphs.htm')" tabindex=""  title="Pie Chart"/>
+<input type=checkbox name="stemleaf" title='stem & leaf' onClick="calc()"/>
 s&l
 <input type=checkbox name="relfreq" onclick='document.getElementById("frac").style.display="inline"; calc()' title="relative frequency"/>rf
-<input type=checkbox name="forceogive" title="cumulative frequency" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="calc()"/>ogive
+<input type=checkbox name="forceogive" title="cumulative frequency" onClick="calc()"/>ogive
 <input type="text" name = "percentile" size = 1 value="" title="Percentile" /> %tile
 -->
-<input name="spline" type="button" value= "q-spline" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="grph=5; calc(); window.open('q.spline.htm'+'?&')" tabindex="" title="q-spline" />
-<input name="savebut" Value="Save" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="savestuff(); document.theForm.input.focus()"/>
-<input name="loadbut" Value="Load" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="loadstuff(); document.theForm.input.focus(); calc()"/>
-<input name="stats" Value="1-var" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="window.open('stats.htm','_self')"/>
-<!-- <input name="loaddata" Value="Add" type="button" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="loadstuff(true)"/> -->
+<input name="spline" type="button" value= "q-spline" onClick="grph=5; calc(); window.open('q.spline.htm'+'?&')" tabindex="" title="q-spline" />
+<input name="savebut" Value="Save" type="button" onClick="savestuff(); document.theForm.input.focus()"/>
+<input name="loadbut" Value="Load" type="button" onClick="loadstuff(); document.theForm.input.focus(); calc()"/>
+<input name="stats" Value="1-var" type="button" onClick="window.open('stats.htm','_self')"/>
+<!-- <input name="loaddata" Value="Add" type="button" onClick="loadstuff(true)"/> -->
 </td></tr>
 <tr><td>Output:
-<input type="button" value="%" id="frac" onClick="swfrac((frac2>3?2:frac2+1))" title="output format" style="background-color:turquoise;display:none"/><br>
+<input type="button" value="%" id="frac" onClick="swfrac((frac2>3?2:frac2+1))" title="output format"/><br>
 <textarea name= "output" rows= 25 cols= 80 tabindex=0>Notes on input:
  x: var 1 list \y: var 2 list \f: frequency list \
  xy, xf, xyf: x list combined with y or f lists\

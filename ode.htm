@@ -1,14 +1,14 @@
 <html><head><title>Initial value ODE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-<link REL="SHORTCUT ICON" HREF="favicon.ico">
-</head><body  style="font-family:Monospace" onLoad="self.focus(); document.theForm.input.focus(); window.resizeTo( 750, 450 );">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
-<link REL="SHORTCUT ICON" HREF="favicon.ico">
+<link REL="shortcut icon" href="favicon.ico">
+</head><body onLoad="self.focus(); document.theForm.input.focus(); window.resizeTo( 750, 450 );">
+<script type="text/javascript" src="myfunctions.js"></script>
+<link REL="shortcut icon" href="favicon.ico">
 <p>
 <form name="theForm">
-<table  border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'"></td></tr>
-<tr><td><TABLE><tr><td>
+<table  border = 1>
+<tr><td colspan=99 onClick="window.open('index.htm')"></td></tr>
+<tr><td><table><tr><td>
 f'(x) = </td><td><textarea name = "input" rows = 1 cols = 65 tabindex="1" onKeyUp="enter(event)"></textarea>
 </td></tr></table>
 Left x= <input type="text"  name = "x1" size = 8 value="" tabindex="3"/>
@@ -16,17 +16,17 @@ Right x= <input type="text"  name = "x2" size = 8 value="" tabindex="4"/>
 Left y = <input type="text"  name = "y1" size = 8 value="" tabindex="5"/>
 n = <input type="text"  name = "xn" size = 3 value="" tabindex="6"/>
 
-<TABLE  border=1 VALIGN="middle">
+<table  border=1 valign="middle">
 <tr><td>
-<INPUT TYPE="checkbox" name="Eul" /> Euler
-<INPUT TYPE="checkbox" name="Mid" /> Midpoint<br>
-<INPUT TYPE="checkbox" name="Heu" /> Heun
-<INPUT TYPE="checkbox" name="RK3" /> RK3
-<INPUT TYPE="checkbox" name="RK4" checked/> RK4
+<input type="checkbox" name="Eul" /> Euler
+<input type="checkbox" name="Mid" /> Midpoint<br>
+<input type="checkbox" name="Heu" /> Heun
+<input type="checkbox" name="RK3" /> RK3
+<input type="checkbox" name="RK4" checked/> RK4
 </td><td>
 Butcher a: <input type='text' name="bta" size = 20 value ="[[],[.5],[0,.5],[0,0,1]]"><br>
 tableau b: <input type='text' name="btb" size = 15 value ="[1,2,2,1]">
-<INPUT TYPE="checkbox" name="But" />
+<input type="checkbox" name="But" />
 </td><td>
 <input name="clear" type="button" value = "Calc" onClick="cla();calc1()" tabindex="0" />
 <input type="button" value="8 place" id="frac" onClick="swfrac(true,4)" title="output format"/>

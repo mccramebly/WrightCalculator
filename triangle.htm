@@ -1,8 +1,8 @@
 <html><head><title>Triangle</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body  style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
+<script type="text/javascript" src="myfunctions.js"></script>
 <script>
 var calcoption='0';
 var PIdeg = 180/Math.PI;
@@ -630,8 +630,8 @@ if (graphit)
  graphit=false; document.theForm.input.focus()}
 </script>
 <form name="theForm">
-<table  border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">triangles & vectors</td></tr>
+<table>
+<tr><td colspan=99 onClick="window.open('index.htm')">triangles & vectors</td></tr>
 <tr><td><textarea name = "input" rows = 3 cols = 72 tabindex="1" onKeyUp="enter(event)"></textarea><br>
 <input type="button" name="exec" value = 'sss:' onclick="putx('sss:')"/>
 <input type="button" name="exec" value = 'ssa:' onclick="putx('ssa:')"/>
@@ -666,18 +666,18 @@ if (graphit)
 <input type="button" name="exec" value = "Graph" onClick="cla1();graphit=true;calc()"/>
 
 <br>
-Show<INPUT type=checkbox name=centers>centers
-<INPUT type=checkbox name=sides>sides
-<INPUT type=checkbox name=medians>medians
-<INPUT type=checkbox name=altitudes>altitudes
-<INPUT type=checkbox name=bisectors>bisectors
-<INPUT type=checkbox name=incenter>incenter
-<INPUT type=checkbox name=area>area<br>
-Output<INPUT TYPE="radio" name="rad2" value="0" />(x,y)
-<INPUT TYPE="radio" name="rad2" value="1" checked/>Azimuth°
-<INPUT TYPE="radio" name="rad2" value="2" />Compass
-<INPUT TYPE="radio" name="rad2" value="3" />Radians
-<input type="button" value="4 place" id="frac" onClick="cla1();swfrac(true)" title="output format" style="background-color:turquoise"/>
+Show<input type=checkbox name=centers>centers
+<input type=checkbox name=sides>sides
+<input type=checkbox name=medians>medians
+<input type=checkbox name=altitudes>altitudes
+<input type=checkbox name=bisectors>bisectors
+<input type=checkbox name=incenter>incenter
+<input type=checkbox name=area>area<br>
+Output<input type="radio" name="rad2" value="0" />(x,y)
+<input type="radio" name="rad2" value="1" checked/>Azimuth°
+<input type="radio" name="rad2" value="2" />Compass
+<input type="radio" name="rad2" value="3" />Radians
+<input type="button" value="4 place" id="frac" onClick="cla1();swfrac(true)" title="output format">
 <!-- rotate? -->
 </td></tr>
 <tr><td><textarea name = "output" rows = 30 cols = 72 tabindex=0>Triangles:

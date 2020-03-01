@@ -1,5 +1,5 @@
 <html><head><title>Sudoku</title>
-<SCRIPT type="text/javascript" src="http://faculty.ccc.edu/jnadas/js/myfunctions.js"></script>
+<script type="text/javascript" src="http://faculty.ccc.edu/jnadas/js/myfunctions.js"></script>
 <script type="text/javascript">
 // - - - - - - - test games
 var game=[], bank=[]
@@ -289,8 +289,8 @@ function clean1() // force ( same as 8-match but more understandable to do it he
             document.theForm.squ[list[j]].value = work[list[j]]
             if (moves<2)
             { for (var k=0; k<9; k++)
-              { document.theForm.squ[list[k]].style.backgroundColor="#00ffff"}
-              document.theForm.squ[list[j]].style.backgroundColor="#33ff33"}
+              { document.theForm.squ[list[k]]}
+              document.theForm.squ[list[j]]}
             col=ssno[list[j]]%9; row=(ssno[list[j]]-col)/9
             putout("forced (" +(row+1) +", " +(col+1) +"): " +savework1+">"+work[list[j]]+"\n")
             wasChanged = true; moves--; if (moves<1&&skipeasy) moves=1

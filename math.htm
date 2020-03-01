@@ -5,7 +5,7 @@
 <H3>Selected Javascript features - JZ Nadas - E190 Spring 2011</H3>
 <P>Use your browser's "View>>Page Source" function to see the Javascript program code that generates this output:</P>
  -->
-<Table border=1><tr><th><Table WIDTH="100%"><tr align="left"><th><A href="index.htm" target="_blank"><img src="menu.bmp" alt="Main Menu" title="Main Menu" /></A></th><th align="right">Javascript command</th></tr></table></th><th align="right">Result</th></tr>
+<table border=1><tr><th><table><tr><th><a href="index.htm" target="_blank"><img src="menu.bmp" alt="Main Menu" title="Main Menu" /></a></th><th align="right">Javascript command</th></tr></table></th><th align="right">Result</th></tr>
 <tr><td>
 document.write ("1. Hello world");
 <br> // simple output
@@ -46,8 +46,10 @@ document.write ("9. x = ", x=2 );<br> while (x<6) {x = x+1; document.write ( ", 
 </td><td><script>document.write ("9. x = ", x=2 ); while (x<6) {x = x+1; document.write ( ", ", x )}; </script></td></tr>
 <tr><td>
 document.write ("10. ")  for ( x = 2; x<=6; x++ )
-<br> // x++ is the same as x += 1 which is the same as x = x + 1<br>document.write ((x==2 ? "x = " : ", "), x ); document.write ("&lt;br&gt;"); 
-<br>// for</td><td><script>
+<br> // x++ is the same as x += 1 which is the same as x = x + 1
+<br>document.write ((x==2 ? "x = " : ", "), x ); document.write ("&lt;br&gt;"); 
+<br>// for
+</td><td><script>
 document.write ("10. "); for ( x = 2; x<=6; x++ ) document.write ((x==2 ? "x = " : ", "), x ); </script></td></tr>
 <tr><td>
 document.write ("11. x = ")
@@ -75,9 +77,8 @@ document.write ("13. x = ", x=2 );
 <script> document.write ("13. x = ", x=2 ); do {x = x+1; document.write ( ", ", x )} while (x<6); document.write ("<br>"); // do .. while 
 </script>
 </td></tr></table>
-<!-- <H3>Cheat sheet</H3>
-<style type="text/css"> HL { background-color: red } </style>
- --><TABLE CELLPADDING="5" CELLSPACING="5" WIDTH="100%" BGCOLOR=chartreuse>
+<!-- <H3>Cheat sheet</H3> -->
+    <table>
 <tr><th> . . . . Operators . . . . </th><th> . . . . . . . .Properties . . . . . . . .</th><th colspan=2> . . . . . . . . . . . . Methods . . . . . . . . . . . .   </th></tr>
 <tr><td>Arithmetic<br>
 <HL> + </HL>&nbsp;<HL> = </HL>&nbsp;<HL>++</HL>&nbsp;<HL>+=</HL>&nbsp;<HL> - </HL>&nbsp;<HL>--</HL>&nbsp;<HL>-=</HL>&nbsp;<HL> / </HL>&nbsp;<HL>%</HL></td><td><HL>Math.E</HL><br>

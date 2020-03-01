@@ -1,8 +1,8 @@
 <html><head><title>edit text</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<body onLoad="self.focus();document.theForm.input.focus();">
+<script type="text/javascript" src="myfunctions.js"></script>
 <script>
 
 // ---------------------------------------------------*/
@@ -581,22 +581,22 @@ document.theForm.input.focus()}
 // ---------------------------------------------------*/
 </script>
 <form name="theForm">
-<table border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">
+<table border = 1>
+<tr><td colspan=99 onClick="window.open('index.htm')">
 Regular Expression text editor</td></tr><tr><td align='center'>
-run:<input name="pybut" value="python" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="python()" title="converts python to js"/>
-<input name="mathbut" Value="math" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="math()" title="converts math to js"/>
-<input name="jsrunbut"  Value="J/S" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="jsrun()" title="starts java console"/>
-call:<input name="calcbut"  Value="calc" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="calc()" title="saves screen to cookie and starts calculator"/>
-<input name="solvbut"  Value="solve" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="solve()" title="saves screen to cookie and starts algebra"/>
-<input name="logbut" Value="logic" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="logic()" title="calls truth table for logic"/>
-<input name="graphbut" Value="graph" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="dograph()" title="send screen to grapher"/>
-<input name="statsbut" Value="stats" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="dostats()" title="send screen to statistics module"/>
-read:<input name="vocabbut" Value="vocab" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="vocab()" title="Some math words you should know"/>
-Go:<input name="backbut" Value="back" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="back()" title="previous menu item"/>
-<input name="nextbut" Value="next" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="menu()" title="subsequent menu item"/>
-<input name="editbut" Value="edit" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="menucode=0;menui=-1;yesjsrun=true" title="exit menu"/>
-<input name="clerebut" Value="Clear" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="clere()" title="clears screen (ESC)"/>
+run:<input name="pybut" value="python" type="button" onClick="python()" title="converts python to js"/>
+<input name="mathbut" Value="math" type="button" onClick="math()" title="converts math to js"/>
+<input name="jsrunbut"  Value="J/S" type="button" onClick="jsrun()" title="starts java console"/>
+call:<input name="calcbut"  Value="calc" type="button" onClick="calc()" title="saves screen to cookie and starts calculator"/>
+<input name="solvbut"  Value="solve" type="button" onClick="solve()" title="saves screen to cookie and starts algebra"/>
+<input name="logbut" Value="logic" type="button" onClick="logic()" title="calls truth table for logic"/>
+<input name="graphbut" Value="graph" type="button" onClick="dograph()" title="send screen to grapher"/>
+<input name="statsbut" Value="stats" type="button" onClick="dostats()" title="send screen to statistics module"/>
+read:<input name="vocabbut" Value="vocab" type="button" onClick="vocab()" title="Some math words you should know"/>
+Go:<input name="backbut" Value="back" type="button" onClick="back()" title="previous menu item"/>
+<input name="nextbut" Value="next" type="button" onClick="menu()" title="subsequent menu item"/>
+<input name="editbut" Value="edit" type="button" onClick="menucode=0;menui=-1;yesjsrun=true" title="exit menu"/>
+<input name="clerebut" Value="Clear" type="button" onClick="clere()" title="clears screen (ESC)"/>
 </td></tr>
 <tr><td colspan=2><textarea name = "input" rows = 25 cols = 110 onKeyUp="enter(event)">
 The Regular Expression Text Editor is sort of like MicroSoft's Notepad on steroids.
@@ -619,60 +619,60 @@ The buttons on the bottom are for:
 The last line is for converting logical variables that are other than p,q,r,s,t.
 </textarea></td></tr><tr><td>
 Cookies:
-<input name="savebut" Value="Save" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="putlocalstore()" title="saves screen as cookie"/>
-<input name="loadbut" Value="Load" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="getlocalstore(false)" title="loads screen from cookie"/>
-<input name="addbut" Value="Add" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="getlocalstore(true)" title="adds cookie to end of screen"/>
+<input name="savebut" Value="Save" type="button" onClick="putlocalstore()" title="saves screen as cookie"/>
+<input name="loadbut" Value="Load" type="button" onClick="getlocalstore(false)" title="loads screen from cookie"/>
+<input name="addbut" Value="Add" type="button" onClick="getlocalstore(true)" title="adds cookie to end of screen"/>
 <input type="text" name="jsdata" value='' size=5 rows=1 title="name of cookie"/>
 <br>
-<input name="IJSbut" Value="IJS" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('ijs')">
-<input name="pythonbut" Value="python" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('python')">
-<input name="logicbut" Value="logic" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('logic')">
-<input name="mathbut" Value="math" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('math')">
-<input name="JSdatabut" Value="jsdata" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('jsdata')">
-<input name="datainbut" Value="In" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('dataIn')">
-<input name="data1INbut" Value="1In" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('data1In')">
-<input name="dataOutbut" Value="Out" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('dataOut')">
-<input name="simplifybut" Value="solve" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('simplify')">
-<input name="calcbut" Value="calc" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('calc')">
-<input name="graphdatabut" Value="graph" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="trytoload('graphdata')">
+<input name="IJSbut" Value="IJS" type="button" onClick="trytoload('ijs')">
+<input name="pythonbut" Value="python" type="button" onClick="trytoload('python')">
+<input name="logicbut" Value="logic" type="button" onClick="trytoload('logic')">
+<input name="mathbut" Value="math" type="button" onClick="trytoload('math')">
+<input name="JSdatabut" Value="jsdata" type="button" onClick="trytoload('jsdata')">
+<input name="datainbut" Value="In" type="button" onClick="trytoload('dataIn')">
+<input name="data1INbut" Value="1In" type="button" onClick="trytoload('data1In')">
+<input name="dataOutbut" Value="Out" type="button" onClick="trytoload('dataOut')">
+<input name="simplifybut" Value="solve" type="button" onClick="trytoload('simplify')">
+<input name="calcbut" Value="calc" type="button" onClick="trytoload('calc')">
+<input name="graphdatabut" Value="graph" type="button" onClick="trytoload('graphdata')">
 
 <br>Regex:
-<input name="probnobut" Value="#. to #)" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="probno()" title="converts problem number"/>
-<input name="thoubut" Value="$0,000" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="thou()" title="converts currency to number"/>
-<input name="pdivbut" Value="( )/( )" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="pdiv()" title="replaces 'divided by' with symbols"/>
-<input name="xdivbut" Value="x/2" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="xdiv()" title="converts x/2 to 1/2x"/>
-<input name="linenobut" Value="Line #" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lineno()" title="puts line number on each line"/>
-<input name="lisbut" Value="cs list" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis()" title="generates comma separated list"/>
-<input name="lis1but" Value="sort" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis1()" title="generates sorted list"/>
-<input name="lis2but" Value="reduce" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis2()" title="generates reduced sorted list"/>
-<input name="lis5but" Value="create line array" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis56(false)" title="n by 1 array of lines"/>
-<input name="lis6but" Value="sort line array" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis56(true)" title="sort n by 1 array"/>
+<input name="probnobut" Value="#. to #)" type="button" onClick="probno()" title="converts problem number"/>
+<input name="thoubut" Value="$0,000" type="button" onClick="thou()" title="converts currency to number"/>
+<input name="pdivbut" Value="( )/( )" type="button" onClick="pdiv()" title="replaces 'divided by' with symbols"/>
+<input name="xdivbut" Value="x/2" type="button" onClick="xdiv()" title="converts x/2 to 1/2x"/>
+<input name="linenobut" Value="Line #" type="button" onClick="lineno()" title="puts line number on each line"/>
+<input name="lisbut" Value="cs list" type="button" onClick="lis()" title="generates comma separated list"/>
+<input name="lis1but" Value="sort" type="button" onClick="lis1()" title="generates sorted list"/>
+<input name="lis2but" Value="reduce" type="button" onClick="lis2()" title="generates reduced sorted list"/>
+<input name="lis5but" Value="create line array" type="button" onClick="lis56(false)" title="n by 1 array of lines"/>
+<input name="lis6but" Value="sort line array" type="button" onClick="lis56(true)" title="sort n by 1 array"/>
 
 <br>Special:
-<input name="snlbut" Value="stem/leaf" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="snl()" title="converts stem & leaf to values"/>
-<input name="notagbut" Value="notag" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="notag()" title="erase HTML tags"/>
-<input name="cleanbut" Value="parse" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="parse()" title="cleans up math problems"/>
-<input name="clean2but" Value="clean" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="cleantext()" title="gets rid of text"/>
-<input name="cnfbut" Value="cnf" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="cnf()" title="truth table to CNF"/>
-<input name="lagrbut" Value="Lagrange" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="Lagr()" title="generates LaGrange Polynomial from (x,y)"/>
-<input name="lis0but" Value="array" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis0()" title="generates 1-D array"/>
-<input name="lis3but" Value="n by 2" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis3()" title="generates x,y array"/>
-<input name="csvbut" Value="csv" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="csv()" title="generates CSV file"/>
-<input name="lis4but" Value="n by m" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis4()" title="generates 2-D array"/>
-<input name="lis7but" Value="-1st" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis7()" title="remove first column"/>
-<input name="lis8but" Value="-mth" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="lis8()" title="remove last column"/>
+<input name="snlbut" Value="stem/leaf" type="button" onClick="snl()" title="converts stem & leaf to values"/>
+<input name="notagbut" Value="notag" type="button" onClick="notag()" title="erase HTML tags"/>
+<input name="cleanbut" Value="parse" type="button" onClick="parse()" title="cleans up math problems"/>
+<input name="clean2but" Value="clean" type="button" onClick="cleantext()" title="gets rid of text"/>
+<input name="cnfbut" Value="cnf" type="button" onClick="cnf()" title="truth table to CNF"/>
+<input name="lagrbut" Value="Lagrange" type="button" onClick="Lagr()" title="generates LaGrange Polynomial from (x,y)"/>
+<input name="lis0but" Value="array" type="button" onClick="lis0()" title="generates 1-D array"/>
+<input name="lis3but" Value="n by 2" type="button" onClick="lis3()" title="generates x,y array"/>
+<input name="csvbut" Value="csv" type="button" onClick="csv()" title="generates CSV file"/>
+<input name="lis4but" Value="n by m" type="button" onClick="lis4()" title="generates 2-D array"/>
+<input name="lis7but" Value="-1st" type="button" onClick="lis7()" title="remove first column"/>
+<input name="lis8but" Value="-mth" type="button" onClick="lis8()" title="remove last column"/>
 
 <br>Replace:
 <input type="text" name="convfr" size=20 rows=1 tabindex="1" title="regex expression to be converted"/> with:
 <input type="text" name="convto" size=20 rows=1 tabindex="2" title="output of conversion"/>
-<input name="doitbut" Value="do" type="button" tabindex="3"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="dodo()" title="perform regex conversion"/>
-<input name="undobut" Value="Undo" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="undo()" title="undo regex conversion"/>
-<input name="repbut" Value="Repeat" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="repeat()" title="repeat last regex conversion"/>
-<input name="guidebut"  Value="Guide" type="button"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp')" title="load regex guide"/>
+<input name="doitbut" Value="do" type="button" tabindex="3" onClick="dodo()" title="perform regex conversion"/>
+<input name="undobut" Value="Undo" type="button" onClick="undo()" title="undo regex conversion"/>
+<input name="repbut" Value="Repeat" type="button" onClick="repeat()" title="repeat last regex conversion"/>
+<input name="guidebut"  Value="Guide" type="button" onClick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp')" title="load regex guide"/>
 <br>from:
 <input type="text" name="convfrlist" size=30 rows=1 tabindex="4" title="regex expression list to be converted"/> to:
 <input type="text" name="convtolist" size=30 rows=1 tabindex="5" title="output of conversion" value='p,q,r,s,t'/>
-<input name="doitbut" Value="do" type="button" tabindex="6"  onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'" onClick="dolist()" title="apply list of changes"/>
+<input name="doitbut" Value="do" type="button" tabindex="6" onClick="dolist()" title="apply list of changes"/>
 </td></tr>
 </table>
 </form>

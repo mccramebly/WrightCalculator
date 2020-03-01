@@ -1,6 +1,6 @@
 <html><head><title>Probability</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
-<SCRIPT type="text/javascript" src="statfns.js"></script>
+<script type="text/javascript" src="myfunctions.js"></script>
+<script type="text/javascript" src="statfns.js"></script>
 <script>
 zeta= String.fromCharCode(951)
 alpha= String.fromCharCode(945)
@@ -349,21 +349,20 @@ function fixandor()
 }
 </script>
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body onLoad="window.resizeTo( 800, 800 ); if (document.theForm.mean.value == '0') {document.theForm.mean.focus(); document.theForm.mean.select()}"
-style="font-family:sans-serif; ">
+<body onLoad="window.resizeTo( 800, 800 ); if (document.theForm.mean.value == '0') {document.theForm.mean.focus(); document.theForm.mean.select()}">
 <p></p>
 <form name="theForm">
 <table  border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Discrete distribution</td></tr>
+<tr><td colspan=99 onClick="window.open('index.htm')">Discrete distribution</td></tr>
 <tr><td> <b><a href="javascript: window.open('2dice.htm','','top=100,left=100')">Dice</a></b> n:<input type="text" name = "noofdice" size = 1 value="2" onClick="noofdice.value=(Number(noofdice.value)+1); noofdice.select()"> Faces:<input type="text" name = "nooffaces" size = 1 value="6" onClick="nooffaces.value=(Number(nooffaces.value)+1); nooffaces.select()">
- <input name="DiceToss" type="button" value = "Enter" style="background-color:yellow" onClick="fixandor(); doit(2)"><br>
-<!-- style="text-decoration:none;color:black;" -->
-<b><a href="javascript: window.open('box.htm','','top=100,left=100')">Box</a></b> Types:<input type="text" name = "boxtype" size = 1 value="4" onClick="boxtype.value=(Number(boxtype.value)+1); boxtype.select()">pick:<input type="text" name = "boxpick" size = 1 value="5" onClick="boxpick.value=(Number(boxpick.value)+1); boxpick.select()"><input name="boxdo" type="button" value = "Enter" style="background-color:yellow" onClick="doit(9)"></td>
+ <input name="DiceToss" type="button" value = "Enter" onClick="fixandor(); doit(2)"><br>
+
+<b><a href="javascript: window.open('box.htm','','top=100,left=100')">Box</a></b> Types:<input type="text" name = "boxtype" size = 1 value="4" onClick="boxtype.value=(Number(boxtype.value)+1); boxtype.select()">pick:<input type="text" name = "boxpick" size = 1 value="5" onClick="boxpick.value=(Number(boxpick.value)+1); boxpick.select()"><input name="boxdo" type="button" value = "Enter" onClick="doit(9)"></td>
 <td> <B><a href="javascript: window.open('10coins.htm','','top=100,left=100')">Binomial Coins</a></B> n:<input type="text"  name = "binn" size = 1 value="10" onClick="binn.value=(Number(binn.value)+1); binn.select()">
 p:<input type="text"  name = "binp" size = 1 value="0.5">
-<input name="Binomial" type="button" value = "Enter" style="background-color:yellow" onClick="doit(4)">
-<br><b><a href="javascript: window.open('urn.htm','','top=100,left=100')">Urn</a></b> # X:<input type="text" name = "blueballs" size = 1 value="5" onClick="blueballs.value=(Number(blueballs.value)+1); blueballs.select()"> # Not X:<input type="text" name = "whiteballs" size = 1 value="3" onClick="whiteballs.value=(Number(whiteballs.value)+1); whiteballs.select()"> pick:<input type="text" name = "PickBalls" size = 1 value="6" onClick="PickBalls.value=(Number(PickBalls.value)+1); PickBalls.select()"> <input type="button" value="nCr" id="urntxt" onClick="urnmode=++urnmode%3;document.getElementById('urntxt').value=urntext[urnmode];doit(3)" title="type of selection" style="background-color:turquoise"/>
-<input name="PickBall" type="button" value = "Enter" style="background-color:yellow" onClick="doit(3)">
+<input name="Binomial" type="button" value = "Enter" onClick="doit(4)">
+<br><b><a href="javascript: window.open('urn.htm','','top=100,left=100')">Urn</a></b> # X:<input type="text" name = "blueballs" size = 1 value="5" onClick="blueballs.value=(Number(blueballs.value)+1); blueballs.select()"> # Not X:<input type="text" name = "whiteballs" size = 1 value="3" onClick="whiteballs.value=(Number(whiteballs.value)+1); whiteballs.select()"> pick:<input type="text" name = "PickBalls" size = 1 value="6" onClick="PickBalls.value=(Number(PickBalls.value)+1); PickBalls.select()"> <input type="button" value="nCr" id="urntxt" onClick="urnmode=++urnmode%3;document.getElementById('urntxt').value=urntext[urnmode];doit(3)" title="type of selection"/>
+<input name="PickBall" type="button" value = "Enter" onClick="doit(3)">
 </td></tr><tr><td colspan=3>
 <input name="clear" type="button" value = "Clear" onClick="dnotprime.checked=false; disprime.checked=false; document.theForm.xandor.value=''; document.theForm.xcond.value=''; document.theForm.xfrom.value=''; document.theForm.xthru.value=''">
 <input name="disprime" type="checkbox" onClick="if (disprime.checked) dnotprime.checked=false;fixandor();doit()"> prime,
@@ -372,45 +371,45 @@ p:<input type="text"  name = "binp" size = 1 value="0.5">
 <input type="text" name = "xcond" size = 20 value="" onClick="document.theForm.xcond.value=xconds[xcondi++]; if (xcondi>=xconds.length) xcondi=0; fixandor(); doit()">
 from <input type="text"  name = "xfrom" size = 1>
 thru <input type="text"  name = "xthru" size = 1>
-<input name="stats" type="button" value = "Stats" style="background-color:yellow" onClick="xstats=true;doit();xstats=false">
+<input name="stats" type="button" value = "Stats" onClick="xstats=true;doit();xstats=false">
 </td></tr>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Normal(continuous) Distribution  (Gauss or in German Gauß)</td></tr>
+<tr><td colspan=99 onClick="window.open('index.htm')">Normal(continuous) Distribution  (Gauss or in German Gauß)</td></tr>
 <tr><td>Parameters<INPUT TYPE="radio" name="CItype" VALUE="Parm" Checked/>Statistics<INPUT TYPE="radio" name="CItype" VALUE="Stat"/><br>
 μ(Mean) = <input type="text"  name = "mean" size = 10 value="0" tabindex=1> <br>
 σ(St Dev) = <input type="text" name = "sdev" size = 9 value="1" tabindex=2> <br>
 sample size= <input type="text" name = "sample" size = 7 value="1" tabindex=3></td><td>
 Data: x1= <input type="text"  name = "x1" size = 10 value="0" tabindex=4>
 x2= <input type="text"  name = "x2" size = 10 value="" tabindex=5>
-<input name="cff" type="button" value = "Enter" style="background-color:yellow" onClick="zval(); prob(); lastdid=0" tabindex=6><br>
+<input name="cff" type="button" value = "Enter" onClick="zval(); prob(); lastdid=0" tabindex=6><br>
 Standard score: z1= <input type="text"  name = "z1" size = 5 value="1">
 z2= <input type="text"  name = "z2" size = 5 value="">
-<input name="xscore" type="button" value = "Enter" style="background-color:yellow" onClick="xval(); prob(); lastdid=0"><br>
+<input name="xscore" type="button" value = "Enter" onClick="xval(); prob(); lastdid=0"><br>
 Probability= <input type="text"  name = "pval" size = 10 value="95">
- C.I. or 1-&alpha;: <input name="zscore" type="button" value = "Enter" style="background-color:yellow" onClick="CIval(); lastdid=0"><br>
+ C.I. or 1-&alpha;: <input name="zscore" type="button" value = "Enter" onClick="CIval(); lastdid=0"><br>
  Error: <input type="text" name = "error" size = 5 value="0.03">
- η =(Z<sub>α/2</sub>σ÷E)² or(Z<sub>α/2</sub>÷E)²pq  <input name="minsam" type="button" value = "Enter" style="background-color:yellow" onClick="minsamp(); lastdid=0">
+ η =(Z<sub>α/2</sub>σ÷E)² or(Z<sub>α/2</sub>÷E)²pq  <input name="minsam" type="button" value = "Enter" onClick="minsamp(); lastdid=0">
 </td>
 </tr>
 <tr><td align=left>Output:
 <input name="clear" type="button" value = "Clear" onClick="cla()">
 <input name="save" type="button" value = "Save" onClick="savestuff('',document.theForm.output.value)">
-<input type="button" value="8 place" id="frac" onClick="swfrac(false,5); doit(-1)" title="output format" style="background-color:turquoise"/>
+<input type="button" value="8 place" id="frac" onClick="swfrac(false,5); doit(-1)" title="output format"/>
 </td><td><!--<input name="loadbut" Value="Load" type="button" onClick="loadstuff();document.theForm.input.focus()"/>-->
 <textarea name = "input" rows=1 cols=42 onkeyup="enter(event)"></textarea>
-<input name="NDbut" type="button" value = "Enter" style="background-color:yellow" onClick="calc0();document.theForm.input.focus()">
+<input name="NDbut" type="button" value = "Enter" onClick="calc0();document.theForm.input.focus()">
 </td></tr>
-<tr><td onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">
+<tr><td onClick="window.open('index.htm')">
 Chebyshev:</td><td>
 k: <input type="text"  name = "Ck" size = 12 value="">
-<input name="Ckbut" type="button" value = "Enter" style="background-color:yellow" onClick="doit(7)">
+<input name="Ckbut" type="button" value = "Enter" onClick="doit(7)">
 p: <input type="text"  name = "Cp" size = 12 value="">
-<input name="Cpbut" type="button" value = "Enter" style="background-color:yellow" onClick="doit(8)">
+<input name="Cpbut" type="button" value = "Enter" onClick="doit(8)">
 </td></tr>
-<tr><td onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">
+<tr><td onClick="window.open('index.htm')">
 Poisson P(x; μ) </td><td colspan=2>
 x: <input type="text"  name = "PX" size = 12 value="">
 μ(or λ): <input type="text"  name = "PM" size = 12 value="">
- <input name="PXbut" type="button" value = "Enter" style="background-color:yellow" onClick="calcPX()">
+ <input name="PXbut" type="button" value = "Enter" onClick="calcPX()">
 </td></tr><tr><td align=center colspan=99>
 <textarea name = "output" rows = 25 cols = 85 onkeyup="enter(event)"></textarea>
 </td></tr></table>

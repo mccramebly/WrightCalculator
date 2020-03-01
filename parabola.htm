@@ -1,8 +1,8 @@
 <html><head><title>JS Parabola</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+<body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
+<script type="text/javascript" src="myfunctions.js"></script>
 <script>
 Sigma= String.fromCharCode(931);
 sigma= String.fromCharCode(963);
@@ -409,8 +409,8 @@ END FUNCTION
 REM Multiplications minimized
  -->
 <form name="theForm">
-<table border = 1 noshade bgcolor = 99CC66>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'">Parabolas and some other second degree equations</td></tr>
+<table border = 1>
+<tr><td colspan=99 onClick="window.open('index.htm')">Parabolas and some other second degree equations</td></tr>
 <tr><td>
 <table><tr><td>
 <input type="button" value="1" onClick="putx('1')"/>
@@ -424,7 +424,7 @@ REM Multiplications minimized
  <input name="loadbut" Value="Load" type="button" onClick="loadstuff();calc()"/>
  <input name="graphbut" Value="Graph" type="button" onClick="Graph()"/>
  
- <input type="button" value="8 place" id="frac" onClick="swfrac(true,4)" style="background-color:turquoise"/>
+ <input type="button" value="8 place" id="frac" onClick="swfrac(true,4)"/>
 </td></tr><tr><td>
 <input type="button" value="4" onClick="putx('4')"/>
 <input type="button" value="5" onClick="putx('5')"/>
