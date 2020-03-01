@@ -106,3 +106,11 @@ ul.menu li {
 .center {
     text-align: center;
 }
+
+/*-- triangle table --*/
+#triangle tr {
+    text-align: center;
+}
+#triangle th {
+    background:lightgray;
+}
