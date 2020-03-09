@@ -1,9 +1,12 @@
 <!DOCTYPE HTML>
-<html><head><title>One Var stats</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="myfunctions.js"></script>
-<script type="text/javascript" src="matrix.js"></script>
-<script type="text/javascript" src="statfns.js"></script>
-<script type="text/javascript">
+<html lang="en">
+<head>
+    <title>One Variable Statistics</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="myfunctions.js"></script>
+    <script type="text/javascript" src="matrix.js"></script>
+    <script type="text/javascript" src="statfns.js"></script>
+    <script type="text/javascript">
 probmean=0
 probsdev=0
 Sigma= String.fromCharCode(931);
@@ -353,42 +356,59 @@ document.theForm.output.value += now.replace(/,,+/g,",").slice(1); }}
 document.theForm.output.focus() }}
 // ---------------------------------------------------*/
 </script>
-<link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+    <link rel="stylesheet" href="assets/simple-calc-style.css">
 </head>
-<body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 800, 800 );">
-<form name="theForm"><table>
-<tr><td colspan=99 onClick="window.open('index.htm')">One Variable Statistics</td></tr>
-<tr><td><textarea name= "input" rows= 4 cols= 85 tabindex="1" onKeyUp="enter(event)">
-x:  \f:  \xf:  \v:  \w:  \x=  \\
-</textarea>
-</td></tr>
-<tr><td>
-<!-- <input name="clear" type="button" value= "Clear" onClick="cla()" tabindex="2" /> -->
-<input name="calc1" type="button" value= "Calc" onClick="calc()" tabindex="3">
-<input name="prob" type="button" value= "Prob" onClick="calc(); callprob()" tabindex="" title="probability calculations" />
-<!--<input name="frq" type="button" value= "graph" onClick="grph=1; calc(); window.open('graphs.htm')" tabindex="" title="Line Graph" /> -->
-<input name="bar" type="button" value= "Hist" onClick="grph=2; calc(); window.open('graphs.htm')" tabindex="" title="Bar Graph" />
-<input name="box" type="button" value= "Box" onClick="grph=3; calc(); window.open('graphs.htm')" tabindex=""  title="Box & whiskers chart"/>
-<input name="pie" type="button" value= "Pie" onClick="grph=4; calc(); window.open('graphs.htm')" tabindex=""  title="Pie Chart"/>
-<input type=checkbox name="stemleaf" title='stem & leaf' onClick="calc()"/>
-s&amp;l
-<input type=checkbox name="relfreq" onclick='document.getElementById("frac").style.display="inline"; calc()' title="relative frequency"/>rf
-<input type=checkbox name="forceogive" title="cumulative frequency" onClick="calc()"/>ogive
-<input type="text" name = "percentile" size = 1 value="" title="Percentile" /> %tile
-<input name="savebut" Value="Save" type="button" onClick="savestuff(); document.theForm.input.focus()"/>
-<input name="loadbut" Value="Load" type="button" onClick="loadstuff(); document.theForm.input.focus(); calc()"/>
-<input name="regress" Value="2-var" type="button" onClick="window.open('regress.htm','_self')"/>
-</td></tr>
-<tr><td>Output:
-<input type="button" value="%" id="frac" onClick="swfrac((frac2>3?2:frac2+1))" title="output format" style="background-color:turquoise;display:none"/><br>
-<textarea name= "output" rows= 25 cols= 85 tabindex=0>Input for 1 var stats:
+<body onLoad="self.focus();document.theForm.input.focus();">
+    <div id="simpleCalc">
+    <h1>One Variable Statistics</h1>
+<form name="theForm">
+<textarea id="output" name="output">Input for 1 var stats:
  x: var 1 list; f: frequency list; xf: x list combined with f list
  v: from,thru,step; values to generate x; defaults 0,10,1
  w: # classes or class limits for the first class
 use ',' or ';' or ':' or '(' or ')' or 'cr' or ' ' or 'tab' for delimiters
 x= f(x) to transform x values
 use [] for function parameters such as: sqrt[3]
-</textarea></td></tr></table></form>
+</textarea>
+<textarea id="input" name= "input" tabindex="1" onKeyUp="enter(event)">
+x:  \f:  \xf:  \v:  \w:  \x=  \\
+</textarea>  
+    
+    <input id="calc" name="calc1" type="button" value="Calculate" onClick="calc()" tabindex="3">
+    <div id="buttons">
+<input type=checkbox id="stemleaf" name="stemleaf" title='stem & leaf' onClick="calc()"/>
+<label for="stemleaf">S&amp;L</label>
+<input type=checkbox id="relfreq" name="relfreq" onclick='calc()' title="relative frequency"/>
+    <label for="relfreq">RF</label>
+<input type=checkbox id="forceogive" name="forceogive" title="cumulative frequency" onClick="calc()"/>
+    <label for="forceogive">OGIVE</label>
+<input type="text" id="percentile" name="percentile" placeholder="%tile" size="5" value="" title="Percentile" /> <!--(Hidden until screen-reader only implemented: <label for="percentile">Percentile</label>-->
+<input name="savebut" Value="Save" type="button" onClick="savestuff(); document.theForm.input.focus()"/>
+<input name="loadbut" Value="Load" type="button" onClick="loadstuff(); document.theForm.input.focus(); calc()"/>
+    <input type="button" value="%" id="frac" onClick="swfrac((frac2>3?2:frac2+1))" title="output format">
+        </div>
+</form>
+        <div class="pass">
+            <h2>Use These Calculations With:</h2>
+            <ul>
+                <li><a href="#" onClick="grph=2; calc(); window.open('graphs.htm')" class="isDisabled">Bar Graph</a></li>
+                <li><a href="#" onClick="grph=3; calc(); window.open('graphs.htm')" class="isDisabled">Box &amp; Whiskers Chart</a></li>
+                <li><a href="#" onClick="grph=4; calc(); window.open('graphs.htm')" class="isDisabled">Pie Chart</a></li>
+                <li><a href="#" onClick="calc(); callprob()" class="isDisabled">Probability Calculations</a></li>
+            </ul>
+            
+        </div>
+        <div class="other">
+            <h2>Other Resources</h2>
+            <ul>
+                <li><a href="regress.htm">2 Var Statistics &amp; Regression</a></li>
+            </ul>
+        </div>
+
+
+</div>
 <script>
 grph=1; calced=false; frac=4; frac2=4
 saveOutput=document.theForm.output.value
@@ -401,4 +421,7 @@ if (ls.search(/\?/)==0){
    document.theForm.input.value = "x:"+lsd[0]+" \\f: "+lsd[1]+" \\xf: "+lsd[2]+"\\v: "+lsd[3]+"  \\w: "+lsd[4]+" \\x= "+lsd[5]+"\\\\"}
  document.theForm.input.value += "\n x: var 1 list; f: frequency list; xf: x list combined with f list;\n v: from,thru,step; values to generate x; defaults 0,10,1\n w: # classes or class limits for the first class"
  calc(); document.theForm.input.setSelectionRange(0,0)}
-</script></body></html>
+</script>
+    
+</body>
+</html>
