@@ -1,16 +1,20 @@
 @charset "utf-8";
 
 body {
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:"Segoe UI", Arial, Helvetica, sans-serif;
+    color:#707070;
+}
+
+h1, h2 {
+    font-weight:normal;
 }
 
 /* css for the math characters */
 
 .deco { 
     text-align:center;
-    background:#d0d0d0;
+    background:#e5e5e5;
     letter-spacing: 10px;
-    color:#525252;
     border-radius: 0 0 15px 15px;
 }
 .deco.first { /* round the corners of the top bar differently than the bottom */
@@ -32,6 +36,7 @@ body {
     border-radius:15px;
     margin:5px auto;
     vertical-align: top;
+    width:90%;
 }
 
 #menu h1 {
@@ -45,7 +50,7 @@ body {
 }
 
 .column {
-    padding:5px;
+    padding:10px;
     display:block;
 }
 
@@ -71,5 +76,5 @@ footer {
 }
 
 a:link, a:visited, a:hover, a:active {
-    color:black;
+    color:#707070;
 }
