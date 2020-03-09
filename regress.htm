@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
-<html><head><title>2-Var Stats & Regression</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html>
+<head>
+    <title>Two Variable Statistics &amp; Regression</title>
+    <meta charset="utf-8">
 <script type="text/javascript" src="myfunctions.js"></script>
 <script type="text/javascript" src="matrix.js"></script>
 <script type="text/javascript" src="statfns.js"></script>
@@ -458,11 +461,26 @@ document.theForm.output.focus() }}
 // ---------------------------------------------------*/
 </script>
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+    <link rel="stylesheet" href="assets/simple-calc-style.css">
 </head>
 <body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 800, 800 );">
-<form name="theForm"><table  border= 1>
-<tr><td colspan=99 onClick="window.open('index.htm')">2 Var Statistics & Regression</td></tr>
-<tr><td><textarea name= "input" rows= 4 cols= 80 tabindex="1" onKeyUp="enter(event)">
+    <div id="simpleCalc">
+        <h1>Two Variable Statistics &amp; Regression</h1>
+<form name="theForm">
+<textarea id="output" name="output" rows= 25 cols= 80 tabindex=0>Notes on input:
+ x: var 1 list \y: var 2 list \f: frequency list \
+ xy, xf, xyf: x list combined with y or f lists\
+ o: order for polynomial regression
+ u: from,thru,step; additional predicted values to display
+ v: from,thru,step; values to generate x from y or f; defaults 0,10,1
+ w: # classes or class limits for the first class
+use ',' or ';' or ':' or '(' or ')' or 'cr' or ' ' or 'tab' for delimiters
+x= f(x) to transform x values
+y= f(x) to generate y values
+use [] for function parameters such as: sqrt[3]
+</textarea>
+<textarea id="input" name= "input" rows= 4 cols= 80 tabindex="1" onKeyUp="enter(event)">
 x:  \y:  \f:  \xy:  \xf:  \xyf:  \o: 1 \u:  \v:  \w:  \x=  \y=  \\
 
  x: var 1 list \y: var 2 list \f: frequency list \
@@ -474,41 +492,27 @@ x:  \y:  \f:  \xy:  \xf:  \xyf:  \o: 1 \u:  \v:  \w:  \x=  \y=  \\
  x= f(x) to transform x values
  y= f(x) to generate y values
 </textarea>
-</td></tr>
-<tr><td>
-<!-- <input name="clear" type="button" value= "Clear" onClick="cla()" tabindex="2" /> -->
-<input name="calc1" type="button" value= "Calc" onClick="calc()" tabindex="3">
-<!-- <input name="prob" type="button" value= "Prob" onClick="calc(); callprob()" tabindex="" title="probability calculations" /> -->
-<input name="frq" type="button" value= "graph" onClick="grph=1; calc(); window.open('graphs.htm')" tabindex="" title="Line Graph" />
-<!-- <input name="bar" type="button" value= "Hist" onClick="grph=2; calc(); window.open('graphs.htm')" tabindex="" title="Bar Graph" />
-<!-- <input name="box" type="button" value= "Box" onClick="grph=3; calc(); if(!two) window.open('graphs.htm')" tabindex=""  title="Box & whiskers chart"/>
-<input name="pie" type="button" value= "Pie" onClick="grph=4; calc(); if(!two) window.open('graphs.htm')" tabindex=""  title="Pie Chart"/>
-<input type=checkbox name="stemleaf" title='stem & leaf' onClick="calc()"/>
-s&l
-<input type=checkbox name="relfreq" onclick='document.getElementById("frac").style.display="inline"; calc()' title="relative frequency"/>rf
-<input type=checkbox name="forceogive" title="cumulative frequency" onClick="calc()"/>ogive
-<input type="text" name = "percentile" size = 1 value="" title="Percentile" /> %tile
--->
-<input name="spline" type="button" value= "q-spline" onClick="grph=5; calc(); window.open('q.spline.htm'+'?&')" tabindex="" title="q-spline" />
+<input id="calc" name="calc1" type="button" value= "Calc" onClick="calc()" tabindex="3">
+    <div id="buttons">
 <input name="savebut" Value="Save" type="button" onClick="savestuff(); document.theForm.input.focus()"/>
 <input name="loadbut" Value="Load" type="button" onClick="loadstuff(); document.theForm.input.focus(); calc()"/>
-<input name="stats" Value="1-var" type="button" onClick="window.open('stats.htm','_self')"/>
-<!-- <input name="loaddata" Value="Add" type="button" onClick="loadstuff(true)"/> -->
-</td></tr>
-<tr><td>Output:
-<input type="button" value="%" id="frac" onClick="swfrac((frac2>3?2:frac2+1))" title="output format"/><br>
-<textarea name= "output" rows= 25 cols= 80 tabindex=0>Notes on input:
- x: var 1 list \y: var 2 list \f: frequency list \
- xy, xf, xyf: x list combined with y or f lists\
- o: order for polynomial regression
- u: from,thru,step; additional predicted values to display
- v: from,thru,step; values to generate x from y or f; defaults 0,10,1
- w: # classes or class limits for the first class
-use ',' or ';' or ':' or '(' or ')' or 'cr' or ' ' or 'tab' for delimiters
-x= f(x) to transform x values
-y= f(x) to generate y values
-use [] for function parameters such as: sqrt[3]
-</textarea></td></tr></table></form>
+<input type="button" value="%" id="frac" onClick="swfrac((frac2>3?2:frac2+1))" title="output format"/>
+    </div>
+    </form>
+           <div class="pass">
+        <h2>Use These Calculations With:</h2>
+        <ul>
+            <li><a href="#" onClick="grph=1; calc(); window.open('graphs.htm')" class="isDisabled">Line Graph</a></li>
+            <li><a href="#" onClick="grph=5; calc(); window.open('q.spline.htm'+'?&')" class="isDisabled">Q-Spline</a></li>
+        </ul>
+    </div>
+    <div class="other">
+        <h2>Other Resources</h2>
+        <ul>
+            <li><a href="stats.htm">One Variable Statistics</a></li>
+        </ul>
+    </div>
+        </div>
 <script>
 grph=1; calced=false; frac=4; frac2=4
 saveOutput=document.theForm.output.value
