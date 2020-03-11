@@ -465,7 +465,7 @@ document.theForm.output.focus() }}
     <link rel="stylesheet" href="assets/simple-calc-style.css">
 </head>
 <body onLoad="self.focus();document.theForm.input.focus();">
-    <div id="simpleCalc">
+    <div id="calctainer">
         <h1>Two Variable Statistics &amp; Regression</h1>
 <form name="theForm">
 <textarea id="output" name="output" rows= 25 cols= 80 tabindex=0>Notes on input:
@@ -493,7 +493,7 @@ x:  \y:  \f:  \xy:  \xf:  \xyf:  \o: 1 \u:  \v:  \w:  \x=  \y=  \\
  y= f(x) to generate y values
 </textarea>
 <input id="calc1" name="calc1" type="button" value= "Calculate" onClick="calc()" tabindex="3">
-    <div id="buttons">
+    <div id="saveload">
 <input name="savebut" Value="Save" type="button" onClick="savestuff(); document.theForm.input.focus()"/>
 <input name="loadbut" Value="Load" type="button" onClick="loadstuff(); document.theForm.input.focus(); calc()"/>
 <input type="button" value="%" id="frac" onClick="swfrac((frac2>3?2:frac2+1))" title="output format"/>
