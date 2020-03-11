@@ -1,9 +1,15 @@
-<html><head><title>quadratic spline</title>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-<link REL="SHORTCUT ICON" HREF="favicon.ico">
-</head><body onLoad="self.focus(); document.theForm.input.focus(); window.resizeTo( 750, 450 );">
-<script type="text/javascript" src="myfunctions.js"></script>
-<script type="text/javascript" src="matrix.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quadratic Spline</title>
+    <meta charset="utf-8">
+    <link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+    <link rel="stylesheet" href="assets/simple-calc-style.css">
+</head>
+<body id="spline" onLoad="self.focus(); document.theForm.input.focus();">
+<script src="myfunctions.js"></script>
+<script src="matrix.js"></script>
 <script>
 degrees = false
 graphdata = ''
@@ -78,29 +84,31 @@ localStorage.setItem("graphdata",val1)
 outit ("\n")
 document.theForm.x.focus();
 } };
-</script><link REL="SHORTCUT ICON" HREF="favicon.ico">
-<p>
+</script>
+<div id="calctainer">
+    <h1>Quadtratic Spline</h1>
 <form name="theForm">
-<table  border = 1>
-<tr><td colspan=99 onClick="window.open('index2.htm')"></td></tr>
-<tr><td>
-<table><tr><td>Spline interpolate these points:<br>
-<textarea name = "input" rows = 3 cols = 115 tabindex="1"></textarea>
-<br>
-and Find fx) for x= <input type="text"  name = "x" size = 10 value="" tabindex="2">
- line 1st 2 points: <input name="line" type="checkbox" onClick="calc1()" title="line thru first two points" checked/>
-<input name="calc" type="button" value = "Calc" onClick="calc1()" tabindex="6" />
-<input name="clear" type="button" value = "clear" onClick="clear1()" tabindex="6" />
+    <textarea name="output" id='result' tabindex="1" rows=10></textarea>
+<div id="inputLabel">
+<label for="input">Spline interpolate these points:</label>
+    </div>
+<textarea name="input" id="input" rows=5></textarea>
+
+    <input name="calc" id="calcButton" type="button" value = "Calculate" onClick="calc1()" tabindex="6" />
+<div id="buttons">
+<label for="x">Find fx) for x=</label><input type="text"  id="x" name = "x" size = 10 value="" tabindex="2">
+<label for="line"> line through 1st 2 points: </label><input name="line" id="line" type="checkbox" onClick="calc1()" title="line thru first two points" checked>
+
+<input name="graphbut" Value="graph" type="button" onClick="calc1();window.open('graphs.htm')" title="send screen to grapher">
+</div>
+    <div id="saveload">
 <input name="savebut" Value="Save" type="button" onClick="savestuff();document.theForm.input.focus()"/>
+        <input name="clear" type="button" value = "clear" onClick="clear1()" tabindex="6" />
 <input name="loadbut" Value="Load" type="button" onClick="loadstuff();calc1();document.theForm.input.focus()"/>
-<input name="graphbut" Value="graph" type="button" onClick="calc1();window.open('graphs.htm')" title="send screen to grapher"/>
-<input type="button" value="8 place" id="frac" onClick="swfrac(true)" title="output format"/>
-</td></tr></table></td></tr>
-<tr><td><table><tr><td>
-</td></tr><tr><td>
-<textarea name = "output" id='result' rows = 12 cols = 115 tabindex="1"></textarea>
-</td></tr></table></td></tr></table>
+    <input type="button" value="8 place" id="frac" onClick="swfrac(true)" title="output format"/>
+    </div>
 </form>
+</div>
 <script>ls=decodeURIComponent(location.search)
 if (ls.search(/\?/)==0){
   if (ls=='?&') {
