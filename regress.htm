@@ -6,8 +6,8 @@
 <script type="text/javascript" src="myfunctions.js"></script>
 <script type="text/javascript" src="matrix.js"></script>
 <script type="text/javascript" src="statfns.js"></script>
-<script type="text/javascript">
-probmean=0
+<script>
+    probmean=0
 probsdev=0
 Sigma= String.fromCharCode(931);
 sigma= String.fromCharCode(963);
@@ -492,7 +492,7 @@ x:  \y:  \f:  \xy:  \xf:  \xyf:  \o: 1 \u:  \v:  \w:  \x=  \y=  \\
  x= f(x) to transform x values
  y= f(x) to generate y values
 </textarea>
-<input id="calc" name="calc1" type="button" value= "Calc" onClick="calc()" tabindex="3">
+<input id="calc1" name="calc1" type="button" value= "Calculate" onClick="calc()" tabindex="3">
     <div id="buttons">
 <input name="savebut" Value="Save" type="button" onClick="savestuff(); document.theForm.input.focus()"/>
 <input name="loadbut" Value="Load" type="button" onClick="loadstuff(); document.theForm.input.focus(); calc()"/>
@@ -523,4 +523,6 @@ if (ls.search(/\?/)==0){
  document.theForm.input.value = "x:"+lsd[0]+" \\y: "+lsd[1]+" \\f: "+lsd[2]+" \\xy: "+lsd[3]+" \\xf: "+lsd[4]+" \\xyf: "+lsd[5]+" \\o: "+lsd[6]+" \\u:  \\v:  \\w: "+lsd[7]+" \\x=  \\y=  \\\\\n  x: var 1 list \y: var 2 list \f: frequency list \ xy, xf, xyf: x list combined with y or f lists\n o: order for polynomial regression\n u: from,thru,step; additional predicted values to display\n v: from,thru,step; values to generate x from y or f; defaults 0,10,1\n w: # classes or class limits for the first class\nx= f(x) to transform x values\ny= f(x) to generate y values"
  calc()
 }
-</script></body></html>
+</script>
+</body>
+</html>
