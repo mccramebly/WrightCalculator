@@ -229,6 +229,17 @@ label {
 #spline #saveload {
     grid-area: 4 / 2 / 5 / 3;
 }
+
+/* -- GPA Calculator -- */
+#gpa #input {
+    text-align: center;
+    grid-area: 1 / 1 / 2 / 3;
+    padding-bottom:10px;
+}
+#gpa form {
+    grid-template-columns: 1fr 1fr;
+}
+
 /* -- disable links that are not ready --*/
 
 .isDisabled {
