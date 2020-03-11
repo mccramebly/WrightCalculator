@@ -361,7 +361,7 @@ document.theForm.output.focus() }}
     <link rel="stylesheet" href="assets/simple-calc-style.css">
 </head>
 <body onLoad="self.focus();document.theForm.input.focus();">
-    <div id="simpleCalc">
+    <div id="calctainer">
     <h1>One Variable Statistics</h1>
 <form name="theForm">
 <textarea id="output" name="output">Input for 1 var stats:
@@ -378,13 +378,16 @@ x:  \f:  \xf:  \v:  \w:  \x=  \\
     
     <input id="calculate" name="calc1" type="button" value="Calculate" onClick="calc()" tabindex="3">
     <div id="buttons">
+        <label for="percentile">Percentile:</label>
+        <input type="text" id="percentile" name="percentile" size="4" value="" title="Percentile" /> 
 <input type=checkbox id="stemleaf" name="stemleaf" title='stem & leaf' onClick="calc()"/>
-<label for="stemleaf">S&amp;L</label>
+<label for="stemleaf">Stem &amp; Leaf</label>
 <input type=checkbox id="relfreq" name="relfreq" onclick='calc()' title="relative frequency"/>
-    <label for="relfreq">RF</label>
+    <label for="relfreq">Relative Frequency</label>
 <input type=checkbox id="forceogive" name="forceogive" title="cumulative frequency" onClick="calc()"/>
-    <label for="forceogive">OGIVE</label>
-<input type="text" id="percentile" name="percentile" placeholder="%tile" size="5" value="" title="Percentile" /> <!--(Hidden until screen-reader only implemented: <label for="percentile">Percentile</label>-->
+    <label class="last" for="forceogive">Ogive</label>
+    </div>
+    <div id="saveload">
 <input name="savebut" Value="Save" type="button" onClick="savestuff(); document.theForm.input.focus()"/>
 <input name="loadbut" Value="Load" type="button" onClick="loadstuff(); document.theForm.input.focus(); calc()"/>
     <input type="button" value="%" id="frac" onClick="swfrac((frac2>3?2:frac2+1))" title="output format">
