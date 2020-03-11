@@ -2,8 +2,10 @@
 <html lang="en">
     <head>
         <title>Calc GPA</title>
-        <meta charset="utf-8"/> 
+        <meta charset="utf-8"> 
         <link rel="SHORTCUT ICON" href="favicon.ico">
+        <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+        <link rel="stylesheet" href="assets/simple-calc-style.css">
     </head>
 <body onLoad="self.focus();document.theForm.a.focus()">
     <script type="text/javascript" src="myfunctions.js"></script>
@@ -34,11 +36,14 @@
     if (doa) document.theForm.a.focus(); else document.theForm.b.focus() 
     }
     </script>
-    <h1>Wright Calc APP: Projected GPA</h1>
+    <div id="calctainer">
+    <h1>Projected GPA Calculator</h1>
     <form name="theForm">
         <p>If you have already taken <input type="text" name="a" size=12 rows=1 tabindex="1" value="" onblur="doa=false; calc()" onKeyUp="enter(event)"/> credit hours in which you have a <input type="text" name="b" size=12 rows=1 tabindex="2" value="" onblur="doa=true; calc()" onKeyUp="enter(event)"/> GPA then if you get an "A" in this many additional credit hours, your GPA will be:</p>
         <textarea name = "output1" rows = 22 cols = 3></textarea>
         <textarea name = "output2" rows = 22 cols = 5></textarea>
+        </div>
     </form>
+        </div>
 </body>
 </html>
