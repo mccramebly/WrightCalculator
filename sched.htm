@@ -1,11 +1,32 @@
-<html><body>
-<script type="text/javascript" src="myfunctions.js"></script> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Group Generator</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+    <link rel="stylesheet" href="assets/simple-calc-style.css">
+</head>
+<body id="groupGen">
+<script src="myfunctions.js"></script> 
 <script>
 var day=[] // day, group, index into roster
 var cross=[]
 var roster=[]
 var n = 0
-
+// ------------------------------------------------------------------
+function checkSelection() {
+    var selection = document.getElementById("checkSelect");
+    if (selection.value==1) {
+        calc();
+    }
+    else if (selection.value==2) {
+        calc1();
+    }
+    else {
+        calc();
+    }
+    
+}
 // ------------------------------------------------------------------
 function dday(d)
 { theForm.solu.value+="\nDay "+(d+1)+":"
@@ -89,16 +110,31 @@ dday(si)
 }
 }
 </script>
+    <div id="calctainer">
 <!--  Jessica Choe 	jchoe@ccc.edu  -->
+        <h1>Group Generator</h1>
 <form name="theForm">
-<table border = 1 noshade>
-<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
-<tr><td align=right>Wright Calc APP:  Create small groups from your class list. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td></tr>
-<tr><td>Step 1: Enter or copy/paste class roster:<br><textarea name = "input" rows = 3 cols = 80></textarea></td></tr>
-<tr><td>Step 2: How many students are in each group:<input type="text" name="gval" size=1 value="3"/> &nbsp; &nbsp; &nbsp; How many sessions are there:<input type="text" name="sval" size=1 value="4"/></td></tr>
-<tr><td>Step 3: Family Name, Given Name <input name="calcbut" Value="Click HERE" type="button" onClick="calc()"/>
- First Name Last Name (no commas)<input name="calc1but" Value="Click HERE" type="button" onClick="calc1()"/>
- 
-</td></tr>
-<tr><td><textarea name = "solu" cols=80 rows = 44></textarea></td></tr>
-</table></form></body></html>
+    <p id="desc">Create small groups from your class list.</p>
+    <div id="inputDiv">
+    <label for="input">Enter or copy/paste class roster:</label>
+    <textarea id="input" name="input" rows="10"></textarea>
+    </div>
+
+    <label for="gval">How many students are in each group:</label>
+    <input id="gval" type="text" name="gval" size=1 value="3">
+    <label for="sval">How many sessions are there:</label>
+    <input id="sval" type="text" name="sval" size=1 value="4">
+    <label for="outputType">How would you like the names formatted:</label>
+    <select name="outputType" id="outputType">
+        <option disabled selected>Select One</option>
+        <option value=1>Family Name, Given Name (Ex. Smith, John)</option>
+        <option value=2>Given Name, Family Name (Ex. John Smith)</option>
+    </select>
+    <input type="button" id="checkSelect" name="checkSelect" value="Submit" onClick="checkSelection()"><!--
+Family Name, Given Name <input name="calcbut" Value="Family Name, Given Name" type="button" onClick="calc()">
+ First Name Last Name (no commas)<input name="calc1but" Value="First Name Last Name" type="button" onClick="calc1()">-->
+ <textarea id="solu" name="solu" rows="10"></textarea>
+        </form>
+    </div>        
+</body>
+</html>
