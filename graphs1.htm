@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Graph Functions</title>
+    <title>Graphing Functions</title>
     <meta charset="utf-8"> 
     <link REL="SHORTCUT ICON" HREF="favicon.ico">
-    <link rel="stylesheet" href="assets/styles.css">
     <script src="myfunctions.js"></script>
     <script>
 // -------------------------------------------------------*/  
@@ -527,8 +526,12 @@ if (POIx!=undefined){
     POIshow=true; movetoxy(POIx,POIy)}
 }
 </script>
+    <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+    <link rel="stylesheet" href="assets/simple-calc-style.css">
 </head>
 <body onLoad="self.focus(); document.theForm.input.focus();">
+    <div id="simpleCalc">
+        <h1>Graphing Functions</h1>
     <form name="theForm">
         <table id='theTable'>
             <tr>
@@ -622,6 +625,7 @@ if (POIx!=undefined){
             </tr>
         </table>
     </form>
+        </div>
 <script>
 // -------------------------------------------------------*/  
 function getPosition(event){ 
