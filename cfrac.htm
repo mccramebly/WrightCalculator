@@ -4,9 +4,12 @@
     <title>Continued fraction operations</title>
     <meta charset="utf-8">
     <link rel="SHORTCUT ICON" href="favicon.ico">
-    <link rel="stylesheet" href="assets/styles.css">
+                <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+        <link rel="stylesheet" href="assets/articlestyles.css">
 </head>
 <body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 750 );">
+   
+    <div class="calcmenu">
     <script src="myfunctions.js"></script>
     <script>
         // ---------------------------------------------------*/
@@ -48,28 +51,31 @@
         }
         // ---------------------------------------------------*/
     </script>
-    <h1>Continued Fraction Operations</h1>
+    
+    <h2>Continued Fraction Operations</h2>
     <form name="theForm">
-        <textarea name = "ratdata" rows = 9 cols = 80 onKeyUp="enter(event)">11/13
+        <textarea name = "ratdata" rows = 9 cols=68 onKeyUp="enter(event)">11/13
 11/13
 sqrt(3)+1
 √(21)
         </textarea>
-   <p>Rational Numbers:<br>
+   <h2>Rational Numbers:</h2>
 
-    <textarea name="cfracdata" rows = 9 cols = 80 onKeyUp="enter(event)">[0;1,5,2]
+    <textarea name="cfracdata" rows = 9 cols=68 onKeyUp="enter(event)">[0;1,5,2]
 [0;1,5,1,1]
 [2;1,2,'.']
 [4; 1, 1, 2, 1, 1, 8, '.' ]</textarea>
-       </p>
-    <p>Continued Fraction:<br>
+       
+    <h2>Continued Fraction:</h2>
 
-    <textarea name="input" rows = 9 cols = 80 onKeyUp="enter(event)"></textarea>
-        </p>
-        <p>
+    <textarea name="input" rows = 9 cols=68 onKeyUp="enter(event)"></textarea>
+       <br> 
+        
     <input name="rationalbut" value="rat2cfrac" type="button" onClick="rat2cfr()"/>
     <input name="cfracbut" value="cfrac2rat" type="button" onClick="cfr2rat()"/>
-            </p>
+            
     </form>
+        <br><br>
+        </div>
 </body>
 </html>

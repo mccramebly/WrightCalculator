@@ -1,4 +1,6 @@
 <html><head><title>Distance between two points</title>
+        <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+        <link rel="stylesheet" href="assets/articlestyles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script>
 // -------------------------------------------------------*/
@@ -269,37 +271,19 @@ ctx.beginPath(); ctx.strokeStyle = 'blue'; ctx.lineWidth = 4
 }}
 </script>
 </head><body  style="font-family:Monospace" onLoad="self.focus()">
-<form name="theForm"><table id='theTable' border = 1>
-<tr><td valign=top>
-<TABLE>
-<tr><td>
-First Point: <br>x1=<input name="x1" size=35 value=""/><br>y1=<input name="y1" size=35 value=""/></td></tr>
-<tr><td>
-Second Point: <br>x2=<input name="x2" size=35 value=""/><br>y2=<input name="y2" size=35 value=""/>
-</td></tr>
-<tr><td>
-<input name="calcbut" value="Calculate" onclick="calc()" type="button"></td></tr><tr><td>
-</td></tr>
-<tr><td>
-Length: <input name="dist" value="" ><br>
-Slope:  <input name="slope" value="" >
-</td></tr>
-<!--
-<tr><td>x-range:
-<input name="xinbut" value="in" onclick="chdim(1,0.5)" type="button">
-<input name="xoutbut1" value="out" onclick="chdim(1,1.2599210498948732)" type="button">
-<input name="xoutbut2" value="2 X" onclick="chdim(1,2)" type="button">
-</td></tr>
-<tr><td>y-range:
-<input name="yinbut" value="in" onclick="chdim(2,0.5)" type="button">
-<input name="youtbut1" value="out" onclick="chdim(2,1.2599210498948732)" type="button">
-<input name="youtbut2" value="2 X" onclick="chdim(2,2)" type="button"></td></tr>
--->
-<tr><td>
-<input name="randomizebut" value="randomize" onclick="randomize()" type="button"></td></tr>
-</table>
-<td rowspan=11><canvas id="theCanvas" width="501" height="501"></canvas></td></tr>
-</table></form>
+    <div class="calcmenu">
+<form name="theForm">
+
+<h2>First Point:</h2><label>X1</label><input name="x1" size=35 value=""/><label>Y1</label><input name="y1" size=35 value=""/>
+    <h2>Second Point:</h2> <label>X2</label><input name="x2" size=35 value=""/><label>Y2</label><input name="y2" size=35 value=""/>
+
+<label>Length:</label><input name="dist" value="" >
+<label>Slope:</label><input name="slope" value="" >
+
+<label>&nbsp;</label><input name="calcbut" value="Calculate" onclick="calc()" type="button"><input name="randomizebut" value="Randomize" onclick="randomize()" type="button">
+<td rowspan=11><canvas id="theCanvas" width="501" height="501"></canvas>
+</form>
+        </div>
 <script>
 // -------------------------------------------------------*/
 function getPosition(event){

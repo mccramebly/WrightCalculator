@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Javascript dev sandbox </title>
     <link rel="SHORTCUT ICON" HREF="favicon.ico">
-    <link rel="stylesheet" href="assets/styles.css">
+                <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+        <link rel="stylesheet" href="assets/articlestyles.css">
 </head>
 
 <body onload="self.focus();document.theForm.input.focus();window.resizeTo( 800, 800 );">
@@ -85,28 +86,30 @@
      } };
     // ---------------------------------------------------
     </script>
+    <div class="calcmenu">
     <form name="theForm">
-        <p><a href="http://faculty.ccc.edu/jnadas/js/index.htm" target="_blank"><img src="menu.bmp" alt="Main Menu" title="Main Menu"></a> 
-        Enter to calculate (or) 
-        <input name="execbut" value="Exec" onclick="exec(); document.theForm.input.focus()" type="button">
-        Deg.<input name="degrees" checked="checked" type="checkbox">
-        <input name="clerebut" value="Clear" onclick="clere()" type="button">
-        <input name="copybut" value="Pop" onclick="copy()" type="button">
-        <input name="savebut" value="Save" onclick="savestuff();document.theForm.input.focus()" type="button">
-        <input name="loadbut" value="Load" onclick="loadstuff();exec();document.theForm.input.focus()" type="button">
-        </p>
-        <p>input:<br><!--x=90*pirad; sin((45*pirad)-(x/2)); x=90; sin((45)-(x/2)) ; ; fact(4)^2*2  -->
-        <textarea name="input" rows="2" cols="80" tabindex="1" onkeyup="enter(event)">x=4; (x^2+1)/sqrt(x)</textarea></p>
-        <p>clean(input) → cleanx(input)<br>
-        <textarea name="output1" rows="2" cols="80" tabindex="2" onkeyup="enter(event)"></textarea></p>
-        <p>expr → clean(expr) → cleanx(expr) = eval(cleanx(expr))<br>
-        <textarea name="output2" rows="2" cols="80" tabindex="2" onkeyup="enter(event)"></textarea></p>
-        <p>FX1 = parse(expr) &amp; vars<br>
-        <textarea name="output3" rows="2" cols="80" tabindex="2" onkeyup="enter(event)"></textarea></p>
-        <p>FX2 = fx2xx(FX1)<br>
-        <textarea name="output4" rows="2" cols="80" tabindex="2" onkeyup="enter(event)"></textarea></p>
-        <p>FX3 = cleanx(FX2) → eval(FX3)<br>
-        <textarea name="output5" rows="2" cols="80" tabindex="2" onkeyup="enter(event)"></textarea></p>
+        
+        <div class="button3row"><div class="button1"><label>Deg.</label><input name="degrees" checked="checked" type="checkbox"></div>
+        <div class="button2"><input name="execbut" value="Calculate" onclick="exec(); document.theForm.input.focus()" type="button"></div>
+        <div class="button3"><input name="clerebut" value="Clear" onclick="clere()" type="button"></div></div>
+        <div class="button3row"><div class="button1"><input name="copybut" value="Pop" onclick="copy()" type="button"></div>
+        <div class="button2"><input name="savebut" value="Save" onclick="savestuff();document.theForm.input.focus()" type="button"></div>
+        <div class="button3"><input name="loadbut" value="Load" onclick="loadstuff();exec();document.theForm.input.focus()" type="button"></div></div>
+        
+        <h2>&nbsp;</h2>
+        <label>input:</label><!--x=90*pirad; sin((45*pirad)-(x/2)); x=90; sin((45)-(x/2)) ; ; fact(4)^2*2  -->
+        <textarea name="input" rows="2" cols="50" tabindex="1" onkeyup="enter(event)">x=4; (x^2+1)/sqrt(x)</textarea>
+        <label>clean(input) → cleanx(input)</label>
+        <textarea name="output1" rows="2" cols="50" tabindex="2" onkeyup="enter(event)"></textarea>
+        <label>expr → clean(expr) → cleanx(expr) = eval(cleanx(expr))</label>
+        <textarea name="output2" rows="2" cols="50" tabindex="2" onkeyup="enter(event)"></textarea>
+        <label>FX1 = parse(expr) &amp; vars</label>
+        <textarea name="output3" rows="2" cols="50" tabindex="2" onkeyup="enter(event)"></textarea>
+        <label>FX2 = fx2xx(FX1)</label>
+        <textarea name="output4" rows="2" cols="50" tabindex="2" onkeyup="enter(event)"></textarea>
+        <label>FX3 = cleanx(FX2) → eval(FX3)</label>
+        <textarea name="output5" rows="2" cols="50" tabindex="2" onkeyup="enter(event)"></textarea>
     </form>
+        </div>
 </body>
 </html>

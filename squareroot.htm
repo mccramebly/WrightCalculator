@@ -2,12 +2,13 @@
     <head><title>Manual Square Root</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <link REL="SHORTCUT ICON" HREF="favicon.ico">
-
+<link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+<link rel="stylesheet" href="assets/articlestyles.css">
         </head>
     
     <body onLoad="self.focus();document.theForm.input.focus()">
-
-        
+<div class="calcmenu">
+        <h2>Manual Square Root</h2><br>
         <script type="text/javascript" src="myfunctions.js"></script>
         <script> 
             var a,q,w
@@ -98,15 +99,14 @@
         </script>
 
         <form name="theForm">
-            <table width=90 border = 1 noshade>
-            <tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
-            <tr><td > Square root of: 
-                <input type="text" name="input" tabindex=1 onKeyUp="enter(event)"/>
-                <input name="resbut" tabindex=3 Value="Result" type="button" onClick="calc()"/> is 
-                <input type="text" name="b" disabled/>
-                </td></tr><tr><td>
-                <textarea name = "output" rows=30 cols=80 tabindex=""></textarea>
-                </td></tr></table></form>
+            <label>Square root of</label>
+                <input type="text" name="input" tabindex=1 onKeyUp="enter(event)"/><br>
+            <label>is</label><input type="text" name="b" disabled/><br>
+                <input name="resbut" tabindex=3 Value="Result" type="button" onClick="calc()"/> <br><br>
+
+<h2>Breakdown</h2>
+                <textarea name = "output" rows=10 cols=68 tabindex=""></textarea>
+                </form>
         <script>
             ls=decodeURIComponent(location.search)
             if (ls.search(/\?/)==0){
@@ -114,5 +114,6 @@
             document.theForm.input.value=lsf[0]
             calc()}
         </script>
+    </div>
     </body>
 </html>

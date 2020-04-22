@@ -1,6 +1,8 @@
 <html><head><title>logic calculator</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
+<link REL="SHORTCUT ICON" HREF="favicon.ico">
+<link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+<link rel="stylesheet" href="assets/articlestyles.css"></head>
 <body onLoad="self.focus();document.theForm.input.focus();">
 <script type="text/javascript" src="myfunctions.js"></script>
 <!--
@@ -238,21 +240,22 @@ for (xxi=0; xxi<xx.length; xxi++){
 document.theForm.input.value+= ':'+yy.join('∨')+'\n'; document.theForm.input.focus()}
 // ---------------------------------------------------*/
 </script>
+    <div class="calcmenu">
 <form name="theForm">
-<table>
-<tr><td onClick="window.open('index.htm')">statements / arguments </td><td align='center'><input name="clearbut" Value="Clear All" type="button" onClick="clere()" title="Clear"/>
-</td></tr>
-<tr><td colspan=2><textarea name = "indata" rows = 10 cols = "90" onKeyUp="enter(event,0)"></textarea>
-</td></tr><tr><td align='center'>
+<h2>Statements / Arguments</h2><input name="clearbut" Value="Clear All" type="button" onClick="clere()" title="Clear"/>
+
+<textarea name = "indata" rows = 10 cols = "68" onKeyUp="enter(event,0)"></textarea>
+
 <input name="tablebut" Value="Show Truth Table" type="button" onClick="table()" title="Table"/>
-</td><td align='center'><input name="jsbut" Value="Pass JS to Editor" type="button" onClick="editjs()" title="DoJS"/>
+<input name="jsbut" Value="Pass JS to Editor" type="button" onClick="editjs()" title="DoJS"/>
 <input name="cnfbut" Value="cnf" type="button" onClick="cnf()" title="truth table to CNF"/>
 <input name="showbut" Value="again" type="button" onClick="show(-1)" title="back/repeat"/>
 <input name="showbut" Value="next" type="button" onClick="show(1)" title="forward"/>
-</td></tr><tr><td colspan=2><textarea name = "input" rows = 25 cols = 90 onKeyUp="enter(event,1)"></textarea>
-</td></tr>
-</table>
+<textarea name = "input" rows = 25 cols = 68 onKeyUp="enter(event,1)"></textarea>
+
+
 </form>
+        </div>
 <script>
 savel=[]
 lprogs=[]

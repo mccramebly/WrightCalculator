@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="utf-8">
-    <title>Fáraók Kincses</title>
-    <script>
+<html><head><link rel="stylesheet" href="assets/articlestyles.css">
+<meta http-equiv="content-type" content="text/html" charset="UTF-8"><title>FÁRAÓK KINCSE</title>
+<script type="text/javascript">
 var code
 var rows4
 var rows5
@@ -85,45 +82,26 @@ for (i=0;i<code.length;i=i+3)
              } }while (y>-1)
   document.theForm.rows6x.value=row6x}
 }
-</script>
-    <link rel="stylesheet" href="assets/styles.css">
-</head>
-<body onload="self.focus();window.resizeTo( 800, 800 );">
-    <h1><a href="index2.htm">Fáraók Kincse</a></h1>
-    <form name="theForm">
-        <p>
-            <input type="button" name="claf" value= "Clear input" onClick="cla()">
-            <input type="button" name="sclearb" value= "find matches" onClick="calc()">
-            <input type="button" name="testf" value= "load test data" onClick="test()">
-        </p>
-        <p>
-            <label for="coded">az ön számai</label>
-            <input type="text"  id="coded" name="coded" size=100 value="" >
-        </p>
-        <p>
-            <label for="rows4d">négy sor</label> 
-            <input type="text"  id="rows4d" name= "rows4d" size=100 value="" >
-        </p>
-        <p>
-            <label for="rows4x">találat</label>
-            <input type="text" id="rows4x" name="rows4x" size=100 value="" >
-        </p>
-        <p>
-            <label for="rows5d"> öt sor</label>
-            <input type="text" id="rows5d" name="rows5d" size=100 value="" >
-        </p>
-        <p>
-            <label for="rows5x">találat</label>
-            <input type="text" id="rows5x" name="rows5x" size=100 value="" >
-        </p>
-        <p>
-            <label for="rows6d">hat sor</label>
-            <input type="text" id="rows6d" name="rows6d" size=100 value="" >
-        </p>
-        <p>
-            <label for="rows6x">találat</label>
-            <input type="text" id="rows6x" name="rows6x" size=100 value="" >
-        </p>
-    </form>
-</body>
-</html>
+</script></head>
+<body onload="self.focus();window.resizeTo( 800, 800 );" style="font-family: Courier;">
+<div class="calcmenu">
+    <p>
+</p><form name="theForm">
+<h2>FÁRAÓK KINCSE </h2>
+<input type="button" name="claf" value= "Clear input" onClick="cla()" >
+<input type="button" name="sclearb" value= "Find matches" onClick="calc()" >
+<input type="button" name="testf" value= "Test data" onClick="test()" >
+
+<label>az ön számai</label><input style="font-family: monospace" type="text"  name= "coded" size=100 value="" >
+<label>négy sor</label><input style="font-family: monospace" type="text"  name= "rows4d" size=100 value="" >
+<label>találat</label><input style="font-family: monospace" type="text"  name= "rows4x" size=100 value="" >
+
+<label>öt sor</label><input style="font-family: monospace" type="text"  name= "rows5d" size=100 value="" >
+    <label>találat</label><input style="font-family: monospace" type="text"  name= "rows5x" size=100 value="" >
+
+<label>hat sor</label><input style="font-family: monospace" type="text"  name= "rows6d" size=100 value="" >
+<label>találat</label><input style="font-family: monospace" type="text"  name= "rows6x" size=100 value="" >
+
+
+    </form></div>
+</body></html>
