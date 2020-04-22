@@ -1,0 +1,152 @@
+
+@charset "utf-8";
+
+body {
+    font-family:"Segoe UI", Arial, Helvetica, sans-serif;
+    color:#707070;
+}
+
+h1, h2 {
+    font-weight:normal;
+}
+
+/* css for the math characters */
+
+.deco { 
+    text-align:center;
+    background:#e5e5e5;
+    letter-spacing: 10px;
+    border-radius: 0 0 15px 15px;
+}
+.deco.first { /* round the corners of the top bar differently than the bottom */
+    border-radius:15px 15px 0 0;
+}
+.deco ul {
+    list-style-type: none;
+    margin:0;
+    padding:5px;
+}
+
+.deco li {
+    display:inline;
+}
+/* menu styles w/ start of a grid */
+#menu {
+    background:#f1f1f1;
+    font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    border-radius:15px;
+    margin:5px auto;
+    vertical-align: top;
+    width:90%;
+}
+
+#menu h1 {
+    text-align: center;
+}
+
+#menu main {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.column {
+    padding:10px;
+    display:block;
+}
+
+/* this was used for the images beside the links; if we do not re-implement them it may not be necessary */
+.menu img {
+    vertical-align: middle;
+}
+
+ul.menu {
+    margin:5px 5px;
+    padding:0;
+    
+}
+
+ul.menu li {
+    margin:5px 0;
+    list-style-type: none;
+}
+
+footer {
+    text-align: center;
+    margin:10px;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color:#707070;
+}
+
+
+
+.navaccordion {
+  background-color: #eee;
+  color: #707070;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .navaccordion:hover {
+  background-color: #ccc; 
+}
+
+.navpanel {
+  padding: 18 0px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+    list-style: none;
+    
+}
+
+.navpanel a{
+    text-decoration: none;
+    font-size: 10pt;
+}
+
+.navpanel li:hover{  
+    background-color: #A0C1B9;
+    transition: 0.4s;
+    padding-left: 15px;
+    color: #f1f1f1;
+}
+
+.navigation {
+    text-align: center;
+  background-color: #eee;
+  color: #707070;
+  cursor: pointer;
+  padding: 18px;
+  width: 15px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+    border-radius: 5px;
+}
+
+.active, .navigation:hover {
+  background-color: #A0C1B9; 
+    color: #f1f1f1;
+    
+}
+
+.navigationexpand {
+    width: 200px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+    list-style: none;
+    
+}

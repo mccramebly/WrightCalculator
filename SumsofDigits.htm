@@ -1,6 +1,7 @@
-<!DOCTYPE html><HTML><head><title>Sum of Digits of Numbers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!DOCTYPE html><html><head><title>Sum of Digits of Numbers</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
-<SCRIPT type="text/javascript" src="myfunctions.js"></script>
+    <link rel="stylesheet" href="assets/articlestyles.css">
+<script type="text/javascript" src="myfunctions.js"></script>
 <script>
 function pr(x){
 document.write("<br>"+x)}
@@ -34,6 +35,7 @@ pr(indent+"5. How many different Numbers add up to each of them?")
 for (x=0;x<=soda.length;x++) if (!isNaN(soda[x])) pr(x+": "+soda[x])
 }
 </script></head><body>
+    <div class="artmenu">
 <form name="theForm"><ol>
 <li>How many numbers are there, starting with <input type="text"  name= "startn" size= 1 value="100"> and going through <input type="text"  name= "lastn" size= 1 value="999"> 
 no duplicate digits <input type="checkbox" name="nodup" value="No Duplicates">
@@ -42,5 +44,5 @@ no duplicate digits <input type="checkbox" name="nodup" value="No Duplicates">
 <li>How many numbers have their digits add up to <input type="text"  name= "nsod" size= 10 value="24"> For example: the digits in 783 add up to 18: 7 + 8 + 3 = 18</li>
 <li>How many different Sums of Digits are there?</li>
 <li>How many different Numbers add up to each of them?</li></ol>
-<input type="button" name="nanswers" value= "Answers" onClick="doswers()" onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='white'">
-</form></body></HTML>
+<input type="button" name="nanswers" value= "Answers" onClick="doswers()">
+</form></div></body></html>

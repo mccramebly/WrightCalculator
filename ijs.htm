@@ -4,7 +4,8 @@
     <title>Interactive J/S Console</title>
     <meta charset="utf-8">
     <link REL="SHORTCUT ICON" HREF="favicon.ico">
-    <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+<link rel="stylesheet" href="assets/articlestyles.css">
     <script src="myfunctions.js"></script>
     <script src="matrix.js"></script>
     <script src="statfns.js"></script>
@@ -215,12 +216,13 @@
     </script>
 </head>
 <body>
-    <h1>JavaScript Console</h1>
+    <div class="calcmenu">
+    <h2>JavaScript Console</h2>
     <form name="theForm">
         <p>Mode: <input id='mode' type="text" readonly size=9 name="mode" value="Command" onClick="setmode(-1)"></p>
         <p id='browser'> </p>
-        <textarea name = "input" rows = 26 cols = 100 onKeyUp="enter(event)"></textarea>
-        <p>read(0)dataIn
+        <textarea name = "input" rows = 26 cols = 68 onKeyUp="enter(event)"></textarea>
+        <!--<p>read(0)dataIn
             <textarea name="dataIn" rows=1 cols=18></textarea>
             Learn Javascript:
             <a href="minimal.js.html" target="_blank">tutorial</a>
@@ -235,7 +237,7 @@
             <a href="tron.html" target="_blank"> TRON game</a>
             <a href="2p2e4.htm" target="_blank"> TWO + TWO = FOUR</a>
             <a href="js.js" target="_blank">js methods</a>
-            <a href="string.htm" target="_blank"> strings &amp; arrays</a>
+            <a href="string.htm" target="_blank"> strings &amp; arrays</a>-->
     </form>
     <script type="text/javascript">  var $_jsver = 1.0;</script>
     <script language="Javascript1.1">  $_jsver = 1.1;</script>
@@ -307,5 +309,6 @@ if (ls.search(/\?/)==0) {
 } else print('>>>')
 show()
 </script>
+        </div>
     </body>
 </html>

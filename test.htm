@@ -80,29 +80,28 @@ function calc1 () { with(Math) {
  document.theForm.input.focus();
 } };
 </script>
+<link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+<link rel="stylesheet" href="assets/articlestyles.css">
 </head><link REL="SHORTCUT ICON" HREF="favicon.ico">
-<body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 800, 800 );"
-style="font-family:sans-serif; ">
+<body onLoad="self.focus();document.theForm.input.focus();">
+    <div class="calcmenu">
 <form name="theForm">
-<table  border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
-<tr><td>
- Input:
+    <h2>Input</h2>
 <br>
-<textarea name = "input" rows = 2 cols = 80 tabindex="1" onKeyDown="enter(event)">1,2,3,4,5
+<textarea name = "input" rows = 2 cols = 68 tabindex="1" onKeyDown="enter(event)">1,2,3,4,5
 </textarea>
-</td></tr>
-<tr><td>
- nPr<INPUT TYPE="radio" name="rad1" onClick="option='1'" VALUE="nPr"/> 
- &nbsp; nCr<INPUT TYPE="radio" name="rad1" onClick="option='2'" VALUE="nCr"/> 
- &nbsp; All<INPUT TYPE="radio" name="rad1" onClick="option='3'" checked VALUE="All"/> 
- &nbsp; output with commas:<input name="commas" type="checkbox"/> &nbsp; 
- &nbsp; r<input type="text" name="Rval" size=2 value="4"/>
- &nbsp; extra<input type="text" name="extra" size=2 value="2"/>
+
+ <input type="radio" name="rad1" onClick="option='1'" value="nPr"/>nPr
+ <input type="radio" name="rad1" onClick="option='2'" value="nCr"/>nCr
+ <input type="radio" name="rad1" onClick="option='3'" checked value="All"/>All<br>
+
+<label>r</label><input type="text" name="Rval" size=2 value="4"/><br>
+<label>Extra</label><input type="text" name="extra" size=2 value="2"/><br>
 <input name="calc" type="button" value = "Calc" onClick="calc1()" tabindex="3"/>
-<input name="clear" type="button" value = "Clear Input" onClick="cla()" tabindex="2"/> &nbsp; 
-</td></tr>
-<tr><td>Output:<br>
-<textarea name = "output" rows = 25 cols = 80 tabindex=0></textarea>
-</td></tr></table>
-</form></body></html>
+<input name="clear" type="button" value = "Clear Input" onClick="cla()" tabindex="2"/> <br>
+<br>
+    <h2>Output</h2>
+    <input name="commas" type="checkbox"/>Output with commas<br> 
+<textarea name = "output" rows = 25 cols = 68 tabindex=0></textarea>
+
+    </form></div></body></html>

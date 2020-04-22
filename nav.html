@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="navstyles.css">
+<script src="https://kit.fontawesome.com/618d53ce21.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<h2 class="navigation"><i class="fas fa-bars"></i></h2>
+<div class="navigationexpand">
+<div class="navaccordion">Math 118 - Gen Ed Math</div>
+<ul class="navpanel">
+                            <a href="bayes.in.htm" title="bayes.in.htm" class="nohov menu"><li>Bayes Theorem</li></a>
+                            <a href="continuous.htm" title="continuous.htm" class="nohov menu"><li>Continuous Probabilty</li></a>
+                            <a href="discrete.htm" title="discrete.htm" class="nohov menu"><li>Discrete Probabilty</li></a>
+                            <a href="truth.htm" title="truth" class="nohov menu"><li>Logic</li></a>
+                            <a href="calc.htm" title="calc.htm" class="nohov menu"><li>Scientific Calculator</li></a>
+                            
+                            <a href="stats.htm" title="stats.htm" class="nohov menu"><li>1-var Statistics</li></a>
+                            <a href="regress.htm" title="regress.htm" class="nohov menu"><li>2-var Regression</li></a>
+                            <a href="venn.in.htm" title="venn.in.htm" class="nohov menu"><li>Venn Diagram</li></a>
+</ul>
+    
+
+<div class="navaccordion">Algebra - Calculus</div>
+<ul class="navpanel">
+                        <a href="simplify.htm" title="simplify.htm" class="nohov menu"><li>Algebra</li></a>
+                        <a href="integral.htm" title="integral.htm" class="nohov menu"><li>Definite Integrals</li></a>
+                        <a href="graphs.htm?&amp;" title="graphs" class="nohov menu"><li>Function Graphs</li></a>
+                        <a href="matrix.htm" title="matrix.htm" class="nohov menu"><li>Matrix Math </li></a>
+                        <a href="newton.htm" title="newton.htm" class="nohov menu"><li>Newton Raphson Solver</li></a>
+                        <a href="parabola.htm" title="parabola.htm" class="nohov menu"><li>Quadratics / Parabolas</li></a>
+                        <a href="linear.htm" title="linear.htm" class="nohov menu"><li>Systems of Linear Equations</li></a>
+                        <a href="triangle.htm" title="triangle.htm" class="nohov menu"><li>Triangles </li></a>
+                        
+                        
+</ul>
+
+<div class="navaccordion">Programming</div>
+<ul class="navpanel">
+                        <a href="edit.htm" title="editor" class="nohov menu"><li>Reader / Editor</li></a>
+                        <a href="ijs.htm" title="JS console" class="nohov menu"><li>J/S console</li></a>
+                        <a href="codes.htm" class="nohov menu"><li>HTML codes</li></a>
+                        <a href="minimal.js.html" class="nohov menu"><li>Writing a JS program</li></a>
+                        <a href="mathcodes.htm" class="nohov menu"><li>HTML Math codes</li></a>
+                        <a href="math.htm" class="nohov menu"><li>JS Math Functions</li></a>
+                        <a href="string.htm" class="nohov menu"><li>String &amp; Array Functions</li></a>
+</ul>
+
+<div class="navaccordion">Games &amp; Puzzles</div>
+<ul class="navpanel">
+                        <a href="chess.htm" class="nohov menu"><li>Chess game</li></a>
+                        <a href="chomp.htm" class="nohov menu"><li>CHOMP game</li></a>
+                        <a href="faraok.htm" class="nohov menu"><li>F&aacute;ra&oacute;k Kincse</li></a>
+                        <a href="logic.htm" class="nohov menu"><li>Logic Puzzle</li></a>
+                        <a href="sudoku.htm" class="nohov menu"><li>Sudoku</li></a>
+                        <a href="tron.html" class="nohov menu"><li>TRON Game</li></a>
+</ul>
+
+<div class="navaccordion">Miscellaneous</div>
+<ul class="navpanel">
+                        <a href="faq.ag.formdivas.html" class="nohov menu"><li>Analytical Geometry</li></a>
+                        <a href="arearect.htm" class="nohov menu"><li>Area of Rectangle</li></a>
+                        <a href="calcGPA.htm" class="nohov menu"><li>Calculate Projected GPA</li></a>
+                        <a href="CRAMER.PARABOLA.html" class="nohov menu"><li>Cramer's rdive for quadratic spline</li></a>
+                        <a href="saveloan.htm" title="saveloan.htm" class="nohov menu"><li>Financial Calculator</li></a>
+                        <a href="sched.htm" class="nohov menu"><li>Group Schedule Builder</li></a>
+                        <a href="generate.htm" title="generate.htm" class="nohov menu"><li>nPr, nCr, n^r</li></a>
+                        <a href="ode.htm" class="nohov menu"><li>ODE</li></a>
+                        <a href="../Office%20hour%20calc.htm" class="nohov menu"><li>Office Hour Calculator</li></a>
+                        <a href="q.spline.htm" class="nohov menu"><li>Quadratic Spline Fit</li></a>
+                        <a href="SumsofDigits.htm" title="sums" class="nohov menu"><li>Sums of digits of numbers</li></a>
+                        <a href="plot.htm" title="Values" class="nohov menu"><li>Table of Values</li></a>
+                        <a href="http://zweigmedia.com/RealWorld/simplex.html"  title="simplex.htm" class="nohov menu"><li>Simplex method </li></a>
+                        <a href="squareroot.htm" class="nohov menu"><li>Square Root By Hand</li></a>
+                        <a href="saba.html" class="nohov menu"><li>Two Points</li></a>
+                        <a href="2p2e4.htm" class="nohov menu"><li>Two + Two = Four</li></a>
+                        <a href="vedicmdivt.htm" class="nohov menu"><li>Vedic Multiplication</li></a>
+</ul>
+</div>
+<script>
+//nav sidebar items
+var accord = document.getElementsByClassName("navaccordion");
+var i;
+
+for (i = 0; i < accord.length; i++) {
+  accord[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var navpanel = this.nextElementSibling;
+    if (navpanel.style.display === "block") {
+      navpanel.style.display = "none";
+    } else {
+      navpanel.style.display = "block";
+    }
+  });
+}
+    
+    
+//nav sidebar   
+var accord1 = document.getElementsByClassName("navigation");
+var i;
+
+for (i = 0; i < accord1.length; i++) {
+  accord1[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var navigationexpand = this.nextElementSibling;
+    if (navigationexpand.style.display === "block") {
+      navigationexpand.style.display = "none";
+    } else {
+      navigationexpand.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+
+
+    </html>

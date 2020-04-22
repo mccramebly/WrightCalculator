@@ -11,6 +11,8 @@
 <body id="vedicmult" onLoad="self.focus();document.theForm.a.focus()">
 <script type="text/javascript" src="myfunctions.js"></script>
 <script type="text/javascript" src="matrix.js"></script>
+<link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+<link rel="stylesheet" href="assets/articlestyles.css">
 <script>
 var x,y,z,c1,c2, a=''
 fillerchar=String.fromCharCode(183)
@@ -85,6 +87,21 @@ for (x=2*L-2;x>=0; x--)
 while (ccc.length<25) ccc="."+ccc; document.theForm.output.value +="\n  A."+ccc
 }
 </script>
+
+    <div class="calcmenu">
+        <h2>Vedic Multiply</h2>
+<form name="theForm">
+<br>
+<label>Multiply</label><input type="text" name="a" size=30 rows=1 tabindex=1 value=""/> <br>
+<label>by</label><input type="text" name="b" size=30 rows=1 tabindex=2 value=""/><br>
+<input name="resbut" tabindex=3 Value="Result" type="button" onClick="calc()" onKeyUp="enter(event)"/>
+<input name="clrbut" tabindex=4 Value="Clear" type="button" onClick="clere()"/>
+
+<textarea name = "output" rows=30 cols=68 tabindex=""></textarea>
+</form>
+<script>calc()</script>
+    </div>
+
     <div id="calctainer">
         <h1>Vedic Multiplication</h1>
 <form name="theForm">
@@ -104,4 +121,5 @@ while (ccc.length<25) ccc="."+ccc; document.theForm.output.value +="\n  A."+ccc
         </form>
 <script>calc()</script>
 </div>
+
 </body></html>
