@@ -4,31 +4,36 @@
     <title>Bayes Theorem</title>
     <meta charset="utf-8">
     <link REL="SHORTCUT ICON" HREF="favicon.ico">
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/articlestyles.css">
     <script src="myfunctions.js"></script>
 </head>
 <body onLoad="self.focus();document.ss.venn2.focus();" >
+    <div class="calcmenu">
+
     <form name='ss'>
         <h1>Bayes Theorem</h1>
+            <input id='clearallid' name="clear" type="button" value = "Clear ALL" onClick="window.open('bayes.in.htm','_self')" tabindex="9">
+            <input name="demobut" type="button" value = "DEMO" onClick="demo()" tabindex="10">
+        <br>
+        <br>
+        <label>Event A:</label><input type='text' name='venn2' size=12 tabindex="1" value="A" />
+    <label>Event B:</label><input type='text' name='venn1' size=12 tabindex="2" value="B" />
+<label>P(B):</label>   <input type='text' name='cell' size=5 value=" " tabindex="3">
+<label>P(A|B):</label> <input type='text' name='cell' size=5 value=" " tabindex="4">
+<label>P(A|~B):</label><input type='text' name='cell' size=5 value=" " tabindex="5">
+        <h2></h2>
 
-        <p>Event A:<input type='text' name='venn2' size=12 tabindex="1" value="A" /></p>
-        <p>Event B:<input type='text' name='venn1' size=12 tabindex="2" value="B" /></p>
-        <p>P(B):   <input type='text' name='cell' size=5 value=" " tabindex="3"></p>
-        <p>P(A|B): <input type='text' name='cell' size=5 value=" " tabindex="4"></p>
-        <p>P(A|~B):<input type='text' name='cell' size=5 value=" " tabindex="5"></p>
-        <center>
-        <p>P(B)*P(A|B)</p>
-        <p>P(B|A) =  -----------------------------</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;P(B)*P(A|B) + P(~B)*P(A|~B)</p>
-            </center>
-        <p>P(B|A) =<input type='text' name='answer' size=15 value=" " onfocus='calc()' tabindex="-1"></p>
-        <p>
+<img src="assets/bayes.png">
+
+<br><br>
+        <label>P(B|A) =</label><input type='text' name='answer' size=15 value=" " onfocus='calc()' tabindex="-1"><br>
+        <h2></h2>
             <input name="calcbut" type="button" value = "Calculate" onClick="calc()" tabindex="6">
             <input type="button" value="a/b" id="frac" onClick="swfrac(true)" title="output format" tabindex="7">
             <input name="showbut" type="button" value = "Show Venn" onClick="show()" tabindex="8">
-            <input id='clearallid' name="clear" type="button" value = "Clear ALL" onClick="window.open('bayes.in.htm','_self')" tabindex="9">
-            <input name="demobut" type="button" value = "DEMO" onClick="demo()" tabindex="10">
-        </p>
+
+        <br>
+        
 </form>
 <script>
 frac=3; clearcount=0
@@ -76,5 +81,5 @@ window.open(callthis)
 }}
 // --------------------------
 </script>
-</body>
+</div></body>
 </html>

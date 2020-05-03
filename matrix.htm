@@ -1,5 +1,6 @@
 <html><head>
 <meta http-equiv="content-type" content="text/html" charset="UTF-8"><title>Matrix operations</title>
+    <link rel="stylesheet" href="assets/articlestyles.css">
 <script type="text/javascript" src="myfunctions.js"></script>
 <script type="text/javascript" src="matrix.js"></script>
 <script type="text/javascript">
@@ -276,22 +277,21 @@ document.theForm.inputline.focus()
 </script>
 <link rel="SHORTCUT ICON" href="favicon.ico"></head>
 <body onload="self.focus();window.resizeTo( 800, 800 );">
+    <div class="widecalcmenu">
 <p>
 </p><form name="theForm">
-<table><tbody>
-<tr><td onClick="window.open('index.htm')">Matrix Math
-</td><td>
+        <h1>Matrix Math</h1>
+
 <input name="clearbutt" value="Clear All" onclick="clere()" type="button" title="Clear">
 <input name="cleapbutt" value="Clear Prog" onclick="clerp()" type="button" title="Clear Program">
 <input name="cleadbutt" value="Clear Data" onclick="clerd()" type="button" title="Clear Data">
 <input name="calcbutt" value="Calc" onclick="dosam=false; calc()" type="button" title="Perform commands">
 <input name="mpopbutt" value="undo" onclick="mrestore()" type="button" title="restore prior data">
 <input type="button" value="8 place" id="frac" onClick="swfrac('',4)" title="output format"/>
-</td><td>Sample routines:  <input name="sampbutt" value="Run Next" onclick="dosam=true; samp()" type="button" title="Sample commands">
-</td></tr>
-<tr><td colspan=3><textarea name="inputline" rows="5" cols="102" onkeyup="enter(event)"></textarea>
-</td></tr><tr><td valign="top" colspan=3>
-Functions: <input name="Maddbutt" value="Madd" onclick="putx('Madd(')" type="button" title="Matrix add">
+        <br><br><br><h2>Sample routines:</h2>  <input name="sampbutt" value="Run Next" onclick="dosam=true; samp()" type="button" title="Sample commands">
+<input type="text" name="inputline" rows="5" cols="50" onkeyup="enter(event)">
+
+        <h2>Functions:</h2> <input name="Maddbutt" value="Madd" onclick="putx('Madd(')" type="button" title="Matrix add">
 <input name="Msubbutt" value="Msub" onclick="putx('Msub(')" type="button" title="Matrix subtract">
 <input name="Mmulbutt" value="Mmul" onclick="putx('Mmul(')" type="button" title="Matrix multiply">
 <input name="Minvbutt" value="Minv" onclick="putx('Minv(')" type="button" title="Matrix invert">
@@ -303,27 +303,45 @@ Functions: <input name="Maddbutt" value="Madd" onclick="putx('Madd(')" type="but
 <input name="Mrrefbutt" value="Mrref" onclick="putx('Mrref(')" type="button" title="reduced row-echelon form">
 <!-- <input name="Mcramerbutt" value="cramer" onclick="putx('Mcramer(')" type="button" title="build cramer matrix">
 <input name="mpowerbutt" value="mpow" onclick="putx('mpow(')" type="button" title="build matrix for least squares polynomial calc"> -->
-<br>
-<input name="MAbutt" value="A" onclick="putx('A')" type="button" title="A" >
-<textarea name="inputA" id="inputA" rows="6" cols="22"></textarea>
-<input name="MBbutt" value="B" onclick="putx('B')" type="button" title="B" >
-<textarea name="inputB" id="inputB" rows="6" cols="22"></textarea>
-<input name="MCbutt" value="C" onclick="putx('C')" type="button" title="C" >
-<textarea name="inputC" id="inputC" rows="6" cols="22"></textarea>
-<input name="MDbutt" value="D" onclick="putx('D')" type="button" title="D" >
-<textarea name="inputD" id="inputD" rows="6" cols="22"></textarea><br>
-<input name="MEbutt" value="E" onclick="putx('E')" type="button" title="E" >
-<textarea name="inputE" id="inputE" rows="6" cols="22"></textarea>
-<input name="MFbutt" value="F" onclick="putx('F')" type="button" title="F" >
-<textarea name="inputF" id="inputF" rows="6" cols="22"></textarea>
-<input name="MGbutt" value="G" onclick="putx('G')" type="button" title="G" >
-<textarea name="inputG" id="inputG" rows="6" cols="22"></textarea>
-<input name="MHbutt" value="H" onclick="putx('H')" type="button" title="H" >
-<textarea name="inputH" id="inputH" rows="6" cols="22"></textarea><br>
-<input name="MIbutt" value=" I " onclick="putx('I')" type="button" title="I" >
-<textarea name="inputI" id="inputI" rows="2" cols="100"></textarea>
-</td></tr></tbody></table>
+<br><br><br><br><br><br><br><br>
+    <div class="button2row">
+        <div class="button1">
+            <label><input name="MAbutt" value="A" onclick="putx('A')" type="button" title="A" ></label></div>
+       <div class="button2"> <input type="text" name="inputA" id="inputA" rows="6" cols="22"><br></div></div>
+        
+       <div class="button2row">
+        <div class="button1"> <label><input name="MBbutt" value="B" onclick="putx('B')" type="button" title="B" ></label></div>
+<div class="button2"><input type="text" name="inputB" id="inputB" rows="6" cols="22"><br></div></div>
+        
+        <div class="button2row">
+        <div class="button1"><label><input name="MCbutt" value="C" onclick="putx('C')" type="button" title="C" ></label></div>
+<div class="button2"><input type="text" name="inputC" id="inputC" rows="6" cols="22"><br></div></div>
+        
+        <div class="button2row">
+        <div class="button1"><label><input name="MDbutt" value="D" onclick="putx('D')" type="button" title="D" ></label></div>
+<div class="button2"><input type="text" name="inputD" id="inputD" rows="6" cols="22"><br></div></div>
+        
+        <div class="button2row">
+        <div class="button1"><label><input name="MEbutt" value="E" onclick="putx('E')" type="button" title="E" ></label></div>
+<div class="button2"><input type="text" name="inputE" id="inputE" rows="6" cols="22"><br></div></div>
+        
+        <div class="button2row">
+        <div class="button1"><label><input name="MFbutt" value="F" onclick="putx('F')" type="button" title="F" ></label></div>
+<div class="button2"><input type="text" name="inputF" id="inputF" rows="6" cols="22"><br></div></div>
+        
+        <div class="button2row">
+        <div class="button1"><label><input name="MGbutt" value="G" onclick="putx('G')" type="button" title="G" ></label></div>
+<div class="button2"><input type="text" name="inputG" id="inputG" rows="6" cols="22"><br></div></div>
+        
+        <div class="button2row">
+        <div class="button1"><label><input name="MHbutt" value="H" onclick="putx('H')" type="button" title="H" ></label></div>
+<div class="button2"><input type="text" name="inputH" id="inputH" rows="6" cols="22"><br></div></div>
+        
+        <div class="button2row">
+        <div class="button1"><label><input name="MIbutt" value=" I " onclick="putx('I')" type="button" title="I" ></label></div>
+<div class="button2"><input type="text" name="inputI" id="inputI" rows="2" cols="100"></div></div>
+
 </form>
 
-
+</div>
 </body></html>

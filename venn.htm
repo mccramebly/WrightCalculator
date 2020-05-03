@@ -1,31 +1,36 @@
 <html lang="en"><head><!DOCTYPE HTML>
 <title>Venn Diagram</title>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+    <link rel="stylesheet" href="assets/articlestyles.css">
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
 <body onLoad="self.focus()" >
+    <div class="widecalcmenu">
 <script type="text/javascript" src="myfunctions.js"></script>
 <form name='ss'>
-<table border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')">Venn Diagram</td></tr>
-<tr><td align=center><input name="clear" type="button" value = "Clear ALL" onClick="window.open('venn.htm','_self')"/></td><td align=center><input name="demobut" type="button" value = "DEMO" onClick="demo()"/> &nbsp; </td>
-<td align=center><input name="pcntbut" type="button" value = "PCNT" onClick="pcnt()"/> &nbsp; </td></tr>
-<tr><td align=center>
-A:<input type='text' name='nA' size=15 tabindex="1" value="A" onblur='legend()'></td><td align=center>
-B:<input type='text' name='nB' size=15 tabindex="2" value="B" onblur='legend()'></td><td align=center>
-C:<input type='text' name='nC' size=15 tabindex="3" value="C" onblur='legend()'></td></tr><tr>
-<td valign=top align=right>
-Only A:<input type='text' name='a' size=5 tabindex="4" value="" onblur='legend()'><br>
-Only A & C: <input type='text' name='ac' size=5 tabindex="7" value="" onblur='legend()'>&nbsp;</td>
-<td valign=top align=right>
-Only A & B: <input type='text' name='ab' size=5 tabindex="5" value="" onblur='legend()'><br>
-All three: <input type='text' name='abc' size=5 tabindex="8" value="" onblur='legend()'><br>
-Only C:<input type='text' name='c' size=5 tabindex="10" value="" onblur='legend()'>&nbsp;</td>
-<td valign=top align=right>
-Only B:<input type='text' name='b' size=5 tabindex="6" value="" onblur='legend()'><br>
-Only B & C: <input type='text' name='bc' size=5 tabindex="9" value="" onblur='legend()'><br>
-None: <input type='text' name='x' size=5 tabindex="11" value="" onblur='legend()'>&nbsp;
-</td></tr><tr><td id='sum1'></td><td id='sum2'></td><td id='sum3'></td></tr><tr>
-<td  colspan=3 align=left><canvas id="theCanvas" width="500" height="400"></canvas></td></tr></table></form>
+    
+
+<h1>Venn Diagram</h1>
+    <input name="clear" type="button" value = "Clear ALL" onClick="window.open('venn.htm','_self')"/><input name="demobut" type="button" value = "DEMO" onClick="demo()"/> &nbsp; <input name="pcntbut" type="button" value = "PCNT" onClick="pcnt()"/> &nbsp; <br><br>
+    
+<h2>A</h2> 
+        <label>A:</label><input type='text' name='nA' size=15 tabindex="1" value="A" onblur='legend()'><br>
+       <label>Only A:</label><input type='text' name='a' size=5 tabindex="4" value="" onblur='legend()'><br>
+    <label>Only A &amp; C: </label><input type='text' name='ac' size=5 tabindex="7" value="" onblur='legend()'><br>
+    <div id='sum1'></div>
+        <h2>B</h2><br>
+       <label> B:</label><input type='text' name='nB' size=15 tabindex="2" value="B" onblur='legend()'><br>
+    <label>Only B:</label><input type='text' name='b' size=5 tabindex="6" value="" onblur='legend()'><br>
+    <label>Only B &amp; C: </label><input type='text' name='bc' size=5 tabindex="9" value="" onblur='legend()'><br>
+    <label>None: </label><input type='text' name='x' size=5 tabindex="11" value="" onblur='legend()'><br>
+    <div id='sum2'></div>
+        <h2>C</h2><br>
+    <label>C:</label><input type='text' name='nC' size=15 tabindex="3" value="C" onblur='legend()'><br>
+        <label>Only A &amp; B: </label><input type='text' name='ab' size=5 tabindex="5" value="" onblur='legend()'><br>
+    <label>All three: </label><input type='text' name='abc' size=5 tabindex="8" value="" onblur='legend()'><br>
+    <label>Only C:</label><input type='text' name='c' size=5 tabindex="10" value="" onblur='legend()'><br>
+    <div id='sum3'></div>
+    
+<canvas id="theCanvas" width="500" height="400"></canvas></form>
 <script>
 
     
@@ -57,31 +62,33 @@ if (ispcnt) U = (x+a+b+c+ab+ac+bc+abc); else U=1
 
 if (ispcnt)Q=4; else Q=0
 document.getElementById("sum1").innerHTML=
-document.ss.nA.value+": "+my((a+ab+ac+abc)/U,Q)+
-"<br>Only "+document.ss.nA.value+": "+my((a)/U,Q)+
-"<br>Only "+document.ss.nA.value+"&cap;"+document.ss.nB.value+": "+my((ab)/U,Q)+
-"<br>"+document.ss.nA.value+"&cap;"+document.ss.nB.value+": "+my((ab+abc)/U,Q)+
-"<br>"+document.ss.nA.value+"&cup;"+document.ss.nB.value+": "+my((a+b+ab+ac+bc+abc)/U,Q)+
-"<br>NONE: "+my((x)/U,Q)+
-"<br>ALL THREE: "+my((abc)/U,Q)
-
-document.getElementById("sum2").innerHTML=""+
-document.ss.nB.value+": "+my((b+ab+bc+abc)/U,Q)+
-"<br>Only "+document.ss.nB.value+": "+my((b)/U,Q)+
-"<br>Only "+document.ss.nB.value+"&cap;"+document.ss.nC.value+": "+my((bc)/U,Q)+
-"<br>"+document.ss.nB.value+"&cap;"+document.ss.nC.value+": "+my((bc+abc)/U,Q)+
-"<br>"+document.ss.nB.value+"&cup;"+document.ss.nC.value+": "+my((b+c+ab+ac+bc+abc)/U,Q)+
-"<br>ONLY ONE: "+my((a+b+c)/U,Q)+
-"<br>AT LEAST TWO: "+my((ab+ac+bc+abc)/U,Q)
+"<label>"+document.ss.nA.value+": </label><input type='text' value='"+my((a+ab+ac+abc)/U,Q)+
+"' disabled><br><label>Only "+document.ss.nA.value+": </label><input type='text' value='"+my((a)/U,Q)+
+"' disabled><br><label>Only "+document.ss.nA.value+"&cap;"+document.ss.nB.value+": </label><input type='text' value='"+my((ab)/U,Q)+
+"' disabled><br><label>"+document.ss.nA.value+"&cap;"+document.ss.nB.value+": </label><input type='text' value='"+my((ab+abc)/U,Q)+
+"' disabled><br><label>"+document.ss.nA.value+"&cup;"+document.ss.nB.value+": </label><input type='text' value='"+my((a+b+ab+ac+bc+abc)/U,Q)+
+"' disabled><br><label>NONE: </label><input type='text' value='"+my((x)/U,Q)+
+"' disabled><br><label>ALL THREE: </label><input type='text' value='"+my((abc)/U,Q)+
+"' disabled>"
+document.getElementById("sum2").innerHTML=
+"<label>"+document.ss.nB.value+": </label><input type='text' value='"+my((b+ab+bc+abc)/U,Q)+
+"' disabled><br><label>Only "+document.ss.nB.value+": </label><input type='text' value='"+my((b)/U,Q)+
+"' disabled><br><label>Only "+document.ss.nB.value+"&cap;"+document.ss.nC.value+": </label><input type='text' value='"+my((bc)/U,Q)+
+"' disabled><br><label>"+document.ss.nB.value+"&cap;"+document.ss.nC.value+": </label><input type='text' value='"+my((bc+abc)/U,Q)+
+"' disabled><br><label>"+document.ss.nB.value+"&cup;"+document.ss.nC.value+": </label><input type='text' value='"+my((b+c+ab+ac+bc+abc)/U,Q)+
+"' disabled><br><label>ONLY ONE: </label><input type='text' value='"+my((a+b+c)/U,Q)+
+"' disabled><br><label>AT LEAST TWO: </label><input type='text' value='"+my((ab+ac+bc+abc)/U,Q)+
+"' disabled>"
 
 document.getElementById("sum3").innerHTML=
-document.ss.nC.value+": "+my((c+ac+bc+abc)/U,Q)+
-"<br>Only "+document.ss.nC.value+": "+my((c)/U,Q)+
-"<br>Only "+document.ss.nA.value+"&cap;"+document.ss.nC.value+": "+my((ac)/U,Q)+
-"<br>"+document.ss.nA.value+"&cap;"+document.ss.nC.value+": "+my((ac+abc)/U,Q)+
-"<br>"+document.ss.nA.value+"&cup;"+document.ss.nC.value+": "+my((a+c+ab+ac+bc+abc)/U,Q)+
-"<br>ONLY TWO: "+my((ab+ac+bc)/U,Q)+
-"<br>EVERYONE: "+my((x+a+b+c+ab+ac+bc+abc)/U,Q)
+"<label>"+document.ss.nC.value+": </label><input type='text' value='"+my((c+ac+bc+abc)/U,Q)+
+"' disabled><br><label>Only "+document.ss.nC.value+": </label><input type='text' value='"+my((c)/U,Q)+
+"' disabled><br><label>Only "+document.ss.nA.value+"&cap;"+document.ss.nC.value+": </label><input type='text' value='"+my((ac)/U,Q)+
+"' disabled><br><label>"+document.ss.nA.value+"&cap;"+document.ss.nC.value+": </label><input type='text' value='"+my((ac+abc)/U,Q)+
+"' disabled><br><label>"+document.ss.nA.value+"&cup;"+document.ss.nC.value+": </label><input type='text' value='"+my((a+c+ab+ac+bc+abc)/U,Q)+
+"' disabled><br><label>ONLY TWO: </label><input type='text' value='"+my((ab+ac+bc)/U,Q)+
+"' disabled><br><label>EVERYONE: </label><input type='text' value='"+my((x+a+b+c+ab+ac+bc+abc)/U,Q)+
+"' disabled>"
 
 ctx.fillStyle="#FFFFFF";ctx.fillRect(0,0,CXW,CYW)
 ctx.strokeStyle = 'red'
@@ -148,4 +155,5 @@ document.ss.x.value = ls[10]
 legend()
 }
 </script>
+  </div>  
 </body></html>

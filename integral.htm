@@ -4,7 +4,7 @@
     <title>Definite Integral</title>
     <meta charset="utf-8">
     <link REL="SHORTCUT ICON" HREF="favicon.ico">
-    <link rel="stylesheet" href="assets/styles.css">
+   <link rel="stylesheet" href="assets/articlestyles.css">
     <script src="myfunctions.js"></script>
 </head>
 <body onLoad="self.focus(); document.theForm.input.focus(); window.resizeTo( 750, 450 );">
@@ -165,36 +165,37 @@ if (document.theForm.graph.checked)
 document.theForm.input.focus();
 } };
 </script>
+    <div class="calcmenu">
     <h1>Define Integral</h1>
     <form name="theForm">
-        <p>integrals: arclength: sqrt(1 + (f'(x)^2)) where y = f(x) or sqrt(h'(t)^2 + g'(t)^2) where x=h(t) and y=g(t)</p>
-        <p>f(x) = <textarea name = "input" rows = 2 cols = 72 tabindex="1" onKeyUp="enter(event)"></textarea></p>
-        <p>Left = <input type="text"  name = "x1" size = 10 value="" tabindex="3">
-            Right = <input type="text"  name = "x2" size = 10 value="" tabindex="4">
-            n = <input type="text"  name = "xn" size = 4 value="" tabindex="5"></p>
-            <p>
+        integrals: arclength: sqrt(1 + (f'(x)^2)) where y = f(x) or sqrt(h'(t)^2 + g'(t)^2) where x=h(t) and y=g(t)
+        <label>f(x)</label><textarea name = "input" rows = 2 cols = 72 tabindex="1" onKeyUp="enter(event)"></textarea>
+        <label>Left</label><input type="text"  name = "x1" size = 10 value="" tabindex="3">
+            <label>Right</label><input type="text"  name = "x2" size = 10 value="" tabindex="4">
+            <label>n</label><input type="text"  name = "xn" size = 4 value="" tabindex="5">
                 <input name="clear" type="button" value = "Clear Output" onClick="cla();calc1()" tabindex="0">
                 <input name="calc" type="button" value = "Calc" onClick="calc1()" tabindex="6">
-                <input type="checkbox" name="debug"> Steps
-                <input type="checkbox" name="graph"> Graph values
+                <input type="checkbox" name="debug"> <label>Steps</label>
+                <input type="checkbox" name="graph"> <label>Graph values</label>
                 <input name="savebut" value="Save" type="button" onClick="savestuff();document.theForm.input.focus()">
                 <input name="loadbut" value="Load" type="button" onClick="loadstuff();calc1();document.theForm.input.focus()"/>
-                <input type="checkbox" name="Simp3" value="Simpson3" checked> Simpson 3/8
-        </p>
-        <p>
-            Riemann:
-            <input type="checkbox" name="LRiem" value="LRiemann"> Left
-            <input type="checkbox" name="MRiem" value="MRiemann"> Mid
-            <input type="checkbox" name="RRiem" value="RRiemann"> Right
-            <input type="checkbox" name="NRiem" value="NRiemann"> Min
-            <input type="checkbox" name="XRiem" value="XRiemann"> Max
-            <input type="checkbox" name="Trape" value="Trapezoid"> Trapezoid
-            <input type="checkbox" name="Simp1" value="Simpson1"> Simpson 1/3
-        </p>
+                <input type="checkbox" name="Simp3" value="Simpson3" checked> <label>Simpson 3/8</label>
+
+
+        <h2>Riemann:</h2>
+            <input type="checkbox" name="LRiem" value="LRiemann"> <label>Left</label>
+            <input type="checkbox" name="MRiem" value="MRiemann"> <label>Mid</label>
+            <input type="checkbox" name="RRiem" value="RRiemann"> <label>Right</label>
+            <input type="checkbox" name="NRiem" value="NRiemann"> <label>Min</label>
+            <input type="checkbox" name="XRiem" value="XRiemann"> <label>Max</label>
+            <input type="checkbox" name="Trape" value="Trapezoid"> <label>Trapezoid</label>
+            <input type="checkbox" name="Simp1" value="Simpson1"> <label>Simpson 1/3</label>
+
         <p>
             Output:<br>
             <textarea name = "output" rows = 25 cols = 80 tabindex=0></textarea>
         </p>
     </form>
+        </div>
 </body>
 </html>

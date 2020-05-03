@@ -89,6 +89,29 @@ th{
     text-align: center;
 }
 
+.widecalcmenu {
+    background:#f1f1f1;
+    font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    border-radius:15px;
+    margin:5px auto;
+    vertical-align: top;
+    width:590px;
+    padding: 10px 30px;
+    height: 1fr;
+    
+}
+
+.widecalcmenu h1 {
+    text-align: center;
+}
+
+.widecalmenu table{
+    border: none;
+}
+
+.widecalmenu td{
+    border: none;
+}
 /*.calcmenu main {
     display:grid;
     grid-template-columns: repeat(1fr, 1fr);
@@ -160,11 +183,21 @@ label
     width: 10em;
     text-align: right;
 }
+
 input
 {
     margin-left: 1em;
     margin-bottom: .5em;
     width: 20em;
+    border-radius: 5px;
+    
+}
+
+.shortinput
+{
+    margin-left: 1em;
+    margin-bottom: .5em;
+    width: 5em;
     border-radius: 5px;
     
 }
@@ -200,6 +233,14 @@ textarea{
     grid-template-rows: auto;
 }
 
+.button2row{
+    display: grid;
+    grid-template-columns: repeat(1fr, 1fr);
+    grid-template-rows: auto;
+}
+
+
+
 .button1{
     display: grid; 
     grid-column: 1;
@@ -220,3 +261,32 @@ textarea{
     display: grid;
     grid-column: 3;
 }
+
+.columntemplate{
+    display: grid;
+    grid-template-columns: repeat(1fr, 1fr, 1fr);
+    grid-template-rows: auto;
+}
+
+.column1{
+       display: grid; 
+    grid-column: 1; 
+
+}
+
+.column2{
+        display: grid; 
+    display: inline;
+    grid-column: 2;
+}
+.column3{
+        display: grid; 
+    grid-column: 3;
+}
+
+/*label
+{
+    float: left;
+    width: 5em;
+    text-align: right;
+}*/

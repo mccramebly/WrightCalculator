@@ -1,53 +1,55 @@
 <html lang="en"><head><!DOCTYPE HTML>
 <title>Venn Diagram Input</title>
+        <link rel="stylesheet" href="assets/articlestyles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
 <body onget="self.focus()" >
+    <div class="calcmenu">
 <script type="text/javascript" src="myfunctions.js"></script>
 <form name='theForm'>
-<table>
-<tr><td colspan=99 onClick="window.open('index.htm')">Input data for Venn Diagram</td></tr>
-<tr><td align='center'>
-<input name="clearbut" type="button" value = "Clear ALL" onClick="clearall(); get()"/> . . <input name="clear" type="button" value = "only A,B no C" onClick="onlyabnotc()"/></td><td align='center'>
+
+    <h1>Input data for Venn Diagram</h1>
+    
+    <h2>Three sets:</h2>
+    <label>A:</label><input type='text' name='nA' size=15 tabindex="1" value="A" onblur='get()'> &nbsp;
+    <label>B:</label><input type='text' name='nB' size=15 tabindex="2" value="B" onblur='get()'> &nbsp;
+    <label>C:</label><input type='text' name='nC' size=15 tabindex="3" value="C" onblur='get()'><br>
+
+    <h2>A</h2>
+    <label>A:</label><input type='text' name='va_' size=5 value="" onblur='get()' tabindex='4'><br>
+    <label>Only A:</label><input type='text' name='va' size=5 value="" onblur='get()' tabindex='7'><br>
+        <label>Only B and C:</label><input type='text' name='vbc' size=5 value="" onblur='get()' tabindex="10"><br>
+    <label>Both B and C == B&cap;C:</label><input type='text' name='vbc_' size=5 value="" onblur='get()' tabindex="13"><br>
+    <label>Either B&cup;C:</label><input type='text' name='vb_c' size=5 value="" onblur='get()' tabindex="16"><br>
+<label>NONE:</label><input type='text' name='vx' size=5 value="" onblur='get()' tabindex="19"><br>
+<label>ALL THREE:</label><input type='text' name='vabc' size=5 value="" onblur='get()' tabindex="22">
+<h2>B</h2>
+   <label> B:</label><input type='text' name='vb_' size=5 value="" onblur='get()' tabindex="5"><br>
+        <label>Only B:</label><input type='text' name='vb' size=5 value="" onblur='get()' tabindex="8"><br>
+    <label>Only A and C:</label><input type='text' name='vac' size=5 value="" onblur='get()' tabindex="11"><br>
+    <label>Both A and C == A&cap;C:</label><input type='text' name='vac_' size=5 value="" onblur='get()' tabindex="14"><br>
+<label>Either A&cup;C:</label><input type='text' name='va_c' size=5 value="" onblur='get()' tabindex="17"><br>
+<label>ONLY ONE:</label><input type='text' name='v1' size=5 value="" onblur='get()' tabindex="20"><br>
+<label>AT LEAST TWO:</label><input type='text' name='v23' size=5 value="" onblur='get()' tabindex="23">
+<h2>C</h2>
+    <label>C:</label><input type='text' name='vc_' size=5 value="" onblur='get()' tabindex="6"><br>
+        <label>Only C:</label><input type='text' name='vc' size=5 value="" onblur='get()' tabindex="9"><br>
+    <label>Only A and B:</label><input type='text' name='vab' size=5 value="" onblur='get()' tabindex="12"><br>
+    <label>Both A and B == A&cap;B:</label><input type='text' name='vab_' size=5 value="" onblur='get()' tabindex="15"><br>
+<label>Either A&cup;B:</label><input type='text' name='va_b' size=5 value="" onblur='get()' tabindex="18"><br>
+<label>ONLY TWO:</label><input type='text' name='v2' size=5 value="" onblur='get()' tabindex="21"><br>
+<label>EVERYONE:</label><input type='text' name='vabcx' size=5 value="" onblur='get()' tabindex='24'>
+<h2>Output</h2>
+    <input name="clearbut" type="button" value = "Clear ALL" onClick="clearall(); get()"/> <input name="clear" type="button" value = "only A,B no C" onClick="onlyabnotc()"/>
 <input name="demobut" type="button" value = "CALC" onClick="demo()"/>
 <input name="savebut" type="button" value = "SAVE" onClick="save()"/>
 <input name="loadbut" type="button" value = "LOAD" onClick="load()"/>
-</td><td align='center'>
+
 <input name="drawbut" type="button" value = "DRAW" onClick="draw()"/>
 <input name="testbut" type="button" value = "TEST" onClick="test()"/>
-</td></tr><tr><td colspan=3>
-Three sets:<br>&nbsp;
-A:<input type='text' name='nA' size=15 tabindex="1" value="A" onblur='get()'> &nbsp;
-B:<input type='text' name='nB' size=15 tabindex="2" value="B" onblur='get()'> &nbsp;
-C:<input type='text' name='nC' size=15 tabindex="3" value="C" onblur='get()'><br>
-</td></tr><tr><td align='right'>
-A:<input type='text' name='va_' size=5 value="" onblur='get()' tabindex='4'><br>
-Only A:<input type='text' name='va' size=5 value="" onblur='get()' tabindex='7'><br>
-Only B and C:<input type='text' name='vbc' size=5 value="" onblur='get()' tabindex="10"><br>
-Both B and C == B&cap;C:<input type='text' name='vbc_' size=5 value="" onblur='get()' tabindex="13"><br>
-Either B&cup;C:<input type='text' name='vb_c' size=5 value="" onblur='get()' tabindex="16"><br>
-NONE:<input type='text' name='vx' size=5 value="" onblur='get()' tabindex="19"><br>
-ALL THREE:<input type='text' name='vabc' size=5 value="" onblur='get()' tabindex="22">
-</td><td align='right'>
-B:<input type='text' name='vb_' size=5 value="" onblur='get()' tabindex="5"><br>
-Only B:<input type='text' name='vb' size=5 value="" onblur='get()' tabindex="8"><br>
-Only A and C:<input type='text' name='vac' size=5 value="" onblur='get()' tabindex="11"><br>
-Both A and C == A&cap;C:<input type='text' name='vac_' size=5 value="" onblur='get()' tabindex="14"><br>
-Either A&cup;C:<input type='text' name='va_c' size=5 value="" onblur='get()' tabindex="17"><br>
-ONLY ONE:<input type='text' name='v1' size=5 value="" onblur='get()' tabindex="20"><br>
-AT LEAST TWO:<input type='text' name='v23' size=5 value="" onblur='get()' tabindex="23">
-</td><td align='right'>
-C:<input type='text' name='vc_' size=5 value="" onblur='get()' tabindex="6"><br>
-Only C:<input type='text' name='vc' size=5 value="" onblur='get()' tabindex="9"><br>
-Only A and B:<input type='text' name='vab' size=5 value="" onblur='get()' tabindex="12"><br>
-Both A and B == A&cap;B:<input type='text' name='vab_' size=5 value="" onblur='get()' tabindex="15"><br>
-Either A&cup;B:<input type='text' name='va_b' size=5 value="" onblur='get()' tabindex="18"><br>
-ONLY TWO:<input type='text' name='v2' size=5 value="" onblur='get()' tabindex="21"><br>
-EVERYONE:<input type='text' name='vabcx' size=5 value="" onblur='get()' tabindex='24'>
-</td></tr>
-<tr><td  colspan=3><textarea name = "input" rows = 22 cols = 60></textarea></td></tr>
+<textarea name = "input" rows = 22 cols = 60></textarea>
 <!-- <tr><td  colspan=3 align=left><canvas id="theCanvas" width="500" height="400"></canvas></td></tr> -->
-</table></form>
+</form>
 <script type="text/javascript">
 didcalc=false; testi=0; testn=4
 
@@ -359,4 +361,4 @@ legend ()
 return
 } }
 
-</script></body></html>
+</script></div></body></html>

@@ -1,4 +1,5 @@
 <html><head><title>Sudoku</title>
+    <link rel="stylesheet" href="assets/articlestyles.css">
 <script type="text/javascript" src="http://faculty.ccc.edu/jnadas/js/myfunctions.js"></script>
 <script type="text/javascript">
 // - - - - - - - test games
@@ -91,23 +92,23 @@ function putout(msg)
 // ---------------------------------------------------
 function dodebug()
 { if (debug)
-  { debug=false; document.theForm.b8.value="debug is OFF"
+  { debug=false; document.theForm.b8.value="Debug: OFF"
     document.theForm.b8.style.backgroundColor=""}
   else
-  { validate(); debug=true; document.theForm.b8.value="debug is ON"
-    document.theForm.b8.style.backgroundColor="deeppink"}}
+  { validate(); debug=true; document.theForm.b8.value="Debug: ON"
+    }}
 // ---------------------------------------------------
 function doskipeasy()
 { if (skipeasy)
-  { skipeasy=false; document.theForm.b9.value="skip easy is OFF"
-    document.theForm.b9.style.backgroundColor="deeppink"}
+  { skipeasy=false; document.theForm.b9.value="Skip Easy: OFF"
+    }
   else
   { validate(); skipeasy=true; document.theForm.b9.value="skip easy is ON"
     document.theForm.b9.style.backgroundColor=""}}
 // ---------------------------------------------------
 function newwork() // reset all
 { document.theForm.odocount.value=0
-  debug=false; document.theForm.b8.value="debug is OFF"
+  debug=false; document.theForm.b8.value="Debug: OFF"
   document.theForm.b8.style.backgroundColor=""
   document.theForm.output.value=""
   for (i=0;i<81;i++) { document.theForm.squ[i].value = " "; work[i]="123456789"; donesquare[i]=0}
@@ -555,7 +556,7 @@ var watchwindow=window.open('',"watch","width=900,height=340")
   for (var r=0;r<81;r+=9)
   { watchwindow.document.write('<tr>')
     for (var c=0;c<9;c++)
-    { watchwindow.document.write('<td>',work[ssno[r+c]],'</td>'); if(c==2 || c==5) watchwindow.document.write('<td bgcolor=white> </td>')}
+    { watchwindow.document.write('<td style="border:none;">',work[ssno[r+c]],'</td>'); if(c==2 || c==5) watchwindow.document.write('<td bgcolor=white> </td>')}
     watchwindow.document.write('</tr>')
     if(r==18 || r==45) watchwindow.document.write('<tr><td bgcolor=white> </td><td bgcolor=white> </td><td bgcolor=white> </td><td bgcolor=white> </td><td bgcolor=white> </td><td bgcolor=white> </td><td bgcolor=white> </td><td bgcolor=white> </td><td bgcolor=white> </td><td bgcolor=white> </td><td bgcolor=white> </td></tr>')}
   watchwindow.document.write('</body>')
@@ -580,14 +581,30 @@ showwork(true); return}
 input.a {background-color:white; width:25; height:22}
 </style><link REL="SHORTCUT ICON" HREF="favicon.ico">
 </head>
-<body onLoad="self.focus();window.resizeTo( 800, 800 );inputgame();savework();document.theForm.b4.focus()"
-style="font-family:sans-serif; ">
-<p>
+<body onLoad="self.focus();window.resizeTo( 800, 800 );inputgame();savework();document.theForm.b4.focus()">
+<div class="widecalcmenu">
+    <h1>Sudoku</h1>
+    <p>
 <form name="theForm">
-<table><tr><td>
-<table  border = 1 noshade bgcolor = white>
-<tr><td colspan=99 onClick="window.open('index.htm')" onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='99CC66'"></td></tr>
-<tr><td><table border = 0 noshade bgcolor = white><tr><td>
+    <div class="button3row">
+    <div class="button1">
+        <input type="button" name="b4" onClick="newwork()" value="clear"></div>
+    <div class="button2"><input type="button" name="b7" onClick="enterdata()" value="enter"></div>
+        <div class="button3"><input type="button" name="b5" onClick="savework()" value="save">
+    </div>
+    </div>
+    
+    <div class="button3row">
+    <div class="button1">
+        <input type="button" name="b1" onClick="opengame()" value="re-load"></div>
+        <div class="button2"><input type="button" name="b6" onClick="inputgame()" value="next game">
+    </div>
+    <div class="button3"><input type="button" name="b3" onClick="clean()" value="show work"></div>
+    </div>
+    <h2></h2>
+<table style="border:none;"><tr><td style="border:none;">
+<table style="border:none;">
+<tr><td style="border:none;"><table style="border:none;"><tr><td style="border:none;">
 <!-- style="background-color:lightgreen;width:25;height:22" -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(0)" onKeyUp="enter(event)"><!-- 0 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(1)" onKeyUp="enter(event)"><!-- 1 -->
@@ -598,7 +615,7 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(18)" onKeyUp="enter(event)"><!-- 18 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(19)" onKeyUp="enter(event)"><!-- 19 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(20)" onKeyUp="enter(event)"></td></tr><!-- 20 -->
-</table></td><td><table  border = 0 noshade bgcolor = grey><tr><td>
+</table></td><td style="border:none;"><table style="border:none;"><tr><td style="border:none;">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(3)" onKeyUp="enter(event)"><!-- 3 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(4)" onKeyUp="enter(event)"><!-- 4 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(5)" onKeyUp="enter(event)"><br><!-- 5 -->
@@ -608,7 +625,7 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(21)" onKeyUp="enter(event)"><!-- 21 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(22)" onKeyUp="enter(event)"><!-- 22 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(23)" onKeyUp="enter(event)"></td></tr><!-- 23 -->
-</table></td><td><table  border = 0 noshade bgcolor = white><tr><td>
+</table></td><td style="border:none;"><table style="border:none;"><tr><td style="border:none;">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(6)" onKeyUp="enter(event)"><!-- 6 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(7)" onKeyUp="enter(event)"><!-- 7 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(8)" onKeyUp="enter(event)"><br><!-- 8 -->
@@ -618,7 +635,7 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(24)" onKeyUp="enter(event)"><!-- 24 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(25)" onKeyUp="enter(event)"><!-- 25 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(26)" onKeyUp="enter(event)"></td></tr><!-- 26 -->
-</table></td></tr><tr><td><table  border = 0 noshade bgcolor = grey><tr><td>
+</table></td></tr><tr><td style="border:none;"><table style="border:none;"><tr><td style="border:none;">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(27)" onKeyUp="enter(event)"><!-- 27 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(28)" onKeyUp="enter(event)"><!-- 28 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(29)" onKeyUp="enter(event)"><br><!-- 29 -->
@@ -628,7 +645,7 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(45)" onKeyUp="enter(event)"><!-- 45 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(46)" onKeyUp="enter(event)"><!-- 46 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(47)" onKeyUp="enter(event)"></td></tr><!-- 47 -->
-</table></td><td><table  border = 0 noshade bgcolor = white><tr><td>
+</table></td><td style="border:none;"><table style="border:none;"><tr><td style="border:none;">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(30)" onKeyUp="enter(event)"><!-- 30 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(31)" onKeyUp="enter(event)"><!-- 31 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(32)" onKeyUp="enter(event)"><br><!-- 32 -->
@@ -638,7 +655,7 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(48)" onKeyUp="enter(event)"><!-- 48 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(49)" onKeyUp="enter(event)"><!-- 49 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(50)" onKeyUp="enter(event)"></td></tr><!-- 50 -->
-</table></td><td><table  border = 0 noshade bgcolor = grey><tr><td>
+</table></td><td style="border:none;"><table style="border:none;"><tr><td style="border:none;">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(33)" onKeyUp="enter(event)"><!-- 33 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(34)" onKeyUp="enter(event)"><!-- 34 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(35)" onKeyUp="enter(event)"><br><!-- 35 -->
@@ -648,7 +665,7 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(51)" onKeyUp="enter(event)"><!-- 51 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(52)" onKeyUp="enter(event)"><!-- 52 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(53)" onKeyUp="enter(event)"></td></tr><!-- 53 -->
-</table></td></tr><tr><td><table  border = 0 noshade bgcolor = white><tr><td>
+</table></td></tr><tr><td style="border:none;"><table style="border:none;"><tr><td style="border:none;">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(54)" onKeyUp="enter(event)"><!-- 54 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(55)" onKeyUp="enter(event)"><!-- 55 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(56)" onKeyUp="enter(event)"><br><!-- 56 -->
@@ -658,7 +675,7 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(72)" onKeyUp="enter(event)"><!-- 72 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(73)" onKeyUp="enter(event)"><!-- 73 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(74)" onKeyUp="enter(event)"></td></tr><!-- 74 -->
-</table></td><td><table  border = 0 noshade bgcolor = grey><tr><td>
+</table></td><td style="border:none;"><table style="border:none;"><tr><td style="border:none;">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(57)" onKeyUp="enter(event)"><!-- 57 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(58)" onKeyUp="enter(event)"><!-- 58 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(59)" onKeyUp="enter(event)"><br><!-- 59 -->
@@ -668,7 +685,7 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(75)" onKeyUp="enter(event)"><!-- 75 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(76)" onKeyUp="enter(event)"><!-- 76 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(77)" onKeyUp="enter(event)"></td></tr><!-- 77 -->
-</table></td><td><table  border = 0 noshade bgcolor = white><tr><td><input class="a" type="button" name="squ" value=" " onClick="ishere(60)" onKeyUp="enter(event)"><!-- 60 -->
+</table></td><td style="border:none;"><table style="border:none;"><tr><td style="border:none;"><input class="a" type="button" name="squ" value=" " onClick="ishere(60)" onKeyUp="enter(event)"><!-- 60 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(61)" onKeyUp="enter(event)"><!-- 61 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(62)" onKeyUp="enter(event)"><br><!-- 62 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(69)" onKeyUp="enter(event)"><!-- 69 -->
@@ -678,7 +695,7 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="squ" value=" " onClick="ishere(79)" onKeyUp="enter(event)"><!-- 79 -->
 <input class="a" type="button" name="squ" value=" " onClick="ishere(80)" onKeyUp="enter(event)"></td></tr><!-- 80 -->
 </table></td></tr>
-</table></td><td>
+</table></td><td style="border:none;">
 <input class="a" type="button" name="digit" value="X" onClick="dodigit(0)"><br>
 <input class="a" type="button" name="digit" value="1" onClick="dodigit(1)"><br>
 <input class="a" type="button" name="digit" value="2" onClick="dodigit(2)"><br>
@@ -690,27 +707,46 @@ style="font-family:sans-serif; ">
 <input class="a" type="button" name="digit" value="8" onClick="dodigit(8)"><br>
 <input class="a" type="button" name="digit" value="9" onClick="dodigit(9)"><br>
 </td></tr></table>
-<input type="button" name="b4" onClick="newwork()" value="clear">
-<input type="button" name="b7" onClick="enterdata()" value="enter">
-<input type="button" name="b5" onClick="savework()" value="save">
-<input type="button" name="b1" onClick="opengame()" value="re-load">
-<input type="button" name="b6" onClick="inputgame()" value="next game">
+
+
 
 <!-- <input type="button" name="b7" onClick="gridio()" value="grid I/O">-->
+    
+
+    
+    <div class="button2row">
+        <div class="button1"><label>Total:</label></div>
+        <div class="button2"><input type="text" name="odocount" size=3 value="0"></div>
+        
+    </div>
+<div class="button2row">
+    <div class="button1"><label><input type="button" name="b2" onClick="nextmove()" value="move:"></label></div>
+    <div class="button2"><input type="text" name="autocount" size=3 value="1" onKeyUp="execute(event)"></div>
+    </div>
+    
+<div class="button2row">
+    <div class="button1"><label><input type="button" name="b12" onClick="loadcell()" value="replace"></label></div>
+    <div class="button2"><input type="text" name = "output1">
+    </div>
+</div>
+    
+
 <br>
-<input type="button" name="b2" onClick="nextmove()" value="move:">
-<input type="text" name="autocount" size=3 value="1" onKeyUp="execute(event)">total:
-<input type="text" name="odocount" size=3 value="0">
-<input type="button" name="b3" onClick="clean()" value="show work">
 <br>
-<input type="button" name="b8" onClick="dodebug()" value="debug is off">
-<input type="button" name="b9" onClick="doskipeasy()" value="skip easy is ON">
-<input type="button" name="b7" onClick="loaddata()" value="load">
-<input type="button" name="b11" onClick="savedata()" value="save">
+<br><h2>Output</h2>
+<textarea name = "output" rows = 15 cols = 82></textarea>
+    <div class="button3row">
+
+        <div class="button1">
+            <input type="button" name="b7" onClick="loaddata()" value="load"></div>
+        <div class="button2"><input type="button" name="b11" onClick="savedata()" value="save"></div>
+    </div>
+    <div class="button3row">
+    <div class="button1"><input type="button" name="b8" onClick="dodebug()" value="Debug: OFF"></div>
+    <div class="button2"><input type="button" name="b9" onClick="doskipeasy()" value="Skip Easy: ON"></div>
+    </div>
+    <br>
 <br>
-<textarea name = "output1" rows = 1 cols = 27></textarea>
-<input type="button" name="b12" onClick="loadcell()" value="replace"><br>
-<textarea name = "output" rows = 15 cols = 38></textarea>
-<br><textarea name = "input" rows = 5 cols = 38></textarea>
+<br><h2>Input</h2><textarea name = "input" rows = 5 cols = 82></textarea>
 </form>
-OMG, look at this guy: <a href="http://www.sudokuwiki.org/sudoku.htm">http://www.sudokuwiki.org/sudoku.htm</a></body></html>
+OMG, look at this guy: <a href="http://www.sudokuwiki.org/sudoku.htm">http://www.sudokuwiki.org/sudoku.htm</a></div></body></html>

@@ -4,74 +4,77 @@
     <title>Simple Bayes</title>
     <meta charset="utf-8">
     <link rel="SHORTCUT ICON" href="favicon.ico">
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/articlestyles.css">
     <script type="text/javascript" src="myfunctions.js"></script>
 </head>
 <body onLoad="self.focus();document.ss.venn2.focus();" >
+    <div class="calcmenu">
 <form name='ss'>
     <h1>Frequentist view of Bayes Theorem</h1>
-<table>
-    <tr>
-        <td>
-            mode: <br>
-            <input type="radio" name="Mode" VALUE="Calculate" checked onClick='calc()'> Calculate<br>
-            <input type="radio" name="Mode" VALUE="Enter"> Input
-        </td>
-        <td colspan=2 align='center'>
-            B: <input type='text' name='venn2' size=12 tabindex="1" value="B" onfocus='legend()'>
-        </td>
-        <td align=left>
-            <input name="demobut" type="button" value = "DEMO" onClick="demo()"><br>
+
+    
+    <h2>Mode</h2> <br>
+                    <input name="demobut" type="button" value = "DEMO" onClick="demo()">
             <input id='clearallid' name="clear" type="button" value = "Clear ALL" onClick="window.open('bayes.htm','_self')"/>
-            <input type="button" value="a/b" id="frac" onClick="swfrac(true)" title="output format">
-        </td>
-    </tr>
+            <input type="button" value="a/b" id="frac" onClick="swfrac(true)" title="output format"><br>
+    <h2>Input</h2><br>
+        <label>A:</label><input class="shortinput" type='text' name='venn1' size=5 tabindex="1" value="A" onfocus='legend()'><br>
+    
+        <label>B:</label> <input class="shortinput" type='text' name='venn2' size=12 tabindex="1" value="B" onfocus='legend()'><br>
+        
+
+<table>
+
     <tr>
-        <td>
-            A:<input type='text' name='venn1' size=5 tabindex="1" value="A" onfocus='legend()'>
-        </td>
-        <th align=center>Yes</th>
-        <th align=center>No</th>
-        <th>Total</th>
+        <th>
+        </th>
+        <th align='left'>Yes</th>
+        <th align='left'>No</th>
+        <th align='left'>Total</th>
     </tr>
     <tr>
         <th align=right>Yes</th>
         <td>
-            <input type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="3">
+            <input class="shortinput" type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="3">
         </td>
         <td>
-            <input type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="4">
+            <input class="shortinput" type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="4">
         </td>
         <td>
-            <input type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="5">
+            <input class="shortinput" type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="5">
         </td>
     </tr>
     <tr>
         <th align=right>No</th>
         <td>
-            <input type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="6">
+            <input class="shortinput" type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="6">
         </td>
         <td>
-            <input type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="7">
+            <input class="shortinput" type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="7">
         </td>
         <td>
-            <input type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="8">
+            <input class="shortinput" type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="8">
         </td>
     </tr>
     <tr>
         <th align=right>Total</th>
         <td>
-            <input type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="9">
+            <input class="shortinput" type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="9">
         </td>
         <td>
-            <input type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="10">
+            <input class="shortinput" type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="10">
         </td>
         <td>
-            <input type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="11">
+            <input class="shortinput" type='text' name='cell' size=5 value=" " onfocus='calc()' tabindex="11">
         </td>
     </tr>
-    <tr>
-        <td colspan=4 align=left>
+    </table>
+    <label>Calculate</label><input type="radio" name="Mode" VALUE="Calculate" checked onClick='calc()'>
+            <label>Input</label><input type="radio" name="Mode" VALUE="Enter"> <br>
+        <h2>Output</h2>
+    <table style="border: none;">
+    <tr style="border: none;">
+        <td colspan=4 align=left style="border: none;">
             <canvas id="theCanvas" width="250" height="150"></canvas>
             <textarea name = "output4" rows = 10 cols = 15>Probability:
                 P(A)=
@@ -85,13 +88,13 @@
         </td>
     </tr>
     <tr>
-        <td colspan=4 align=center>
+        <td colspan=4 align=center style="border: none;">
             <!--Ask Nadas: is iif or if?-->
             Independent iif P(A&cap;B) = P(A)P(B) = <input type='text' name='prodab' size=9 value = "" >
         </td>
     </tr>
     <tr>
-        <td colspan=4 align=center>
+        <td colspan=4 align=center style="border: none;">
         <textarea name = "output1" rows = 6 cols = 15>
         P(A|B)=
         P(A|~B)=
@@ -268,5 +271,5 @@ if (ls.search(/\?/)==0){
 
 // --------------------------
 </script>
-</body>
+</div></body>
 </html>
