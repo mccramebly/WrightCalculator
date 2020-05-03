@@ -281,10 +281,10 @@ theForm.space.value= space2.length
 </script></head>
 <body>
 <form name="theForm">
+    <div class="widecalcmenu">
 <table border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')">Logic Puzzles</td></tr>
-<tr><td align=center>
-</td><td colspan=6><textarea name = "input" rows = 5 cols = 81 ></textarea></td></tr>
+<h1>Logic Puzzles</h1>
+<textarea name = "input" rows = 5 cols = 81 ></textarea>
 <tr><td rowspan=6 align=center valign=middle><br><br>
 <input name="calcbut" Value="LOAD" type="button" onClick="loadall()"/></td><td>
 <input type="button" name="BB11" value="____________" onClick="if(YESBUT==0)theForm.yesrule.value+=space1[0][1][0];else if(YESBUT==1) theForm.norule.value+=space1[0][1][0];else theForm.orrule.value+=space1[0][1][0]"/></td><td>
@@ -343,4 +343,4 @@ theForm.space.value= space2.length
 <input name="cluebut" Value="CLUES" type="button" onClick="clues()"/>
 </td>
 <td><textarea name = "solcode" cols=12 rows = 20></textarea></td><td colspan=6><textarea name = "solution" cols=67 rows = 20></textarea></td></tr>
-</table></form></body></html>
+        </table></div></form></body></html>

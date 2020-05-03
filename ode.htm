@@ -1,20 +1,22 @@
-<html><head><title>Initial value ODE</title>
+ <html><head><title>Initial value ODE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+         <link rel="stylesheet" href="assets/articlestyles.css">
 <link REL="shortcut icon" href="favicon.ico">
 </head><body onLoad="self.focus(); document.theForm.input.focus(); window.resizeTo( 750, 450 );">
 <script type="text/javascript" src="myfunctions.js"></script>
 <link REL="shortcut icon" href="favicon.ico">
-<p>
+<div class="widecalcmenu">
 <form name="theForm">
+    <h1>Initial Value ODE</h1>
+    <label>f'(x) = </label><input type="text" name = "input" tabindex="1" onKeyUp="enter(event)">
+     <label>Left x= </label><input type="text"  name = "x1" size = 8 value="" tabindex="3"/>
+     <label>Right x= </label><input type="text"  name = "x2" size = 8 value="" tabindex="4"/>
+<label>Left y = </label><input type="text"  name = "y1" size = 8 value="" tabindex="5"/>
+<label>n = </label><input type="text"  name = "xn" size = 3 value="" tabindex="6"/>
 <table  border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')"></td></tr>
-<tr><td><table><tr><td>
-f'(x) = </td><td><textarea name = "input" rows = 1 cols = 65 tabindex="1" onKeyUp="enter(event)"></textarea>
-</td></tr></table>
-Left x= <input type="text"  name = "x1" size = 8 value="" tabindex="3"/>
-Right x= <input type="text"  name = "x2" size = 8 value="" tabindex="4"/>
-Left y = <input type="text"  name = "y1" size = 8 value="" tabindex="5"/>
-n = <input type="text"  name = "xn" size = 3 value="" tabindex="6"/>
+
+
+
 
 <table  border=1 valign="middle">
 <tr><td>
@@ -34,7 +36,7 @@ tableau b: <input type='text' name="btb" size = 15 value ="[1,2,2,1]">
 <input name="savebut" Value="Save" type="button" onClick="savestuff();document.theForm.input.focus()"/>
 <input name="loadbut" Value="Load" type="button" onClick="loadstuff();calc1();document.theForm.input.focus()"/>
 </td></tr></table>
-</td></tr>
+
 <tr><td>
 <textarea name = "output" rows = 25 cols = 72 tabindex=0></textarea>
 </td></tr></table>
@@ -172,4 +174,4 @@ document.theForm.output.value += "\n"
 // document.theForm.output.value += "\n";
 document.theForm.input.focus();
 } };
-</script></body></html>
+</script></div></body></html>
