@@ -168,33 +168,36 @@ document.theForm.input.focus();
     <div class="calcmenu">
     <h1>Define Integral</h1>
     <form name="theForm">
-        integrals: arclength: sqrt(1 + (f'(x)^2)) where y = f(x) or sqrt(h'(t)^2 + g'(t)^2) where x=h(t) and y=g(t)
-        <label>f(x)</label><textarea name = "input" rows = 2 cols = 72 tabindex="1" onKeyUp="enter(event)"></textarea>
+        <h2>Integrals</h2> 
+        <p>arclength: sqrt(1 + (f'(x)^2)) where y = f(x) or sqrt(h'(t)^2 + g'(t)^2) where x=h(t) and y=g(t)</p><br>
+        <label>f(x)</label><input type="text" name = "input" rows = 2 cols = 68 tabindex="1" onKeyUp="enter(event)">
         <label>Left</label><input type="text"  name = "x1" size = 10 value="" tabindex="3">
             <label>Right</label><input type="text"  name = "x2" size = 10 value="" tabindex="4">
             <label>n</label><input type="text"  name = "xn" size = 4 value="" tabindex="5">
                 <input name="clear" type="button" value = "Clear Output" onClick="cla();calc1()" tabindex="0">
                 <input name="calc" type="button" value = "Calc" onClick="calc1()" tabindex="6">
-                <input type="checkbox" name="debug"> <label>Steps</label>
-                <input type="checkbox" name="graph"> <label>Graph values</label>
-                <input name="savebut" value="Save" type="button" onClick="savestuff();document.theForm.input.focus()">
+      <br><br><br>
+                <label>Steps</label><input type="checkbox" name="debug">
+                <label>Graph values</label><input type="checkbox" name="graph">
+
+                <label>Simpson 3/8</label><input type="checkbox" name="Simp3" value="Simpson3" checked> 
+<br><br><br>
+
+        <h2>Riemann</h2>
+            <label>Left</label><input type="checkbox" name="LRiem" value="LRiemann"> 
+            <label>Mid</label><input type="checkbox" name="MRiem" value="MRiemann">
+            <label>Right</label><input type="checkbox" name="RRiem" value="RRiemann"> 
+            <label>Min</label><input type="checkbox" name="NRiem" value="NRiemann"> 
+            <label>Max</label><input type="checkbox" name="XRiem" value="XRiemann"> 
+            <label>Trapezoid</label><input type="checkbox" name="Trape" value="Trapezoid"> 
+            <label>Simpson 1/3</label><input type="checkbox" name="Simp1" value="Simpson1">
+
+<br><br><br><br><br><br>
+            <h2>Output</h2>
+                        <input name="savebut" value="Save" type="button" onClick="savestuff();document.theForm.input.focus()">
                 <input name="loadbut" value="Load" type="button" onClick="loadstuff();calc1();document.theForm.input.focus()"/>
-                <input type="checkbox" name="Simp3" value="Simpson3" checked> <label>Simpson 3/8</label>
+            <textarea name = "output" rows = 25 cols = 68 tabindex=0></textarea>
 
-
-        <h2>Riemann:</h2>
-            <input type="checkbox" name="LRiem" value="LRiemann"> <label>Left</label>
-            <input type="checkbox" name="MRiem" value="MRiemann"> <label>Mid</label>
-            <input type="checkbox" name="RRiem" value="RRiemann"> <label>Right</label>
-            <input type="checkbox" name="NRiem" value="NRiemann"> <label>Min</label>
-            <input type="checkbox" name="XRiem" value="XRiemann"> <label>Max</label>
-            <input type="checkbox" name="Trape" value="Trapezoid"> <label>Trapezoid</label>
-            <input type="checkbox" name="Simp1" value="Simpson1"> <label>Simpson 1/3</label>
-
-        <p>
-            Output:<br>
-            <textarea name = "output" rows = 25 cols = 80 tabindex=0></textarea>
-        </p>
     </form>
         </div>
 </body>
