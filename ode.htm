@@ -13,33 +13,28 @@
      <label>Right x= </label><input type="text"  name = "x2" size = 8 value="" tabindex="4"/>
 <label>Left y = </label><input type="text"  name = "y1" size = 8 value="" tabindex="5"/>
 <label>n = </label><input type="text"  name = "xn" size = 3 value="" tabindex="6"/>
-<table  border = 1>
 
 
+    <label>Euler</label><input type="checkbox" name="Eul" /> 
+    <label>Midpoint</label><input type="checkbox" name="Mid" />
+    <label>Heun</label><input type="checkbox" name="Heu" /> 
+    <label>RK3</label><input type="checkbox" name="RK3" /> <br>
+    <label>RK4</label><input type="checkbox" name="RK4" checked/> <br><br><br>
 
+    <label>Butcher A: </label><input type='text' name="bta" size = 20 value ="[[],[.5],[0,.5],[0,0,1]]"><br>
+    <label>Tableau B: </label><input type='text' name="btb" size = 15 value ="[1,2,2,1]">
+<label>Tableau B Toggle:</label><input type="checkbox" name="But" /><br><br><br>
 
-<table  border=1 valign="middle">
-<tr><td>
-<input type="checkbox" name="Eul" /> Euler
-<input type="checkbox" name="Mid" /> Midpoint<br>
-<input type="checkbox" name="Heu" /> Heun
-<input type="checkbox" name="RK3" /> RK3
-<input type="checkbox" name="RK4" checked/> RK4
-</td><td>
-Butcher a: <input type='text' name="bta" size = 20 value ="[[],[.5],[0,.5],[0,0,1]]"><br>
-tableau b: <input type='text' name="btb" size = 15 value ="[1,2,2,1]">
-<input type="checkbox" name="But" />
-</td><td>
 <input name="clear" type="button" value = "Calc" onClick="cla();calc1()" tabindex="0" />
 <input type="button" value="8 place" id="frac" onClick="swfrac(true,4)" title="output format"/>
-<!-- <input type="checkbox" name="debug" checked/> Steps --> <br>
+<!-- <input type="checkbox" name="debug" checked/> Steps -->
 <input name="savebut" Value="Save" type="button" onClick="savestuff();document.theForm.input.focus()"/>
 <input name="loadbut" Value="Load" type="button" onClick="loadstuff();calc1();document.theForm.input.focus()"/>
-</td></tr></table>
 
-<tr><td>
+
+
 <textarea name = "output" rows = 25 cols = 72 tabindex=0></textarea>
-</td></tr></table>
+
 </form>
 <script>
 degrees = false

@@ -1,4 +1,5 @@
 <html><head><title>Newton's method</title>
+    <link rel="stylesheet" href="assets/articlestyles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
 <link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
 <body>
@@ -270,40 +271,45 @@ document.theForm.Function.focus();
 } };
 </script>
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
+    <div class="calcmenu">
 <form name="theForm">
-<table  border= 1>
-<tr><td colspan=99 onClick="window.open('index.htm')">Find zeroes of a function</td></tr>
-<tr><td onClick="document.theForm.Function.value=''">f(x)= </td><td><textarea name= "Function" rows= 1 cols= 80 tabindex="1" onKeyUp="enter(event)"></textarea></td></tr>
-<tr><td onClick="document.theForm.Derivative.value=''">f'(x)= </td><td><textarea name= "Derivative" rows= 1 cols= 80 tabindex="2"></textarea></td></tr>
-<tr><td colspan=2>
-Interval Left= <input type="text"  name= "x1" size= 10 value="" tabindex="3"/>
-Right= <input type="text"  name= "x2" size= 10 value="" tabindex="4"/>
-Iterations= <input type="text"  name= "x3" size= 4 value="" tabindex="5"/>
-units:
- deg:<input name="degrees" type="radio" title="degrees"/>
- rad:<input name="degrees" type="radio" title="radians" checked/>
-<br>
-<INPUT TYPE="radio" name="Method" VALUE="Bisection"> Bisect
-<INPUT TYPE="radio" name="Method" VALUE="False"> False Pos
-<INPUT TYPE="radio" name="Method" VALUE="Illinois"> Illinois
-<INPUT TYPE="radio" name="Method" VALUE="Newton"> Newton
-<INPUT TYPE="radio" name="Method" VALUE="Secant" > Mod Sec
-<input type="checkbox" name="steps" checked> Steps
+
+    <h1>Find zeroes of a function</h1>
+<label onClick="document.theForm.Function.value=''">f(x)</label><input type="text" name= "Function" rows= 1 cols= 80 tabindex="1" onKeyUp="enter(event)"><br>
+<label onClick="document.theForm.Derivative.value=''">f'(x)</label><input type="text" "Derivative" rows= 1 cols= 80 tabindex="2">
+
+    <label>Interval Left</label><input type="text"  name= "x1" size= 10 value="" tabindex="3"/><br>
+        <label>Right</label><input type="text"  name= "x2" size= 10 value="" tabindex="4"/><br>
+    <label>Iterations</label><input type="text"  name= "x3" size= 4 value="" tabindex="5"/><br>
+    <input name="clear" type="button" value= "Restart" onClick="cla()" tabindex="0" />
+<input name="calc" type="button" value= "Calc" onClick="calc1()" tabindex="1" />
+<input name="clear" type="button" value= "Clear" onClick="document.theForm.output.value= ''" tabindex="2" />
+<input name="graph" type="button" value= "Graph" onClick="graphit()" tabindex="3" />
+    <br><br><br>
+<h2>Units</h2>
+    <br>
+    <label>Deg</label><input name="degrees" type="radio" title="degrees"/>
+    <label>Rad</label><input name="degrees" type="radio" title="radians" checked/>
+
+    <label>Bisect</label><input type="radio" name="Method" VALUE="Bisection"> 
+    <label>False Pos</label><input type="radio" name="Method" VALUE="False"> 
+    <label>Illinois</label><input type="radio" name="Method" VALUE="Illinois"> 
+    <label>Newton</label><input type="radio" name="Method" VALUE="Newton"> 
+    <label>Mod Sec</label><input type="radio" name="Method" VALUE="Secant" > 
+<label>Steps</label><input type="checkbox" name="steps" checked> 
 <!-- <input type="checkbox" name="graph" checked> Graph -->
 <!-- <input type="checkbox" name="reduce"> Reduce -->
-</td></tr>
-<tr><td VALIGN="TOP"><BR>
-<BR><BR>
-<input name="clear" type="button" value= "Restart" onClick="cla()" tabindex="0" /><BR><BR>
-<input name="calc" type="button" value= "Calc" onClick="calc1()" tabindex="1" /><BR><BR>
-<input name="clear" type="button" value= "Clear" onClick="document.theForm.output.value= ''" tabindex="2" /><BR><BR>
-<input name="graph" type="button" value= "Graph" onClick="graphit()" tabindex="3" /><BR><BR>
+
+<br><br><br><br>
+
+
+
 <!-- <input name="popbut" Value="Pop" type="button" onClick="popstack()"/><br> -->
-<!-- <input name="savebut" Value="Save" type="button" onClick="savestuff('jsdata',document.theForm.Function.value+';\''+document.theForm.Derivative.value); document.theForm.Function.focus()"/><BR> -->
+<!-- <input name="savebut" Value="Save" type="button" onClick="savestuff('jsdata',document.theForm.Function.value+';\''+document.theForm.Derivative.value); document.theForm.Function.focus()"/><br> -->
 <!-- <input name="loadbut" Value="Load" type="button" onClick="loadthem()"/><br> -->
 <!-- <input name="nextbut" Value="next" type="button" onClick="next()"/><br> -->
-</td><td>
-<textarea name= "output" rows= 25 cols= 80 tabindex=0></textarea></td></tr></table>
+<h2>Output</h2>
+<textarea name= "output" rows= 25 cols= 68 tabindex=0></textarea>
 </form><script>
 wi=0
 wff=["x^4 -6x^3 +11x^2 -6x -3","x^4 -6x^3 +11x^2 -6x -3","Sin(x)-.25"]
@@ -333,4 +339,4 @@ if (ls.search(/\?/)==0)
     break
   }
   document.theForm.Function.value= ls; calc1()}
-</script></body></html>
+    </script></div></body></html>
