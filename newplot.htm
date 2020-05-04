@@ -1,18 +1,18 @@
-<html><head><title>plot function graph</title></head>
+<html><head><title>plot function graph</title>
+    <link rel="stylesheet" href="assets/articlestyles.css"></head> 
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" /> 
 <link REL="shortcut icon" href="favicon.ico">
 <body onLoad="self.focus(); document.theForm.input.focus();">
+    <div class="calcmenu">
 <script type="text/javascript" src="myfunctions.js"></script>
 <form name="theForm">
-<table border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
-<tr><td><canvas id="StoG" width="505" height="505"></canvas></td><td valign=top>
+<canvas id="StoG" width="505" height="505"></canvas>
 
 <input name="plot" value="plot" onclick="plotfunction(false)" type="button">
 <input name="savebut" Value="Save" type="button" onClick="savestuff();document.theForm.input.focus()"/>
 <input name="clearbut" Value="Clear" type="button" onClick="document.theForm.input.value=''; document.theForm.input.focus()"/>
-<input name="loadbut" Value="Load" type="button" onClick=" savenow=document.theForm.input.value; loadstuff(); document.theForm.input.value= savenow+document.theForm.input.value; plotfunction(false); document.theForm.input.focus()"/><br>
-<textarea name = "input" rows = 11 cols = 40 onKeyUp="enter(event)">
+<input name="loadbut" Value="Load" type="button" onClick=" savenow=document.theForm.input.value; loadstuff(); document.theForm.input.value= savenow+document.theForm.input.value; plotfunction(false); document.theForm.input.focus()"/><br><br><br>
+<textarea name = "input" rows = 11 cols = 68 onKeyUp="enter(event)">
 y=x^4-10x^2+9[red]
 f(x)=-8(x+1)(x-4)[blue]
 12x+20+5sin(5x)[orange]
@@ -21,13 +21,12 @@ f(x)=-8(x+1)(x-4)[blue]
 <input name="leftbut" value="left" onclick="leftfunc()" type="button">
 <input name="rightbut" value="right" onclick="rightfunc()" type="button">
 <input name="upbut" value="up" onclick="upfunc()" type="button">
-<input name="downbut" value="down" onclick="downfunc()" type="button"><br>
+<input name="downbut" value="down" onclick="downfunc()" type="button">
 <input name="inbut" value="in" onclick="infunc()" type="button">
 <input name="outbut" value="out" onclick="outfunc()" type="button">
-<input name="centerbut" value="center" onclick="centerfunc()" type="button"><br>
-<textarea rows=11 cols=40 name="debug"></textarea> 
-</td></tr>
-</table></form>
+<input name="centerbut" value="center" onclick="centerfunc()" type="button"><br><br><br>
+<textarea rows=11 cols=68 name="debug"></textarea> 
+</form>
 <script>
 axis = "black"
 curvecolors = ["0000f0","00f000","00f0f0","f00000","f000f0","f0f000","f0f0f0"]
@@ -303,5 +302,5 @@ c.onselectstart = function () { return false; } // ie
 c.onmousedown = function () { return false; } // mozilla
 plotfunction()
 </script>
-
+</div>
 </body></html>

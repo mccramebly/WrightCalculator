@@ -282,12 +282,23 @@ theForm.space.value= space2.length
 <body>
 <form name="theForm">
     <div class="widecalcmenu">
-<table border = 1>
+
 <h1>Logic Puzzles</h1>
+        <input name="calcbut" Value="LOAD" type="button" onClick="loadall()"/><input name="resetbut" Value="RESET" type="button" onClick="resetall()"/><input name="cluebut" Value="CLUES" type="button" onClick="clues()"/><br><br>
+        <h2>Solution</h2>
+        <textarea name = "solcode" cols=12 rows = 20></textarea><textarea name = "solution" cols=66 rows = 20></textarea>
+        <br><br>
+        <input name="calcbut" Value="RESULT" type="button" onClick="calc()"/><input type="text" name="space" size=3 value="0"/>
+           <br><br>
+<h2>Choices</h2>
     <textarea name = "input" rows = 5 cols = 81 ></textarea>
-    <input name="calcbut" Value="LOAD" type="button" onClick="loadall()"/><br><br><br>
-
-
+ 
+<label><input type="button" name="BUTYES" value="YES" onClick="YESBUT=0; theForm.yesrule.value+=',';"/></label><input type="text" name = "yesrule" rows = 1 cols = 81 ><br><br>
+<label><input type="button" name="BUTNO" value="NO" onClick="YESBUT=1; theForm.norule.value+=',';"/></label>
+<input type="text" name = "norule" rows = 1 cols = 81 ><br><br>
+<input type="button" name="BUTOR1" value="EITHER" onClick="YESBUT=2; theForm.orrule.value+=',';">
+<input type="button" name="BUTOR2" value="OR" onClick="YESBUT=2; theForm.orrule.value+=':';">
+<textarea name = "orrule" rows = 1 cols = 35 ></textarea><br><br>
 <input type="button" name="BB11" value="____________" onClick="if(YESBUT==0)theForm.yesrule.value+=space1[0][1][0];else if(YESBUT==1) theForm.norule.value+=space1[0][1][0];else theForm.orrule.value+=space1[0][1][0]"/>
 <input type="button" name="BB12" value="____________" onClick="if(YESBUT==0)theForm.yesrule.value+=space1[0][2][0];else if(YESBUT==1) theForm.norule.value+=space1[0][2][0];else theForm.orrule.value+=space1[0][2][0]"/>
 <input type="button" name="BB13" value="____________" onClick="if(YESBUT==0)theForm.yesrule.value+=space1[0][3][0];else if(YESBUT==1) theForm.norule.value+=space1[0][3][0];else theForm.orrule.value+=space1[0][3][0]"/>
@@ -341,19 +352,6 @@ theForm.space.value= space2.length
 <input type="button" name="BB65" value="____________" onClick="if(YESBUT==0)theForm.yesrule.value+=space1[5][5][0];else if(YESBUT==1) theForm.norule.value+=space1[5][5][0];else theForm.orrule.value+=space1[5][5][0]"/>
 <input type="button" name="BB66" value="____________" onClick="if(YESBUT==0)theForm.yesrule.value+=space1[5][6][1];else if(YESBUT==1) theForm.norule.value+=space1[5][6][1];else theForm.orrule.value+=space1[5][6][1]"/>
     
-    <br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<label><input type="button" name="BUTYES" value="YES" onClick="YESBUT=0; theForm.yesrule.value+=',';"/></label><input type="text" name = "yesrule" rows = 1 cols = 81 ><br><br>
-<label><input type="button" name="BUTNO" value="NO" onClick="YESBUT=1; theForm.norule.value+=',';"/></label>
-<input type="text" name = "norule" rows = 1 cols = 81 >
-<tr><td align=center><input type="button" name="BUTOR1" value="EITHER" onClick="YESBUT=2; theForm.orrule.value+=',';"/><br>
-<input type="button" name="BUTOR2" value="OR" onClick="YESBUT=2; theForm.orrule.value+=':';"/></td>
-<td colspan=6><textarea name = "orrule" rows = 1 cols = 81 ></textarea></td></tr>
-<tr><td align=center valign=top><br>
-<input name="resetbut" Value="RESET" type="button" onClick="resetall()"/><br><br>
-<input name="calcbut" Value="RESULT" type="button" onClick="calc()"/><br>
-<input type="text" name="space" size=3 value="0"/><br><br>
-<input name="cluebut" Value="CLUES" type="button" onClick="clues()"/>
-</td>
-<td><textarea name = "solcode" cols=12 rows = 20></textarea></td><td colspan=6><textarea name = "solution" cols=67 rows = 20></textarea></td></tr>
-        </table></div></form></body></html>
+</div></form></body></html>
