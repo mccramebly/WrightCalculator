@@ -195,6 +195,7 @@ input
 
 .shortinput
 {
+    float:left;
     margin-left: 1em;
     margin-bottom: .5em;
     width: 5em;
@@ -222,6 +223,7 @@ input[type=checkbox]{
 }
 
 textarea{
+    float: left;
     border-radius: 5px;
 }
 
