@@ -4,113 +4,161 @@
     <head>
         <title>Scientific Calculator</title>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link REL="SHORTCUT ICON" HREF="favicon.ico">
         <script src="statfns.js"></script>
         <script src="myfunctions.js"></script>
         <script src="matrix.js"></script>
-        <link rel="stylesheet" href="assets/styles.css">
+        <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+        <link rel="stylesheet" href="assets/complex-calc.css">
     </head>
-<body>
+<body id="sciCalc">
+    <div id="calctainer">
     <h1>Scientific Calculator</h1>
     <form name="theForm">
-    <table>
-    <tr><td>
-    <table><tr><td>
-    <input type="button" value="1" onClick="putx('1')"/>
-    <input type="button" value="2" onClick="putx('2')"/>
-    <input type="button" value="3" onClick="putx('3')"/>
-    <input type="button" value="+" onClick="putx('+')"/>
-    </td><td>|</td><td>
-    <input name="calcbut" Value="Calc" type="button" onClick="if(!document.theForm.isphone.checked)putx('\n');calc(true);" title="calculate"/>
-    <input name="clerebut" Value="Clear" type="button" onClick="clere()" title="clear screen"/>
-    <input name="delbut" Value="Del" type="button" onClick="del()" title=""/>
-    <input name="popbut" Value="Pop" type="button" onClick="popstack()" title="undo last calculate (ESC)"/>
-    <input name="savebut" Value="Save" type="button" onClick="savestuff();document.theForm.input.focus()" title="save screen to cookie"/>
-    <input name="loadbut" Value="Load" type="button" onClick="loadstuff();wasnotqna=false;document.theForm.input.focus()" title="load screen from cookie"/>
-    <input name="morebut" Value="More" type="button" onClick="calc(true);loadstuff(true);wasnotqna=false;document.theForm.input.focus()" title="Append to screen from cookie"/>
-    <input name="addbut" Value="Add" type="button" onClick="addstuff();document.theForm.input.focus()" title="Append to cookie from screen"/>
-    <input type="button" value="Answers" id="qna" onClick="calc(wasnotqna)" title="show Answers Only"/>
-    <input type="button" value="8 place" id="frac" onClick="swfrac(true,7,!wasnotqna)" title="output format"/>
-    </td><td>|</td><td>Deg <input name="degrees" type="radio" title="degrees" checked onClick="calc(!wasnotqna);"/>
-    </td></tr><tr><td>
-    <input type="button" value="4" onClick="putx('4')"/>
-    <input type="button" value="5" onClick="putx('5')"/>
-    <input type="button" value="6" onClick="putx('6')"/>
-    <input type="button" value="-" onClick="putx('-')"/>
-    </td><td>|</td><td>
-    <input type="button" value="(" onClick="putx('(')"/>
-    <input type="button" value=")" onClick="putx(')')"/>
-    <input type="button" value="Ans" onClick="putx('Ans')"/>
-    <input type="button" value="π" onClick="putx('π')"/>
-    <input type="button" value="&deg;" onClick="putx('°')"/>
-    <input type="button" value="&#8730;" onClick="putx('√(')"/>
-    <input type="button" value="&#178;" onClick="putx('²')"/>
-    <input type="button" value="%" onClick="putx('%')" title='mod'/>
-    <input type="button" value="gcfsum" onClick="putx('gcfsum(')" title='gcf = sum'/>
-    <input type="button" value="prime" onClick="putx('prime(')" title='prime factors'/>
-    <input type="button" value="rand" onClick="putx('rand(')" title="() 0-1, integers: (a) 0-a, (a,b) a-b">
+        <div id="inputOutputGroup">
+        <textarea name="input" onKeyUp="enter(event)"></textarea>
+            
+        <div id="answerType">
+            <span id="answerOnly">
+        <input type="checkbox" id="qna" onClick="calc(wasnotqna)"> <label for="qna">Display Answers Only</label> 
+            </span>
+            <span id="outputType">
+            <label for="frac">Output Type:</label>
+            <input type="button" value="8 place" id="frac" onClick="swfrac(true,7,!wasnotqna)" title="output format"/>
+            </span>
+            <!--<input type="button" value="4 place" id="do4pl" onClick="frac23(2)" title="4 decimals"/>-->
+         <span id="degOrRad">
+    <input name="degrees" type="radio" id="degreesButton" title="degrees" checked onClick="calc(!wasnotqna);"/>
+            <label for="degreesButton">Degrees</label>
+
     <!--<input type="button" value="round" onClick="putx('myround(')"/>-->
-    <input type="button" value="base" onClick="putx('base(')" title="(number,base)"/>
-    <input type="button" value="sod" onClick="putx('sod(')" title="(sum of digits)"/>
-    </td><td>|</td><td>Rad <input name="degrees" type="radio" title="radians" onClick="calc(!wasnotqna);"/>
-    </td></tr><tr><td>
-    <input type="button" value="7" onClick="putx('7')"/>
-    <input type="button" value="8" onClick="putx('8')"/>
-    <input type="button" value="9" onClick="putx('9')"/>
-    <input type="button" value="×" onClick="putx('×')"/>
-    </td><td>|</td><td>
-    <input type="button" value="=" onClick="putx('=')"/>
-    <input type="button" value="ceil" onClick="putx('ceil(')" title='ceiling'/>
-    <input type="button" value="floor" onClick="putx('floor(')" title='floor aka int()'/>
-    <input type="button" value="^" onClick="putx('^')" title='exponent power'/>
-    <input type="button" value="log" onClick="putx('log(')" title="base10 log= log(10,x)"/>
-    <input type="button" value="exp"onClick="putx('exp(')" title='e to a power'/>
-    <input type="button" value="ln" onClick="putx('ln(')" title='natural log'/>
-    <input type="button" value="gcf" onClick="putx('gcf(')" title='greatest common factor'/>
-    <input type="button" value="lcm" onClick="putx('lcm(')" title='least common multiple'/>
-    <input type="button" value="fact" onClick="putx('fact(')" title='factorial'/>
-    <input type="button" value="nCr" onClick="putx('nCr(')" title='Combinations'/>
-    <input type="button" value="nPr" onClick="putx('nPr(')" title='Permutations'/>
-    <input type="button" value="DO" onClick="putx('DO: ')" title='native javascript'/>
-    </td><td>|</td><td>
-    <input type="button" value="a/b" id="dofrac" onClick="frac23(3)" title="fractions"/>
-    </td></tr><tr><td>
-    <input type="button" value=" ." onClick="putx('.')"/>
-    <input type="button" value="0" onClick="putx('0')"/>
-    <input type="button" value="," onClick="putx(',')"/>
-    <input type="button" value="÷" onClick="putx('÷')"/>
-    </td><td>|</td><td>
-    <input type="button" value="cos" onClick="putx('cos(')" title='cosine'/>
-    <input type="button" value="sin" onClick="putx('sin(')" title='sine'/>
-    <input type="button" value="tan" onClick="putx('tan(')" title='tangent'/>
-    <input type="button" value="acos" onClick="putx('acos(')" title='inverse cosine'/>
-    <input type="button" value="asin" onClick="putx('asin(')" title='inverse sine'/>
-    <input type="button" value="atan" onClick="putx('atan(')" title='inverse tangent'/>
-    <input type="button" value="line" onClick="putx('line(')" title="line (x0,y0,x1,y1) OR (x0,y0,m)"/>
-    <input type="button" value="slope" onClick="putx('slope(')" title="slope of line"/>
-    <input type="button" value="dist" onClick="putx('dist(')" title="length of line"/>
-    <input type="button" value="yval" onClick="putx('yval(')" title="y(x)"/>
-    <input type="button" value="hppow" onClick="putx('hppow(')" title="hppow(a,b)=a^b"/>
-    </td><td>|</td><td>
-    <input type="button" value="4 place" id="do4pl" onClick="frac23(2)" title="4 decimals"/>
-    </td></tr><tr><td colspan=3>
-    <input type="button" name="Varxx" value="a" onClick="putx(document.theForm.Varxx[0].value)"/>
-    <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,0)"/>
-    <input type="button" name="Varxx" value="b" onClick="putx(document.theForm.Varxx[1].value)"/>
-    <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,1)"/>
-    <input type="button" name="Varxx" value="c" onClick="putx(document.theForm.Varxx[2].value)"/>
-    <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,2)"/>
-    <input type="button" name="Varxx" value="x" onClick="putx(document.theForm.Varxx[3].value)"/>
-    <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,3)"/>
-    <input type="button" name="Varxx" value="y" onClick="putx(document.theForm.Varxx[4].value)"/>
-    <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,4)"/>
-    <input type="button" name="Varxx" value="z" onClick="putx(document.theForm.Varxx[5].value)"/>
-    <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,5)"/>
-    </td><td>|</td><td>KB <input name="isphone" type="checkbox" onClick="checkphone()" title="use keyboard" checked/></td></tr></table>
-    </td></tr><tr><td colspan=2>
-    <textarea name = "input" rows = 40 cols = 90 onKeyUp="enter(event)"></textarea><br>
-    </td></tr></table>
+
+   <input name="degrees" type="radio" id="radiansButton" title="radians" onClick="calc(!wasnotqna);"/> <label for="radiansButton">Radians</label>
+</span>
+    
+
+    <!--<input type="button" value="a/b" id="dofrac" onClick="frac23(3)" title="fractions"/>-->
+
+    
+    
+    <span id="keyboard">
+    Use Keyboard: <input name="isphone" type="checkbox" onClick="checkphone()" title="Use Keyboard" checked/></span>
+        <!--<select>
+            <option>Output Type</option>
+        </select>-->
+            </div>
+        <div id="clearSave">
+            <input name="clerebut" Value="Clear" type="button" onClick="clere()" title="Clear Screen"/>
+            <input name="delbut" Value="Delete" type="button" onClick="del()" title=""/>
+            <input name="popbut" Value="Undo" type="button" onClick="popstack()" title="Undo Last Calculation (ESC)"/>
+            <input name="savebut" Value="Save" type="button" onClick="savestuff();document.theForm.input.focus()" title="Save Screen to Cookies"/>
+            <input name="loadbut" Value="Load" type="button" onClick="loadstuff();wasnotqna=false;document.theForm.input.focus()" title="Load Screen from Cookies"/>
+            <input name="morebut" Value="More" type="button" onClick="calc(true);loadstuff(true);wasnotqna=false;document.theForm.input.focus()" title="Append to Screen from Cookie"/>
+            <input name="addbut" Value="Add" type="button" onClick="addstuff();document.theForm.input.focus()" title="Append to Cookie from Screen"/>
+        </div>
+        </div>
+        
+        <div id="col1">
+        
+        
+        <div id="buttonGroup1">
+            <input type="button" value="%" onClick="putx('%')" title='mod'/>
+            <input type="button" value="(" onClick="putx('(')"/>
+            <input type="button" value=")" onClick="putx(')')"/>
+            <input type="button" value="^" onClick="putx('^')" title='exponent power'/>
+            <input type="button" value="&deg;" onClick="putx('°')"/>
+            <input type="button" value="&#178;" onClick="putx('²')"/>
+            <input type="button" value="&#8730;" onClick="putx('√(')"/>
+            <input type="button" value="π" onClick="putx('π')"/>
+        </div>
+        
+        <div id="digitsGroup">
+            <input type="button" value="7" onClick="putx('7')" class="digit">
+            <input type="button" value="8" onClick="putx('8')" class="digit">
+            <input type="button" value="9" onClick="putx('9')" class="digit">
+            <input type="button" value="+" onClick="putx('+')"/>
+            <input type="button" value="4" onClick="putx('4')" class="digit">
+            <input type="button" value="5" onClick="putx('5')" class="digit">
+            <input type="button" value="6" onClick="putx('6')" class="digit">
+            <input type="button" value="-" onClick="putx('-')"/>
+            <input type="button" value="1" onClick="putx('1')" class="digit">
+            <input type="button" value="2" onClick="putx('2')" class="digit">
+            <input type="button" value="3" onClick="putx('3')" class="digit">
+            <input type="button" value="×" onClick="putx('×')"/>
+            <input type="button" value=" ." onClick="putx('.')"/>
+            <input type="button" value="0" onClick="putx('0')" class="digit">
+            <input type="button" value="," onClick="putx(',')"/>
+            <input type="button" value="÷" onClick="putx('÷')"/>
+        </div>
+        
+    
+        <input name="calcbut" class="calcButton" Value="Calculate" type="button" onClick="if(!document.theForm.isphone.checked)putx('\n');calc(true);" title="calculate"/>
+     
+    </div>
+    <div id="col2">
+       <div id="buttonGroup2">
+            <input type="button" value="exp" onClick="putx('exp(')" title='e to a power'/>
+           <input type="button" value="log" onClick="putx('log(')" title="base10 log= log(10,x)"/>
+           <input type="button" value="ln" onClick="putx('ln(')" title='natural log'/>
+           <input type="button" value="dist" onClick="putx('dist(')" title="length of line"/>
+           <input type="button" value="floor" onClick="putx('floor(')" title='floor aka int()'/>
+           <input type="button" value="ceil" onClick="putx('ceil(')" title='ceiling'/>
+           <input type="button" value="DO" onClick="putx('DO: ')" title='native javascript'/>
+            <input type="button" value="nPr" onClick="putx('nPr(')" title='Permutations'/>
+           <input type="button" value="nCr" onClick="putx('nCr(')" title='Combinations'/>
+           <input type="button" value="line" onClick="putx('line(')" title="line (x0,y0,x1,y1) OR (x0,y0,m)"/>
+           <input type="button" value="slope" onClick="putx('slope(')" title="slope of line"/>
+           <input type="button" value="yval" onClick="putx('yval(')" title="y(x)"/>
+           <input type="button" id="hppowButton" value="hppow" onClick="putx('hppow(')" title="hppow(a,b)=a^b"/>
+           
+            <input type="button" value="=" onClick="putx('=')"/>
+        </div>
+
+        <div id="buttonGroup3">
+            <input type="button" value="gcfsum" onClick="putx('gcfsum(')" title='gcf = sum' id="gcfSumButton">
+            <input type="button" value="prime" onClick="putx('prime(')" title='prime factors'/>
+            <input type="button" value="base" onClick="putx('base(')" title="(number,base)"/>
+            <input type="button" value="sod" onClick="putx('sod(')" title="(sum of digits)"/>
+            <input type="button" value="rand" onClick="putx('rand(')" title="() 0-1, integers: (a) 0-a, (a,b) a-b">
+            <input type="button" value="gcf" onClick="putx('gcf(')" title='greatest common factor'/>
+            <input type="button" value="lcm" onClick="putx('lcm(')" title='least common multiple'/>
+            <input type="button" value="fact" onClick="putx('fact(')" title='factorial'/>
+        </div>
+        </div>
+        
+        <div id="col3">
+        <div id="variableGroup">
+            <h2>Variables</h2>
+            <input type="button" class="variable" name="Varxx" value="a" onClick="putx(document.theForm.Varxx[0].value)"/>
+            <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,0)"/>
+            <input type="button" class="variable" name="Varxx" value="b" onClick="putx(document.theForm.Varxx[1].value)"/>
+            <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,1)"/>
+            <input type="button" class="variable" name="Varxx" value="c" onClick="putx(document.theForm.Varxx[2].value)"/>
+            <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,2)"/>
+            <input type="button" class="variable" name="Varxx" value="x" onClick="putx(document.theForm.Varxx[3].value)"/>
+            <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,3)"/>
+            <input type="button" class="variable" name="Varxx" value="y" onClick="putx(document.theForm.Varxx[4].value)"/>
+            <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,4)"/>
+            <input type="button" class="variable" name="Varxx" value="z" onClick="putx(document.theForm.Varxx[5].value)"/>
+            <input type="text" name="Varxxval" size=4 value="0" onKeyUp="enterz(event,5)"/>
+            <input type="button" value="Last Answer" id="lastAnswer" onClick="putx('Ans')"/>
+        </div>
+        
+        <div id="sinCosTan">
+            <input type="button" value="sin" onClick="putx('sin(')" title='sine'/>
+            <input type="button" value="asin" onClick="putx('asin(')" title='inverse sine'/>
+            <input type="button" value="cos" onClick="putx('cos(')" title='cosine'/>
+            <input type="button" value="acos" onClick="putx('acos(')" title='inverse cosine'/>
+            <input type="button" value="tan" onClick="putx('tan(')" title='tangent'/>
+            <input type="button" value="atan" onClick="putx('atan(')" title='inverse tangent'/>
+        </div>
+        </div>
     </form>
+    </div>
+    
+     
+    
     <script>
     x=navigator.userAgent; isphone=true;
     // print(x+":")
