@@ -1,8 +1,15 @@
-<html><head><title>JS Parabola</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link REL="SHORTCUT ICON" HREF="favicon.ico"></head>
-<body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
-<script type="text/javascript" src="myfunctions.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>JS Parabola</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link REL="SHORTCUT ICON" HREF="favicon.ico">
+        <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+        <link rel="stylesheet" href="assets/complex-calc.css">
+    </head>
+<body id="parabolaEquations">
+<script src="myfunctions.js"></script>
 <script>
 Sigma= String.fromCharCode(931);
 sigma= String.fromCharCode(963);
@@ -408,64 +415,75 @@ cayley = 1 + z
 END FUNCTION
 REM Multiplications minimized
  -->
+    <div id="calctainer">
+        
+<h1>Parabolas and Other Second Degree Equations</h1>
 <form name="theForm">
-<table border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')">Parabolas and some other second degree equations</td></tr>
-<tr><td>
-<table><tr><td>
-<input type="button" value="1" onClick="putx('1')"/>
-<input type="button" value="2" onClick="putx('2')"/>
-<input type="button" value="3" onClick="putx('3')"/>
-<input type="button" value="+" onClick="putx('+')"/>
-</td><td>|| </td><td>
- <input name="calcbut" Value="Solve/build" type="button" onClick="calc()"/>
+    <div id="inputDiv">
+    <textarea name = "input" rows = 3 cols = 99 tabindex="1" onKeyUp="enter(event)"></textarea>
+    <div id="clearSave">
  <input name="clerebut" Value="Clear" type="button" onClick="clere()"/>
  <input name="savebut" Value="Save" type="button" onClick="savestuff()"/>
  <input name="loadbut" Value="Load" type="button" onClick="loadstuff();calc()"/>
  <input name="graphbut" Value="Graph" type="button" onClick="Graph()"/>
  
  <input type="button" value="8 place" id="frac" onClick="swfrac(true,4)"/>
-</td></tr><tr><td>
-<input type="button" value="4" onClick="putx('4')"/>
-<input type="button" value="5" onClick="putx('5')"/>
-<input type="button" value="6" onClick="putx('6')"/>
-<input type="button" value="-" onClick="putx('-')"/>
-</td><td>|| </td><td>
-<input type="button" value="x²" onClick="putx('x²')"/>
-<input type="button" value="x" onClick="putx('x')"/>
-<input type="button" value="(" onClick="putx('(')"/>
-<input type="button" value=")" onClick="putx(')')"/>
-<input type="button" value="^" onClick="putx('^')"/>
+
+
 <input type="button" value="X↔Y" onclick="switchxy()"/>
-</td></tr><tr><td>
-<input type="button" value="7" onClick="putx('7')"/>
-<input type="button" value="8" onClick="putx('8')"/>
-<input type="button" value="9" onClick="putx('9')"/>
-<input type="button" value="*" onClick="putx('*')"/>
-</td><td>|| </td><td>
-stand<input name="stand" type="checkbox"/><!-- standard form -->
-vertex<input name="vertex" type="checkbox"/><!-- vertex maximum/minimum -->
-focus<input name="focus" type="checkbox"/><!-- focus directrix -->
-latus<input name="latus" type="checkbox"/><!-- latus rectum -->
-</td></tr><tr><td>
-<input type="button" value=" ." onClick="putx('.')"/>
-<input type="button" value="0" onClick="putx('0')"/>
-<input type="button" value="," onClick="putx(',')"/>
-<input type="button" value="/" onClick="putx('/')"/>
-</td><td>|| </td><td>
-quad<input name="quad" type="checkbox"/><!-- quadratic formula & discriminant-->
-discr<input name="discr" type="checkbox"/><!--  number of roots -->
-factors<input name="factors" type="checkbox"/><!-- factors -->
-values<input name="values" type="checkbox"/><!-- values -->
-</td></tr></table>
-</td></tr>
-<tr><td colspan=2>
-<textarea name = "input" rows = 3 cols = 99 tabindex="1" onKeyUp="enter(event)"></textarea>
-</td></tr>
-<tr><td colspan=2>
+    </div>
+    </div>
+    <div id="digitsGroup">
+        <input type="button" value="1" onClick="putx('1')" class="digit">
+        <input type="button" value="2" onClick="putx('2')" class="digit">
+        <input type="button" value="3" onClick="putx('3')" class="digit">
+        <input type="button" value="+" onClick="putx('+')">
+        <input type="button" value="4" onClick="putx('4')" class="digit">
+        <input type="button" value="5" onClick="putx('5')" class="digit">
+        <input type="button" value="6" onClick="putx('6')" class="digit">
+        <input type="button" value="-" onClick="putx('-')"/>
+        <input type="button" value="7" onClick="putx('7')" class="digit">
+        <input type="button" value="8" onClick="putx('8')" class="digit">
+        <input type="button" value="9" onClick="putx('9')" class="digit">
+        <input type="button" value="*" onClick="putx('*')"/>
+        <input type="button" value=" ." onClick="putx('.')"/>
+        <input type="button" value="0" onClick="putx('0')" class="digit">
+        <input type="button" value="," onClick="putx(',')"/>
+        <input type="button" value="/" onClick="putx('/')"/>
+    </div>
+    
+<div id="buttonGroup1">
+    <input type="button" value="x²" onClick="putx('x²')"/>
+    <input type="button" value="x" onClick="putx('x')"/>
+    <input type="button" value="(" onClick="putx('(')"/>
+    <input type="button" value=")" onClick="putx(')')"/>
+    <input type="button" value="^" onClick="putx('^')"/>
+</div>
+
+ 
+
+
+<div id="parabolaOptions">
+<input name="stand" id="stand" type="checkbox"/><label for="stand">Standard Form</label><!-- standard form -->
+<input name="vertex" id="vertex" type="checkbox"/><label for="vertex">Vertex Max/Min</label><!-- vertex maximum/minimum -->
+<input name="focus" id="focus" type="checkbox"/><label for="focus">Focus Directrix</label><!-- focus directrix -->
+<input name="latus" id="latus" type="checkbox"/><label for="latus">Latus Rectum</label><!-- latus rectum -->
+
+
+
+<input name="quad" id="quad" type="checkbox"/><label for="quad">Quadratic</label><!-- quadratic formula & discriminant-->
+<input name="discr" id="discr" type="checkbox"/><label for="discr">Discr</label><!--  number of roots -->
+<input name="factors" id="factors" type="checkbox"/><label for="factors">Factors</label><!-- factors -->
+<input name="values" id="values" type="checkbox"/><label for="values">Values</label><!-- values -->
+
+</div>
+    
+<input name="calcbut" Value="Solve/build" type="button" class="calcButton" onClick="calc()"/>
+    
+<div id="parabolaConvert">
 <input name="convbut" tabindex="2" Value="Convert" type="button" onClick="conv()"/> From: <textarea name = "convfr" rows=1 tabindex="0" onKeyUp="enter(event)"></textarea> --> <textarea name = "convto" rows=1 tabindex="0" onKeyUp="enter(event)"></textarea>
-</td></tr>
-<tr><td colspan=2>
+</div>
+<div id="outputDiv">
 <textarea name = "output" rows = 18 cols = 99>
 input can be a polynomial:
   General form: x^2-4*X-5
@@ -483,8 +501,9 @@ or for parabolas:
   Vertex (minimum): (2, -9) Focus: (2, -8.75);
   Points: (-1, 0), (2, -9), (5, 0)
 </textarea>
-</td></tr></table>
+</div>
 </form>
+        </div>
 <script>
 ls=decodeURIComponent(location.search)
 if (ls.search(/\?/)==0){
