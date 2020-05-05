@@ -3,7 +3,6 @@
 <head>
     <title>Continuous Probability</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="assets/styles.css">
     <script src="myfunctions.js"></script>
     <script src="statfns.js"></script>
     <script>
@@ -367,73 +366,64 @@
     window.open('graphs.htm')}
     </script>
     <link rel="SHORTCUT ICON" href="favicon.ico">
+    <link rel="stylesheet" href="assets/articlestyles.css">
 </head>
 <body onLoad="if (document.theForm.mean.value == '0') {document.theForm.mean.focus(); document.theForm.mean.select()}">
+    <div class="calcmenu">
     <h1>Normal(continuous) Distribution Gauss (Gauß)</h1>
     <form name="theForm">
-        <fieldset>
-            <label for="parm">Parameters</label>
-            <input type="radio" name="CItype" value="Parm" id="parm" Checked/>
-            <label for="stat">Statistics</label>
-            <input type="radio" id="stat" name="CItype" value="Stat"/><br>
-            <label for="mean">μ(Mean)</label> = 
-            <input type="text"  id="mean" name = "mean" size = 10 value="0" tabindex=1> <br>
-            <label for="sdev">σ(St Dev)</label> = 
-            <input type="text" id="sdev" name = "sdev" size = 9 value="1" tabindex=2> <br>
-            <label for="sample">sample size</label> = 
-            <input type="text" id="sample" name="sample" size=7 value="1" tabindex=3>
-        </fieldset>
-        <fieldset>
-            Data: <label for="x1">x1</label> = 
-            <input type="text" id="x1"  name = "x1" size = 10 value="0" tabindex=4>
-            <label for="x2">x2</label> = 
-            <input type="text" id="x2" name = "x2" size = 10 value="" tabindex=5>
-            <input name="cff" type="button" value = "Enter" onClick="zval(); prob(); lastdid=0" tabindex=6><br>
-            Standard score: z1= 
-            <input type="text"  name = "z1" size = 5 value="1">
-            z2= 
-            <input type="text"  name = "z2" size = 5 value="">
-            <input name="xscore" type="button" value = "Enter" onClick="xval(); prob(); lastdid=0"><br>
-            Probability= 
-            <input type="text"  name = "pval" size = 10 value="95">
-            C.I. or 1-&alpha;: 
-            <input name="zscore" type="button" value = "Enter" onClick="CIval(); lastdid=0"><br>
-            Error: 
-            <input type="text" name = "error" size = 5 value="0.03">
-            η =(Z<sub>α/2</sub>σ÷E)² or(Z<sub>α/2</sub>÷E)²pq  
-            <input name="minsam" type="button" value = "Enter" onClick="minsamp(); lastdid=0">
-        </fieldset>
-        <fieldset>
-            <input type="button" value="8 place" id="frac" onClick="swfrac(false,5);doit(-1)" title="output format">
+<textarea name="output" rows = 25 cols = 68 onkeyup="enter(event)"></textarea>
+                    <textarea name = "input" rows=1 cols=43 onkeyup="enter(event)"></textarea>
+            <input name="NDbut" type="button" value = "Enter" onClick="calc0();document.theForm.input.focus()"><br><br><br>
+                    <input type="button" value="8 place" id="frac" onClick="swfrac(false,5);doit(-1)" title="output format">
             <input name="clear" type="button" value = "Clear" onClick="cla()">
             <input name="save" type="button" value = "Save" onClick="savestuff('',document.theForm.output.value)">
             <input type="button" value="graph" id="dograph" onClick="graph()" title="show graph"/>
-        </fieldset>
-        <fieldset>
-            <label for="what">What is this text area?</label>
-            <textarea id="what" name = "input" rows=1 cols=42 onkeyup="enter(event)"></textarea>
-            <input name="NDbut" type="button" value = "Enter" onClick="calc0();document.theForm.input.focus()">
-        </fieldset>
-        <fieldset>
-             <legend>Chebyshev (Чебышев)</legend>
+            <label for="parm">Parameters</label><input type="radio" name="CItype" value="Parm" id="parm" Checked/>
+            <label for="stat">Statistics</label><input type="radio" id="stat" name="CItype" value="Stat"/><br>
+            <label for="mean">μ(Mean)</label>
+            <input type="text"  id="mean" name = "mean" size = 10 value="0" tabindex=1> <br>
+            <label for="sdev">σ(St Dev)</label> 
+            <input type="text" id="sdev" name = "sdev" size = 9 value="1" tabindex=2> <br>
+            <label for="sample">sample size</label>
+            <input type="text" id="sample" name="sample" size=7 value="1" tabindex=3>
+
+        <h2>Data:</h2> <label for="x1">x1</label> 
+            <input class="shortinput" type="text" id="x1"  name = "x1" size = 10 value="0" tabindex=4><br><br>
+            <label for="x2">x2</label> 
+            <input class="shortinput" type="text" id="x2" name = "x2" size = 10 value="" tabindex=5>
+            <input name="cff" type="button" value = "Enter" onClick="zval(); prob(); lastdid=0" tabindex=6><br><br><br>
+        <h2> Standard score:</h2> <label>z1=</label>
+            <input class="shortinput" type="text"  name = "z1" size = 5 value="1"><br><br>
+            <label>z2= </label>
+            <input class="shortinput" type="text"  name = "z2" size = 5 value="">
+            <input name="xscore" type="button" value = "Enter" onClick="xval(); prob(); lastdid=0"><br><br><br>
+        <h2>Probability</h2> 
+        <label> C.I. or 1-&alpha;: </label>    
+        <input  class="shortinput" type="text"  name = "pval" size = 10 value="95">
+            <input name="zscore" type="button" value = "Enter" onClick="CIval(); lastdid=0"><br><br><br>
+        <h2>Error:</h2>
+        <label>η =(Z<sub>α/2</sub>σ÷E)² or(Z<sub>α/2</sub>÷E)²pq </label>
+            <input class="shortinput" type="text" name = "error" size = 5 value="0.03">
+             
+            <input name="minsam" type="button" value = "Enter" onClick="minsamp(); lastdid=0"><br><br><br>
+
+
+
+             <h2>Chebyshev (Чебышев)</h2>
             <label for="Ck">k:</label>
-            <input type="text"  id="Ck" name = "Ck" size = 12 value="">
+            <input class="shortinput" type="text"  id="Ck" name = "Ck" size = 12 value="">
             <input name="Ckbut" type="button" value = "Enter" onClick="doit(7)">
             <label for="Cp">p:</label> 
-            <input type="text" id="Cp" name = "Cp" size = 12 value="">
-            <input name="Cpbut" type="button" value = "Enter" onClick="doit(8)">
-        </fieldset>
-        <fieldset>
-            <legend>Siméon Poisson P(x; μ) </legend>
+            <input class="shortinput" type="text" id="Cp" name = "Cp" size = 12 value="">
+            <input name="Cpbut" type="button" value = "Enter" onClick="doit(8)"><br><br><br>
+            <h2>Siméon Poisson P(x; μ) </h2>
             <label for="PX">x:</label> 
-            <input type="text" id="PX"  name = "PX" size = 12 value="">
+            <input class="shortinput" type="text" id="PX"  name = "PX" size = 12 value=""><br><br>
             <label for="PM">μ(or λ):</label>
-            <input type="text" id="PM"  name = "PM" size = 12 value="">
+            <input class="shortinput" type="text" id="PM"  name = "PM" size = 12 value="">
             <input name="PXbut" type="button" value = "Enter" onClick="calcPX()">
-        </fieldset>
-        <fieldset>
-            <textarea name="output" rows = 25 cols = 80 onkeyup="enter(event)"></textarea>
-        </fieldset>
+
     </form>
     <script>
     urnmode=0; urntext=['nCr','nPr','n^r']
@@ -447,5 +437,7 @@
       document.theForm.input.value = "IQR:-0.6745<z<0.6745;-1<z<1;-2<z<2;-3<z<3";document.theForm.input.focus()}
     else cla()
     </script>
-</body>
+        <br><br>
+</div>
+        </body>
 </html>
