@@ -228,73 +228,78 @@ function fixandor()
 }
 </script>
     <link rel="SHORTCUT ICON" href="favicon.ico">
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="assets/articlestyles.css">
 </head>
 <body onLoad="window.resizeTo( 800, 800 )">
+    <div class="calcmenu">
     <h1>Discrete Distribution</h1>
     <form name="theForm">
+        <textarea name = "output" rows = 25 cols = 68 onkeyup="enter(event)"></textarea>
         <input name="stats" type="button" value = "Stats" onClick="xstats=true;if (lastdid==0) lastdid=2;doit();xstats=false">
-        <fieldset>
-            <legend><a href="javascript: window.open('2dice.htm','','top=100,left=100')">Dice</a> </legend>
-            <label for="noOfDice">Number of Dice:</label>
-            <input type="text" id="noOfDice" name = "noofdice" size = 1 value="2" onClick="noofdice.value=(Number(noofdice.value)+1); noofdice.select()"> 
-            <label for="faces">Number of Faces:</label>
-            <input type="text" id="faces" name = "nooffaces" size = 1 value="6" onClick="nooffaces.value=(Number(nooffaces.value)+1); nooffaces.select()">
-            <input name="DiceToss" type="button" value = "Enter" onClick="fixandor(); doit(2)">
-        </fieldset>
-        <fieldset>
-            <legend><a href="javascript: window.open('box.htm','','top=100,left=100')">Box</a></legend>
-            <label for="boxTypes">Types:</label>
-            <input type="text" id="boxTypes" name = "boxtype" size = 1 value="4" onClick="boxtype.value=(Number(boxtype.value)+1); boxtype.select()">
-            <label for="boxpick">Pick:</label>
-            <input type="text" id="boxpick" name = "boxpick" size = 1 value="5" onClick="boxpick.value=(Number(boxpick.value)+1); boxpick.select()">
-            <input name="boxdo" type="button" value = "Enter" onClick="doit(9)">
-        </fieldset>
-        <fieldset>
-            <legend><a href="javascript: window.open('10coins.htm','','top=100,left=100')">Coins (Binomial)</a></legend>
-            <label for="binn">n:</label>
-            <input type="text" id="binn" name = "binn" size = 1 value="10" onClick="binn.value=(Number(binn.value)+1); binn.select()">
-            <label for="binp">p:</label>
-            <input type="text" id="binp"  name = "binp" size = 1 value="0.5">
-            <input name="Binomial" type="button" value = "Enter" onClick="doit(4)">
-        </fieldset>
-        <fieldset>
-            <legend><a href="javascript: window.open('urn.htm','','top=100,left=100')">Urn</a></legend>
-            <label for="blueballs"># X:</label>
-            <input type="text" id="blueballs" name = "blueballs" size = 1 value="6" onClick="blueballs.value=(Number(blueballs.value)+1); blueballs.select()"> 
-            <label for="whiteballs"># Not X:</label>
-            <input type="text" id="whiteballs" name = "whiteballs" size = 1 value="9" onClick="whiteballs.value=(Number(whiteballs.value)+1); whiteballs.select()"> 
-            <label for="pickBalls">Pick:</label>
-            <input type="text" id="pickBalls" name = "PickBalls" size = 1 value="8" onClick="PickBalls.value=(Number(PickBalls.value)+1); PickBalls.select()"> 
-            <input type="button" value="nCr" id="urntxt" onClick="urnmode=++urnmode%3;document.getElementById('urntxt').value=urntext[urnmode];doit(3)" title="type of selection">
-            <input name="PickBall" type="button" value = "Enter" onClick="doit(3)">
-        </fieldset>
-        <fieldset>
-            <input name="clear" type="button" value = "Clear" onClick="dnotprime.checked=false; disprime.checked=false; document.theForm.xandor.value=''; document.theForm.xcond.value=''; document.theForm.xfrom.value=''; document.theForm.xthru.value=''">
-            <input id="disprime" name="disprime" type="checkbox" onClick="if (disprime.checked) dnotprime.checked=false;fixandor();doit()"> 
-            <label for="disprime">Prime</label>
-            <input name="dnotprime" id="dnotprime" type="checkbox"  onClick="if (dnotprime.checked) disprime.checked=false;fixandor();doit()"> 
-            <label for="dnotprime">Not Prime</label>
-            <!--On the website, this button activates when prime or not prime is checked, and will switch between and & or. Doesn't work here, and should probably say something regardless?-->
-            <input name='xandor' type='button' value='' onClick='switchandor();doit()'/>
-            <!--I don't know what this is for-->
-            <input type="text" name = "xcond" size = 20 value="" onClick="document.theForm.xcond.value=xconds[xcondi++]; if (xcondi>=xconds.length) xcondi=0; fixandor();doit()">
-            <label for="xfrom">From:</label>
-            <input type="text"  id="xfrom" name = "xfrom" size = 1>
-            <label for="xthru">Thru:</label>
-            <input type="text" id="xthru" name = "xthru" size = 1>
-        </fieldset>
-        <!--What is this a title for?-->
-        Combinations &amp; Permutations 
-        <fieldset>
-            <input name="clear1" type="button" value="Clear"  onClick="document.theForm.output.value ='';cla();">
+        <input name="clear1" type="button" value="Clear"  onClick="document.theForm.output.value ='';cla();">
+<br><br>
+        
+        <h2 style="margin-top: 400px;">Combinations &amp; Permutations</h2> 
+            
             <label for="nval">N:</label>
-            <input type="text" id="nval" name="Nval" size=1>
+            <input class="shortinput" type="text" id="nval" name="Nval" size=1><br><br>
             <label for="rval">R:</label>
-            <input type="text" id="rval" name="Rval" size=1>
+            <input class="shortinput" type="text" id="rval" name="Rval" size=1>
+        
             <input name="calc1" type="button" value= "Enter" onClick="calcnr()"/>
-        </fieldset>
-        <textarea name = "output" rows = 25 cols = 85 onkeyup="enter(event)"></textarea>
+        
+        <br><br><br>
+            <h2><a href="javascript: window.open('2dice.htm','','top=100,left=100')">Dice</a> </h2>
+            <label for="noOfDice">Number of Dice:</label>
+            <input class="shortinput" type="text" id="noOfDice" name = "noofdice" size = 1 value="2" onClick="noofdice.value=(Number(noofdice.value)+1); noofdice.select()"> <br><br>
+            <label for="faces">Number of Faces:</label>
+            <input class="shortinput" type="text" id="faces" name = "nooffaces" size = 1 value="6" onClick="nooffaces.value=(Number(nooffaces.value)+1); nooffaces.select()">
+            <input name="DiceToss" type="button" value = "Enter" onClick="fixandor(); doit(2)">
+<br><br>
+
+            <h2><a href="javascript: window.open('box.htm','','top=100,left=100')">Box</a></h2>
+            <label for="boxTypes">Types:</label>
+            <input class="shortinput" type="text" id="boxTypes" name = "boxtype" size = 1 value="4" onClick="boxtype.value=(Number(boxtype.value)+1); boxtype.select()"><br><br>
+            <label for="boxpick">Pick:</label>
+            <input class="shortinput" type="text" id="boxpick" name = "boxpick" size = 1 value="5" onClick="boxpick.value=(Number(boxpick.value)+1); boxpick.select()">
+            <input name="boxdo" type="button" value = "Enter" onClick="doit(9)">
+<br><br>
+        
+            <h2><a href="javascript: window.open('10coins.htm','','top=100,left=100')">Coins (Binomial)</a></h2>
+            <label for="binn">n:</label>
+            <input class="shortinput" type="text" id="binn" name = "binn" size = 1 value="10" onClick="binn.value=(Number(binn.value)+1); binn.select()"><br><br>
+            <label for="binp">p:</label>
+            <input class="shortinput" type="text" id="binp"  name = "binp" size = 1 value="0.5">
+            <input name="Binomial" type="button" value = "Enter" onClick="doit(4)"><br><br>
+
+            <h2><a href="javascript: window.open('urn.htm','','top=100,left=100')">Urn</a></h2>
+
+            <label for="blueballs"># X:</label>
+            <input class="shortinput" type="text" id="blueballs" name = "blueballs" size = 1 value="6" onClick="blueballs.value=(Number(blueballs.value)+1); blueballs.select()"> <br><br>
+            <label for="whiteballs"># Not X:</label>
+            <input class="shortinput" type="text" id="whiteballs" name = "whiteballs" size = 1 value="9" onClick="whiteballs.value=(Number(whiteballs.value)+1); whiteballs.select()"> <br><br>
+            <label for="pickBalls">Pick:</label>
+            <input class="shortinput" type="text" id="pickBalls" name = "PickBalls" size = 1 value="8" onClick="PickBalls.value=(Number(PickBalls.value)+1); PickBalls.select()"> <br><br>
+
+
+            
+            <label for="disprime">Prime</label><input id="disprime" name="disprime" type="checkbox" onClick="if (disprime.checked) dnotprime.checked=false;fixandor();doit()"> 
+            
+            <label for="dnotprime">Not Prime</label><input name="dnotprime" id="dnotprime" type="checkbox"  onClick="if (dnotprime.checked) disprime.checked=false;fixandor();doit()"> 
+            
+            
+            <input name='xandor' type='button' value='' onClick='switchandor();doit()'/>
+            
+            <input class="shortinput" type="text" name = "xcond" size = 20 value="" onClick="document.theForm.xcond.value=xconds[xcondi++]; if (xcondi>=xconds.length) xcondi=0; fixandor();doit()"><br><br><br>
+            <label for="xfrom">From:</label>
+            <input class="shortinput" type="text"  id="xfrom" name = "xfrom" size = 1>
+            <label for="xthru">Thru:</label>
+            <input class="shortinput" type="text" id="xthru" name = "xthru" size = 1>
+                <input name="clear" type="button" value = "Clear" onClick="dnotprime.checked=false; disprime.checked=false; document.theForm.xandor.value=''; document.theForm.xcond.value=''; document.theForm.xfrom.value=''; document.theForm.xthru.value=''">
+                    <input type="button" value="nCr" id="urntxt" onClick="urnmode=++urnmode%3;document.getElementById('urntxt').value=urntext[urnmode];doit(3)" title="type of selection">
+            <input name="PickBall" type="button" value = "Enter" onClick="doit(3)"><br><br><br>
+        
+        
 </form>
 <script>
 urnmode=0; urntext=['nCr','nPr','n^r']
@@ -306,5 +311,5 @@ if (ls.search(/\?/)==0){
  else if (lsd[0]=="U"){document.theForm.blueballs.value=lsd[1];document.theForm.whiteballs.value=lsd[2];document.theForm.PickBalls.value=lsd[3]}
  else if (lsd[0]=="C"){document.theForm.binn.value=lsd[1]; document.theForm.binp.value=lsd[2]}}
 else cla()
-</script>
+</script></div>
 </body></html>
