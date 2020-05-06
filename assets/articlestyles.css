@@ -61,7 +61,7 @@ th{
     margin:0px auto 10px auto;
     vertical-align: top;
     width:50%;
-    height: auto;
+    height: 100%;
     color: #f1f1f1;
     padding: 10px 30px;
     overflow:auto;
@@ -71,11 +71,11 @@ th{
     text-align: center;
 }
 
-.artmenu main {
+/*.artmenu main {
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
-}
+}*/
 
 .artmenuheader{
     width: 100%;
