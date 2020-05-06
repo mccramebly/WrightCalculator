@@ -92,7 +92,7 @@ pre {
     vertical-align: top;
     width:500px;
     padding: 10px 30px;
-    height: 1fr;
+    overflow:auto;
 }
 
 .calcmenu h1 {
@@ -107,7 +107,7 @@ pre {
     vertical-align: top;
     width:590px;
     padding: 10px 30px;
-    height: 1fr;
+    overflow:auto;
     
 }
 
