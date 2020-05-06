@@ -64,6 +64,7 @@ th{
     height: auto;
     color: #f1f1f1;
     padding: 10px 30px;
+    overflow:auto;
 }
 
 .artmenu h1 {
@@ -81,6 +82,9 @@ th{
     margin: 0px auto 0px auto;
 }
 
+pre {
+    clear:left;
+}
 .calcmenu {
     background:#f1f1f1;
     font-family:"Segoe UI", Helvetica, Arial, sans-serif;
