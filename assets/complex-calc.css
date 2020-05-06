@@ -389,6 +389,57 @@ input.calcButton {
     height:300px;
 }
 
+/* poly.htm */
+#polynomials label{
+    vertical-align: middle;
+}
+#polynomials #inputOutputGroup {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+#polynomials #inputOutputGroup #clearSave {
+    grid-template-columns: 1fr 1fr;
+}
+
+#polynomials #calctainer form {
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 10px;
+}
+
+#polynomials #digitsGroup {
+    grid-area: 2 / 1 / 5 / 2;
+    margin:0;
+    border:none;
+    padding:0;
+}
+
+#polynomials #buttonGroup1 {
+    grid-area: 2 / 2 / 4 / 3;
+    border:none;
+    margin:0;
+    padding:0;
+}
+
+#polynomials #buttonGroup2 {
+    grid-area: 4 / 2 / 5 /3;
+    grid-template-columns: 1fr 1fr;
+    border:none;
+}
+
+#polynomials #sinCosTan {
+    grid-area: 5 / 1 / 6 / 2;
+    border:none;
+}
+
+#polynomials #buttonGroup2 input:first-child {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+#polynomials #buttonGroup2 span:first-of-type {
+    grid-area: 3 / 1 / 4 / 3;
+    text-align: center;
+}
+
 /* media queries */
 
 @media only screen and (max-width:768px) {
@@ -548,5 +599,22 @@ input.calcButton {
         border:none;
         border-bottom:1px dashed;
         margin-bottom:10px;
+    }
+}
+
+/* poly */
+
+@media only screen and (max-width:500px) {
+    #polynomials #calctainer form {
+        display:block;
+    }
+    #polynomials #buttonGroup1 {
+        padding:10px 0 0;
+    }
+    #polynomials #sinCosTan {
+        padding-top:0;
+    }
+    .calcButton {
+        width:100%;
     }
 }
