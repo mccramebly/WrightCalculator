@@ -1,48 +1,55 @@
 <html><head><title>table of function values</title>
+    <link rel="stylesheet" href="assets/articlestyles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <link REL="SHORTCUT ICON" hrEF="favicon.ico"></head>
 <body onLoad="self.focus(); document.theForm.input.focus(); window.resizeTo( 750, 450 );">
+    <div class="calcmenu">
 <script type="text/javascript" src="myfunctions.js"></script>
 <script type="text/javascript" src="statfns.js"></script>
 <form name="theForm">
-<table  border = 1>
-
-<tr>
-<td onClick="window.open('index.htm')">f(x)= </td><td>
-<textarea name = "input" rows = 1 cols = 77 tabindex="1" onKeyUp="enter(event)"></textarea> <input name="clabut" type="button" value = "clear" onClick="cla()" tabindex="7" /></td></tr>
-<tr><td>x-range</td><td>
-from<input type="text" name = "x1" size = 5 tabindex="2" onKeyUp="enter(event)"/>
- thru<input type="text" name = "x2" size = 5 tabindex="3" onKeyUp="enter(event)"/>
- step<input type="text" name = "xd" size = 5 tabindex="4" onKeyUp="enter(event)"/> -->
+<h1>Table of Function Values</h1>
+    <textarea name = "output" rows = 23 cols = 68 tabindex="20"></textarea>
+    <input name="savebut" Value="Save" type="button" onClick="savestuff();document.theForm.input.focus()"/>
+<input name="loadbut" Value="Load" type="button" onClick="loadstuff();calc();document.theForm.input.focus()"/>
+    <input name="clabut" type="button" value = "clear" onClick="cla()" tabindex="7" />
+<textarea name = "input" rows = 1 cols = 68 tabindex="1" onKeyUp="enter(event)"></textarea> 
+<br><br><br>
+<h2>X-Range</h2>
+    <label>from</label><input type="text" name = "x1" size = 5 tabindex="2" onKeyUp="enter(event)"/>
+        <label>thru</label><input type="text" name = "x2" size = 5 tabindex="3" onKeyUp="enter(event)"/>
+    <label>step</label><input type="text" name = "xd" size = 5 tabindex="4" onKeyUp="enter(event)"/> -->
 <input name="ZIbut" type="button" value = "In" onClick="ZI()" tabindex="5" />
 <input name="ZObut" type="button" value = "Out" onClick="ZO()" tabindex="6" />
 <input name="radianbut" type="button" value = "0 to 2&pi;" onClick="document.theForm.x1.value=0; document.theForm.x2.value=2*Math.PI; calc()" tabindex="10" />
 <input name="YIbut" type="button" value = "Y +" onClick="YI()" tabindex="7" />
-</td></tr>
-<tr><td valign="TOP">
-<input name="Chart" type="button" value = "(x,y) Table" onClick="dochart=1; calc()" tabindex="8" /><br>
-<input name="ssbut" type="button" value = "Tab Table" onClick="dochart=2; calc()" tabindex="8" /><br>
-<input name="calcbut" type="button" value = "Plot" onClick="fcus()" tabindex="9" /><br>
-<input name="slopebut" type="button" value = "Slope" onClick="slope()" tabindex="12" /><br>
-<hr>
+
+
+<input name="Chart" type="button" value = "(x,y) Table" onClick="dochart=1; calc()" tabindex="8" />
+<input name="ssbut" type="button" value = "Tab Table" onClick="dochart=2; calc()" tabindex="8" />
+<input name="calcbut" type="button" value = "Plot" onClick="fcus()" tabindex="9" />
+<input name="slopebut" type="button" value = "Slope" onClick="slope()" tabindex="12" />
+
+    
+    
 <input name="ORbut" type="button" value = "Origin" onClick="ORset()" tabindex="11" /><br>
-<input name="RObut" type="button" value = "Root" onClick="Root()" tabindex="13" /><br>
-<input name="MXbut" type="button" value = "Max" onClick="MX()" tabindex="14" /><br>
-<input name="MNbut" type="button" value = "Min" onClick="MN()" tabindex="15" /><br>
-<input name="UPbut" type="button" value = "Mv Up" onClick="MUP()" tabindex="16" /><br>
-<input name="DNbut" type="button" value = "Mv Dn" onClick="MDN()" tabindex="17" /><br>
+<input name="RObut" type="button" value = "Root" onClick="Root()" tabindex="13" />
+<input name="MXbut" type="button" value = "Max" onClick="MX()" tabindex="14" />
+<input name="MNbut" type="button" value = "Min" onClick="MN()" tabindex="15" />
+<input name="UPbut" type="button" value = "Mv Up" onClick="MUP()" tabindex="16" />
+<input name="DNbut" type="button" value = "Mv Dn" onClick="MDN()" tabindex="17" />
 <!-- <input name="YMbut" type="button" value = "Y &lt; 0" onClick="YMset()" tabindex="13" /><br>
 <input name="YPbut" type="button" value = "Y &gt; 0" onClick="YPset()" tabindex="14" /><br>-->
-<hr>
-<input name="savebut" Value="Save" type="button" onClick="savestuff();document.theForm.input.focus()"/><br>
-<input name="loadbut" Value="Load" type="button" onClick="loadstuff();calc();document.theForm.input.focus()"/><br>
+
+    
+    
+<br>
 <input name="graphbut" Value="Graph" type="button" onClick="graph();document.theForm.input.focus()"/><br>
-<!-- <input name="popbut" type="button" value = "POP" onClick="pop()" tabindex="19" /><br> -->
+
 <input name="newtbut" type="button" value = "Newton" onClick="newton()" tabindex="7" /><br>
 <input name="myround" type="button" value="8 place" id="frac" onClick="swfrac(true)" title="output format"/>
-</td><td>
-<textarea name = "output" rows = 23 cols = 84 tabindex="20"></textarea></td></tr>
-</table>
+
+
+<br><br><br><br><br><br>
 </form>
 <script>
 var dochart=1
@@ -403,4 +410,4 @@ if (ls.search(/\?/)==0){
  if (lsd[1].length>0) document.theForm.x1.value = lsd[1]
  if (lsd[2].length>0) document.theForm.x2.value = lsd[2]
  chart()}
-</script></body></html>
+</script></div></body></html>
