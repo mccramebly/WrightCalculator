@@ -55,12 +55,14 @@ th{
 }
 /* menu styles w/ start of a grid */
 .artmenu {
-    background:#f1f1f1;
+    background:#444348;
     font-family:"Segoe UI", Helvetica, Arial, sans-serif;
     border-radius:15px;
-    margin:5px auto;
+    margin:0px auto 10px auto;
     vertical-align: top;
     width:50%;
+    height: auto;
+    color: #f1f1f1;
     padding: 10px 30px;
 }
 
@@ -72,6 +74,11 @@ th{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
+}
+
+.artmenuheader{
+    width: 100%;
+    margin: 0px auto 0px auto;
 }
 
 .calcmenu {
