@@ -364,7 +364,7 @@ function fixandor()
 <input type="button" value="8 place" id="frac" onClick="swfrac(false,5); doit(-1)" title="output format"/>
 <!--<input name="loadbut" Value="Load" type="button" onClick="loadstuff();document.theForm.input.focus()"/>-->
 <textarea name = "input" rows=1 cols=42 onkeyup="enter(event)"></textarea>
-<input name="NDbut" type="button" value = "Enter" onClick="calc0();document.theForm.input.focus()">
+<input name="NDbut" type="button" value = "Enter" onClick="calc0();document.theForm.input.focus()">&nbsp;
 
         <h2><a href="javascript: window.open('2dice.htm','','top=100,left=100')">Dice</a></h2> <label>N</label><input type="text" name = "noofdice" size = 1 value="2" onClick="noofdice.value=(Number(noofdice.value)+1); noofdice.select()"> <label>Faces</label><input type="text" name = "nooffaces" size = 1 value="6" onClick="nooffaces.value=(Number(nooffaces.value)+1); nooffaces.select()">
  <input name="DiceToss" type="button" value = "Enter" onClick="fixandor(); doit(2)"><br><br><br>
