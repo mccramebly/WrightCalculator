@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-            <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+            
         <link rel="stylesheet" href="assets/articlestyles.css">
     <title>Area of Rectangle</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="styles.css">
+
     <link rel="SHORTCUT ICON" href="favicon.ico">
     <script src="myfunctions.js"></script>
     <script>
@@ -62,9 +62,15 @@
 </head>
 <body>
     <div class="calcmenu">
+                <a href="index.htm"><img class="artmenuheader" src="assets/calcheaderlight.png"></a>
     <form name="theForm">
 
-        <h2>Area of Rectangle</h2>
+        <h1>Area of Rectangle</h1>
+        <textarea name= "input" rows=10 cols=68></textarea>
+                     <input type="button" name="breset" value= "Reset" onClick="resett()">
+        <input type="button" name="bsample" value= "Examples" onClick="sample()">
+        <input type="button" value="Output" id="frac" onClick="swfrac(true,4)" title="output format">   
+
         <p>The formula for calculating the AREA of a rectangle is LENGTH times WIDTH
 Using Algebra you can get equivalent formulas for calculating the LENGTH or WIDTH
 In other words, if you know two of the three values, you can calculate the third value.</p>
@@ -87,33 +93,32 @@ To use this app all you have to do is to put values into the boxes, select your 
         <h2>Length</h2>
         <input type="button" name="blength" value="Length" onClick="dolength()" tabindex=4>
         <input type="text"  name= "flength" size= 10 value="" tabindex=1><br><br>
-        <input name="linch" type="radio" title="linch" checked value="0">inches<br>
-        <input name="linch" type="radio" title="linch" value="1">feet<br>
-        <input name="linch" type="radio" title="linch" value="2">miles<br>
-        <input name="linch" type="radio" title="linch" value="3">meters<br>
-        <input name="linch" type="radio" title="linch" value="4">km<br>
+        <label>Inches</label><input name="linch" type="radio" title="linch" checked value="0">
+        <label>Feet</label><input name="linch" type="radio" title="linch" value="1">
+        <label>Miles</label><input name="linch" type="radio" title="linch" value="2">
+        <label>Meters</label><input name="linch" type="radio" title="linch" value="3">
+        <label>Kilometers</label><input name="linch" type="radio" title="linch" value="4">
+        
+        <br><br><br><br>
         <h2>Width</h2>
         <input type="button" name="bwidth" value="Width" onClick="dowidth()" tabindex=5>
         <input type="text" name="fwidth" size=10 value="" tabindex=2><br><br>
-        <input name="winch" type="radio" title="winch" checked value="0">inches<br>
-        <input name="winch" type="radio" title="winch" value="1">feet<br>
-        <input name="winch" type="radio" title="winch" value="2">miles<br>
-        <input name="winch" type="radio" title="winch" value="3">meters<br>
-        <input name="winch" type="radio" title="winch" value="4">km<br>
+        <label>Inches</label><input name="winch" type="radio" title="winch" checked value="0">
+        <label>Feet</label><input name="winch" type="radio" title="winch" value="1">
+        <label>Miles</label><input name="winch" type="radio" title="winch" value="2">
+        <label>Meters</label><input name="winch" type="radio" title="winch" value="3">
+        <label>Kilometers</label><input name="winch" type="radio" title="winch" value="4">
+        <br><br><br><br>
      <h2>Area</h2>
         <input type="button" name="barea" value="Area" onClick="doarea()" tabindex=6>
         <input type="text"  name="farea" size= 10 value="" tabindex=3><br><br>
-        <input name="ainch" type="radio" title="ainch" checked value="0">inches<br>
-        <input name="ainch" type="radio" title="ainch" value="1">feet<br>
-        <input name="ainch" type="radio" title="ainch" value="2">miles<br>
-        <input name="ainch" type="radio" title="ainch" value="3">meters<br>
-        <input name="ainch" type="radio" title="ainch" value="4" />km<br>
-        <h2>&nbsp;</h2>
-             <input type="button" name="breset" value= "Reset" onClick="resett()">
-        <input type="button" name="bsample" value= "Examples" onClick="sample()">
-        <input type="button" value="Output" id="frac" onClick="swfrac(true,4)" title="output format">   
-<textarea name= "input" rows=10 cols=68>
-</textarea>
+        <label>Inches</label><input name="ainch" type="radio" title="ainch" checked value="0">
+        <label>Feet</label><input name="ainch" type="radio" title="ainch" value="1">
+        <label>Miles</label><input name="ainch" type="radio" title="ainch" value="2">
+        <label>Meters</label><input name="ainch" type="radio" title="ainch" value="3">
+        <label>Kilometers</label><input name="ainch" type="radio" title="ainch" value="4" />
+        
+
 
 </form>
         </div>
@@ -125,7 +130,7 @@ To use this app all you have to do is to put values into the boxes, select your 
 vlength=0
 vwidth=0
 varea=0
-units=["inches","feet","miles","meters","km"]
+units=["Inches","Feet","Miles","Meters","Kilometers"]
 factors=["63360","5280","1","1609.344","1.609344"]
 zeta= String.fromCharCode(951)
 alpha= String.fromCharCode(945)
