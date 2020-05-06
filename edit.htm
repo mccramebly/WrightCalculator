@@ -4,10 +4,11 @@
     <title>Regular Expression Text Editor</title>
     <meta charset="utf-8">
     <link REL="SHORTCUT ICON" HREF="favicon.ico">
-    <link rel="stylesheet" href="assets/styles.css">
+        <link rel="stylesheet" href="assets/articlestyles.css">
 </head>
 <body onLoad="self.focus();document.theForm.input.focus();">
-    <script src="myfunctions.js"></script>
+    <div class="calcmenu">
+        <script src="myfunctions.js"></script>
     <script>
     // ---------------------------------------------------*/
     function getlocalstore(add){  // add = false  --> clear screen
@@ -625,24 +626,7 @@
     </script>
     <h1>Regular Expression Text Editor</h1>
     <form name="theForm">
-        <p>Math118:
-        <input name="vocabbut" Value="vocab" type="button"  onClick="vocab()" title="Some math words you should know"/>
-        <input name="logbut" Value="logic" type="button" onClick="logic()" title="calls truth table for logic"/>
-        <input name="calcbut"  Value="calc" type="button" onClick="calc()" title="saves screen to cookie and starts calculator"/>
-        <input name="discbut"  Value="probab" type="button" onClick="disc()" title="calls discrete probability module"/>
-        <input name="statsbut" Value="stats" type="button" onClick="dostats()" title="send screen to statistics module"/>
-        Go:
-        <input name="nextbut" Value="next" type="button" onClick="menu()" title="subsequent menu item"/>
-        <input name="backbut" Value="back" type="button" onClick="back()" title="previous menu item"/>
-        <input name="clerebut" Value="Clear" type="button" onClick="clere()" title="clears screen (ESC)"/>
-        Other:
-        <input name="solvbut"  Value="simplify" type="button" onClick="solve()" title="saves screen to cookie and starts algebra"/>
-        <input name="graphbut" Value="graph" type="button" onClick="dograph()" title="send screen to grapher"/>
-        <input name="pybut" value="python" type="button" onClick="python()" title="converts python to js"/>
-        <input name="mathbut" Value="math" type="button" onClick="math()" title="converts math to js"/>
-        <input name="jsrunbut"  Value="J/S" type="button" onClick="jsrun()" title="start java console"/>
-        </p>
-        <textarea name = "input" rows = 25 cols = 110 onKeyUp="enter(event)">
+        <textarea name = "input" rows = 25 cols = 68 onKeyUp="enter(event)">
 The Regular Expression Text Editor is sort of like MicroSoft's Notepad on steroids.
 I use it to write programs and to clean up text before I pass it on to one of the calculators.
 You can use the buttons on top to use or to read about my calculators.
@@ -662,8 +646,26 @@ The buttons on the bottom are for:
    [see the Guide button for more information].
 The last line is for converting logical variables that are other than p,q,r,s,t.
         </textarea>
-        <p>
-            Cookies:
+        <h2>Math118:</h2>
+        <input name="vocabbut" Value="vocab" type="button"  onClick="vocab()" title="Some math words you should know"/>
+        <input name="logbut" Value="logic" type="button" onClick="logic()" title="calls truth table for logic"/>
+        <input name="calcbut"  Value="calc" type="button" onClick="calc()" title="saves screen to cookie and starts calculator"/>
+        <input name="discbut"  Value="probab" type="button" onClick="disc()" title="calls discrete probability module"/>
+        <input name="statsbut" Value="stats" type="button" onClick="dostats()" title="send screen to statistics module"/><br><br><br>
+        <h2>Go:</h2>
+        <input name="nextbut" Value="next" type="button" onClick="menu()" title="subsequent menu item"/>
+        <input name="backbut" Value="back" type="button" onClick="back()" title="previous menu item"/>
+        <input name="clerebut" Value="Clear" type="button" onClick="clere()" title="clears screen (ESC)"/><br><br>
+        <h2>Other:</h2>
+        <input name="solvbut"  Value="simplify" type="button" onClick="solve()" title="saves screen to cookie and starts algebra"/>
+        <input name="graphbut" Value="graph" type="button" onClick="dograph()" title="send screen to grapher"/>
+        <input name="pybut" value="python" type="button" onClick="python()" title="converts python to js"/>
+        <input name="mathbut" Value="math" type="button" onClick="math()" title="converts math to js"/>
+        <input name="jsrunbut"  Value="J/S" type="button" onClick="jsrun()" title="start java console"/><br><br><br>
+        
+        
+        
+            <h2>Cookies:</h2>
             <input name="savebut" Value="Save" type="button" onClick="putlocalstore()" title="saves screen as cookie"/>
             <input name="loadbut" Value="Load" type="button" onClick="getlocalstore(false)" title="loads screen from cookie"/>
             <input name="addbut" Value="Add" type="button" onClick="getlocalstore(true)" title="adds cookie to end of screen"/>
@@ -680,8 +682,8 @@ The last line is for converting logical variables that are other than p,q,r,s,t.
             <input name="simplifybut" Value="simplify" type="button" onClick="trytoload('simplify')">
             <input name="calcbut" Value="calc" type="button" onClick="trytoload('calc')">
             <input name="graphdatabut" Value="graph" type="button" onClick="trytoload('graphdata')">
-            <br>
-            Regex:
+            <br><br><br><br><br><br>
+        <h2>Regex:</h2>
             <input name="probnobut" Value="#. to #)" type="button" onClick="probno()" title="converts problem number"/>
             <input name="thoubut" Value="$0,000" type="button" onClick="thou()" title="converts currency to number"/>
             <input name="pdivbut" Value="( )/( )" type="button" onClick="pdiv()" title="replaces 'divided by' with symbols"/>
@@ -690,10 +692,16 @@ The last line is for converting logical variables that are other than p,q,r,s,t.
             <input name="lisbut" Value="cs list" type="button" onClick="lis()" title="generates comma separated list"/>
             <input name="lis1but" Value="sort" type="button" onClick="lis1()" title="generates sorted list"/>
             <input name="lis2but" Value="reduce" type="button" onClick="lis2()" title="generates reduced sorted list"/>
-            <input name="lis5but" Value="create line array" type="button" onClick="lis56(false)" title="n by 1 array of lines"/>
-            <input name="lis6but" Value="sort line array" type="button" onClick="lis56(true)" title="sort n by 1 array"/>
-            <br>
-            Special:
+            <input name="lis5but" Value="Create Array" type="button" onClick="lis56(false)" title="n by 1 array of lines"/>
+            <input name="lis6but" Value="Sort Array" type="button" onClick="lis56(true)" title="sort n by 1 array"/>
+            <br><br><br><br><br><br>
+        <h2>Special:</h2>
+        <label>Replace:</label>
+            <input class="shortinput" type="text" name="convfr" size=20 rows=1 tabindex="1" title="regex expression to be converted"/> <label>with:</label> <input class="shortinput" type="text" name="convto" size=20 rows=1 tabindex="2" title="output of conversion"/>
+                <label>from:</label>
+        <input class="shortinput" type="text" name="convfrlist" size=30 rows=1 tabindex="4" title="regex expression list to be converted"/> <label>to:</label>
+            <input class="shortinput" type="text" name="convtolist" size=30 rows=1 tabindex="5" title="output of conversion" value='p,q,r,s,t'/>
+        
             <input name="snlbut" Value="stem/leaf" type="button" onClick="snl()" title="converts stem & leaf to values"/>
             <input name="notagbut" Value="notag" type="button" onClick="notag()" title="erase HTML tags"/>
             <input name="cleanbut" Value="parse" type="button" onClick="parse()" title="cleans up math problems"/>
@@ -705,19 +713,16 @@ The last line is for converting logical variables that are other than p,q,r,s,t.
             <input name="lis4but" Value="n by m" type="button" onClick="lis4()" title="generates 2-D array"/>
             <input name="lis7but" Value="-1st" type="button" onClick="lis7()" title="remove first column"/>
             <input name="lis8but" Value="-mth" type="button" onClick="lis8()" title="remove last column"/>
-            <br>
-            Replace:
-            <input type="text" name="convfr" size=20 rows=1 tabindex="1" title="regex expression to be converted"/> with: <input type="text" name="convto" size=20 rows=1 tabindex="2" title="output of conversion"/>
+            <br><br><br><br><br><br><br>
+        
             <input name="doitbut" Value="Do" type="button" tabindex="3" onClick="dodo()" title="perform regex conversion"/>
             <input name="undobut" Value="Undo" type="button" onClick="undo()" title="undo regex conversion"/>
             <input name="repbut" Value="Repeat" type="button" onClick="repeat()" title="repeat last regex conversion"/>
             <input name="guidebut"  Value="Guide" type="button" onClick="window.open('https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp')" title="load regex guide"/>
-            <br>
-            from:
-            <input type="text" name="convfrlist" size=30 rows=1 tabindex="4" title="regex expression list to be converted"/> to:
-            <input type="text" name="convtolist" size=30 rows=1 tabindex="5" title="output of conversion" value='p,q,r,s,t'/>
-            <input name="doitbut" Value="do" type="button" tabindex="6" onClick="dolist()" title="apply list of changes"/>
-        </p>
+            <br><br>
+
+            <input name="doitbut" Value="do" type="button" tabindex="6" onClick="dolist()" title="apply list of changes"/><br><br><br>
+        
     </form>
     <script>
 scup=String.fromCharCode(8744); scap=String.fromCharCode(8743)
@@ -842,5 +847,5 @@ sigma= String.fromCharCode(963)
 ls=decodeURIComponent(location.search)
 if (ls.search(/\?/)==0) {document.theForm.input.value=""; trytoload(ls.slice(1)); menucode=3; menui=-1}
 </script>
-</body>
+    </div></body>
 </html>
