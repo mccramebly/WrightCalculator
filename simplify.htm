@@ -1,7 +1,14 @@
-<html><head><title>JS Simplify</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link REL="SHORTCUT ICON" HREF="favicon.ico">
-</head><body style="font-family:Monospace" onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 750 );">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Simplify and Solve Using Algebra</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link REL="SHORTCUT ICON" HREF="favicon.ico">
+        <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+        <link rel="stylesheet" href="assets/complex-calc.css">
+</head>
+    <body id="simplifySolve">
 <script type="text/javascript" src="myfunctions.js"></script>
 <script>
 Sigma= String.fromCharCode(931);
@@ -429,62 +436,84 @@ document.theForm.input.value = document.theForm.input.value.replace( re, conto )
 calc()}
 // ---------------------------------------------------*/
 </script>
+        <div id="calctainer">
+            <h1>Simplify and Solve Using Algebra</h1>
 <form name="theForm">
-<table border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')">Simplify and solve using algebra</td></tr>
-<tr><td rowspan=3>
-<input type="button" value="1" onClick="putx('1')"/>
-<input type="button" value="2" onClick="putx('2')"/>
-<input type="button" value="3" onClick="putx('3')"/>
-<input type="button" value="+" onClick="putx('+')"/><br>
-<input type="button" value="4" onClick="putx('4')"/>
-<input type="button" value="5" onClick="putx('5')"/>
-<input type="button" value="6" onClick="putx('6')"/>
-<input type="button" value="-" onClick="putx('-')"/><br>
-<input type="button" value="7" onClick="putx('7')"/>
-<input type="button" value="8" onClick="putx('8')"/>
-<input type="button" value="9" onClick="putx('9')"/>
-<input type="button" value="*" onClick="putx('*')"/><br>
-<input type="button" value=" ." onClick="putx('.')"/>
-<input type="button" value="0" onClick="putx('0')"/>
-<input type="button" value="," onClick="putx(',')"/>
-<input type="button" value="/" onClick="putx('/')"/>
-</td><td rowspan=3>
-<input type="button" value="x²" onClick="putx('x²')"/>
-<input type="button" value="x" onClick="putx('x')"/><br>
-<input type="button" value="(  " onClick="putx('(')"/>
-<input type="button" value=")" onClick="putx(')')"/><br>
-<input type="button" value="^  " onClick="putx('^')"/>
-<input type="button" value="=" onClick="putx('=')"/>
-</td><td>
-<input name="calcbut" Value="Calc" type="button" onClick="standf=false;calc()"/>
-<input type="button" value="8 place" id="frac" onClick="swfrac(true)"/>
-Factorize:<input name="factorize" type="checkbox" onClick="standf=false;calc()"/>
- strip text:<input name="stripText" type="checkbox" onClick="standf=false;calc()"/>
- show work:<input name="showwork" type="checkbox" onClick="standf=false;calc()"/>
-</td></tr><tr><td>
-<input type="button" value="standard form" onClick="document.theForm.solvefor.value='#';standf=true;calc()"/>
- or solve for: <input type="text"  name = "solvefor" size = 1 value="">
-<input name="graphbut" Value="Graph" type="button" onClick="Graph()"/>
-
- debug:<input name="dumpText" type="checkbox" onClick="standf=false;calc()"/>
-</td></tr><tr>
-<td align=right>
-f(x)=<input type="text"  name = "fofx" size = 9 value="">
-g(x)=<input type="text"  name = "gofx" size = 9 value="">
-<input name="clerebut" Value="Clear" type="button" onClick="clere()"/>
-<input name="savebut" Value="Save" type="button" onClick="savestuff()"/>
-<input name="loadbut" Value="Load" type="button" onClick="loadstuff();standf=false;calc()"/>
-</td></tr>
-<tr><td colspan=3><textarea name = "input" rows = 9 cols = 80 tabindex="1" onKeyUp="enter(event)"></textarea>
-</td></tr>
-<!-- <tr><td colspan=3><input name="convbut" tabindex="2" Value="Convert" type="button" onClick="standf=false;conv()"/> From: <input type="text" name="convfr" size=30 rows=1 tabindex="0" onKeyUp="enter(event)"> to: <input type="text" name="convto" size=30 rows=1 tabindex="0" onKeyUp="enter(event)">
-</td></tr> -->
-<tr><td colspan=3>
-<textarea name = "output" rows = 20 cols = 80>
+<div id="inputOutputGroup">
+    <textarea name = "input" tabindex="1" onKeyUp="enter(event)"></textarea>
+    <textarea name = "output" rows = 20 cols = 80>
 input notes:
 division must look like:  (   ) / (   )
-</textarea></td></tr></table></form>
+</textarea>
+    <div id="clearSave">
+        <input type="button" value="8 place" id="frac" onClick="swfrac(true)"/>
+        <input name="graphbut" Value="Graph" type="button" onClick="Graph()"/>
+        <input name="clerebut" Value="Clear" type="button" onClick="clere()"/>
+        <input name="savebut" Value="Save" type="button" onClick="savestuff()"/>
+        <input name="loadbut" Value="Load" type="button" onClick="loadstuff();standf=false;calc()"/>
+    </div>
+    </div>
+    
+<div id="digitsGroup">
+    
+    <input type="button" value="1" onClick="putx('1')" class="digit">
+<input type="button" value="2" onClick="putx('2')" class="digit">
+<input type="button" value="3" onClick="putx('3')" class="digit">
+<input type="button" value="+" onClick="putx('+')"/>
+<input type="button" value="4" onClick="putx('4')" class="digit">
+<input type="button" value="5" onClick="putx('5')" class="digit">
+<input type="button" value="6" onClick="putx('6')" class="digit">
+<input type="button" value="-" onClick="putx('-')"/>
+<input type="button" value="7" onClick="putx('7')" class="digit">
+<input type="button" value="8" onClick="putx('8')" class="digit">
+<input type="button" value="9" onClick="putx('9')" class="digit">
+<input type="button" value="*" onClick="putx('*')">
+<input type="button" value=" ." onClick="putx('.')">
+<input type="button" value="0" onClick="putx('0')" class="digit">
+<input type="button" value="," onClick="putx(',')">
+<input type="button" value="/" onClick="putx('/')"></div>
+    
+    <div id="buttonGroup1"><input type="button" value="x²" onClick="putx('x²')"/>
+<input type="button" value="x" onClick="putx('x')"/><input type="button" value="^" onClick="putx('^')"/>
+<input type="button" value="(  " onClick="putx('(')"/>
+<input type="button" value=")" onClick="putx(')')"/>
+
+<input type="button" value="=" onClick="putx('=')"/></div>
+
+    <div id="buttonGroup2">
+        <label for="fofx">f(x):</label>
+    <input type="text" id="fofx" name = "fofx" placeholder="f(x)" value="">
+        <label for="gofx">g(x):</label>
+        <input type="text"  name = "gofx" value="" placeholder="g(x)">
+    </div>
+    
+    <div id="simplifyOptions">
+        <span>
+<input name="factorize" id="factorize" type="checkbox" onClick="standf=false;calc()"/>
+            <label for="factorize">Factorize</label>
+        </span>
+        <span>
+<input name="stripText"  id="stripText" type="checkbox" onClick="standf=false;calc()"/>
+       <label for="stripText">Strip Text</label>
+        </span>
+        <span>
+        <input name="showwork" id="showwork" type="checkbox" onClick="standf=false;calc()"/>
+            <label for="showwork">Show Work</label>
+        </span>
+        <span>
+<input name="dumpText" id="dumpText" type="checkbox" onClick="standf=false;calc()"/>
+        <label for="dumpText">Debug</label>
+        </span>
+    <span>
+<input type="button" value="Standard Form" onClick="document.theForm.solvefor.value='#';standf=true;calc()"/>
+        <label for="solvefor">Or solve for: </label><input type="text" id="solvefor"  name = "solvefor" size = 1 value=""></span>
+
+
+    </div>
+<input name="calcbut" Value="Calculate" class="calcButton" type="button" onClick="standf=false;calc()"/>
+
+</form>
+            </div>
 <script>
 stuffi=0
 stuff = ["1) 3(x+2)=8x+1\n// ignore this line\n  \n2) 3x+2y=6;x\n3) 3x+2y=6;y","working on: (10+50i)/(1+3i)\n50/3 + (-20/3)(1-3i)/10\n(1+3i)(1-3i)\n(10+50i)(1-3i)\n(20i +160)/10\n","1)   x^3 + x^2 + x + 1 = 0\n2)   x^3 - 17x^2 + 96x - 182 = 0\n3)   x^4 - 4x^3 + 4x-1 = 0\n4)   x^3 + 4x^2 + 9x + 36 = 0\n5)   2x^5 - 4x^4 - 2x^3 + 28x^2 = 0\n6)   2x^5 - 5x^4 - 23x^3 + 2x^2 - 36x - 120 = 0\n"]
