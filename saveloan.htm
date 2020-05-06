@@ -1,8 +1,12 @@
-<html><head><title>Savings/Loan</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Savings/Loan</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
-<script type="text/javascript" src="myfunctions.js"></script>
-<script type="text/javascript">
+<script src="myfunctions.js"></script>
+<script>
 // ------------------------------------
 function enter(evt)
 { var charCode= evt.keyCode;
@@ -282,70 +286,108 @@ function xtcalc(){document.theForm.tval.value=Math.log(document.theForm.Fval.val
 function xFcalc(){document.theForm.Fval.value=document.theForm.Sval.value*Math.pow(document.theForm.rval.value,document.theForm.tval.value)}
 </script>
 <link REL="SHORTCUT ICON" HREF="favicon.ico">
+        <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+        <link rel="stylesheet" href="assets/complex-calc.css">
 </head>
-<body>
+<body id="saveLoan">
+    <div id="calctainer">
+        <h1>Savings &amp; Loan Calculator</h1>
 <form name="theForm">
-<table  border= 1>
-<tr><td><table>
-<tr><th align=center onClick="window.open('index.htm')">Simple Interest </th><th id="hfld4" onclick="sw364()" >365</th><th align=center>days per year</th><th align=center>
- </th><th align=center>Annual</th>
-<th align=center></th><th align=center>
-<input type="button" name="sinta" value= "Reset" onClick="resett()">
-<input type="button" name="sintb" value= "Calculate" onClick="simple()"></th></tr>
-<tr><th>Period: From</th><th id="hfld3" onclick="swperiod()" >days</th><th>To</th><th>Principle</th><th>% Rate</th>
-<th>Interest</th><th>Total</th></tr><tr><td>
-<input type="text"  name= "fdate" size= 14 value="" tabindex="11"></td><td>
-<input type="text"  name= "ndays" size= 4 value="" tabindex="12"></td><td>
-<input type="text"  name= "tdate" size= 14 value="" tabindex="13"></td><td>
-<input type="text"  name= "sprin" size= 10 value="" tabindex="14"></td><td>
-<input type="text"  name= "srate" size= 4 value="" tabindex="15"></td><td>
-<input type="text"  name= "sintr" size= 10 value="" tabindex="16"></td><td>
-<input type="text"  name= "stotl" size= 10 value="" tabindex="17"></td></tr>
-</table></td></tr><tr><td>
-<table width="100%" border=1><tr>
-<td align=center onClick="window.open('index.htm')">
-<b> Exponential Growth </b></td><td>F = S*r^t
+    
+ 
+<div id="simpleInterest">
+    <h2>Simple Interest</h2>
+    <div>
+       <span id="hfld4" onclick="sw364()" class="clickableSpan">365</span> days per year
+    </div>
+    <div id="resetCalc">
+    <input type="button" name="sinta" value= "Reset" onClick="resett()">
+<input type="button" name="sintb" value= "Calculate" onClick="simple()"></div>
+<div>Period: <label for="fdate">From</label>
+    
+    <input type="text"  id="fdate" name= "fdate" size= 14 value="" tabindex="11" placeholder="M/D/YYYY">
+    </div>
+    
+    <div>
+    <span id="hfld3" class="clickableSpan" onclick="swperiod()" ><label for="ndays">days</label></span>
+        <input type="text" id="ndays" name= "ndays" size= 4 value="" tabindex="12" placeholder="360">
+    </div>
+    
+    <div>
+    <label for="tdate">To</label>
+    <input type="text" id="tdate" name= "tdate" size= 14 value="" tabindex="13" placeholder="M/D/YYYY">
+    </div>
+    
+    <div><label for="sprin">Principle</label>
+    <input type="text"  id="sprin" name= "sprin" size= 10 value="" tabindex="14" placeholder="0.00">
+    </div>
+    <div>
+    <label for="srate">Annual % Rate</label>
+    <input type="text" id="srate" name= "srate" size= 4 value="" tabindex="15" placeholder="0.00">
+    </div>
+    <div>
+    Interest 
+    <input type="text"  name= "sintr" size= 10 value="" tabindex="16" placeholder="0.00">
+    </div>
+    <div>
+        <label for="stotl">Total</label>
+    <input type="text" id="stotl" name= "stotl" size= 10 value="" tabindex="17" placeholder="0.00">
+    </div>
+</div>
+    
+    <div id="expoGrowth">
+<h2>Exponential Growth</h2>
+   <span> F = S*r^t</span>
+        <div>
 <input name="s" type="button" value= "S" onClick="xScalc()">
-<input type="text" name= "Sval" size= 10 value="" tabindex="18">
+<input type="text" name= "Sval" size= 10 value="" tabindex="18"></div>
+        <div>
 <input name="r" type="button" value= "r" onClick="xrcalc()">
-<input type="text" name= "rval" size= 10 value="" tabindex="19">
+<input type="text" name= "rval" size= 10 value="" tabindex="19"></div>
+        <div>
 <input name="t" type="button" value= "t" onClick="xtcalc()">
-<input type="text" name= "tval" size= 10 value="" tabindex="20">
+<input type="text" name= "tval" size= 10 value="" tabindex="20"></div>
+        <div>
 <input name="f" type="button" value= "F" onClick="xFcalc()">
-<input type="text" name= "Fval" size= 10 value="" tabindex="21">
-</td></tr>
-</table></td></tr><tr><td>
-<table width="100%" border=1><tr><td align=center onClick="window.open('index.htm')"><b> Compound interest </b></td><td align=left>
+            <input type="text" name= "Fval" size= 10 value="" tabindex="21"></div>
+        </div>
+    <div id="compoundInterest">
+<h2>Compound Interest</h2>
+        <div id="compoundGroup1">
 <input type="button" name="sclearb" value= "Clear" onClick="cla()">
 <input type="button" name="scontb" value= "Continue" onClick="continu()">
 <input type="button" name="bsample" value= "Example" onClick="sample()">
-&nbsp; &nbsp; Show:
+Show:
 <input type="checkbox" name="prtot" /> prior totals
 <input type="checkbox" name="allr" /> all rows
-</td></tr><tr><td>
+</div>
+        <div id="compoundGroup2">
 <input name="cirate" type="button" value= "Calc" onClick="dirate()">
 <input type="text"  name= "irate" size= 5 value="" tabindex="1">% Annual Interest Rate<br>
 <input name="cyears" type="button" value= "Calc" onClick="dyears()">
 <input type="text"  name= "nypdval" size= 2 value="" tabindex="2">
 <input name="nypd" type="radio" title="nypd" checked/> Years
 <input name="nypd" type="radio" title="nypd"/> Periods<br>
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<input type="text"  name= "perper" size= 3 value="12" tabindex="3"> Periods per year (0= cont.)<br>
-</td><td>
+
+<input type="text"  name= "perper" size= 3 value="12" tabindex="3"> Periods per year (0= cont.)</div>
+        
+<div id="compoundGroup3">
 <input name="csbal" type="button" value= "Calc" onClick="dsbal()">
   <input type="text"  name= "startbal" size= 12 value="" tabindex="4"> Starting Balance / Present Value<br>
 <input name="cpayment" type="button" value= "Calc" onClick="dpayment()">
   <input type="text"  name= "perpay" size= 12 value="" tabindex="5"> Periodic payment
   <input type="checkbox" name="payendv" onClick="dohead()" checked/> at end<br>
 <input name="cebal" type="button" value= "Calc" onClick="debal()">
-  <input type="text"  name= "finalbal" size= 12 value="" tabindex="6"> Final Balance / Future Value<br>
-</td></tr></table>
-<table border=1 align=left><tr><th> &nbsp; Year / Period &nbsp; </th><th> &nbsp; Initial &nbsp; Amount &nbsp; </th><th id="hfld1"> &nbsp; &nbsp; Payment
-&nbsp; &nbsp; </th><th id="hfld2"> &nbsp; &nbsp; Interest &nbsp; &nbsp; </th><th> &nbsp; &nbsp; New &nbsp; Balance &nbsp; &nbsp; </th></tr>
-</table>
-</td></tr>
-<tr><td>
-<textarea name= "input" rows= 25 cols= 100>
+  <input type="text"  name= "finalbal" size= 12 value="" tabindex="6"> Final Balance / Future Value
+    </div>
+    </div>
+<div id="outputHeadings">
+    <span>Year / Period</span>
+    <span>Initial Amount</span>
+        <span id="hfld1">Payment</span>
+        <span id="hfld2">Interest</span>
+        <span>New Balance</span> </div>
+    <div id="outputDiv"><textarea name="input" >
 Financial calculations can involve simple interest or compound interest.
 The simple interest formula is: I= Prt, where P= the principle, r is the interest rate per period and t is the number of periods.
 With compound interest the interest is added to the principle and included in the interest calculation for the next period.
@@ -364,8 +406,9 @@ You can calculate any of these values from the others by using formulas like the
   S= (F + (P * ((1+r)^n-1) / r))/(1+r)^n
   P= r*(S(1+r)^n - F)/(1-(1+r)^n)
   n= [ ln ((r*F+P)/(r*S+P))/ln(1+r)]
-</textarea></td></tr></table>
+</textarea></div>
 </form>
+</div>
 <script type="text/javascript">
 zeta= String.fromCharCode(951)
 alpha= String.fromCharCode(945)

@@ -1,9 +1,15 @@
-<html><head><title>JS Polynomials</title></head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-<link REL="SHORTCUT ICON" HREF="favicon.ico">
-
-<body onLoad="self.focus();document.theForm.input.focus();window.resizeTo( 750, 450 );">
-<script type="text/javascript" src="myfunctions.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>JS Polynomials</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link REL="SHORTCUT ICON" HREF="favicon.ico">
+        <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
+        <link rel="stylesheet" href="assets/complex-calc.css">
+    </head>
+<body id="polynomials">
+<script src="myfunctions.js"></script>
 <script>
 var vars=[]
 var numerator=[]
@@ -55,61 +61,68 @@ document.theForm.input.value = ex
 
 }
 </script>
+    <div id="calctainer">
+        <h1>Polynomial Calculator</h1>
 <form name="theForm">
-<table border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
-<tr><td>
-
-<table><tr><td>
-<input type="button" value="1" onClick="putx('1')"/>
-<input type="button" value="2" onClick="putx('2')"/>
-<input type="button" value="3" onClick="putx('3')"/>
-<input type="button" value="+" onClick="putx('+')"/>
-</td><td>|| </td><td>
-<a href="index.htm" target="_blank"><input tabIndex=0 onclick="window.location='index.htm'" value=Main type=button name=menu></a> 
-<input name="calcbut" Value="=" type="button" onClick="calc()"/>
-<input name="fracbut" Value="Frac" type="button" onClick="tofrac()"/>
-<input name="clerebut" Value="Clear" type="button" onClick="clere()"/>
-&nbsp; Degrees<input name="degrees" type="checkbox" checked/>
-</td></tr><tr><td>
-<input type="button" value="4" onClick="putx('4')"/>
-<input type="button" value="5" onClick="putx('5')"/>
-<input type="button" value="6" onClick="putx('6')"/>
-<input type="button" value="-" onClick="putx('-')"/>
-</td><td>|| </td><td>
-<input type="button" value="Ans" onClick="putx(lastans)"/>
-<input type="button" value="x" onClick="putx('x')"/>
-<input type="button" value="P I" onClick="putx('π')"/>
-<input type="button" value="&deg;" onClick="putx('°')"/>
-<input type="button" value="&#8730;" onClick="putx('√(')"/>
-<input type="button" value="&#178;" onClick="putx('²')"/>
-</td></tr><tr><td>
-<input type="button" value="7" onClick="putx('7')"/>
-<input type="button" value="8" onClick="putx('8')"/>
-<input type="button" value="9" onClick="putx('9')"/>
-<input type="button" value="*" onClick="putx('*')"/>
-</td><td>|| </td><td>
-<input type="button" value="(" onClick="putx('(')"/>
-<input type="button" value=")" onClick="putx(')')"/>
-<input type="button" value="^" onClick="putx('^')"/>|| 
-<input type="button" value="cos" onClick="putx('cos(')"/>
-<input type="button" value="sin" onClick="putx('sin(')"/>
-<input type="button" value="tan" onClick="putx('tan(')"/>
-</td></tr><tr><td>
-<input type="button" value=" ." onClick="putx('.')"/>
-<input type="button" value="0" onClick="putx('0')"/>
-<input type="button" value="," onClick="putx(',')"/>
-<input type="button" value="/" onClick="putx('/')"/>
-</td><td>|| </td><td>
-<input type="button" value="exp" onClick="putx('exp(')"/>
-<input type="button" value="ln" onClick="putx('ln(')"/>|| 
-<input type="button" value="acos" onClick="putx('acos(')"/>
-<input type="button" value="asin" onClick="putx('asin(')"/>
-<input type="button" value="atan" onClick="putx('atan(')"/>
-</td></tr></table>
-</td></tr><tr><td colspan=2>
-<textarea name = "input" rows = 4 cols = 80 tabindex="1" onKeyUp="enter(event)">
-points ( , ), ( , ), ( , ), vertex ( , ), focus ( , ), directrix x = ( )                                                     function y = (  ,  ,  )  /  ( 1 )</textarea>
+    <div id="inputOutputGroup">
+<textarea name = "input" rows = 4 cols = 80 tabindex="1" onKeyUp="enter(event)">points ( , ), ( , ), ( , ), vertex ( , ), focus ( , ), directrix x = ( )
+function y = (  ,  ,  )  /  ( 1 )</textarea>
 <textarea name = "output" rows = 9 cols = 80 tabindex="2" onKeyUp="enter(event)"></textarea>
-</td></tr></table>
-</form></body></html>
+        <div id="clearSave">
+            <input name="clerebut" Value="Clear" type="button" onClick="clere()"/> 
+            <input name="fracbut" Value="Frac" type="button" onClick="tofrac()"/>
+        
+        </div>
+    </div>
+    
+    <div id="digitsGroup">
+        <input type="button" value="1" onClick="putx('1')" class="digit">
+        <input type="button" value="2" onClick="putx('2')" class="digit">
+        <input type="button" value="3" onClick="putx('3')" class="digit">
+        <input type="button" value="+" onClick="putx('+')"/>
+        <input type="button" value="4" onClick="putx('4')" class="digit">
+        <input type="button" value="5" onClick="putx('5')" class="digit">
+        <input type="button" value="6" onClick="putx('6')" class="digit">
+        <input type="button" value="-" onClick="putx('-')">
+        <input type="button" value="7" onClick="putx('7')" class="digit">
+        <input type="button" value="8" onClick="putx('8')" class="digit">
+        <input type="button" value="9" onClick="putx('9')" class="digit">
+        <input type="button" value="*" onClick="putx('*')"/>    
+        <input type="button" value=" ." onClick="putx('.')"/>
+        <input type="button" value="0" onClick="putx('0')" class="digit">
+        <input type="button" value="," onClick="putx(',')"/>
+        <input type="button" value="/" onClick="putx('/')"/>
+    </div>
+    
+    <div id="buttonGroup1">
+        <input type="button" value="x" onClick="putx('x')"/>
+        <input type="button" value="P I" onClick="putx('π')"/>
+        <input type="button" value="&deg;" onClick="putx('°')"/>
+        <input type="button" value="&#8730;" onClick="putx('√(')"/>
+        <input type="button" value="&#178;" onClick="putx('²')"/>
+        <input type="button" value="(" onClick="putx('(')"/>
+        <input type="button" value=")" onClick="putx(')')"/>
+        <input type="button" value="^" onClick="putx('^')"/>
+    </div>
+
+<div id="buttonGroup2">
+    <input type="button" value="Last Answer" onClick="putx(lastans)"/>
+    <input type="button" value="exp" onClick="putx('exp(')"/>
+<input type="button" value="ln" onClick="putx('ln(')"/> 
+    <span>
+    <input id="degrees" name="degrees" type="checkbox" checked/><label for="degrees">Degrees</label>
+    </span>
+    </div>
+
+    <div id="sinCosTan">
+        <input type="button" value="cos" onClick="putx('cos(')"/>
+        <input type="button" value="acos" onClick="putx('acos(')"/>
+        <input type="button" value="sin" onClick="putx('sin(')"/>
+        <input type="button" value="asin" onClick="putx('asin(')"/>
+        <input type="button" value="tan" onClick="putx('tan(')"/>
+        <input type="button" value="atan" onClick="putx('atan(')"/>
+        </div>
+
+
+    <input name="calcbut" Value="Calculate" type="button" onClick="calc()" class="calcButton">
+</form></div></body></html>

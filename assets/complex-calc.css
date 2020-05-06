@@ -280,6 +280,166 @@ input.calcButton {
     display:grid;
     padding-bottom:10px;
 }
+
+/* save loan */
+
+.clickableSpan {
+    text-decoration: underline;
+    color: #A0C1B9;
+}
+#saveLoan #calctainer form {
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 10px;
+}
+#saveLoan #simpleInterest {
+    grid-area: 1 / 1 / 2 / 3;
+    display:grid;
+    grid-template-columns: 1fr 3em 1fr 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid;
+    padding-bottom:10px;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+}
+
+#simpleInterest h2 {
+    grid-area: 1 / 1 / 2 / 8;
+    margin:0;
+    margin-bottom:10px;
+}
+#simpleInterest div:first-of-type {
+    grid-area: 2 / 1 / 3 / 4;
+}
+
+#simpleInterest #resetCalc {
+    grid-area: 2 / 4 / 3 / 8;
+    text-align:right;
+}
+
+#simpleInterest div input[type=text] {
+    width:100%;
+    margin-top:5px;
+}
+
+#expoGrowth {
+    display:grid;
+    grid-area:2 / 1 / 3 / 3;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#expoGrowth h2 {
+    grid-area: 1 / 1 / 2 / 5;
+    margin:0;
+    margin-bottom:10px;
+}
+
+#expoGrowth span:first-of-type {
+    grid-area: 2 / 1 / 3 / 5;
+    padding:10px;
+    font-style:italic;
+    text-indent:10px;
+}
+
+#compoundInterest {
+    grid-area:3 / 1 / 4 / 3;
+    display:grid;
+    grid-template-columns: 40% 1fr;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    border-bottom:1px solid;
+    padding-bottom:10px;
+}
+
+#compoundInterest h2 {
+    grid-area: 1 / 1 / 2 / 5;
+    margin:0;
+}
+
+#compoundGroup1 {
+    grid-area: 2 / 1 / 3 / 3;
+    border-bottom:1px dashed;
+    padding:5px;
+}
+
+#compoundGroup2 {
+    grid-area: 3 / 1 / 4 / 2;
+    border-right:1px dashed;
+    padding-right:5px;
+}
+
+#compoundGroup3 {
+    grid-area: 3 / 2 / 4 / 3;
+
+}
+
+#saveLoan #outputHeadings {
+    grid-area:4 / 1 / 5 / 3;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    font-weight:bold;
+    padding:10px 0;
+    border-bottom:1px solid;
+    margin-bottom:10px;
+}
+
+#saveLoan #outputDiv {
+    grid-area: 5 / 1 / 6 / 3;
+}
+
+#saveLoan #outputDiv textarea {
+    height:300px;
+}
+
+/* poly.htm */
+#polynomials label{
+    vertical-align: middle;
+}
+#polynomials #inputOutputGroup {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+#polynomials #inputOutputGroup #clearSave {
+    grid-template-columns: 1fr 1fr;
+}
+
+#polynomials #calctainer form {
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 10px;
+}
+
+#polynomials #digitsGroup {
+    grid-area: 2 / 1 / 5 / 2;
+    margin:0;
+    border:none;
+    padding:0;
+}
+
+#polynomials #buttonGroup1 {
+    grid-area: 2 / 2 / 4 / 3;
+    border:none;
+    margin:0;
+    padding:0;
+}
+
+#polynomials #buttonGroup2 {
+    grid-area: 4 / 2 / 5 /3;
+    grid-template-columns: 1fr 1fr;
+    border:none;
+}
+
+#polynomials #sinCosTan {
+    grid-area: 5 / 1 / 6 / 2;
+    border:none;
+}
+
+#polynomials #buttonGroup2 input:first-child {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+#polynomials #buttonGroup2 span:first-of-type {
+    grid-area: 3 / 1 / 4 / 3;
+    text-align: center;
+}
+
 /* media queries */
 
 @media only screen and (max-width:768px) {
@@ -390,5 +550,71 @@ input.calcButton {
     
     #simplifySolve #clearSave input:first-child {
         grid-column: 1 / 3;
+    }
+}
+
+/* saveloan */
+
+@media only screen and (max-width:775px) {
+    #saveLoan #simpleInterest {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    
+    #simpleInterest h2 {
+        grid-area: 1 / 1 / 2 / 5;
+    }
+    
+    #simpleInterest div:first-of-type {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+    
+    #simpleInterest #resetCalc {
+        grid-area: 2 / 2 / 3 / 5;
+    }
+    
+}
+
+@media only screen and (max-width:500px) {
+    #expoGrowth {
+        display:block;
+    }
+    
+    #expoGrowth input[type=button] {
+        width: 10%;
+    }
+    #expoGrowth input[type=text] {
+        width:80%;
+    }
+
+    #compoundInterest {
+        display:block;
+    }
+    
+    #compoundGroup1 {
+        margin-bottom:10px;
+    }
+    
+    #compoundGroup2 {
+        padding-bottom:10px;
+        border:none;
+        border-bottom:1px dashed;
+        margin-bottom:10px;
+    }
+}
+
+/* poly */
+
+@media only screen and (max-width:500px) {
+    #polynomials #calctainer form {
+        display:block;
+    }
+    #polynomials #buttonGroup1 {
+        padding:10px 0 0;
+    }
+    #polynomials #sinCosTan {
+        padding-top:0;
+    }
+    .calcButton {
+        width:100%;
     }
 }
