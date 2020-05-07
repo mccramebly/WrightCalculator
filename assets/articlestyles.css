@@ -297,6 +297,17 @@ textarea{
     grid-column: 3;
 }
 
+/* class for 2dice */
+
+.pink {
+    background:pink;
+    font-weight:bold;
+}
+
+.dieTable td, .dieTable th {
+    text-align: center;
+    width:1em;
+}
 /*label
 {
     float: left;
