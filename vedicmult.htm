@@ -4,15 +4,13 @@
         <title>Vedic Multiplication</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link REL="SHORTCUT ICON" HREF="favicon.ico">
         <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
         <link rel="stylesheet" href="assets/simple-calc-style.css">
-        <link REL="SHORTCUT ICON" HREF="favicon.ico">
     </head>
-<body id="vedicmult" onLoad="self.focus();document.theForm.a.focus()">
-<script type="text/javascript" src="myfunctions.js"></script>
-<script type="text/javascript" src="matrix.js"></script>
-<link rel="stylesheet" href="assets/html5reset-1.6.1.css">
-<link rel="stylesheet" href="assets/articlestyles.css">
+<body id="vedic" onLoad="self.focus();document.theForm.a.focus()">
+<script src="myfunctions.js"></script>
+<script src="matrix.js"></script>
 <script>
 var x,y,z,c1,c2, a=''
 fillerchar=String.fromCharCode(183)
@@ -87,39 +85,18 @@ for (x=2*L-2;x>=0; x--)
 while (ccc.length<25) ccc="."+ccc; document.theForm.output.value +="\n  A."+ccc
 }
 </script>
-
-    <div class="calcmenu">
-        <h2>Vedic Multiply</h2>
-<form name="theForm">
-<br>
-<label>Multiply</label><input type="text" name="a" size=30 rows=1 tabindex=1 value=""/> <br>
-<label>by</label><input type="text" name="b" size=30 rows=1 tabindex=2 value=""/><br>
-<input name="resbut" tabindex=3 Value="Result" type="button" onClick="calc()" onKeyUp="enter(event)"/>
-<input name="clrbut" tabindex=4 Value="Clear" type="button" onClick="clere()"/>
-
-<textarea name = "output" rows=30 cols=68 tabindex=""></textarea>
-</form>
-<script>calc()</script>
-    </div>
-
     <div id="calctainer">
-        <h1>Vedic Multiplication</h1>
+        <a href="index.htm"><img src="assets/calcheadertrim.png" class="calcheader"></a>
+    <h1>Vedic Multiplication</h1>
 <form name="theForm">
-    <div id="input">
-    Multiply
-<input type="text" name="a" size=30 rows=1 tabindex=1 value=""> by
-<input type="text" name="b" size=30 rows=1 tabindex=2 value="">
+    <span><label for="a">First number to multiply:</label>
+<input type="text" name="a" id="a" size=30 rows=1 tabindex=1 value=""/></span> 
+    <span><label for="b">Second number to multiply:</label>
+<input type="text" name="b" id="b" size=30 rows=1 tabindex=2 value=""/></span>
+    <textarea name="output"></textarea>
+        <div id="buttons">
+        <input class="calcButton" name="resbut" tabindex=3 Value="Calculate" type="button" onClick="calc()" onKeyUp="enter(event)"/>
+<input name="clrbut" tabindex=4 Value="Clear" type="button" onClick="clere()"/></div></form>
     </div>
-<textarea id="output" name = "output" rows=30 cols=80 tabindex=""></textarea>
-    <div id="buttons">
-        
-<input name="clrbut" id="clrbut" tabindex=4 Value="Clear" type="button" onClick="clere()">
-    </div>
-    <div id="saveload">
-        <input id="resbut" name="resbut" tabindex=3 value="Calculate" type="button" onClick="calc()" onKeyUp="enter(event)">
-        </div>
-        </form>
 <script>calc()</script>
-</div>
-
 </body></html>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simultaneous Linear Equations</title>
     <script src="myfunctions.js"></script>
     <script src="matrix.js"></script>
@@ -8,8 +10,9 @@
     <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
     <link rel="stylesheet" href="assets/simple-calc-style.css">
 </head>
-<body onLoad="self.focus();document.theForm.input.focus();">
+<body id="linear" onLoad="self.focus();document.theForm.input.focus();">
     <div id="calctainer">
+        <a href="index.htm"><img class="calcheader" src="assets/calcheadertrim.png"></a>
         <h1>Systems of Linear Equations</h1>
 <form name="theForm">
 <textarea id="output" name = "output" tabindex=0>
@@ -21,24 +24,36 @@ Example:
 2x +z =-1
 y + z =1</textarea>
 <textarea id="input" name = "input" tabindex="1" onKeyUp="enter(event)"></textarea>
-    <input id="calculate" name="calculate" type="button" value = "Calculate" onClick="calc()" tabindex="2">
+    <input id="calculate" class="calcButton" name="calculate" type="button" value = "Calculate" onClick="calc()" tabindex="2">
 
 <div id="buttons">
+    <div id="options">
+    <span>
 <input type="checkbox" name="debug" value="dump"/>Gauss Matrix
-<input type="checkbox" name="inverse" value="inverse"/>A<sup>-1</sup>
-<input type="checkbox" name="only1" value="only1"/>short answer
-<input type="checkbox" name="cramer" value="cramer">Cramer
+    </span>
+    <span>
+    <input type="checkbox" name="inverse" value="inverse"/>A<sup>-1</sup>
+        </span>
+    <span>
+    <input type="checkbox" name="only1" value="only1"/>short answer
+        </span>
+    <span>
+    <input type="checkbox" name="cramer" value="cramer">Cramer
+        </span>
+        </div>
+    <div id="buttonGroup">
 <input name="medians" type="button" value = "enter medians" onClick="dotrimid()">
 <input name="triangle" type="button" value = "Find triangle" onClick="dotriangle()">
 <input name="invenn" type="button" value = "enter venn data" onClick="vennin()">
 <input name="outvenn" type="button" value = "draw diagram" onClick="vennout()"> 
 <input name="findcorn" type="button" value = "draw intersections" onClick="corners()">
+        <input type="button" value="8 place" id="frac" onClick="swfrac(true,4)" title="output format">
+        </div>
     </div>
 <div id="saveload">
 <input name="savebut" Value="Save" type="button" onClick="savestuff()"/>
 <input name="loadbut" Value="Load" type="button" onClick="loadstuff();calc()"/>
-<input name="clear" type="button" value = "Clear" onClick="cla()"/>
-<input type="button" value="8 place" id="frac" onClick="swfrac(true,4)" title="output format">
+<input name="clear" id="clear" type="button" value = "Clear" onClick="cla()"/>
 </div>
 </form>
     </div>
