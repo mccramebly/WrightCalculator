@@ -28,12 +28,12 @@ input[type=button] {
     margin:10px auto;
     border-radius:10px;
     border: 1px solid #707070;
-    display:grid;
+    display:block;
     grid-template-columns: 1fr 1fr;
 }
 
 #calctainer form {
-    grid-area: 2 / 1 / 3 / 3;
+    grid-column: 1 / 3;
     display:grid;
     grid-template-columns: 40% 40% 20%;
     padding:10px;
@@ -45,7 +45,7 @@ h1 {
     font-size: 2em;
     text-align: center;
     padding:5px;
-    grid-area: 1 / 1 / 2 / 4;
+    grid-column:1 / 3;
     padding-bottom: 10px;
 }
 
