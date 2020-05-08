@@ -362,6 +362,7 @@ document.theForm.output.focus() }}
 </head>
 <body onLoad="self.focus();document.theForm.input.focus();">
     <div id="calctainer">
+        <a href="index.htm"><img class="calcheader" src="assets/calcheadertrim.png"></a>
     <h1>One Variable Statistics</h1>
 <form name="theForm">
 <textarea id="output" name="output">Input for 1 var stats:
@@ -376,7 +377,7 @@ use [] for function parameters such as: sqrt[3]
 x:  \f:  \xf:  \v:  \w:  \x=  \\
 </textarea>  
     
-    <input id="calculate" name="calc1" type="button" value="Calculate" onClick="calc()" tabindex="3">
+    <input class="calcButton" id="calculate" name="calc1" type="button" value="Calculate" onClick="calc()" tabindex="3">
     <div id="buttons">
         <label for="percentile">Percentile:</label>
         <input type="text" id="percentile" name="percentile" size="4" value="" title="Percentile" /> 
@@ -396,10 +397,10 @@ x:  \f:  \xf:  \v:  \w:  \x=  \\
         <div class="pass">
             <h2>Use These Calculations With:</h2>
             <ul>
-                <li><a href="#" onClick="grph=2; calc(); window.open('graphs.htm')" class="isDisabled">Bar Graph</a></li>
-                <li><a href="#" onClick="grph=3; calc(); window.open('graphs.htm')" class="isDisabled">Box &amp; Whiskers Chart</a></li>
-                <li><a href="#" onClick="grph=4; calc(); window.open('graphs.htm')" class="isDisabled">Pie Chart</a></li>
-                <li><a href="#" onClick="calc(); callprob()" class="isDisabled">Probability Calculations</a></li>
+                <li><a href="#" onClick="grph=2; calc(); window.open('graphs.htm')">Bar Graph</a></li>
+                <li><a href="#" onClick="grph=3; calc(); window.open('graphs.htm')">Box &amp; Whiskers Chart</a></li>
+                <li><a href="#" onClick="grph=4; calc(); window.open('graphs.htm')">Pie Chart</a></li>
+                <li><a href="#" onClick="calc(); callprob()">Probability Calculations</a></li>
             </ul>
             
         </div>

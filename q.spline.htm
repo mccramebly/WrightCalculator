@@ -3,6 +3,7 @@
 <head>
     <title>Quadratic Spline</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link REL="SHORTCUT ICON" HREF="favicon.ico">
     <link rel="stylesheet" href="assets/html5reset-1.6.1.css">
     <link rel="stylesheet" href="assets/simple-calc-style.css">
@@ -86,6 +87,7 @@ document.theForm.x.focus();
 } };
 </script>
 <div id="calctainer">
+    <a href="index.htm"><img class="calcheader" src="assets/calcheadertrim.png"></a>
     <h1>Quadtratic Spline</h1>
 <form name="theForm">
     <textarea name="output" id='result' tabindex="1" rows=10></textarea>
@@ -94,7 +96,7 @@ document.theForm.x.focus();
     </div>
 <textarea name="input" id="input" rows=5></textarea>
 
-    <input name="calc" id="calcButton" type="button" value = "Calculate" onClick="calc1()" tabindex="6" />
+    <input name="calc" id="calcButton" type="button" class="calcButton" value = "Calculate" onClick="calc1()" tabindex="6" />
 <div id="buttons">
 <label for="x">Find fx) for x=</label><input type="text"  id="x" name = "x" size = 10 value="" tabindex="2">
 <label for="line"> line through 1st 2 points: </label><input name="line" id="line" type="checkbox" onClick="calc1()" title="line thru first two points" checked>
