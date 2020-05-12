@@ -9,6 +9,8 @@
     <link REL="SHORTCUT ICON" HREF="favicon.ico">
 </head>
 <body>
+    <div class="artmenu">
+        <a href="index.htm"><img class="artmenuheader" src="assets/calcheader.png"></a>
     <h1>10 Coins</h1>
     <div>
         <p>Examples of binomial distributions</p>
@@ -24,7 +26,7 @@
             </ul>
         </li>
     </ul>
-    <a href="probability.htm" title="wrightcalc.htm"><img src="10coins.jpg" alt="ten Coins" title="ten Coins" width="350" height="250"/></a> 
+    <a href="probability.htm" title="wrightcalc.htm"><img src="assets/10coins.jpg" alt="ten Coins" title="ten Coins" width="350" height="250"/></a> 
     </div>
 <table id="triangle">
 <tr><th>Row</th><th colspan=25><b>Pascal's triangle  nCr(row,column)</b><br>
@@ -42,9 +44,16 @@
 <tr><th>10</th><td></td><td>1</td><td></td><td>10</td><td></td><td>45</td><td></td><td>120</td><td></td><td>210</td><td></td><td>252</td><td></td><td>210</td><td></td><td>120</td><td></td><td>45</td><td></td><td>10</td><td></td><td>1</td></tr>
 <tr><th colspan=2>Col:</th><th>0</th><th></th><th>1</th><th></th><th>2</th><th></th><th>3</th><th></th><th>4</th><th></th><th>5</th><th></th><th>6</th><th></th><th>7</th><th></th><th>8</th><th></th><th>9</th><th></th><th>10</th></tr>
 </table
->
+><br><br>
     
-
+<h2>Using the Normal Approximation:</h2>
+ <p> n = 10; p = 0.5; q = 0.5; P(x = 0) = nCx p^x q^(n-x) = 0.0009766
+μ = (n p) = 5;  σ² = ( n p q ) = 2.5;  σ = √( n p q ) = 1.5811<br>
+x1 = -0.5; x2 = 10.5; μ = 5; σ = 1.5811388300841898<br>
+z = ( x1 - μ ) / σ = -3.4785<br>
+z = ( x2 - μ ) / σ = 3.4785<br>
+P (-0.05 &lt; p &lt; 1.05) = P (-0.5 &lt; x &lt; 10.5) = P (-3.4785 &lt; z &lt; 3.4785) = 0.99949559<br>
+              </p>
         <table class="clear">
             <caption>Analysis:</caption>
             <thead>
@@ -205,15 +214,8 @@
                 </tr>
             </tfoot>
             </table>
-          <p>  
-Using the Normal Approximation:<br>
- n = 10; p = 0.5; q = 0.5; P(x = 0) = nCx p^x q^(n-x) = 0.0009766
-μ = (n p) = 5;  σ² = ( n p q ) = 2.5;  σ = √( n p q ) = 1.5811<br>
-x1 = -0.5; x2 = 10.5; μ = 5; σ = 1.5811388300841898<br>
-z = ( x1 - μ ) / σ = -3.4785<br>
-z = ( x2 - μ ) / σ = 3.4785<br>
-P (-0.05 &lt; p &lt; 1.05) = P (-0.5 &lt; x &lt; 10.5) = P (-3.4785 &lt; z &lt; 3.4785) = 0.99949559<br>
-              </p>
            
+
+ </div>          
 </body>
 </html>
