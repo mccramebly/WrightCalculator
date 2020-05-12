@@ -113,42 +113,43 @@ theSForm.SVar.value="You need to test "+d+" batches of "+t+"\n leaving "+u+" unt
 SvarY=t; SvarN=u
 }
 </script>
-<A href="pois.pdf" target="_blank">click here for the explanation	</A>
-<table><tr><th>Multi-test</th><th>Single-test</th></tr><tr><td>
+    <div class="calcmenu">
+        <a href="index.htm"><img class="artmenuheader" src="assets/calcheaderlight.png"></a>
+<a href="pois.pdf" target="_blank">Explanation	</a>
+<h2>Multi-test</h2>
 <form name="theForm">
-<table border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
-<tr><td>Enter any two values:</td><td>Calculate the third value:</td></tr><tr><td>
-weeks: <input type="text" name="VarW" size=6 value="0"/></td><td>
-<input name="calcbut" Value="eval" type="button" onClick="calc1();illus()"/>
-</td></tr><tr><td>
-detectors: <input type="text" name="VarD" size=6 value="3"/></td><td>
-<input name="calcbut" Value="eval" type="button" onClick="calc2();illus()"/>
-</td></tr><tr><td>
-containers: <input type="text" name="VarP" size=6 value="720"/></td><td>
-<input name="calcbut" Value="eval" type="button" onClick="calc3();illus()"/> 
-</td></tr>
-<tr><td colspan=2><textarea name="SVar" rows=4 cols=40></textarea></td></tr><tr>
-<td align=center><input name="Scalcbut" Value="No Hit" type="button" onClick="calc4N();illus()"/></td>
-<td align=center><input name="Scalcbut" Value="Hit" type="button" onClick="calc4Y();illus()"/></td></tr></table></form>
-</td><td>
-<form name="theSForm">
-<table border = 1>
-<tr><td colspan=99 onClick="window.open('index.htm')"> </td></tr>
-<tr><td>Enter any two values:</td><td>Calculate the third value:</td></tr><tr><td>
-weeks: <input type="text" name="SVarW" size=6 value="0"/></td><td>
-<input name="Scalcbut" Value="eval" type="button" onClick="Scalc1();illus()"/>
-</td></tr><tr><td>
-detectors: <input type="text" name="SVarD" size=6 value="3"/></td><td>
-<input name="Scalcbut" Value="eval" type="button" onClick="Scalc2();illus()"/>
-</td></tr><tr><td>
-containers: <input type="text" name="SVarP" size=6 value="720"/></td><td>
-<input name="Scalcbut" Value="eval" type="button" onClick="Scalc3();illus()"/> 
-</td></tr>
-<tr><td colspan=2><textarea name="SVar" rows=4 cols=40></textarea></td></tr><tr>
-<td align=center><input name="Scalcbut" Value="No Hit" type="button" onClick="Scalc4N();illus()"/></td>
-<td align=center><input name="Scalcbut" Value="Hit" type="button" onClick="Scalc4Y();illus()"/></td></tr></table></form>
-</td></tr></table>
-
+        <p>Enter any two values and click "Eval" in the missing area to calculate the third.</p>
+    <label>Weeks:</label><input class="shortinput" type="text" name="VarW" size=6 value="0"/>
+        <input name="calcbut" Value="eval" type="button" onClick="calc1();illus()"/>
+        
+    <label>Detectors:</label><input class="shortinput" type="text" name="VarD" size=6 value="3"/>
+        <input name="calcbut" Value="eval" type="button" onClick="calc2();illus()"/>
+        
+    <label>Containers:</label><input class="shortinput" type="text" name="VarP" size=6 value="720"/>
+        <input name="calcbut" Value="eval" type="button" onClick="calc3();illus()"/> 
+        
+        <textarea name="SVar" rows=4 cols=40></textarea>
+        <input name="Scalcbut" Value="No Hit" type="button" onClick="calc4N();illus()"/>
+        <input name="Scalcbut" Value="Hit" type="button" onClick="calc4Y();illus()"/></form>
+        
+    <h2 style="margin-top: 275px;">Single-test</h2>
+        <form name="theSForm">
+        <p>Enter any two values and click "Eval" in the missing area to calculate the third.</p>
+            <label>Weeks:</label><input class="shortinput" type="text" name="SVarW" size=6 value="0"/>
+        <input name="Scalcbut" Value="eval" type="button" onClick="Scalc1();illus()"/>
+            
+            <label>Detectors:</label><input class="shortinput" type="text" name="SVarD" size=6 value="3"/>
+        <input name="Scalcbut" Value="eval" type="button" onClick="Scalc2();illus()"/>
+            
+            <label>Containers:</label><input class="shortinput" type="text" name="SVarP" size=6 value="720"/>
+        <input name="Scalcbut" Value="eval" type="button" onClick="Scalc3();illus()"/> 
+            
+        <textarea name="SVar" rows=4 cols=40></textarea>
+        <input name="Scalcbut" Value="No Hit" type="button" onClick="Scalc4N();illus()"/>
+        <input name="Scalcbut" Value="Hit" type="button" onClick="Scalc4Y();illus()"/>
+    
+    </form>
+    
+</div>
 <script>calc1(); Scalc1(); illus()</script>
 </body></html>
