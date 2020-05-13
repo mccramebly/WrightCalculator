@@ -83,7 +83,10 @@ th{
 
 pre {
     clear:left;
+    max-width:100%;
+    overflow-x: scroll;
 }
+
 .calcmenu {
     background:#f1f1f1;
     font-family:"Segoe UI", Helvetica, Arial, sans-serif;
@@ -236,6 +239,7 @@ input[type=checkbox]{
 textarea{
     float: left;
     border-radius: 5px;
+    max-width:100%;
 }
 
 /*grid*/
@@ -309,9 +313,57 @@ textarea{
     width:1em;
 }
 
-/*label
-{
-    float: left;
-    width: 5em;
+
+/* link back from explanatory articles */
+a.returnLink {
+    display:block;
+    font-size:.8em;
+    text-align: center;
+}
+
+a.returnLink:before {
+    content:"←";
+}
+
+/* back to top link */
+
+a.backToTop {
+    display:block;
     text-align: right;
-}*/
+    text-decoration:none;
+    clear:both;
+}
+
+a.backToTop:before {
+    content:"↑";
+    padding-right:10px;
+    
+}
+
+@media only screen and (max-width:500px) {
+    #euler .artmenu {
+        width:85%;
+    }
+}
+/* dues calculator */
+
+#annualDuesCalc {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    text-align: right;
+}
+
+#annualDuesCalc label {
+    width:auto;
+}
+
+#ODE div .clearFloat label {
+    clear:left;
+}
+
+.tencoins {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    padding-bottom:10px;
+}
